@@ -185,3 +185,5 @@ rules:
     - warn
   lodash/prefer-some:
     - warn
+  lodash/chaining:
+    - off

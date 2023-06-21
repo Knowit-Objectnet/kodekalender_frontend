@@ -1,5 +1,6 @@
 import { format } from "date-fns"
 import { find, isEmpty, memoize, padStart, replace, toString, trim } from "lodash"
+import { getAnchorVar } from './hooks/useStoreAnchorVars'
 
 
 export const NBSP = "\u00a0"
@@ -9,6 +10,10 @@ export const getTimestampForInputField = (dateString: string) => format(new Date
 export const getActiveYear = () => {
   const date = new Date()
   const year = date.getFullYear()
+
+  const activeYearOverride = getAnchorVar("year")
+  if (activeYearOverride)
+    return activeYearOverride
 
   // Active year rolls into January
   return date.getMonth() < 11 ? year - 1 : year

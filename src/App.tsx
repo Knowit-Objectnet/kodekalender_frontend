@@ -15,6 +15,7 @@ import ServiceMessages from "./pages/ServiceMessages"
 import BackgroundPauseButton from "./components/BackgroundPauseButton"
 import Page from "./pages/Page"
 import Solutions from "./pages/Solutions"
+import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
 
 
 const LazyAdmin = () => {
@@ -57,6 +58,8 @@ const LazyUser = () => {
 }
 
 const App = () => {
+  useStoreAnchorVars()
+
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
 
   // Match door 1-24 only
