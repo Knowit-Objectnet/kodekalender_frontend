@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     svgr({ memo: true }),
-    process.env.NODE_ENV == 'production' && optimizeLodashImports(),
+    // process.env.NODE_ENV == 'production' && optimizeLodashImports(),
     visualizer()
   ],
   resolve: {
