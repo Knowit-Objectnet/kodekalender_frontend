@@ -12,7 +12,17 @@ export default defineConfig({
   },
   plugins: [
     reactRefresh(),
-    svgr({ memo: true }),
+    svgr({
+      memo: true,
+      svgoConfig: {
+        plugins: [
+          {
+            name: 'cleanupIDs',
+            active: false
+          }
+        ]
+      }
+    }),
     // process.env.NODE_ENV == 'production' && optimizeLodashImports(),
     visualizer()
   ],

@@ -4,9 +4,13 @@ import { forEach, range } from "lodash"
 
 import { DoorsProps } from "./doors_utils"
 
+import { NBSP } from "../../utils"
+
+import { ReactComponent as TestSvg } from "/resources/test-doors.svg"
 
 
 const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) => {
+  const [useTestSvg, setUseTestSvg] = useState(false)
   const [svg, setSvg] = useState<string>()
 
   useEffect(() => {
@@ -40,10 +44,17 @@ const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) =
     return null
 
   return (
-    <div
-      className={clsx(className)}
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
+    <div>
+      <label>
+        <input type="checkbox" onChange={(e) => setUseTestSvg(e.target.checked)} />
+        {NBSP}
+        Bruk test-SVG
+      </label>
+      {useTestSvg
+        ? <div className={clsx(className)}><TestSvg /></div>
+        : <div className={clsx(className)} dangerouslySetInnerHTML={{ __html: svg }} />
+      }
+    </div>
   )
 }
 
