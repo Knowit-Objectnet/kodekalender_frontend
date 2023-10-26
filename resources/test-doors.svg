@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="20.356 20.356 223.916 142.492" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="372.234" y1="142.492" x2="372.234" y2="162.848" id="gradient-0" gradientTransform="matrix(1, 0, 0, 1, -332.2742, -113.522644)">
+      <stop offset="0" style="stop-color: rgba(221, 0, 255, 1)"/>
+      <stop offset="1" style="stop-color: rgba(133, 0, 153, 1)"/>
+    </linearGradient>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 3.552713678800501e-15, 0)">
+    <rect x="20.356" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="61.068" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="61.068" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="20.356" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="101.78" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="142.492" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="142.492" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="101.78" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="183.204" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="223.916" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="223.916" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="183.204" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="20.356" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="61.068" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="61.068" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="20.356" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="101.78" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="142.492" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="142.492" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="101.78" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="183.204" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="223.916" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="223.916" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+    <rect x="183.204" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(183, 214, 239);"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 3.552713678800501e-15, -0.000010000000656873453)">
+    <rect x="20.356" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-1-open"/>
+    <rect x="61.068" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-2-open"/>
+    <rect x="61.068" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-3-open"/>
+    <rect x="20.356" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-4-open"/>
+    <rect x="101.78" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-5-open"/>
+    <rect x="142.492" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-6-open"/>
+    <rect x="142.492" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-7-open"/>
+    <rect x="101.78" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-8-open"/>
+    <rect x="183.204" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-9-open"/>
+    <rect x="223.916" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-10-open"/>
+    <rect x="223.916" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-11-open"/>
+    <rect x="183.204" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-12-open"/>
+    <rect x="20.356" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-13-open"/>
+    <rect x="61.068" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-14-open"/>
+    <rect x="61.068" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-15-open"/>
+    <rect x="20.356" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-16-open"/>
+    <rect x="101.78" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-17-open"/>
+    <rect x="142.492" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-18-open"/>
+    <rect x="142.492" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-19-open"/>
+    <rect x="101.78" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-20-open"/>
+    <rect x="183.204" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-21-open"/>
+    <rect x="223.916" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-22-open"/>
+    <rect x="223.916" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-23-open"/>
+    <rect x="183.204" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(255, 151, 31);" id="desktop-door-24-open"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0.000006000000670525196, -0.000012000000424450263)">
+    <rect x="20.356" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-1-solved"/>
+    <rect x="61.068" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-2-solved"/>
+    <rect x="61.068" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-3-solved"/>
+    <rect x="20.356" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-4-solved"/>
+    <rect x="101.78" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-5-solved"/>
+    <rect x="142.492" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-6-solved"/>
+    <rect x="142.492" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-7-solved"/>
+    <rect x="101.78" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-8-solved"/>
+    <rect x="183.204" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-9-solved"/>
+    <rect x="223.916" y="20.356" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-10-solved"/>
+    <rect x="223.916" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-11-solved"/>
+    <rect x="183.204" y="61.068" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-12-solved"/>
+    <rect x="20.356" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-13-solved"/>
+    <rect x="61.068" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-14-solved"/>
+    <rect x="61.068" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-15-solved"/>
+    <rect x="20.356" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-16-solved"/>
+    <rect x="101.78" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-17-solved"/>
+    <rect x="142.492" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-18-solved"/>
+    <rect x="142.492" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-19-solved"/>
+    <rect x="101.78" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-20-solved"/>
+    <rect x="183.204" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-21-solved"/>
+    <rect x="223.916" y="101.78" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-22-solved"/>
+    <rect x="223.916" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-23-solved"/>
+    <rect x="183.204" y="142.492" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); fill: rgb(31, 255, 42);" id="desktop-door-24-solved"/>
+  </g>
+  <rect x="29.782" y="28.969" width="20.356" height="20.356" style="stroke: rgb(0, 0, 0); paint-order: fill; fill-rule: nonzero; fill: url('#gradient-0');" id="desktop-door-1-easteregg" transform="matrix(1, 0, 0, 1, 3.552713678800501e-15, 0)"/>
+</svg>

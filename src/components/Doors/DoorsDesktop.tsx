@@ -1,0 +1,50 @@
+import clsx from "clsx"
+import { FC, useEffect, useState } from "react"
+import { forEach, range } from "lodash"
+
+import { DoorsProps } from "./doors_utils"
+
+
+
+const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) => {
+  const [svg, setSvg] = useState<string>()
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("https://julekalender-public.s3.amazonaws.com/development/doors_desktop.svg")
+      setSvg(await response.text())
+    })()
+  }, [setSvg])
+
+  useEffect(() => {
+    const rootStyle = document.documentElement.style
+
+    forEach(range(1, 25), (i) => {
+      const challenge = challenges?.[i]
+      const solved = solvedStatus?.[i]
+
+      // Challenge not yet available, show only bottom layer
+      if (!challenge && !solved) {
+        rootStyle.setProperty(`--desktop-door-${i}-solved-display`, "none")
+        rootStyle.setProperty(`--desktop-door-${i}-open-display`, "none")
+      } else {
+        // Challenge available, show door for solved=true/false
+        rootStyle.setProperty(`--desktop-door-${i}-${solved ? "solved" : "open"}-display`, "initial")
+        rootStyle.setProperty(`--desktop-door-${i}-${solved ? "open" : "solved"}-display`, "none")
+      }
+    })
+
+  }, [challenges, solvedStatus])
+
+  if (!svg)
+    return null
+
+  return (
+    <div
+      className={clsx(className)}
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  )
+}
+
+export default DoorsDesktop

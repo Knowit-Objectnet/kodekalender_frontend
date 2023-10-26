@@ -4,22 +4,22 @@ import { get, has, isNil } from "lodash"
 import { ChallengeDict, SolvedStatus } from "../../api/Challenge"
 
 
-type LightsUtilsBaseProps = {
+type DoorsUtilsBaseProps = {
   solvedStatus: SolvedStatus | undefined
   challenges: ChallengeDict | undefined
   prefetch: (door: number) => void
   navigateToDoor: (door: number) => void
 }
 
-type LightsUtilsProps = LightsUtilsBaseProps & {
+type DoorsUtilsProps = DoorsUtilsBaseProps & {
   door: number
 }
 
-export type LightsProps = LightsUtilsBaseProps & {
+export type DoorsProps = DoorsUtilsBaseProps & {
   className?: ClassValue
 }
 
-export const getBulbProps = ({ door, solvedStatus, challenges }: LightsUtilsProps) => ({
+export const getDoorStyleProps = ({ door, solvedStatus, challenges }: DoorsUtilsProps) => ({
   className:
     clsx("fill-current", get(solvedStatus, door)
       ? "text-lightbulb-green"
@@ -29,12 +29,12 @@ export const getBulbProps = ({ door, solvedStatus, challenges }: LightsUtilsProp
     )
 })
 
-export const getTextProps = ({ door, challenges }: LightsUtilsProps) => ({
+export const getDoorTextStyleProps = ({ door, challenges }: DoorsUtilsProps) => ({
   className: clsx("text-gray-800", (isNil(challenges) || !has(challenges, door)) && "opacity-25" ),
   fontFamily: "'Arial'"
 })
 
-export const getLinkProps = ({ door, challenges, prefetch, navigateToDoor }: LightsUtilsProps) => ( {
+export const getDoorLinkProps = ({ door, challenges, prefetch, navigateToDoor }: DoorsUtilsProps) => ( {
   tabIndex: door + 3,
   title: `Luke ${door}`,
   ...(

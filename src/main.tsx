@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import { ReactQueryDevtools } from "react-query/devtools"
 
 import "../assets/css/base.scss"
+import "../assets/css/doors.scss"
 import "../assets/css/syntax_highlight.scss"
 
 import "./axios"

@@ -4,8 +4,8 @@ import { useHistory } from "react-router"
 
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import Footer from "../components/Footer"
-import LightsDesktop from "../components/Lights/LightsDesktop"
-import LightsMobile from "../components/Lights/LightsMobile"
+import DoorsDesktop from "../components/Doors/DoorsDesktop"
+import DoorsMobile from "../components/Doors/DoorsMobile"
 import RaffleNotification from "../components/RaffleNotification"
 
 
@@ -41,8 +41,8 @@ const Doors = () => {
       <RaffleNotification />
 
       {/* Visibility toggle done with media queries in CSS */}
-      <LightsDesktop {...lightProps} />
-      <LightsMobile {...lightProps} />
+      <DoorsDesktop {...lightProps} />
+      <DoorsMobile {...lightProps} />
 
       <Footer />
     </main>
