@@ -51,9 +51,7 @@ const LazyUser = () => {
   const Component = lazy(() => import("./pages/User"))
 
   return (
-    <Suspense fallback={<Page />}>
-      <Component />
-    </Suspense>
+    <Component />
   )
 }
 
@@ -90,8 +88,8 @@ const App = () => {
         <Route path="/service_messages" element={<ServiceMessages />} />
         <Route path="/solutions" element={<Solutions />} />
 
-        <Route path="/admin" element={<LazyAdmin />} />
-        <Route path="/users" element={<LazyUser />} />
+        <Route path="/admin/*" element={<Admin />} />
+        <Route path="/users/*" element={<Users />} />
 
         {/* 404? - Route to main view */}
         <Route element={<Navigate to="/" />} />
