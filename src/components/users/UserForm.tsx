@@ -1,6 +1,6 @@
 import { Popover } from "@headlessui/react"
 import { forEach, join, pickBy } from "lodash"
-import { useEffect, useRef, FC } from "react"
+import { useEffect, useRef, FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useDebounce } from "use-debounce"
@@ -15,6 +15,7 @@ import FormElementCustom from "../form/FormElementCustom"
 import Button from "../Button"
 import CheckMark from "../checkmarks/CheckMark"
 import FormError from "../form/FormError"
+import FormCustomCheckbox from '../form/FormCustomCheckbox'
 
 
 const DELETE_USER_CONFIRM = squish(`
@@ -28,15 +29,30 @@ type UserFormProps = {
   newForm?: boolean
 }
 
+/* eslint-disable */
 const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
   const navigate = useNavigate()
 
-  const { register, handleSubmit, watch, setValue, reset, setError, clearErrors, formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields } } = useForm<SignUpParameters>()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    setError,
+    clearErrors,
+    formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields }
+  } = useForm<SignUpParameters>()
+
+
+  const optInMarketingValue = watch('opt_in_marketing')
+
+  
 
   useEffect(() => {
     if (newForm) return
 
-    reset({ email: user?.email ?? "", username: user?.username ?? "" })
+    reset({ email: user?.email ?? "", username: user?.username ?? "", opt_in_marketing: user?.opt_in_marketing ?? false})
     clearErrors()
   }, [newForm, user, reset, clearErrors])
 
@@ -94,6 +110,32 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
             </Popover.Panel>
           </Popover>
         )}
+
+
+        {newForm ? (
+          <>
+            <FormCustomCheckbox
+              label="Jeg samtykker i å bli kontaktet for rekrutteringsformål i etterkant av konkurransen."
+              val={optInMarketingValue}
+              setValue={setValue}
+            />
+          </>
+        ) : (
+          <>
+            <FormElement
+              label="Jeg samtykker i å bli kontaktet for rekrutteringsformål i etterkant av konkurransen."
+              type="checkbox"
+              {...register("opt_in_marketing")}
+              labelClassName="mt-4"
+            />
+          </>
+        )}
+        <div className="text-opacity-60 text-gray-700">
+          <em>Vi ønsker å kontakte deg om jobbmuligheter etter konkurransen er over. Huk av hvis du ønsker å motta mail om dette.{newForm && " Du kan endre dette senere."}</em>
+        </div>
+        <FormError error={errors.opt_in_marketing} />
+
+
 
         <FormElement
           label="Passord"
@@ -184,5 +226,6 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
     </UserPage>
   )
 }
+/* eslint-enable */
 
 export default UserForm

@@ -12,12 +12,20 @@ type FormElementProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
 }
 
 const FormElement = forwardRef<HTMLInputElement, PropsWithChildren<FormElementProps>>(
-  ({ label, note, disabled, className, labelClassName, children, ...inputProps }, ref) => (
+  ({ label, note, disabled, className, labelClassName, children, type, ...inputProps }, ref) => (
     <FormElementCustom label={label} note={note} disabled={disabled} className={labelClassName}>
       <input
         ref={ref}
-        className={clsx("block form-input", disabled && "border-gray/30", className)}
+        className={
+          clsx(
+            "block",
+            type === "checkbox" ? "form-checkbox" : "form-input",
+            disabled && "border-gray-500/30",
+            className
+          )
+        }
         disabled={disabled}
+        type={type}
         {...inputProps}
       >
         {children}
