@@ -17,6 +17,7 @@ type ChildPostProps = {
   post: ChildPostType
 }
 
+// XXX: Possibly broken text color
 const ChildPost: FC<ChildPostProps> = ({ post }) => (
   <PostWrapper
       post={post}
@@ -24,11 +25,11 @@ const ChildPost: FC<ChildPostProps> = ({ post }) => (
 
       // Imagine using some kind of Cascading Style Sheet to avoid
       // having to pass these variables around...
-      wrapperClassName="bg-gray-200 sm:p-2"
+      wrapperClassName="bg-gray sm:p-2"
       contentClassName={clsx("!mr-0", post.deleted && "!ml-0")}
     >
     {post.deleted
-        ? <div className="text-gray-600 font-light text-center p-2 sm:p-4">
+        ? <div className="font-light text-center p-2 sm:p-4">
           <em>Slettet innlegg</em>
         </div>
         : <footer>

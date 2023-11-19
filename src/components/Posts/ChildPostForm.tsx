@@ -38,7 +38,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         <PostPreview
           html={previewHtml}
           isLoading={previewLoading}
-          className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-gray-700 bg-gray-200"
+          className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-white bg-gray"
         />
       )}
 
@@ -46,7 +46,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         autoFocus
         ref={inputRef}
         className={clsx(
-          "block w-full min-h-[5rem] p-2 text-base rounded-t bg-gray-200 border-b-2 border-gray-700 outline-none",
+          "block w-full min-h-[5rem] p-2 text-base rounded-t border-b-2 border-white bg-gray outline-none",
           preview && "hidden"
         )}
         onChange={setDirty}

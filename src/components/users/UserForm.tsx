@@ -85,11 +85,11 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
         {newForm && (
           <Popover>
             <Popover.Button tabIndex={-1}>
-              <div className="text-gray-700/30">
+              <div className="text-gray/30">
                 Jobber du i Knowit?
               </div>
             </Popover.Button>
-            <Popover.Panel className="bg-gray-200 rounded p-2">
+            <Popover.Panel className="bg-white rounded p-2">
               Du vil ikke kunne delta i premietrekningen. Vennligst registrer deg med Knowit-adresse.
             </Popover.Panel>
           </Popover>
@@ -121,7 +121,7 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
 
 
       <div className="!mt-12">
-        <div className="text-opacity-60 text-gray-700">
+        <div className="text-gray/60">
           <em>Dersom du vil delta i kommentarfeltet.<br />Brukernavnet vises i kommentarfeltet og på ledertavlen.{newForm && " Du kan endre dette senere."}</em>
         </div>
         <FormElement

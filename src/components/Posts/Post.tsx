@@ -37,7 +37,7 @@ const Post: FC<PostProps> = ({ post, door }) => {
       className="grid gap-2"
     >
       {post.deleted && (
-        <div className="text-gray-600 font-light text-center p-2 sm:p-6">
+        <div className="text-gray/80 font-light text-center p-2 sm:p-6">
           <em>Slettet innlegg</em>
         </div>
       )}

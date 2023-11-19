@@ -99,12 +99,12 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({ challenge, register, setV
           return (
             <span
               key={signed_id}
-              className="relative overflow-hidden p-1 border-2 rounded-md border-lightbulb-yellow text-center"
+              className="relative overflow-hidden p-1 border-2 rounded-md border-yellow-400 text-center"
             >
               {progress < 1 && (
                 <div
                   style={{ width: `calc(${progress * 100}% + ${progress * 0.5}rem)` }}
-                  className="absolute top-[-.25rem] left-[-.25rem] h-[calc(100%+.5rem)] bg-blue-400/20"
+                  className="absolute top-[-.25rem] left-[-.25rem] h-[calc(100%+.5rem)] bg-purple-400/20"
                 />
               )}
               <span className="inline-block w-[calc(100%-1.5rem)] line-clamp-1">{filename}</span>

@@ -1,21 +1,34 @@
 :root {
-  @each $device in desktop, mobile {
-    @for $i from 1 through 24 {
-      --#{$device}-door-#{$i}-open-display: none;
-      --#{$device}-door-#{$i}-solved-display: none;
-      --#{$device}-door-#{$i}-easteregg-display: none;
+  @for $i from 1 through 24 {
+    --door-#{$i}-open-display: none;
+    --door-#{$i}-solved-display: none;
+    --door-#{$i}-easteregg-display: none;
 
-      ##{$device}-door-#{$i}-open {
-        display: var(--#{$device}-door-#{$i}-open-display);
-      }
+    #door-#{$i}-open {
+      display: var(--door-#{$i}-open-display);
+    }
 
-      ##{$device}-door-#{$i}-solved {
-        display: var(--#{$device}-door-#{$i}-solved-display);
-      }
+    #door-#{$i}-solved {
+      display: var(--door-#{$i}-solved-display);
+    }
 
-      ##{$device}-door-#{$i}-easteregg {
-        display: var(--#{$device}-door-#{$i}-easteregg-display);
-      }
+    #door-#{$i}-easteregg {
+      display: var(--door-#{$i}-easteregg-display);
     }
   }
+}
+
+#doors-desktop, #doors-mobile { display: none; }
+
+// Mobile doors are shown only in portrait mode (vh > vw) and below the sm: breakpoint.
+@media only screen and (max-width: 639px) and (orientation: portrait) {
+  #doors-mobile  { display: block; }
+}
+@media only screen and (min-width: 640px) and (orientation: portrait) {
+  #doors-desktop { display: block; }
+}
+
+// Desktop doors are always shown in landscape mode (vw > vh)
+@media only screen and (orientation: landscape) {
+  #doors-desktop { display: block; }
 }

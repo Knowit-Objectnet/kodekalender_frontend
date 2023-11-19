@@ -27,27 +27,27 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
         <Popover.Button
           as={FaExclamationTriangle}
           className={clsx(
-            "text-opacity-70 h-full w-full cursor-pointer",
-            hasErrors ? "text-red-700" : "text-lightbulb-yellow"
+            "h-full w-full cursor-pointer",
+            hasErrors ? "text-red-700/70" : "text-yellow-400/70"
           )}
         />
 
         <Popover.Panel className="fixed left-[5%] min-w-[90%] md:absolute md:left-0 md:min-w-min">
           <div
             className={clsx(
-              "grid place-items-center bg-gray-100 border-2 border-opacity-70 rounded-md shadow-lg",
-              hasErrors ? "border-red-700" : "border-lightbulb-yellow"
+              "grid place-items-center bg-purple-700 border-2 border-opacity-70 rounded-md shadow-lg",
+              hasErrors ? "border-red-700" : "border-yellow-400"
             )}
           >
             {map(doorServiceMessages, (serviceMessage, idx) => (
               <>
                 {idx > 0 && (
-                  <Divider bgClasses={clsx("bg-opacity-70", hasErrors ? "bg-red-700" : "bg-lightbulb-yellow")} />
+                  <Divider bgClasses={clsx(hasErrors ? "bg-red-700/70" : "bg-yellow-400/70")} />
                 )}
                 <ServiceMessage
                   key={serviceMessage.uuid}
                   className={clsx(
-                    "text-gray-700 p-4 w-full pt-8 md:p-4 md:w-[36rem]",
+                    "p-4 w-full pt-8 md:p-4 md:w-[36rem]",
                     serviceMessage.resolved && "text-opacity-70"
                   )}
                   serviceMessage={serviceMessage}

@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-background-green text-gray-200;
+    @apply bg-purple-900 text-white light:bg-purple-200 light:text-black;
   }
 
   // Cannot style dynamic inner HTML directly, so must do it here
@@ -36,20 +36,5 @@
         padding-bottom: env(safe-area-inset-bottom, 0vmin);
       }
     }
-  }
-
-  #lights-desktop, #lights-mobile { display: none; }
-
-  // Mobile lights are shown only in portrait mode (vh > vw) and below the sm: breakpoint.
-  @media only screen and (max-width: 639px) and (orientation: portrait) {
-    #lights-mobile  { display: block; }
-  }
-  @media only screen and (min-width: 640px) and (orientation: portrait) {
-    #lights-desktop { display: block; }
-  }
-
-  // Desktop lights are always shown in landscape mode (vw > vh)
-  @media only screen and (orientation: landscape) {
-    #lights-desktop { display: block; }
   }
 }

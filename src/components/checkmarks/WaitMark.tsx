@@ -29,7 +29,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
 
   return (
     <Wrapper {...props}>
-      <svg className={clsx("text-lightbulb-yellow stroke-current mx-auto", className)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+      <svg className={clsx("text-yellow-400 stroke-current mx-auto", className)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
         <motion.path
           d={`
             M ${OFFSET} ${OFFSET}

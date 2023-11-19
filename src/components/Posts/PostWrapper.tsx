@@ -86,8 +86,8 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
       id={post.uuid}
       ref={scrollRef}
       className={clsx(
-        "relative rounded-md bg-gray-100 text-gray-700 py-4 px-2 md:px-4",
-        isDeepLinkedPost && "ring-inset ring-4 ring-lightbulb-yellow",
+        "relative rounded-md bg-purple-500 py-4 px-2 md:px-4",
+        isDeepLinkedPost && "ring-inset ring-4 ring-yellow-400",
         wrapperClassName
       )}
     >
@@ -116,13 +116,14 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
             )}
           </div>
 
+          {/* XXX: Potentially broken colors */}
           {isEditing && !isMarkdownLoading && (
             <div className="space-y-2 my-4">
               {preview && (
                 <PostPreview
                   html={previewHtml}
                   isLoading={previewLoading}
-                  className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-gray-700 bg-gray-200"
+                  className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-white bg-gray"
                 />
               )}
 
@@ -130,7 +131,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
                 autoFocus
                 ref={editFieldRef}
                 className={clsx(
-                  "block w-full min-h-[5rem] p-2 text-sm md:text-base outline-none rounded-t bg-gray-200 border-b-2 border-gray-700",
+                  "block w-full min-h-[5rem] p-2 text-sm md:text-base outline-none rounded-t bg-gray/30 border-b-2 border-white",
                   preview && "hidden"
                 )}
                 defaultValue={markdown}

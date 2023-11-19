@@ -13,7 +13,7 @@ const ServiceMessages = () => {
   if (isLoading) return null
 
   return (
-    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md space-y-8">
+    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md space-y-8">
       <div className="text-center">
         <h1 className="text-4xl font-semibold">Driftsmeldinger</h1>
       </div>
@@ -22,7 +22,7 @@ const ServiceMessages = () => {
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {
             const messageClasses = serviceMessage.resolved
-              ? "border-lightbulb-yellow border-opacity-70 text-gray-700/70"
+              ? "border-yellow-400/70 text-gray/70"
               : "border-red-700/70"
 
             return (

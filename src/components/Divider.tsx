@@ -8,7 +8,7 @@ type DividerProps = {
   content?: string
 }
 
-const Divider: FC<DividerProps> = ({ bgClasses = "bg-gray-700/20", textClasses = "text-gray-700/40 bg-gray-100", content }) => (
+const Divider: FC<DividerProps> = ({ bgClasses = "bg-gray/20", textClasses = "text-gray/40 bg-gray", content }) => (
   <div
     className={clsx(
       "w-11/12 h-[2px] mx-auto rounded-full relative",

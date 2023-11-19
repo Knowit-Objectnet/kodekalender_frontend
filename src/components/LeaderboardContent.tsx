@@ -47,11 +47,11 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   return (<>
     {map(leaderboardWithPosition, ([solvedCount, entries]) =>
       <div key={solvedCount}>
-        <h3 className="sticky top-0 py-1 bg-lightbulb-green rounded-md -space-y-1" key={solvedCount} >
+        <h3 className="sticky top-0 py-1 bg-purple-700 rounded-md -space-y-1" key={solvedCount} >
           <div className="text-lg font-semibold tracking-wide">
             {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
           </div>
-          <div className="text-gray-200/80 text-sm">
+          <div className="text-gray/80 text-sm">
             {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
           </div>
         </h3>
@@ -65,7 +65,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
 
             return (
               <p key={getObjKey(user)}>
-                <span className="text-gray-200 text-opacity-40 text-xs tracking-wide">{user.position}.</span>
+                <span className="text-gray/40 text-xs tracking-wide">{user.position}.</span>
                 &nbsp;{displayName}
               </p>
             )

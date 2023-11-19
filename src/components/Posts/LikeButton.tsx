@@ -45,7 +45,7 @@ const LikeButton: FC<LikeProps> = ({ post }) => {
             post.likes > 0 ? "text-red-500" : "text-red-300"
         )}
       />
-      <span className="!text-gray-700">{post.likes}</span>
+      <span className="!text-white">{post.likes}</span>
     </button>
   )
 }

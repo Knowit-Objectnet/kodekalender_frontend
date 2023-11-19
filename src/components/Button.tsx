@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
       underline && "hover:underline",
       "uppercase sm:tracking-wider text-sm whitespace-nowrap",
       sm ? "sm:text-base" : "sm:text-lg",
-      disabled && "text-opacity-30 text-gray-700",
+      disabled && "text-opacity-30",
       className
     )}
     disabled={disabled}

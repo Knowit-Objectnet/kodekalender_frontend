@@ -19,14 +19,15 @@ export type DoorsProps = DoorsUtilsBaseProps & {
   className?: ClassValue
 }
 
+// TODO: Figure out new door styles
 export const getDoorStyleProps = ({ door, solvedStatus, challenges }: DoorsUtilsProps) => ({
-  className:
-    clsx("fill-current", get(solvedStatus, door)
-      ? "text-lightbulb-green"
-      : isNil(challenges) || !has(challenges, door)
-        ? "text-lightbulb-dim"
-        : "text-lightbulb-yellow"
-    )
+  className: "text-green-600"
+    // clsx("fill-current", get(solvedStatus, door)
+    //   ? "text-lightbulb-green"
+    //   : isNil(challenges) || !has(challenges, door)
+    //     ? "text-lightbulb-dim"
+    //     : "text-lightbulb-yellow"
+    // )
 })
 
 export const getDoorTextStyleProps = ({ door, challenges }: DoorsUtilsProps) => ({

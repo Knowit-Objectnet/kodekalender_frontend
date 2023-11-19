@@ -31,7 +31,7 @@ const LazyAdmin = () => {
           "h-32",
           "translate-x-[-50%]",
           "translate-y-[-50%]",
-          "text-lightbulb-yellow/70",
+          "text-white/70",
           "animate-pulse"
         )}
       />

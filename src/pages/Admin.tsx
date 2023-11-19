@@ -30,7 +30,7 @@ const Admin: FC = () => {
     return null
 
   return (
-    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md space-y-8">
+    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md space-y-8">
       <AdminHeader />
 
       <Routes>

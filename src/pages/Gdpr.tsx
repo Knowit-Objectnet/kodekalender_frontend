@@ -55,7 +55,7 @@ const Gdpr = () => {
   ]
 
   return (
-    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
+    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md">
       <h1 className="text-4xl text-center font-semibold">Personvernerklæring for Kodekalenderen 2022</h1>
       <h2 className="mt-8 font-medium">
         <em>TL;DR</em>
