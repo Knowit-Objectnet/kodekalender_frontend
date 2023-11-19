@@ -10,13 +10,13 @@ import SignUp from "./users/SignUp"
 
 const Users: FC = () => (
   <Routes>
-    <Route path="/users/edit" element={<EditUser />} />
-    <Route path="/users/sign_in" element={<SignIn />} />
-    <Route path="/users/sign_up" element={<SignUp />} />
-    <Route path="/users/lost_password" element={<LostPassword />} />
-    <Route path="/users/password/edit" element={<ResetPassword />} />
+    <Route path="edit" element={<EditUser />} />
+    <Route path="sign_in" element={<SignIn />} />
+    <Route path="sign_up" element={<SignUp />} />
+    <Route path="lost_password" element={<LostPassword />} />
+    <Route path="password/edit" element={<ResetPassword />} />
 
-    <Navigate to="/users/edit" />
+    <Route element={<Navigate to="doors" />} />
   </Routes>
 )
 

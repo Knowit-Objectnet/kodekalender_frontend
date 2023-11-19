@@ -34,15 +34,15 @@ const Admin: FC = () => {
       <AdminHeader />
 
       <Routes>
-        <Route path="/admin/doors" element={<Doors />} />
-        <Route path="/admin/doors/new" element={<NewDoor />} />
-        <Route path="/admin/doors/:door/edit" element={<EditDoor />} />
+        <Route path="doors" element={<Doors />} />
+        <Route path="doors/new" element={<NewDoor />} />
+        <Route path="doors/:door/edit" element={<EditDoor />} />
 
-        <Route path="/admin/service_messages" element={<ServiceMessages />} />
-        <Route path="/admin/service_messages/new" element={<NewServiceMessage />} />
-        <Route path="/admin/service_messages/:uuid/edit" element={<EditServiceMessage />} />
+        <Route path="service_messages" element={<ServiceMessages />} />
+        <Route path="service_messages/new" element={<NewServiceMessage />} />
+        <Route path="service_messages/:uuid/edit" element={<EditServiceMessage />} />
 
-        <Route element={<Navigate to="/admin/doors" />} />
+        <Route element={<Navigate to="doors" />} />
       </Routes>
     </Page>
   )
