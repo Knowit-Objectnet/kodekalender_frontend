@@ -6,6 +6,7 @@ import useOnClickOutside from "../hooks/useOnClickOutside"
 import { ReactComponent as Flourish } from "./svg/pointsdecor.svg"
 import { ReactComponent as Close } from "./svg/close.svg"
 import LeaderBoardContent from "./LeaderboardContent"
+import Header2 from "./text/Header2"
 
 
 type LeaderBoardAsideProps = {
@@ -52,7 +53,7 @@ const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) =
         <div className="bg-purple-700 relative p-4 rounded-md sm:rounded-xl pointer-events-auto" ref={clickableLeaderboardRef} >
           <Close className="fill-current absolute top-0 right-0 m-2 cursor-pointer" onClick={closeBoard} />
           <div className="h-24 pt-2 text-2xl text-center">
-            <h2>Snille barn</h2>
+            <Header2>Snille barn</Header2>
             <Flourish className="-mt-8 h-20 w-full rotate-2" />
           </div>
           <div className="h-96 xl:h-192 text-center overflow-y-auto">

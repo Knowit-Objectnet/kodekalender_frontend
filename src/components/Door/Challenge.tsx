@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react"
 
 import SubscribeButton from "../SubscribeButton"
 import { Challenge as ChallengeType } from "../../api/Challenge"
+import Header1 from "../text/Header1"
 
 import Input from "./Input"
 
@@ -21,7 +22,7 @@ const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamb
 
       <div className="relative space-y-4 md:space-y-6 lg:space-y-12">
         <div className="text-center pb-4 md:pb-6 border-b-2">
-          <h1 className="text-4xl font-semibold">{challenge.title}</h1>
+          <Header1>{challenge.title}</Header1>
           <p className="mt-1"><em>Av {challenge.author}</em></p>
         </div>
 

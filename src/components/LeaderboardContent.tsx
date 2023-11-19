@@ -4,6 +4,8 @@ import { isEmpty, isNil, map, reduce, upperFirst } from "lodash"
 import { getRandomDisplayName, getObjKey, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
 
+import Header3 from "./text/Header3"
+
 
 type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
@@ -47,14 +49,14 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   return (<>
     {map(leaderboardWithPosition, ([solvedCount, entries]) =>
       <div key={solvedCount}>
-        <h3 className="sticky top-0 py-1 bg-purple-700 rounded-md -space-y-1" key={solvedCount} >
+        <Header3 className="sticky top-0 py-1 bg-purple-700 rounded-md -space-y-1" key={solvedCount} >
           <div className="text-lg font-semibold tracking-wide">
             {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
           </div>
           <div className="text-gray/80 text-sm">
             {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
           </div>
-        </h3>
+        </Header3>
         <div className="pt-2 pb-4 space-y-1">
           {map(entries, (user) => {
             let displayName: ReactNode = user.username

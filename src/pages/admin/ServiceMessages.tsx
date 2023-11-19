@@ -6,6 +6,7 @@ import { useDeleteServiceMessage } from "../../api/admin/requests"
 import { useServiceMessages } from "../../api/requests"
 import Button from "../../components/Button"
 import ServiceMessage from "../../components/ServiceMessage"
+import Header1 from "../../components/text/Header1"
 
 
 const ServiceMessages = () => {
@@ -24,7 +25,7 @@ const ServiceMessages = () => {
   return (
     <>
       <div className="text-center">
-        <h1 className="text-4xl font-semibold">Driftsmeldinger</h1>
+        <Header1>Driftsmeldinger</Header1>
       </div>
       <div className="grid grid-cols-1 gap-6 justify-items-center">
         {isEmpty(serviceMessages)

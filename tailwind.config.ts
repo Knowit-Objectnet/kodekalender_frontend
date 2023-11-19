@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import defaultTheme from "tailwindcss/defaultTheme"
 import plugin from "tailwindcss/plugin"
 
 const colors = {
@@ -45,9 +46,6 @@ export default {
       },
       gap: {
         "door-elements": "4rem"
-      },
-      fontSize: {
-        "lightbulb": ["4.125rem", { lineHeight: "1" }]
       },
       keyframes: {
         stars: {

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { every, isEmpty, some } from "lodash"
 import clsx from "clsx"
 
-import { ReactComponent as Logo } from "../img/knowitlogo.svg"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
 
@@ -11,6 +10,7 @@ import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
 import ThemeButton from "./ThemeButton"
+import Icon from "./Icons/Icon"
 
 
 const ServiceMessageBadge = () => {
@@ -36,7 +36,7 @@ type HeaderProps = {
   className?: string
 }
 
-const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
+const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   const isAdmin = useIsAdmin()
   const { data: serviceMessages } = useServiceMessages()
   const prefetchLeaderboard = usePrefetchLeaderboard()
@@ -45,7 +45,7 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
     <header>
       <nav className="p-4 flex flex-cols space-x-2 md:space-x-8">
         <a className="inline-block" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}>
-          <Logo className="h-7 md:h-10 fill-current" />
+          <Icon name="knowit-logo" className="h-7 md:h-10 fill-current" />
         </a>
         {/* <div className="float-right h-10 mt-0.5 md:mt-1 flex flex-row-reverse flex-wrap space-x-reverse space-x-2 md:space-x-8 space-y-reverse space-y-2"> */}
         <div
@@ -107,4 +107,4 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   )
 }
 
-export default Header
+export default PageHeader

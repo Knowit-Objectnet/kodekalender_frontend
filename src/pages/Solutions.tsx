@@ -3,6 +3,7 @@ import { compact, isEmpty, map, values } from "lodash"
 import { useChallenges } from "../api/requests"
 import useCurrentTime from "../hooks/useCurrentTime"
 import { getRaffleEnd } from "../utils"
+import Header1 from "../components/text/Header1"
 
 import Page from "./Page"
 
@@ -22,7 +23,7 @@ const Solutions = () => {
   return (
     <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md space-y-8">
       <div className="text-center">
-        <h1 className="text-4xl font-semibold">Løsninger</h1>
+        <Header1>Løsninger</Header1>
       </div>
       <div className="grid grid-cols-1 gap-6 justify-items-center">
         {isEmpty(challenges)

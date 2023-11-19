@@ -3,6 +3,7 @@ import { isEmpty, map } from "lodash"
 
 import { useServiceMessages } from "../api/requests"
 import ServiceMessage from "../components/ServiceMessage"
+import Header1 from "../components/text/Header1"
 
 import Page from "./Page"
 
@@ -15,7 +16,7 @@ const ServiceMessages = () => {
   return (
     <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md space-y-8">
       <div className="text-center">
-        <h1 className="text-4xl font-semibold">Driftsmeldinger</h1>
+        <Header1>Driftsmeldinger</Header1>
       </div>
       <div className="grid grid-cols-1 gap-4 justify-items-center">
         {isEmpty(serviceMessages)

@@ -5,7 +5,7 @@ import clsx from "clsx"
 
 import Gdpr from "./pages/Gdpr"
 import Door from "./pages/Door"
-import Header from "./components/Header"
+import PageHeader from "./components/PageHeader"
 import StarBackground from "./components/StarBackground"
 import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
@@ -76,7 +76,7 @@ const App = () => {
     />
 
     <div id="content-container" className="relative min-h-[calc(100vh+1.5rem)] h-[calc(100%+1.5rem)]">
-      <Header className="-mb-4" setLeaderboardHidden={setLeaderboardHidden} />
+      <PageHeader className="-mb-4" setLeaderboardHidden={setLeaderboardHidden} />
 
       <Routes>
         <Route path="/" element={<Doors />} />

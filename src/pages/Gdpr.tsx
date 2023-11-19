@@ -1,11 +1,15 @@
 import { map } from "lodash"
 
+import Header1 from "../components/text/Header1"
+import Header2 from "../components/text/Header2"
+import Header3 from "../components/text/Header3"
+
 import Page from "./Page"
 
 
 const GdprSection = ({ no, header, content }: { no: number, header: string, content: string }) => (
   <>
-    <h3 className="mt-6 font-medium">{no}. {header}</h3>
+    <Header3 className="mt-6">{no}. {header}</Header3>
     <p className="mt-1 ml-4">{content}</p>
   </>
 )
@@ -56,10 +60,10 @@ const Gdpr = () => {
 
   return (
     <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md">
-      <h1 className="text-4xl text-center font-semibold">Personvernerklæring for Kodekalenderen 2022</h1>
-      <h2 className="mt-8 font-medium">
+      <Header1 className="text-center">Personvernerklæring for Kodekalenderen 2022</Header1>
+      <Header2 className="mt-8">
         <em>TL;DR</em>
-      </h2>
+      </Header2>
       <ul className="mt-2 ml-4 mb-12">
         <li>Vi bruker cookies for innlogging.</li>
         <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner.</li>

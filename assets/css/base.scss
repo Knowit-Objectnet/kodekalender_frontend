@@ -8,8 +8,19 @@
   }
 
   body {
-    @apply bg-purple-900 text-white light:bg-purple-200 light:text-black;
-  }
+    @apply
+      bg-purple-900
+      text-white
+
+      light:bg-purple-200
+      light:text-black
+
+      font-[Nunito]
+      font-normal
+
+      text-[20px]
+      ;
+    }
 
   // Cannot style dynamic inner HTML directly, so must do it here
   code {

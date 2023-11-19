@@ -2,10 +2,12 @@ import { FC } from "react"
 import { Link } from "react-router-dom"
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from "react-icons/fa"
 
+import Header2 from "./text/Header2"
 
-const Footer: FC = () => (
+
+const PageFooter: FC = () => (
   <footer className="md:mt-8 lg:mt-16 space-y-4 max-w-2xl text-center p-8 md:p-2 m-auto">
-    <h2 className="text-xl">Om kodekalenderen</h2>
+    <Header2>Om kodekalenderen</Header2>
     <p>
       Kodekalenderen er høytidskalenderen for deg som er glad i
       programmering. Bak hver luke skjuler det seg en oppgave du må svare
@@ -28,7 +30,7 @@ const Footer: FC = () => (
       <Link className="underline" to="/gdpr" title="gdpr">Les om vår håndtering av personopplysninger</Link>
     </p>
 
-    <h2 className="text-xl pt-4">Kontakt oss</h2>
+    <Header2 className="pt-4">Kontakt oss</Header2>
     <p>
       Funnet en feil? Ris eller ros? Send oss en mail!{" "}
       <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
@@ -38,11 +40,11 @@ const Footer: FC = () => (
       !
     </p>
 
-    <h2 className="text-xl pt-4">
+    <Header2 className="pt-4">
       <a className="underline" href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend" target="_blank" rel="noopener noreferrer">
         Jobbe i Knowit?
       </a>
-    </h2>
+    </Header2>
     <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
       en av våre alver på <a className="underline" href="mailto:julenissen@knowit.no">julenissen@knowit.no</a>
@@ -57,4 +59,4 @@ const Footer: FC = () => (
   </footer>
 )
 
-export default Footer
+export default PageFooter

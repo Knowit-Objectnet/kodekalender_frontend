@@ -17,13 +17,19 @@ export default defineConfig({
     react(),
     svgr({
       memo: true,
+      exportType: "named",
       svgoConfig: {
         plugins: [
           {
-            name: "cleanupIds",
-            params: {
-              remove: false,
-              minify: false
+            name: 'preset-default',
+            params:{
+              overrides:{
+                removeViewBox: false, // https://github.com/svg/svgo/issues/1128
+                cleanupIds: false,
+                cleanupNumericValues: { floatPrecision: 2 },
+                convertPathData: { floatPrecision: 2 },
+                convertTransform: { floatPrecision: 2 }
+              }
             }
           }
         ]
