@@ -10,6 +10,7 @@ import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
 import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
+import ThemeButton from "./ThemeButton"
 
 
 const ServiceMessageBadge = () => {
@@ -67,6 +68,10 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
             className
           )}
         >
+          <div>
+            <ThemeButton />
+          </div>
+
           <div>
             <SignOutButton />
             <SignInButton />
