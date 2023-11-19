@@ -1,5 +1,5 @@
 import { FC, memo, useLayoutEffect, useMemo, useState } from "react"
-import { Link, useHistory, useLocation } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { isNil, minBy, values } from "lodash"
 
 import Challenge from "../../components/Door/Challenge"
@@ -10,7 +10,7 @@ import Button from "../../components/Button"
 
 
 const Doors: FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { search } = useLocation()
   const paramMatch = search.match(/door=(?<door>\d+)/)?.groups
 
@@ -28,7 +28,7 @@ const Doors: FC = () => {
       {
         onSuccess: () => {
           setDoor(undefined)
-          history.push("/admin/doors")
+          navigate("/admin/doors")
         }
       }
     )

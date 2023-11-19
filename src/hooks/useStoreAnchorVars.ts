@@ -1,4 +1,4 @@
-import { chain, has, split } from "lodash"
+import { trimStart, split, filter, has, forEach } from "lodash"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
@@ -22,16 +22,18 @@ const useStoreAnchorVars = () => {
   const location = useLocation()
 
   useEffect(() => {
-    chain(location.hash)
-      .trimStart("#")
-      .split("&")
-      .map((parts) => split(parts, "="))
-      .filter(([name]) => has(ANCHOR_VARS, name))
-      .forEach(([name, value]) => {
-        console.log(`Setting ${name} to ${value}`)
-        window.sessionStorage.setItem(`anchor_vars/${name}`, value)
-      })
-      .value()
+    const hash = trimStart(location.hash, "#")
+    const pairs = split(hash, "&")
+    const validPairs = filter(pairs, (pair) => {
+      const [name] = split(pair, "=")
+      return has(ANCHOR_VARS, name)
+    })
+
+    forEach(validPairs, (pair) => {
+      const [name, value] = split(pair, "=")
+      console.log(`Setting ${name} to ${value}`)
+      window.sessionStorage.setItem(`anchor_vars/${name}`, value)
+    })
   }, [location.hash])
 }
 

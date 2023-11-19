@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { VFC } from "react"
+import { FC } from "react"
 
 
 type BackgroundPauseButtonProps = {
@@ -7,7 +7,7 @@ type BackgroundPauseButtonProps = {
   onTogglePaused: () => void
 }
 
-const BackgroundPauseButton: VFC<BackgroundPauseButtonProps> = ({ paused, onTogglePaused }) => (
+const BackgroundPauseButton: FC<BackgroundPauseButtonProps> = ({ paused, onTogglePaused }) => (
   <label
       title="Varm laptop? 🔥"
       className={clsx(

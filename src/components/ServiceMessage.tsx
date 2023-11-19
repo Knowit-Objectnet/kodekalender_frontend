@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { VFC } from "react"
+import { FC } from "react"
 
 import { ServiceMessage as ServiceMessageType } from "../api/ServiceMessage"
 import { getTimestamp } from "../utils"
@@ -10,7 +10,7 @@ type ServiceMessageProps = {
   className?: string
 }
 
-const ServiceMessage: VFC<ServiceMessageProps> = ({ serviceMessage: { content, resolution_content, created_at, resolved, resolved_at, door }, className }) => (
+const ServiceMessage: FC<ServiceMessageProps> = ({ serviceMessage: { content, resolution_content, created_at, resolved, resolved_at, door }, className }) => (
   <div className={clsx(className, "relative space-y-2")}>
     <h3 className="text-xl">
       {resolved

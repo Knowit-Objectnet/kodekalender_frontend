@@ -51,7 +51,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
           <div className="text-lg font-semibold tracking-wide">
             {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
           </div>
-          <div className="text-gray-200 text-opacity-80 text-sm">
+          <div className="text-gray-200/80 text-sm">
             {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
           </div>
         </h3>

@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { VFC } from "react"
+import { FC } from "react"
 
 
 type DividerProps = {
@@ -8,7 +8,7 @@ type DividerProps = {
   content?: string
 }
 
-const Divider: VFC<DividerProps> = ({ bgClasses = "bg-opacity-20 bg-gray-700", textClasses = "text-opacity-40 text-gray-700 bg-gray-100", content }) => (
+const Divider: FC<DividerProps> = ({ bgClasses = "bg-gray-700/20", textClasses = "text-gray-700/40 bg-gray-100", content }) => (
   <div
     className={clsx(
       "w-11/12 h-[2px] mx-auto rounded-full relative",

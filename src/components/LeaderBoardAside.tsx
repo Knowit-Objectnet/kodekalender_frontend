@@ -53,7 +53,7 @@ const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) =
           <Close className="fill-current absolute top-0 right-0 m-2 cursor-pointer" onClick={closeBoard} />
           <div className="h-24 pt-2 text-2xl text-center">
             <h2>Snille barn</h2>
-            <Flourish className="-mt-8 h-20 w-full transform rotate-2" />
+            <Flourish className="-mt-8 h-20 w-full rotate-2" />
           </div>
           <div className="h-96 xl:h-192 text-center overflow-y-auto">
             <LeaderBoardContent />

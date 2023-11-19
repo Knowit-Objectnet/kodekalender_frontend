@@ -1,6 +1,6 @@
-import { FC, useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import clsx, { ClassValue } from "clsx"
-import { useLocation } from "react-router"
+import { useLocation } from "react-router-dom"
 import TextareaAutosize from "react-autosize-textarea/lib"
 
 import { Post } from "../../api/Post"
@@ -9,6 +9,7 @@ import { getTimestamp } from "../../utils"
 import Button from "../Button"
 import { useDeletePost, usePostMarkdown, usePrefetchPostMarkdown, useUpdatePost } from "../../api/requests"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
+import { FCWithChildren } from "../../../types/utils_types"
 
 import PostProse from "./PostProse"
 import PostPreview from "./PostPreview"
@@ -28,7 +29,7 @@ type PostWrapperProps = {
   proseClassName?: ClassValue
 }
 
-const PostWrapper: FC<PostWrapperProps> = ({
+const PostWrapper: FCWithChildren<PostWrapperProps> = ({
   post,
   deleteConfirmText,
   className,

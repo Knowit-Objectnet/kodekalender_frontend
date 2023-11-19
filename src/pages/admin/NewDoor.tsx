@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash"
-import { VFC } from "react"
-import { useHistory } from "react-router-dom"
+import { FC } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { AdminChallengePayload } from "../../api/admin/Challenge"
 import { useCreateChallenge } from "../../api/admin/requests"
@@ -8,13 +8,13 @@ import ChallengeForm from "../../components/Admin/ChallengeForm"
 import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
 
 
-const NewDoor: VFC = () => {
-  const history = useHistory()
+const NewDoor: FC = () => {
+  const navigate = useNavigate()
 
   const { mutate: createChallenge } = useCreateChallenge()
 
   const submit = (challenge: AdminChallengePayload) => {
-    createChallenge({ challenge }, { onSuccess: () => history.push(`/admin/doors?door=${challenge.door}`) })
+    createChallenge({ challenge }, { onSuccess: () => navigate(`/admin/doors?door=${challenge.door}`) })
   }
 
   const availableDoors = useAvailableDoors()

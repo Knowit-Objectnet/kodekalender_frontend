@@ -1,17 +1,17 @@
 import { FC } from "react"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router-dom"
 
 import { SignUpParameters, useSignUp } from "../../api/users/requests"
 import UserForm from "../../components/users/UserForm"
 
 
 const SignUp: FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { mutateAsync: signUp, error } = useSignUp()
 
   const submit = (data: SignUpParameters) => {
-    signUp(data, { onSuccess: () => history.push("/") })
+    signUp(data, { onSuccess: () => navigate("/") })
   }
 
   return (

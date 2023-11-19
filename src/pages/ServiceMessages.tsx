@@ -22,8 +22,8 @@ const ServiceMessages = () => {
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {
             const messageClasses = serviceMessage.resolved
-              ? "border-lightbulb-yellow border-opacity-70 text-gray-700 text-opacity-70"
-              : "border-red-700 border-opacity-70"
+              ? "border-lightbulb-yellow border-opacity-70 text-gray-700/70"
+              : "border-red-700/70"
 
             return (
               <ServiceMessage

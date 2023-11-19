@@ -26,7 +26,7 @@ const Input: FC<InputProps> = ({ door }) => {
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> | undefined
 
-    if (error?.status === 429 && error.headers["retry-after"]) {
+    if (error && error.status === 429 && error.headers && error.headers["retry-after"]) {
       const retryAfter = parseInt(error.headers["retry-after"])
 
       setRateLimitTimeout(retryAfter)

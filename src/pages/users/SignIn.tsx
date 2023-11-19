@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { SignInParameters, useSignIn } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
@@ -10,13 +10,13 @@ import UserPage from "./UserPage"
 
 
 const SignIn: FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { register, handleSubmit, watch } = useForm<SignInParameters>()
   const { mutate: signIn, error } = useSignIn()
 
   const onSubmit = (data: SignInParameters) => {
-    signIn(data, { onSuccess: () => history.push("/") })
+    signIn(data, { onSuccess: () => navigate("/") })
   }
 
   const email = watch("email")
@@ -46,7 +46,7 @@ const SignIn: FC = () => {
         <Link to="/users/sign_up" className="mt-6 block text-center">
           <Button type="button" sm content="Ny bruker?" />
         </Link>
-        <Link to={`/users/lost_password?email=${encodeURIComponent(email ?? "")}`} className="mt-2 block text-center">
+        <Link to={`/users/lost_password?email=${encodeURIComponent(email)}`} className="mt-2 block text-center">
           <Button type="button" sm content="Glemt passord?" />
         </Link>
       </div>

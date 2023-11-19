@@ -1,8 +1,8 @@
 import { Popover } from "@headlessui/react"
 import { forEach, join, pickBy } from "lodash"
-import { useEffect, useRef, VFC } from "react"
+import { useEffect, useRef, FC } from "react"
 import { useForm } from "react-hook-form"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router-dom"
 import { useDebounce } from "use-debounce"
 
 import { LoggedInWhoami } from "../../api"
@@ -28,8 +28,8 @@ type UserFormProps = {
   newForm?: boolean
 }
 
-const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
-  const history = useHistory()
+const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
+  const navigate = useNavigate()
 
   const { register, handleSubmit, watch, setValue, reset, setError, clearErrors, formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields } } = useForm<SignUpParameters>()
 
@@ -65,7 +65,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
 
   const deleteUser = () => {
     if (window.confirm(DELETE_USER_CONFIRM)) {
-      doDeleteUser(null, { onSuccess: () => history.push("/") })
+      doDeleteUser(null, { onSuccess: () => navigate("/") })
     }
   }
 
@@ -85,7 +85,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
         {newForm && (
           <Popover>
             <Popover.Button tabIndex={-1}>
-              <div className="text-opacity-30 text-gray-700">
+              <div className="text-gray-700/30">
                 Jobber du i Knowit?
               </div>
             </Popover.Button>

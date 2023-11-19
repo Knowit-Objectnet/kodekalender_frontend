@@ -1,16 +1,17 @@
-import { useEffect, useRef, useState, VFC } from "react"
+import { useEffect, useRef, useState, FC } from "react"
 import { UseFormRegister, UseFormSetValue } from "react-hook-form"
 import { map, reject } from "lodash"
 import SparkMD5 from "spark-md5"
 import clsx from "clsx"
 import { FaTimes } from "react-icons/fa"
+import { AxiosProgressEvent } from "axios"
 
 import { AdminChallenge, AdminChallengePayload, File as ChallengeFile } from "../../api/admin/Challenge"
 import Button from "../Button"
 import { useCreateBlob, useUploadFile } from "../../api/admin/requests"
 import useIsMounted from "../../hooks/useIsMounted"
 import FormElementCustom from "../form/FormElementCustom"
-
+import { isPresent } from "../../utils"
 
 
 type AttachmentsInputProps = {
@@ -22,7 +23,7 @@ type AttachmentsInputProps = {
 
 let fileIdCounter = 0
 
-const AttachmentsInput: VFC<AttachmentsInputProps> = ({ challenge, register, setValue, className /*, register */ }) => {
+const AttachmentsInput: FC<AttachmentsInputProps> = ({ challenge, register, setValue, className /*, register */ }) => {
   // Registers 'files' in form, otherwise useless
   register("files")
 
@@ -56,10 +57,11 @@ const AttachmentsInput: VFC<AttachmentsInputProps> = ({ challenge, register, set
 
       setFileObjects((oldFileObjects) => [...oldFileObjects, { signed_id, filename: file.name, fileId }])
 
-      const onUploadProgress = (event: ProgressEvent) => {
+      const onUploadProgress = ({ loaded, total }: AxiosProgressEvent) => {
         if (!isMounted()) return
 
-        setFileProgress((progress) => ({ ...progress, [fileId]: { progress: event.loaded / event.total } }))
+        if (isPresent(total))
+          setFileProgress((progress) => ({ ...progress, [fileId]: { progress: loaded / total } }))
       }
 
       await uploadFile({ upload: { file, directUpload: direct_upload }, config: { onUploadProgress } })
@@ -102,7 +104,7 @@ const AttachmentsInput: VFC<AttachmentsInputProps> = ({ challenge, register, set
               {progress < 1 && (
                 <div
                   style={{ width: `calc(${progress * 100}% + ${progress * 0.5}rem)` }}
-                  className="absolute top-[-.25rem] left-[-.25rem] h-[calc(100%+.5rem)] bg-blue-400 bg-opacity-20"
+                  className="absolute top-[-.25rem] left-[-.25rem] h-[calc(100%+.5rem)] bg-blue-400/20"
                 />
               )}
               <span className="inline-block w-[calc(100%-1.5rem)] line-clamp-1">{filename}</span>

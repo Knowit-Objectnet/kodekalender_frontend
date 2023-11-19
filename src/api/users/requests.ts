@@ -4,6 +4,7 @@ import { useQueryClient, useMutation, useQuery } from "react-query"
 
 import { LoggedInWhoami, Whoami } from ".."
 import { QueryError } from "../../axios"
+import { EmptyObject } from "../../../types/utils_types"
 
 
 const getWhoami = () => axios.get("/users/whoami").then(({ data }) => data)
@@ -57,7 +58,7 @@ export const useSignIn = () => {
   )
 }
 
-type InitiateResetPasswordResponse = {}
+type InitiateResetPasswordResponse = EmptyObject
 export type InitiateResetPasswordParameters = {
   email: string
 }
@@ -68,7 +69,7 @@ export const useInitiateResetPassword = () => (
   )
 )
 
-type ResetPasswordResponse = {}
+type ResetPasswordResponse = EmptyObject
 export type ResetPasswordParameters = {
   reset_password_token: string
   password: string

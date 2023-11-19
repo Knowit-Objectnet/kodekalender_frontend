@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { formatISO } from "date-fns"
 import { isEmpty, keys, map, parseInt, toString } from "lodash"
-import { VFC, memo } from "react"
+import { FC, memo } from "react"
 import { useForm } from "react-hook-form"
 
 import { useChallenges } from "../../api/admin/requests"
@@ -18,7 +18,7 @@ type ServiceMessageFormProps = {
   submit: (data: AdminServiceMessagePayload) => void
 }
 
-const ServiceMessageForm: VFC<ServiceMessageFormProps> = ({ serviceMessage, newForm = false, submit }) => {
+const ServiceMessageForm: FC<ServiceMessageFormProps> = ({ serviceMessage, newForm = false, submit }) => {
   const { register, handleSubmit, setValue } = useForm<AdminServiceMessagePayload>({
     defaultValues: {
       ...serviceMessage,

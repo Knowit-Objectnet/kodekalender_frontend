@@ -1,5 +1,5 @@
 import { isNil } from "lodash"
-import { VFC } from "react"
+import { FC } from "react"
 
 import PostProse from "./PostProse"
 
@@ -10,7 +10,7 @@ type PostPreviewProps = {
   className?: string
 }
 
-const PostPreview: VFC<PostPreviewProps> = ({ html, isLoading, className }) => {
+const PostPreview: FC<PostPreviewProps> = ({ html, isLoading, className }) => {
   if (isNil(html) && isLoading) return null
   if (isNil(html)) return <div>Her ser noe ut til å ha gått galt...</div>
 

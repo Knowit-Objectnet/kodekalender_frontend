@@ -1,11 +1,11 @@
-import { VFC } from "react"
+import { FC } from "react"
 import { Link } from "react-router-dom"
 
 import useCurrentTime from "../hooks/useCurrentTime"
 import { getRaffleEnd } from "../utils"
 
 
-const RaffleNotification: VFC = () => {
+const RaffleNotification: FC = () => {
   const currentTime = useCurrentTime()
 
   if (currentTime < getRaffleEnd()) return null

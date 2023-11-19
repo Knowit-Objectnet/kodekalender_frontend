@@ -1,4 +1,4 @@
-import { VFC } from "react"
+import { FC } from "react"
 import clsx from "clsx"
 
 
@@ -6,7 +6,7 @@ type StarBackgroundProps = {
   paused: boolean
 }
 
-const StarBackground: VFC<StarBackgroundProps> = ({ paused }) => {
+const StarBackground: FC<StarBackgroundProps> = ({ paused }) => {
   const animationClasses = clsx(
     "fixed",
     "h-screen",

@@ -1,6 +1,9 @@
 import { format } from "date-fns"
-import { find, isEmpty, memoize, padStart, replace, toString, trim } from "lodash"
-import { getAnchorVar } from './hooks/useStoreAnchorVars'
+import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, replace, toString, trim } from "lodash"
+
+import { Maybe, Nullable } from "../types/utils_types"
+
+import { getAnchorVar } from "./hooks/useStoreAnchorVars"
 
 
 export const NBSP = "\u00a0"
@@ -124,4 +127,46 @@ export const getObjKey = (obj: object) => {
   keyMap.set(obj, key)
 
   return key
+}
+
+export const isPresent = <T>(value: T): value is NonNullable<T> => {
+  if (isString(value))
+    return trim(value).length > 0
+
+  if (isArray(value)) {
+    return !isEmpty(value)
+  }
+
+  if (isPlainObject(value)) {
+    return !isEmpty(value)
+  }
+
+  return !isNil(value)
+}
+
+export const isBlank = <T>(value: T) => !isPresent(value)
+
+export const presence = <T>(value: T) => isPresent(value) ? value : undefined
+
+/**
+ * Checks that given value is "present" (see `isPresent`), and conditionally
+ * returns value of calling the given function. If a second function is
+ * provided, the value of calling that function is returned should the given
+ * value not be present.
+ */
+export function guardPresent<T, TPresentReturn>(value: Nullable<Maybe<T>>, presentFunc: (value: T) => TPresentReturn): Maybe<TPresentReturn>
+export function guardPresent<T, TPresentReturn, TNotPresentReturn>(value: Nullable<Maybe<T>>, presentFunc: (value: T) => TPresentReturn, notPresentFuncOrValue: (value: Nullable<Maybe<T>>) => TNotPresentReturn): TPresentReturn | TNotPresentReturn
+export function guardPresent<T, TPresentReturn, TNotPresentReturn>(value: Nullable<Maybe<T>>, presentFunc: (value: T) => TPresentReturn, notPresentFuncOrValue: TNotPresentReturn): TPresentReturn | TNotPresentReturn
+export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
+  value: Nullable<Maybe<T>>,
+  presentFunc: (v: T) => TPresentReturn,
+  notPresentFuncOrValue?: ((v: Nullable<Maybe<T>>) => TNotPresentReturn) | TNotPresentReturn
+): TPresentReturn | TNotPresentReturn | undefined {
+  if (isPresent(value))
+    return presentFunc(value)
+
+  if (!isNil(notPresentFuncOrValue))
+    return isFunction(notPresentFuncOrValue) ? notPresentFuncOrValue(value) : notPresentFuncOrValue
+
+  return undefined
 }

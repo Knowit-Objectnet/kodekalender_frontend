@@ -1,10 +1,10 @@
-import { VFC } from "react"
+import { FC } from "react"
 
 import { useUpdateUser, useWhoami } from "../../api/users/requests"
 import UserForm from "../../components/users/UserForm"
 
 
-const EditUser: VFC = () => {
+const EditUser: FC = () => {
   const { data: whoami, isLoading } = useWhoami()
   const { mutateAsync: updateUser, error } = useUpdateUser()
 

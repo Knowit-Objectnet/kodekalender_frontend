@@ -1,11 +1,14 @@
+import { Nullable } from "../../types/utils_types"
+
+
 export type ServiceMessage = {
   uuid: string
   content: string
   created_at: string
 
-  resolution_content: string | null
-  resolved_at: string | null
+  resolution_content: Nullable<string>
+  resolved_at: Nullable<string>
   resolved: boolean
 
-  door: number | null
+  door: Nullable<number>
 }

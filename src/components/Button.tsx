@@ -2,12 +2,13 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode } from "react"
 import clsx from "clsx"
 
 
-type ButtonProps = {
+type HTMLButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   underline?: boolean
   content?: ReactNode
   disabled?: boolean
   sm?: boolean
-} & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+}
 
 const Button: FC<ButtonProps> = ({
   underline = true,

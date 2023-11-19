@@ -23,7 +23,7 @@ const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, sh
       <FaChevronDown
         className={clsx(
           "-mt-0.5 inline w-4 transition-all ease-out-cubic duration-300",
-          showChildPosts && "transform -rotate-180"
+          showChildPosts && "-rotate-180"
         )}
       />
     </button>

@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { map, toString } from "lodash"
-import { memo, useState, VFC } from "react"
+import { memo, useState, FC } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 import { useForm } from "react-hook-form"
 
@@ -22,7 +22,7 @@ type ChallengeFormProps = {
   submit: (challenge: AdminChallengePayload) => void
 }
 
-const ChallengeForm: VFC<ChallengeFormProps> = ({ challenge, newForm = false, submit }) => {
+const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, submit }) => {
   const [preview, setPreview] = useState<boolean>(false)
 
   const { register, handleSubmit, setValue, getValues, watch, formState: { dirtyFields: { door: isDoorDirty } } } = useForm<AdminChallengePayload>({ defaultValues: { ...challenge, files: map(challenge.files, "signed_id") } })

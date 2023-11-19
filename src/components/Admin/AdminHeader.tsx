@@ -1,10 +1,10 @@
-import { VFC } from "react"
+import { FC } from "react"
 import { Link } from "react-router-dom"
 
 import Button from "../Button"
 
 
-const AdminHeader: VFC = () => (
+const AdminHeader: FC = () => (
   <header className="space-x-16">
     <span className="space-x-8">
       <Link to="/admin/doors">

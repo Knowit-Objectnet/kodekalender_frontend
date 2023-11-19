@@ -5,7 +5,8 @@ import { clone, findIndex, fromPairs, isEmpty, isNil, keyBy, padStart, property,
 
 import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"
-import { getActiveYear } from "../utils"
+import { getActiveYear, isPresent } from "../utils"
+import { Maybe } from "../../types/utils_types"
 
 import { ServiceMessage } from "./ServiceMessage"
 
@@ -36,11 +37,15 @@ const getChallenges = () => axios.get("/challenges").then(({ data }) => keyBy(da
 export const useChallenges = () => (
   useQuery<ChallengeDict, QueryError>(["challenges"], getChallenges, { staleTime: 600_000 })
 )
-export const useChallenge = (door: number) => (
+export const useChallenge = (door: Maybe<number>) => (
   useQuery<ChallengeDict, QueryError, ChallengeDict[number]>(
     ["challenges"],
     getChallenges,
-    { staleTime: 600_000, select: property(door) }
+    {
+      staleTime: 600_000,
+      select: property(door!),
+      enabled: isPresent(door)
+    }
   )
 )
 

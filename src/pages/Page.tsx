@@ -1,8 +1,8 @@
 import clsx, { ClassValue } from "clsx"
-import { FC } from "react"
 
 import BackToDoorsButton from "../components/BackToDoorsButton"
 import DoorBorder from "../components/Door/DoorBorder"
+import { FCWithChildren } from "../../types/utils_types"
 
 
 type PageProps = {
@@ -10,7 +10,7 @@ type PageProps = {
   wrapperClassName?: ClassValue
 }
 
-const Page: FC<PageProps> = ({ className, wrapperClassName, children }) => (
+const Page: FCWithChildren<PageProps> = ({ className, wrapperClassName, children }) => (
   <main
     className={clsx(
       "max-w-kodekalender",

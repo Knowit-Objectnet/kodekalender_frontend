@@ -1,7 +1,7 @@
 import { Popover } from "@headlessui/react"
 import clsx from "clsx"
 import { filter, isEmpty, map, some } from "lodash"
-import { VFC } from "react"
+import { FC } from "react"
 import { FaExclamationTriangle } from "react-icons/fa"
 
 import { useServiceMessages } from "../../api/requests"
@@ -14,7 +14,7 @@ type ServiceMessageAlertProps = {
   className?: string
 }
 
-const ServiceMessageAlert: VFC<ServiceMessageAlertProps> = ({ door, className }) => {
+const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) => {
   const { data: doorServiceMessages } = useServiceMessages({ select: (serviceMessages) => filter(serviceMessages, { door }) })
 
   if (isEmpty(doorServiceMessages)) return null

@@ -1,5 +1,7 @@
 import clsx from "clsx"
-import { DetailedHTMLProps, FC, LabelHTMLAttributes } from "react"
+import { DetailedHTMLProps, LabelHTMLAttributes } from "react"
+
+import { FCWithChildren } from "../../../types/utils_types"
 
 
 type FormElementCustomProps = DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> & {
@@ -8,7 +10,7 @@ type FormElementCustomProps = DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelEle
   disabled?: boolean
 }
 
-const FormElementCustom: FC<FormElementCustomProps> = ({ label, note, disabled, className, children, ...labelProps }) => (
+const FormElementCustom: FCWithChildren<FormElementCustomProps> = ({ label, note, disabled, className, children, ...labelProps }) => (
   <label className={clsx("block space-y-1", disabled && "text-opacity-30 text-gray-700", className)} {...labelProps}>
     <span className="text-lg font-medium">
       {label}

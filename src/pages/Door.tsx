@@ -1,5 +1,5 @@
-import { FC, useContext } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { FC, useContext, useLayoutEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 import Light from "../components/Light"
 import PostsSection from "../components/Posts/PostsSection"
@@ -8,15 +8,16 @@ import { AuthContext } from "../AuthContext"
 import useIsDoorSolved from "../hooks/useIsDoorSolved"
 import { useChallenge } from "../api/requests"
 import ServiceMessageAlert from "../components/Door/ServiceMessageAlert"
+import { guardPresent } from "../utils"
 
 import Page from "./Page"
 
 
 const Door: FC = () => {
-  const { door: doorString } = useParams<{ door: string }>()
-  const door = parseInt(doorString)
+  const navigate = useNavigate()
 
-  const history = useHistory()
+  const { door: doorString } = useParams<{ door: string }>()
+  const door = guardPresent(doorString, parseInt)
 
   const { data: challenge, isLoading } = useChallenge(door)
 
@@ -25,7 +26,15 @@ const Door: FC = () => {
 
   // Redirect home if no challenge found.
   if (!isLoading && !challenge)
-    history.push("/")
+    navigate("/")
+
+  useLayoutEffect(() => {
+    if (!door || (!isLoading && !challenge))
+      navigate("/")
+  }, [door, isLoading, challenge, navigate])
+
+  if (!door || (!isLoading && !challenge))
+    return null
 
   return (
     <Page className="relative">

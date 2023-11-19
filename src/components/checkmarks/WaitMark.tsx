@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from "react"
 import { motion, useAnimation } from "framer-motion"
+import clsx, { ClassValue } from "clsx"
 
-import { easeInCubic, easeOutCubic } from "../../utils"
+import { easeInCubic } from "../../utils"
 
 import Wrapper, { CheckmarkWrapperProps } from "./CheckmarkWrapper"
-import clsx, { ClassValue } from "clsx"
 
 
 const OFFSET = 65.1
@@ -25,7 +25,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
       pathLength: (countdown - 1) / retryAfter,
       transition: { duration: 1, ease: "linear" }
     })
-  }, [countdown, retryAfter])
+  }, [countdown, retryAfter, circleControls])
 
   return (
     <Wrapper {...props}>

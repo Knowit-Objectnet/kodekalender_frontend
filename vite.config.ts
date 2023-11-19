@@ -1,9 +1,12 @@
 import { defineConfig } from "vite"
-import reactRefresh from "@vitejs/plugin-react-refresh"
 import svgr from "@svgr/rollup"
 import { visualizer } from "rollup-plugin-visualizer"
-import optimizeLodashImports from "rollup-plugin-optimize-lodash-imports"
+import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin"
+import { resolve } from "path"
+import react from "@vitejs/plugin-react"
 
+
+const projectRootDir = resolve(__dirname)
 
 export default defineConfig({
   server: {
@@ -11,30 +14,38 @@ export default defineConfig({
     strictPort: true
   },
   plugins: [
-    reactRefresh(),
+    react(),
     svgr({
       memo: true,
       svgoConfig: {
         plugins: [
           {
-            name: 'cleanupIDs',
-            active: false
+            name: "cleanupIds",
+            params: {
+              remove: false,
+              minify: false
+            }
           }
         ]
       }
     }),
-    // process.env.NODE_ENV == 'production' && optimizeLodashImports(),
+    process.env.NODE_ENV == 'production' && optimizeLodashImports(),
     visualizer()
   ],
   resolve: {
     alias: {
-      // TODO: Aliases
+      // "@": resolve(projectRootDir, 'src')
     }
   },
-  esbuild: {
-    jsxInject: "import React from \"react\""
-  },
   build: {
-    chunkSizeWarningLimit: 4096
+    chunkSizeWarningLimit: 4096,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("framer-motion"))
+            return "framer-motion"
+        }
+      }
+    }
   }
 })

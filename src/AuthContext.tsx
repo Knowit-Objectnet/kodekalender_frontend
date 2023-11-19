@@ -1,4 +1,6 @@
-import { createContext, FC } from "react"
+import { createContext } from "react"
+
+import { FCWithChildren } from "../types/utils_types"
 
 import { useWhoami } from "./api/users/requests"
 
@@ -11,7 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false
 })
 
-const AuthContextProvider: FC = ({ children }) => {
+const AuthContextProvider: FCWithChildren = ({ children }) => {
   const { data: whoami } = useWhoami()
 
   return (

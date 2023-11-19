@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es2022",
     "lib": [
       "dom",
       "dom.iterable",
-      "es2020"
+      "es2022"
     ],
     "types": [
-      "react/next",
-      "react-dom/next",
+      "react",
+      "react-dom",
       "node"
     ],
     "allowJs": true,

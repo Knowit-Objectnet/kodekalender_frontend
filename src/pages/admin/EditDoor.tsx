@@ -1,29 +1,31 @@
-import { useEffect, VFC } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { FC, useLayoutEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 import { AdminChallengePayload } from "../../api/admin/Challenge"
 import { useChallenge, useUpdateChallenge } from "../../api/admin/requests"
 import ChallengeForm from "../../components/Admin/ChallengeForm"
+import { guardPresent } from "../../utils"
 
 
-const EditDoor: VFC = () => {
+const EditDoor: FC = () => {
   const { door: doorString } = useParams<{ door: string }>()
-  const door = parseInt(doorString)
-  const history = useHistory()
+  const door = guardPresent(doorString, parseInt)
+  const navigate = useNavigate()
 
   const { data: challenge, isLoading } = useChallenge(door)
   const { mutate: updateChallenge } = useUpdateChallenge()
 
   const submit = (challenge: AdminChallengePayload) => {
-    updateChallenge({ challenge }, { onSuccess: () => history.push(`/admin/doors?door=${challenge.door}`) })
+    updateChallenge({ challenge }, { onSuccess: () => navigate(`/admin/doors?door=${challenge.door}`) })
   }
 
-  useEffect(() => {
-    if (!isLoading && !challenge)
-      history.push("/admin/doors/new")
-  }, [isLoading, challenge, history])
+  useLayoutEffect(() => {
+    if (!door || (!isLoading && !challenge))
+      navigate("/admin/doors/new")
+  }, [door, isLoading, challenge, navigate])
 
-  if (isLoading || !challenge) return null
+  if (!door || (isLoading || !challenge))
+    return null
 
   return (
     <div className="space-y-8">

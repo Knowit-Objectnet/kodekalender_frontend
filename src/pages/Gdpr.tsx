@@ -71,7 +71,7 @@ const Gdpr = () => {
 
       <div className="mt-12">
         Henvendelser om hvilke opplysninger som er registrert, retting og
-        sletting kan sendes til <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>{' '}
+        sletting kan sendes til <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>{" "}
         eller <a className="underline" href="mailto:personvern@knowit.no">personvern@knowit.no</a>
       </div>
     </Page>

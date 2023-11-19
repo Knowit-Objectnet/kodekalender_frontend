@@ -159,6 +159,9 @@ rules:
     - warn
     - types:
         object: false
+  # Handled by TypeScript
+  no-redeclare:
+    - off
 
 
   # React

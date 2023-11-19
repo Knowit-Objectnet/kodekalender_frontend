@@ -1,5 +1,5 @@
-import { VFC } from "react"
-import { Switch, Route, Redirect } from "react-router"
+import { FC } from "react"
+import { Navigate, Route, Routes } from "react-router-dom"
 
 import EditUser from "./users/EditUser"
 import LostPassword from "./users/LostPassword"
@@ -8,16 +8,16 @@ import SignIn from "./users/SignIn"
 import SignUp from "./users/SignUp"
 
 
-const Users: VFC = () => (
-  <Switch>
-    <Route path="/users/edit" component={EditUser} />
-    <Route path="/users/sign_in" component={SignIn} />
-    <Route path="/users/sign_up" component={SignUp} />
-    <Route path="/users/lost_password" component={LostPassword} />
-    <Route path="/users/password/edit" component={ResetPassword} />
+const Users: FC = () => (
+  <Routes>
+    <Route path="/users/edit" element={<EditUser />} />
+    <Route path="/users/sign_in" element={<SignIn />} />
+    <Route path="/users/sign_up" element={<SignUp />} />
+    <Route path="/users/lost_password" element={<LostPassword />} />
+    <Route path="/users/password/edit" element={<ResetPassword />} />
 
-    <Redirect to="/users/edit" />
-  </Switch>
+    <Navigate to="/users/edit" />
+  </Routes>
 )
 
 export default Users

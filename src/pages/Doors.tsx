@@ -1,6 +1,6 @@
 import { get } from "lodash"
 import { useCallback, useMemo } from "react"
-import { useHistory } from "react-router"
+import { useNavigate } from "react-router-dom"
 
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import Footer from "../components/Footer"
@@ -10,7 +10,7 @@ import RaffleNotification from "../components/RaffleNotification"
 
 
 const Doors = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { data: challenges } = useChallenges()
   const { data: solvedStatus } = useSolvedStatus()
@@ -25,16 +25,12 @@ const Doors = () => {
       prefetchPosts(door)
   }, [prefetchLikes, prefetchPosts, solvedStatus])
 
-  const navigateToDoor = useCallback((door: number) => {
-    history.push(`/luke/${door}`)
-  }, [history])
-
   const lightProps = useMemo(() => ({
     challenges,
     solvedStatus,
     prefetch,
-    navigateToDoor
-  }), [challenges, solvedStatus, prefetch, navigateToDoor])
+    navigateToDoor: (door: number) => navigate(`/luke/${door}`)
+  }), [challenges, solvedStatus, prefetch, navigate])
 
   return (
     <main>

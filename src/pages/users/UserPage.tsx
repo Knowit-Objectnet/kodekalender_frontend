@@ -1,6 +1,5 @@
-import { FC } from "react"
-
 import Page from "../Page"
+import { FCWithChildren } from "../../../types/utils_types"
 
 
 type UserPageProps = {
@@ -8,7 +7,7 @@ type UserPageProps = {
   onSubmit?: (data: any) => void
 }
 
-const UserPage: FC<UserPageProps> = ({ title, onSubmit, children }) => {
+const UserPage: FCWithChildren<UserPageProps> = ({ title, onSubmit, children }) => {
   const Container = onSubmit ? "form" : "div"
 
   return (

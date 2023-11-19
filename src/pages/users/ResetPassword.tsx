@@ -1,7 +1,7 @@
 import { forEach, join } from "lodash"
-import { useEffect, VFC } from "react"
+import { useEffect, FC } from "react"
 import { useForm } from "react-hook-form"
-import { useLocation } from "react-router"
+import { useLocation } from "react-router-dom"
 
 import { ResetPasswordParameters, useResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
@@ -11,7 +11,7 @@ import FormError from "../../components/form/FormError"
 import UserPage from "./UserPage"
 
 
-const ResetPassword: VFC = () => {
+const ResetPassword: FC = () => {
   const { search } = useLocation()
   const paramMatch = search.match(/reset_password_token=(?<resetPasswordToken>\S+)/)?.groups
 

@@ -1,9 +1,7 @@
 module.exports = {
-  mode: "jit",
-  purge: [
+  content: [
     "./src/**/*.{ts,tsx,svg}"
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -11,7 +9,8 @@ module.exports = {
         "lightbulb-dim": "rgba(224, 185, 88, 0.5)",
         "lightbulb-yellow": "rgb(224, 185, 88)",
         "leaderboard-green": "rgb(37, 86, 80)",
-        "background-green": "rgb(18, 38, 32)"
+        "background-green": "rgb(18, 38, 32)",
+        "current": "currentColor"
       },
       maxWidth: {
         "kodekalender": "80rem"
@@ -53,12 +52,8 @@ module.exports = {
       })
     }
   },
-  variants: {
-    extend: {}
-  },
   plugins: [
     require("@tailwindcss/typography"),
-    require("@tailwindcss/line-clamp"),
     require("tailwindcss-children"),
     require("@whiterussianstudio/tailwind-easing"),
     require("@tailwindcss/forms")({ strategy: 'class' })

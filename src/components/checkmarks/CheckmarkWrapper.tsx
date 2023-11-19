@@ -1,5 +1,7 @@
-import { FC, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import clsx from "clsx"
+
+import { FCWithChildren } from "../../../types/utils_types"
 
 
 export type CheckmarkWrapperProps = {
@@ -8,7 +10,7 @@ export type CheckmarkWrapperProps = {
   scrollTo?: boolean
 }
 
-const CheckmarkWrapper: FC<CheckmarkWrapperProps> = ({ children, wrapperClassName, message, scrollTo = false }) => {
+const CheckmarkWrapper: FCWithChildren<CheckmarkWrapperProps> = ({ children, wrapperClassName, message, scrollTo = false }) => {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
