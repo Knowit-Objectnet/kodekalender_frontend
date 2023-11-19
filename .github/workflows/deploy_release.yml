@@ -1,9 +1,12 @@
 name: Deploy Release
+run-name: "Deploy to production: ${{ github.event.workflow_run.head_commit.message }}"
 
 on:
   workflow_run:
     workflows:
       - typecheck
+    branches:
+      - release
     types:
       - completed
 
@@ -11,7 +14,7 @@ jobs:
   build_and_deploy:
     name: Build and Deploy Release
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/release' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout
