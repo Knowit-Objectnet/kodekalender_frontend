@@ -1,6 +1,6 @@
 import Page from "../Page"
 import { FCWithChildren } from "../../../types/utils_types"
-import Header1 from "../../components/text/Header1"
+import { Header1 } from "../../components/text"
 
 
 type UserPageProps = {

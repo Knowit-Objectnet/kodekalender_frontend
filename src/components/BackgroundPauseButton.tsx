@@ -1,5 +1,6 @@
-import clsx from "clsx"
 import { FC } from "react"
+
+import { cl } from "../utils"
 
 
 type BackgroundPauseButtonProps = {
@@ -10,7 +11,7 @@ type BackgroundPauseButtonProps = {
 const BackgroundPauseButton: FC<BackgroundPauseButtonProps> = ({ paused, onTogglePaused }) => (
   <label
       title="Varm laptop? 🔥"
-      className={clsx(
+      className={cl(
         "p-2",
         "shadow",
         "text-xs",

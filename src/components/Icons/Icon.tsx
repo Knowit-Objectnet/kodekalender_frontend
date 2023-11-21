@@ -1,4 +1,3 @@
-import clsx, { ClassValue } from "clsx"
 import { FC } from "react"
 
 import { ReactComponent as BellIcon } from "../../../assets/svg/icons/bell.svg"
@@ -11,7 +10,6 @@ import { ReactComponent as GithubIcon } from "../../../assets/svg/icons/github.s
 import { ReactComponent as HusIcon } from "../../../assets/svg/icons/hus.svg"
 import { ReactComponent as InfoIcon } from "../../../assets/svg/icons/info.svg"
 import { ReactComponent as InstaIcon } from "../../../assets/svg/icons/insta.svg"
-import { ReactComponent as KnowitLogoIcon } from "../../../assets/svg/icons/Knowit logo.svg"
 import { ReactComponent as LastOppIcon } from "../../../assets/svg/icons/last opp.svg"
 import { ReactComponent as LenkeIcon } from "../../../assets/svg/icons/lenke.svg"
 import { ReactComponent as LoggInnIcon } from "../../../assets/svg/icons/logg inn.svg"
@@ -25,6 +23,7 @@ import { ReactComponent as PremieIcon } from "../../../assets/svg/icons/premie.s
 import { ReactComponent as RedigerIcon } from "../../../assets/svg/icons/rediger.svg"
 import { ReactComponent as SoundIcon } from "../../../assets/svg/icons/sound.svg"
 import { ReactComponent as TwitterIcon } from "../../../assets/svg/icons/twitter.svg"
+import { cl } from "../../utils"
 
 
 const ICONS = {
@@ -38,7 +37,6 @@ const ICONS = {
   house: HusIcon,
   info: InfoIcon,
   instagram: InstaIcon,
-  "knowit-logo": KnowitLogoIcon,
   upload: LastOppIcon,
   link: LenkeIcon,
   signin: LoggInnIcon,
@@ -56,7 +54,7 @@ const ICONS = {
 
 export type IconProps = {
   name: keyof typeof ICONS
-  className?: ClassValue
+  className?: string
 }
 
 const Icon: FC<IconProps> = ({ name, className }) => {
@@ -64,7 +62,7 @@ const Icon: FC<IconProps> = ({ name, className }) => {
 
   return (
     <i
-      className={clsx(
+      className={cl(
         `
           inline-block
           align-middle

@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode } from "react"
-import clsx, { ClassValue } from "clsx"
+
+import { cl } from "../utils"
 
 import Icon, { IconProps } from "./Icons/Icon"
 
@@ -10,7 +11,7 @@ type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   disabled?: boolean
   sm?: boolean
   icon?: IconProps["name"]
-  className?: ClassValue
+  className?: string
 }
 
 const Button: FC<ButtonProps> = ({
@@ -23,10 +24,12 @@ const Button: FC<ButtonProps> = ({
   ...restProps
 }) => (
   <button
-    className={clsx(
+    className={cl(
       `
         bg-purple-700
         hover:bg-purple-900
+        hover:ring
+        hover:ring-purple-700
         active:bg-purple-500
         focus:outline-none
         focus:ring

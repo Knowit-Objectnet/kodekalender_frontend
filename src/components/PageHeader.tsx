@@ -1,17 +1,17 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { every, isEmpty, some } from "lodash"
-import clsx from "clsx"
 
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
+import { cl, getActiveYear } from "../utils"
+import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 
 import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
 import ThemeButton from "./ThemeButton"
-import { getActiveYear } from "../utils"
-import Header2 from "./text/Header2"
+import { Header2 } from "./text"
 
 
 const ServiceMessageBadge = () => {
@@ -27,7 +27,7 @@ const ServiceMessageBadge = () => {
       <span className={classes} />
 
       {/* Animate badge if there are any general service messages */}
-      {some(serviceMessages, { resolved: false, door: null }) && <span className={clsx(classes, "animate-ping")} />}
+      {some(serviceMessages, { resolved: false, door: null }) && <span className={`${classes} animate-ping`} />}
     </div>
   )
 }
@@ -41,16 +41,17 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   const isAdmin = useIsAdmin()
   const { data: serviceMessages } = useServiceMessages()
   const prefetchLeaderboard = usePrefetchLeaderboard()
+  const raffleStarted = useIsRaffleStarted()
 
   return (
-    <header>
-      <nav className="p-8 flex flex-cols space-x-4 md:space-x-16">
-        <Link to="/" className="flex flex-col child:leading-none child:text-center" tabIndex={1}>
+    <header className="h-60 w-full px-20">
+      <nav className="h-full flex flex-cols align-center gap-4 md:gap-16">
+        <Link to="/" className="flex flex-col justify-center child:leading-none child:text-center" tabIndex={1}>
           <div className="font-bold">Kodekalender</div>
           <Header2 as="div">{getActiveYear()}</Header2>
         </Link>
         <div
-          className={clsx(
+          className={cl(
             `
               float-right
               mt-1
@@ -82,11 +83,13 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
           </div>
 
           <div>
-            {/* Link to separate page on mobile */}
-            <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
-            <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
-              <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
-            </Link>
+            {raffleStarted && (<>
+              {/* Link to separate page on mobile */}
+              <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
+              <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
+                <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
+              </Link>
+            </>)}
 
             {!isEmpty(serviceMessages) && (
               // Only show link to service messages if there are any

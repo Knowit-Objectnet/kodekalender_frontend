@@ -1,11 +1,10 @@
 import { FC, useCallback, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
-import clsx from "clsx"
 import { isNil } from "lodash"
 import { Link } from "react-router-dom"
 
 import Button from "../Button"
-import { squish } from "../../utils"
+import { cl, squish } from "../../utils"
 import { useCreatePost } from "../../api/requests"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
 import { useWhoami } from "../../api/users/requests"
@@ -82,7 +81,7 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
 
       {/* If this element is unmounted, we must restore the current value. Easier to just hide. */}
       <TextareaAutosize
-        className={clsx(
+        className={cl(
           "block w-full h-40 p-0 pb-4 outline-none bg-transparent border-b-4 border-white",
           preview && "hidden"
         )}

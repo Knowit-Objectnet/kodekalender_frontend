@@ -1,10 +1,9 @@
-import clsx from "clsx"
 import { FC } from "react"
 
 import { ServiceMessage as ServiceMessageType } from "../api/ServiceMessage"
-import { getTimestamp } from "../utils"
+import { cl, getTimestamp } from "../utils"
 
-import Header3 from "./text/Header3"
+import { Header3 } from "./text"
 
 
 type ServiceMessageProps = {
@@ -13,7 +12,7 @@ type ServiceMessageProps = {
 }
 
 const ServiceMessage: FC<ServiceMessageProps> = ({ serviceMessage: { content, resolution_content, created_at, resolved, resolved_at, door }, className }) => (
-  <div className={clsx(className, "relative space-y-4")}>
+  <div className={cl("relative space-y-4", className)}>
     <Header3>
       {resolved
         ? (door ? `Feil på luke ${door} (rettet)` : "Feil (rettet)")

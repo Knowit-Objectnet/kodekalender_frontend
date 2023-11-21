@@ -1,4 +1,3 @@
-import clsx, { ClassValue } from "clsx"
 import { motion, useAnimation } from "framer-motion"
 import { find } from "lodash"
 import { FC, useState } from "react"
@@ -7,12 +6,13 @@ import { useDebounce } from "use-debounce"
 
 import { ParentPost } from "../api"
 import { useCreateSubscription, useDeleteSubscription, useSubscriptions } from "../api/requests"
+import { cl } from "../utils"
 
 
 type SubscribeButtonProps = {
   door?: number
   post?: ParentPost
-  className?: ClassValue
+  className?: string
 }
 
 const ANIMATION_DURATION = 700
@@ -61,7 +61,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) =>
   return (
     <motion.button
       // TODO: Hover style
-      className={clsx("", className)}
+      className={cl("", className)}
       title={
         subscription
           ? `Slutt å motta e-postvarsel om nye ${door ? "innlegg på denne luken" : "svar på dette innlegget"}`

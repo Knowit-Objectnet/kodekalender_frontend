@@ -1,11 +1,12 @@
 import { FC } from "react"
 import { find, some } from "lodash"
-import clsx from "clsx"
 
-import { ReactComponent as Favorite } from "../svg/heart.svg"
+import { ReactComponent as Favorite } from "/assets/svg/icons/heart.svg"
+
 import { Post } from "../../api/Post"
 import { useCreateLike, useDeleteLike, useLikes } from "../../api/requests"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
+import { cl } from "../../utils"
 
 
 type LikeProps = {
@@ -33,14 +34,14 @@ const LikeButton: FC<LikeProps> = ({ post }) => {
 
   return (
     <button
-      className={clsx(
+      className={cl(
         isOwnPost ? "cursor-default" : "cursor-pointer hover:child:text-red-500 hover:child:scale-[120%]",
         "inline-block space-x-1"
       )}
       onClick={liked ? unlikePost : likePost}
     >
       <Favorite
-        className={clsx(
+        className={cl(
           "inline-block -mt-2 fill-current w-6 transition duration-200 ease-out-cubic",
             post.likes > 0 ? "text-red-500" : "text-red-300"
         )}

@@ -1,8 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { motion, useAnimation } from "framer-motion"
-import clsx, { ClassValue } from "clsx"
 
-import { easeInCubic } from "../../utils"
+import { cl, easeInCubic } from "../../utils"
 
 import Wrapper, { CheckmarkWrapperProps } from "./CheckmarkWrapper"
 
@@ -10,7 +9,7 @@ import Wrapper, { CheckmarkWrapperProps } from "./CheckmarkWrapper"
 const OFFSET = 65.1
 const R = 62.1
 
-export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, className: ClassValue }> = ({ retryAfter, className, ...props }) => {
+export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, className: string }> = ({ retryAfter, className, ...props }) => {
   const [countdown, setCountdown] = useState(retryAfter)
   const circleControls = useAnimation()
 
@@ -29,7 +28,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
 
   return (
     <Wrapper {...props}>
-      <svg className={clsx("text-yellow-400 stroke-current mx-auto", className)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+      <svg className={cl("text-yellow-400 stroke-current mx-auto", className)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
         <motion.path
           d={`
             M ${OFFSET} ${OFFSET}

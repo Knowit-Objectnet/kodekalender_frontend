@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
-import clsx from "clsx"
 
 import { FCWithChildren } from "../../../types/utils_types"
+import { cl } from "../../utils"
 
 
 export type CheckmarkWrapperProps = {
@@ -18,7 +18,7 @@ const CheckmarkWrapper: FCWithChildren<CheckmarkWrapperProps> = ({ children, wra
   }, [scrollTo])
 
   return (
-    <div ref={scrollRef} className={clsx(wrapperClassName)}>
+    <div ref={scrollRef} className={cl(wrapperClassName)}>
       {children}
       {message && <p className="md:text-lg text-center mt-8 md:mt-16 whitespace-nowrap">{message}</p>}
     </div>

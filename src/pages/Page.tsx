@@ -1,33 +1,21 @@
-import clsx, { ClassValue } from "clsx"
-
-import BackToDoorsButton from "../components/BackToDoorsButton"
 import DoorBorder from "../components/Door/DoorBorder"
 import { FCWithChildren } from "../../types/utils_types"
+import PageContent from "../components/PageContent"
 
 
 type PageProps = {
-  className?: ClassValue
-  wrapperClassName?: ClassValue
+  className?: string
+  wrapperClassName?: string
 }
 
 const Page: FCWithChildren<PageProps> = ({ className, wrapperClassName, children }) => (
-  <main
-    className={clsx(
-      "max-w-kodekalender",
-      "mx-auto",
-      "pointer-events-none", // Allow click through to animation toggle
-      "child:pointer-events-auto",
-      "pb-8",
-      wrapperClassName
-    )}
-  >
-    <BackToDoorsButton />
-    <DoorBorder />
+  <PageContent className={wrapperClassName}>
+    {/* <DoorBorder /> */}
 
-    <div className={clsx(className)}>
+    <div className={className}>
       {children}
     </div>
-  </main>
+  </PageContent>
 )
 
 export default Page

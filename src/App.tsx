@@ -1,12 +1,11 @@
 import { lazy, memo, Suspense, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { FaCogs } from "react-icons/fa"
-import clsx from "clsx"
 
-import Gdpr from "./pages/Gdpr"
+import Privacy from "./pages/Privacy"
 import Door from "./pages/Door"
 import PageHeader from "./components/PageHeader"
-import StarBackground from "./components/StarBackground"
+import Background from "./components/Background"
 import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
@@ -15,7 +14,12 @@ import BackgroundPauseButton from "./components/BackgroundPauseButton"
 import Page from "./pages/Page"
 import Solutions from "./pages/Solutions"
 import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
-import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
+// import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
+import useIsRaffleStarted from "./hooks/useIsRaffleStarted"
+import Countdown from "./pages/Countdown"
+import About from "./pages/About"
+import Career from "./pages/Career"
+import Contact from "./pages/Contact"
 import PageFooter from "./components/PageFooter"
 
 
@@ -25,17 +29,17 @@ const LazyAdmin = () => {
   const Fallback = (
     <Page>
       <FaCogs
-        className={clsx(
-          "fixed",
-          "top-1/2",
-          "left-1/2",
-          "w-64",
-          "h-64",
-          "translate-x-[-50%]",
-          "translate-y-[-50%]",
-          "text-white/70",
-          "animate-pulse"
-        )}
+        className={`
+          fixed
+          top-1/2
+          left-1/2
+          w-64
+          h-64
+          translate-x-[-50%]
+          translate-y-[-50%]
+          text-white/70
+          animate-pulse
+        `}
       />
     </Page>
   )
@@ -61,11 +65,10 @@ const App = () => {
   useStoreAnchorVars()
 
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
-  const [bgAnimationPaused, toggleBgAnimationPaused] = useToggleBgAnimationState()
-
+  const raffleStarted = useIsRaffleStarted()
 
   return (<>
-    <StarBackground paused={bgAnimationPaused} />
+    <Background />
     <LeaderBoardAside
       hidden={leaderboardHidden}
       closeHandler={() => setLeaderboardHidden(true)}
@@ -76,19 +79,30 @@ const App = () => {
       className={`
         grid
         grid-rows-[auto_1fr_auto_auto]
-        min-h-[calc(100vh+1.5rem)]
-        xh-[calc(100%+1.5rem)]
+        min-h-screen
+        items-center
+        justify-items-center
       `}
     >
       <PageHeader setLeaderboardHidden={setLeaderboardHidden} />
 
       <Routes>
-        <Route path="/" element={<Doors />} />
-        <Route path="/luke/:door" element={<Door />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/gdpr" element={<Gdpr />} />
+        {raffleStarted
+           ? (<>
+             <Route path="/" element={<Doors />} />
+             <Route path="/luke/:door" element={<Door />} />
+             <Route path="/leaderboard" element={<Leaderboard />} />
+             <Route path="/solutions" element={<Solutions />} />
+           </>) : (
+             <Route path="/" element={<Countdown />} />
+           )
+        }
+
+        <Route path="/about" element={<About />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/career" element={<Career />} />
         <Route path="/service_messages" element={<ServiceMessages />} />
-        <Route path="/solutions" element={<Solutions />} />
 
         <Route path="/admin" element={<LazyAdmin />} />
         <Route path="/users" element={<LazyUser />} />
@@ -98,8 +112,6 @@ const App = () => {
       </Routes>
 
       <PageFooter />
-
-      <BackgroundPauseButton paused={bgAnimationPaused} onTogglePaused={toggleBgAnimationPaused} />
     </div>
   </>)
 }

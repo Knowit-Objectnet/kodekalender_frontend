@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { map, toString } from "lodash"
 import { memo, useState, FC } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
@@ -7,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { AdminChallenge, AdminChallengePayload } from "../../api/admin/Challenge"
 import { useChallengePreview } from "../../api/admin/requests"
 import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
-import { getDefaultActiveFrom, getDefaultActiveTo, getTimestampForInputField } from "../../utils"
+import { cl, getDefaultActiveFrom, getDefaultActiveTo, getTimestampForInputField } from "../../utils"
 import Button from "../Button"
 import Challenge from "../Door/Challenge"
 import FormElement from "../form/FormElement"
@@ -52,7 +51,7 @@ const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, sub
           <Button type="button" className="uppercase" onClick={togglePreview}>{preview ? "Rediger" : "Forhåndsvisning"}</Button>
         </div>
 
-        <div className={clsx("grid grid-cols-3 gap-8", preview && "hidden")}>
+        <div className={cl("grid grid-cols-3 gap-8", preview && "hidden")}>
           {newForm && (
             <FormElementCustom label="Luke" className="col-span-3">
               <select className="block form-select" defaultValue={availableDoors[0]} {...register("door", { required: true })}>

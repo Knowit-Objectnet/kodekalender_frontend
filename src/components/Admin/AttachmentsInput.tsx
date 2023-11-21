@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, FC } from "react"
 import { UseFormRegister, UseFormSetValue } from "react-hook-form"
 import { map, reject } from "lodash"
 import SparkMD5 from "spark-md5"
-import clsx from "clsx"
 import { FaTimes } from "react-icons/fa"
 import { AxiosProgressEvent } from "axios"
 
@@ -11,7 +10,7 @@ import Button from "../Button"
 import { useCreateBlob, useUploadFile } from "../../api/admin/requests"
 import useIsMounted from "../../hooks/useIsMounted"
 import FormElementCustom from "../form/FormElementCustom"
-import { isPresent } from "../../utils"
+import { cl, isPresent } from "../../utils"
 
 
 type AttachmentsInputProps = {
@@ -74,7 +73,7 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({ challenge, register, setV
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   return (
-    <div className={clsx("space-y-4", className)}>
+    <div className={cl("space-y-4", className)}>
       <FormElementCustom label="Filer" note="husk å dobbeltsjekke riktig filnavn i markdown">
         <input
           ref={fileInputRef}

@@ -1,11 +1,11 @@
 import { FC, useCallback, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
-import clsx, { ClassValue } from "clsx"
 
 import Button from "../Button"
 import { useCreatePost } from "../../api/requests"
 import { ParentPost } from "../../api"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
+import { cl } from "../../utils"
 
 import PostPreview from "./PostPreview"
 
@@ -14,7 +14,7 @@ type ChildPostFormProps = {
   toggleShowForm: () => void
   door: number
   parent: ParentPost
-  className?: ClassValue
+  className?: string
 }
 
 const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, className }) => {
@@ -33,7 +33,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
   }
 
   return (
-    <div className={clsx("space-y-4", className)}>
+    <div className={cl("space-y-4", className)}>
       {preview && (
         <PostPreview
           html={previewHtml}
@@ -45,7 +45,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
       <TextareaAutosize
         autoFocus
         ref={inputRef}
-        className={clsx(
+        className={cl(
           "block w-full min-h-[5rem] p-4 text-base rounded-t border-b-4 border-white bg-gray outline-none",
           preview && "hidden"
         )}

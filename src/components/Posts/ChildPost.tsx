@@ -1,7 +1,6 @@
 import { FC, memo } from "react"
-import clsx from "clsx"
 
-import { squish } from "../../utils"
+import { cl, squish } from "../../utils"
 import { ChildPost as ChildPostType } from "../../api"
 
 import LikeButton from "./LikeButton"
@@ -26,7 +25,7 @@ const ChildPost: FC<ChildPostProps> = ({ post }) => (
       // Imagine using some kind of Cascading Style Sheet to avoid
       // having to pass these variables around...
       wrapperClassName="bg-gray sm:p-4"
-      contentClassName={clsx("!mr-0", post.deleted && "!ml-0")}
+      contentClassName={cl("!mr-0", post.deleted && "!ml-0")}
     >
     {post.deleted
         ? <div className="font-light text-center p-4 sm:p-8">

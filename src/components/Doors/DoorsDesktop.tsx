@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { FC, useEffect, useState } from "react"
 import { forEach, range } from "lodash"
 
@@ -51,8 +50,8 @@ const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) =
         Bruk test-SVG
       </label>
       {useTestSvg
-        ? <div className={clsx(className)}><TestSvg /></div>
-        : <div className={clsx(className)} dangerouslySetInnerHTML={{ __html: svg }} />
+        ? <div className={className}><TestSvg /></div>
+        : <div className={className} dangerouslySetInnerHTML={{ __html: svg }} />
       }
     </div>
   )

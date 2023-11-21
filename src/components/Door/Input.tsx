@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect, useState } from "react"
-import clsx from "clsx"
 
 import CheckMark from "../checkmarks/CheckMark"
 import WrongMark from "../checkmarks/WrongMark"
@@ -7,6 +6,7 @@ import { AuthContext } from "../../AuthContext"
 import { useCreateSolution } from "../../api/requests"
 import useIsDoorSolved from "../../hooks/useIsDoorSolved"
 import WaitMark from "../checkmarks/WaitMark"
+import { cl } from "../../utils"
 
 
 type InputProps = {
@@ -76,7 +76,7 @@ const Input: FC<InputProps> = ({ door }) => {
   return (
     <>
       <input
-        className={clsx("h-16 w-full p-0 bg-transparent border-0 border-current border-b", { "text-red-700": isWrongAnswer })}
+        className={cl("h-16 w-full p-0 bg-transparent border-0 border-current border-b", { "text-red-700": isWrongAnswer })}
         placeholder="Ditt svar:"
         value={answer}
         maxLength={128}

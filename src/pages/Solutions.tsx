@@ -3,7 +3,7 @@ import { compact, isEmpty, map, values } from "lodash"
 import { useChallenges } from "../api/requests"
 import useCurrentTime from "../hooks/useCurrentTime"
 import { getRaffleEnd } from "../utils"
-import Header1 from "../components/text/Header1"
+import { Header1 } from "../components/text"
 
 import Page from "./Page"
 

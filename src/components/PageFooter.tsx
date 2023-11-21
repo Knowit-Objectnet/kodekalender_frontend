@@ -1,42 +1,37 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { FaFacebook, FaTwitter, FaMedium, FaGithub } from "react-icons/fa"
 
 import ExternalLink from "./ExternalLink"
+import Icon from "./Icons/Icon"
+
+import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
+
 
 const facebookLabel = "Besøk oss på Facebook"
 const twitterLabel = "Følg oss på Twitter/X"
 const githubLabel = "Se hva vi gjør på GitHub"
-const mediumLabel = "Følg oss på Medium"
-// TODO: Instagram?
+const instagramLabel = "Følg oss på Instagram"
 
 const PageFooter: FC = () => (
-  <footer className="md:mt-16 lg:mt-32 space-y-8 max-w-336 text-center p-16 md:p-4 m-auto">
-    <div className="m-auto flex justify-between align-center">
-      <Link className="underline" to="/about">Om kodekalenderen</Link>
-      <Link className="underline" to="/gdpr">Personopplysninger</Link>
-      <a className="underline" href="mailto:julekalender@knowit.no" title="Send oss en e-post!">Kontakt oss</a>
-      <ExternalLink
-        className="underline"
-        href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
-        title="Søk på stilling som Systemutvikler Backend, Mobil og/eller Frontend!"
-      >
-        Jobb i Knowit
+  <footer className="space-y-6">
+    <div className="grid justify-center">
+      <ExternalLink href="https://knowit.no">
+        <KnowitLogo />
       </ExternalLink>
     </div>
 
-    {/* Hvordan få med denne? Den er morsom :) */}
-    {/* <p>
-      Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
-      en av våre alver på <a className="underline" href="mailto:julenissen@knowit.no">julenissen@knowit.no</a>
-      for en uformell prat.
-    </p> */}
+    <div className="flex gap-12 justify-center align-center">
+      <Link className="underline" to="/about">Om kodekalenderen</Link>
+      <Link className="underline" to="/privacy">Personopplysninger</Link>
+      <Link className="underline" to="/contact">Kontakt oss</Link>
+      <Link className="underline" to="/career">Jobb i Knowit</Link>
+    </div>
 
-    <div className="m-auto flex justify-between align-center">
-      <ExternalLink href="https://www.facebook.com/weareknowit" aria-label={facebookLabel}><FaFacebook /></ExternalLink>
-      <ExternalLink href="https://twitter.com/knowitnorge" aria-label={twitterLabel}><FaTwitter /></ExternalLink>
-      <ExternalLink href="https://github.com/knowit/" aria-label={githubLabel}><FaGithub /></ExternalLink>
-      <ExternalLink href="https://knowitlabs.no/" aria-label={mediumLabel}><FaMedium /></ExternalLink>
+    <div className="flex gap-12 justify-center align-center">
+      <ExternalLink href="https://github.com/knowit/" aria-label={githubLabel}><Icon name="github" /></ExternalLink>
+      <ExternalLink href="https://www.facebook.com/weareknowit" aria-label={facebookLabel}><Icon name="facebook" /></ExternalLink>
+      <ExternalLink href="https://instagram.com/weareknowit" aria-label={instagramLabel}><Icon name="instagram" /></ExternalLink>
+      <ExternalLink href="https://twitter.com/knowitnorge" aria-label={twitterLabel}><Icon name="twitter" /></ExternalLink>
     </div>
   </footer>
 )
