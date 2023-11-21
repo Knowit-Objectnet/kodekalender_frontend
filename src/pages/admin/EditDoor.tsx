@@ -28,7 +28,7 @@ const EditDoor: FC = () => {
     return null
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-16">
       <div className="text-center">
         <span className="text-4xl font-semibold">Luke {door}</span>
       </div>

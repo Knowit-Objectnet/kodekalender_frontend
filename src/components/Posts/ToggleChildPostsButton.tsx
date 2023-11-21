@@ -15,14 +15,15 @@ type ToggleChildPostsButtonProps = {
 const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, showChildPosts, toggleShowChildPosts, numChildPosts }) => {
   if (numChildPosts === 0) return null
 
+  // TODO: Hover style
   return (
-    <button className={clsx("space-x-2 text-gray-600 hover:text-gray-800", className)} onClick={toggleShowChildPosts}>
-      <span className="!text-gray-700">
+    <button className={clsx("space-x-4", className)} onClick={toggleShowChildPosts}>
+      <span>
         {showChildPosts ? "Skjul" : "Vis"} {numberString(numChildPosts, true)} svar
       </span>
       <FaChevronDown
         className={clsx(
-          "-mt-0.5 inline w-4 transition-all ease-out-cubic duration-300",
+          "-mt-1 inline w-8 transition-all ease-out-cubic duration-300",
           showChildPosts && "-rotate-180"
         )}
       />

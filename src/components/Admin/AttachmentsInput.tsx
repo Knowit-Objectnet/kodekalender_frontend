@@ -74,7 +74,7 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({ challenge, register, setV
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   return (
-    <div className={clsx("space-y-2", className)}>
+    <div className={clsx("space-y-4", className)}>
       <FormElementCustom label="Filer" note="husk å dobbeltsjekke riktig filnavn i markdown">
         <input
           ref={fileInputRef}
@@ -86,30 +86,29 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({ challenge, register, setV
         <Button
           className="block form-input"
           type="button"
-          underline={false}
           content="Velg filer..."
           onClick={() => fileInputRef.current?.click()}
         />
       </FormElementCustom>
 
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 gap-4">
         {map(fileObjects, ({ filename, signed_id, fileId }) => {
           const progress = fileProgress[fileId]?.progress ?? 1
 
           return (
             <span
               key={signed_id}
-              className="relative overflow-hidden p-1 border-2 rounded-md border-lightbulb-yellow text-center"
+              className="relative overflow-hidden p-2 border-2 rounded-md border-yellow-400 text-center"
             >
               {progress < 1 && (
                 <div
                   style={{ width: `calc(${progress * 100}% + ${progress * 0.5}rem)` }}
-                  className="absolute top-[-.25rem] left-[-.25rem] h-[calc(100%+.5rem)] bg-blue-400/20"
+                  className="absolute -top-2 -left-2 h-[calc(100%+.5rem)] bg-purple-400/20"
                 />
               )}
               <span className="inline-block w-[calc(100%-1.5rem)] line-clamp-1">{filename}</span>
               <FaTimes
-                className="absolute top-0 right-2 h-full w-3 cursor-pointer"
+                className="absolute top-0 right-4 h-full w-6 cursor-pointer"
                 onClick={() => setFileObjects((oldFileObjects) => reject(oldFileObjects, { signed_id }))}
               />
             </span>

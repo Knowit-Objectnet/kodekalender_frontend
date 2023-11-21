@@ -51,10 +51,10 @@ const Doors: FC = () => {
         challenge={adminChallenge}
         withoutInput
         preamble={(
-          <div className="w-full flex justify-between mb-8">
+          <div className="w-full flex justify-between mb-16">
             <DoorSelect door={door} setDoor={setDoor} />
 
-            <div className="space-x-8">
+            <div className="space-x-16">
               <Link to={`/admin/doors/${door}/edit`}>
                 <Button disabled={isDeleting}>Rediger luke</Button>
               </Link>

@@ -11,7 +11,7 @@ const RaffleNotification: FC = () => {
   if (currentTime < getRaffleEnd()) return null
 
   return (
-    <div className="mx-auto text-center p-4 w-10/12 max-w-[40rem]">
+    <div className="mx-auto text-center p-8 w-10/12 max-w-320">
       NB!
       <br />
       Konkurransen er over for denne gang, men du kan fortsette å svare på luker

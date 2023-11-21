@@ -6,6 +6,7 @@ import { useDeleteServiceMessage } from "../../api/admin/requests"
 import { useServiceMessages } from "../../api/requests"
 import Button from "../../components/Button"
 import ServiceMessage from "../../components/ServiceMessage"
+import Header1 from "../../components/text/Header1"
 
 
 const ServiceMessages = () => {
@@ -24,26 +25,26 @@ const ServiceMessages = () => {
   return (
     <>
       <div className="text-center">
-        <h1 className="text-4xl font-semibold">Driftsmeldinger</h1>
+        <Header1>Driftsmeldinger</Header1>
       </div>
-      <div className="grid grid-cols-1 gap-6 justify-items-center">
+      <div className="grid grid-cols-1 gap-12 justify-items-center">
         {isEmpty(serviceMessages)
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {
             const messageClasses = serviceMessage.resolved_at
-              ? "border-lightbulb-yellow border-opacity-70 text-gray-700 text-opacity-70"
-              : "border-red-700 border-opacity-70"
+              ? "border-yellow-400/70 text-gray/70"
+              : "border-red-700/70"
 
             return (
               <div key={serviceMessage.uuid} className="w-full max-w-[40rem]">
-                <div className="m-2 space-x-4">
+                <div className="m-4 space-x-8">
                   <Link to={`/admin/service_messages/${serviceMessage.uuid}/edit`}>
                     <Button content="Rediger" />
                   </Link>
                   <Button content="Slett" onClick={() => deleteServiceMessage(serviceMessage.uuid)} />
                 </div>
                 <ServiceMessage
-                  className={clsx("border-2 p-4 rounded-md w-full", messageClasses)}
+                  className={clsx("border-2 p-8 rounded-md w-full", messageClasses)}
                   serviceMessage={serviceMessage}
                 />
               </div>

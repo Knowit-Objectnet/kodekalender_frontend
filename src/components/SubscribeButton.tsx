@@ -60,7 +60,8 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) =>
 
   return (
     <motion.button
-      className={clsx("text-gray-600 hover:text-gray-800", className)}
+      // TODO: Hover style
+      className={clsx("", className)}
       title={
         subscription
           ? `Slutt å motta e-postvarsel om nye ${door ? "innlegg på denne luken" : "svar på dette innlegget"}`

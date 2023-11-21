@@ -1,12 +1,17 @@
 import { map } from "lodash"
 
+import Header1 from "../components/text/Header1"
+import Header2 from "../components/text/Header2"
+import Header3 from "../components/text/Header3"
+
 import Page from "./Page"
+import { getActiveYear } from "../utils"
 
 
 const GdprSection = ({ no, header, content }: { no: number, header: string, content: string }) => (
   <>
-    <h3 className="mt-6 font-medium">{no}. {header}</h3>
-    <p className="mt-1 ml-4">{content}</p>
+    <Header3 className="mt-12">{no}. {header}</Header3>
+    <p className="mt-2 ml-8">{content}</p>
   </>
 )
 
@@ -55,12 +60,12 @@ const Gdpr = () => {
   ]
 
   return (
-    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
-      <h1 className="text-4xl text-center font-semibold">Personvernerklæring for Kodekalenderen 2022</h1>
-      <h2 className="mt-8 font-medium">
+    <Page className="py-24 px-16 md:px-24 mx-8 md:mx-16 bg-purple-700 rounded-md">
+      <Header1 className="text-center">Personvernerklæring for Kodekalenderen {getActiveYear()}</Header1>
+      <Header2 className="mt-16">
         <em>TL;DR</em>
-      </h2>
-      <ul className="mt-2 ml-4 mb-12">
+      </Header2>
+      <ul className="mt-4 ml-8 mb-24">
         <li>Vi bruker cookies for innlogging.</li>
         <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner.</li>
         <li>Registrert brukernavn og profilbilde er synlige i diskusjonsfeltet og ledertavlen.</li>
@@ -69,7 +74,7 @@ const Gdpr = () => {
 
       {map(sections, ([header, content], i) => <GdprSection key={i} no={i + 1} header={header} content={content} />)}
 
-      <div className="mt-12">
+      <div className="mt-24">
         Henvendelser om hvilke opplysninger som er registrert, retting og
         sletting kan sendes til <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>{" "}
         eller <a className="underline" href="mailto:personvern@knowit.no">personvern@knowit.no</a>

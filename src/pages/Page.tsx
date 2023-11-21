@@ -16,8 +16,8 @@ const Page: FCWithChildren<PageProps> = ({ className, wrapperClassName, children
       "max-w-kodekalender",
       "mx-auto",
       "pointer-events-none", // Allow click through to animation toggle
-      "children:pointer-events-auto",
-      "pb-4",
+      "child:pointer-events-auto",
+      "pb-8",
       wrapperClassName
     )}
   >

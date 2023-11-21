@@ -13,7 +13,7 @@ const SignInButton = () => {
   const { data: whoami } = useWhoami()
 
   const to = isAuthenticated && whoami ? "/users/edit" : "/users/sign_in"
-  const content = isAuthenticated && whoami ? <span><FaUser className="inline-block mr-2 -mt-1" />{whoami.username ?? "Min bruker"}</span>: "Logg inn"
+  const content = isAuthenticated && whoami ? <span><FaUser className="inline-block mr-4 -mt-2" />{whoami.username ?? "Min bruker"}</span>: "Logg inn"
 
   return (
     <Link to={to}>

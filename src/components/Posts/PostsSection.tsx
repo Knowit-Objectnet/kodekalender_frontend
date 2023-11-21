@@ -19,7 +19,7 @@ const PostsSection: FC<PostsSectionProps> = ({ door, usePosts = useUserPosts, wi
   if (!posts) return null
 
   return (
-    <section className="mx-2 md:mx-8 lg:w-4/5 lg:mx-auto grid gap-door-elements justify-items-center">
+    <section className="mx-4 md:mx-16 lg:w-4/5 lg:mx-auto grid gap-door-elements justify-items-center">
       {!withoutInput && <PostForm door={door} />}
 
       {
@@ -28,7 +28,7 @@ const PostsSection: FC<PostsSectionProps> = ({ door, usePosts = useUserPosts, wi
         * https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
         */
       }
-      <div className="space-y-4 w-full min-w-0">
+      <div className="space-y-8 w-full min-w-0">
         {map(posts, (post) =>
           <Post
             key={post.uuid}

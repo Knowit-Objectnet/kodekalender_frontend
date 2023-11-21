@@ -6,7 +6,7 @@ import { DoorsProps } from "./doors_utils"
 
 import { NBSP } from "../../utils"
 
-import { ReactComponent as TestSvg } from "/resources/test-doors.svg"
+import { ReactComponent as TestSvg } from "/assets/svg/test-doors.svg"
 
 
 const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) => {
@@ -29,12 +29,12 @@ const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) =
 
       // Challenge not yet available, show only bottom layer
       if (!challenge && !solved) {
-        rootStyle.setProperty(`--desktop-door-${i}-solved-display`, "none")
-        rootStyle.setProperty(`--desktop-door-${i}-open-display`, "none")
+        rootStyle.setProperty(`--door-${i}-solved-display`, "none")
+        rootStyle.setProperty(`--door-${i}-open-display`, "none")
       } else {
         // Challenge available, show door for solved=true/false
-        rootStyle.setProperty(`--desktop-door-${i}-${solved ? "solved" : "open"}-display`, "initial")
-        rootStyle.setProperty(`--desktop-door-${i}-${solved ? "open" : "solved"}-display`, "none")
+        rootStyle.setProperty(`--door-${i}-${solved ? "solved" : "open"}-display`, "initial")
+        rootStyle.setProperty(`--door-${i}-${solved ? "open" : "solved"}-display`, "none")
       }
     })
 

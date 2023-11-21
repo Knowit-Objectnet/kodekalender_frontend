@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react"
 
 import SubscribeButton from "../SubscribeButton"
 import { Challenge as ChallengeType } from "../../api/Challenge"
+import Header1 from "../text/Header1"
 
 import Input from "./Input"
 
@@ -16,13 +17,13 @@ const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamb
   if (!challenge) return null
 
   return (
-    <div className="pb-8 pt-14 px-4 md:px-12 mx-2 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
+    <div className="pb-16 pt-28 px-8 md:px-24 mx-4 md:mx-16 bg-purple-700 rounded-md">
       {preamble}
 
-      <div className="relative space-y-4 md:space-y-6 lg:space-y-12">
-        <div className="text-center pb-4 md:pb-6 border-b-2">
-          <h1 className="text-4xl font-semibold">{challenge.title}</h1>
-          <p className="mt-1"><em>Av {challenge.author}</em></p>
+      <div className="relative space-y-8 md:space-y-12 lg:space-y-24">
+        <div className="text-center pb-8 md:pb-12 border-b-4">
+          <Header1>{challenge.title}</Header1>
+          <p className="mt-2"><em>Av {challenge.author}</em></p>
         </div>
 
         <div
@@ -32,7 +33,7 @@ const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamb
 
         {!withoutInput && (
           <>
-            <div className="w-56 py-3 px-6 mx-auto">
+            <div className="w-112 py-6 px-12 mx-auto">
               <Input door={challenge.door} />
             </div>
             <div className="absolute bottom-0 right-0">

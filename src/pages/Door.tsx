@@ -1,7 +1,6 @@
 import { FC, useContext, useLayoutEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-import Light from "../components/Light"
 import PostsSection from "../components/Posts/PostsSection"
 import Challenge from "../components/Door/Challenge"
 import { AuthContext } from "../AuthContext"
@@ -42,14 +41,9 @@ const Door: FC = () => {
         <Challenge challenge={challenge} />
         {isAuthenticated && solved && <PostsSection door={door} />}
       </div>
-      <Light
-        door={door}
-        solved={solved}
-        className="w-16 md:w-20 lg:w-28 float-right absolute right-2 md:right-12 lg:right-8 top-8 lg:top-6"
-      />
       <ServiceMessageAlert
         door={door}
-        className="w-9 h-10 md:w-12 md:h-12 absolute left-12 md:left-20 top-16"
+        className="w-18 h-20 md:w-24 md:h-24 absolute left-24 md:left-40 top-32"
       />
     </Page>
   )
