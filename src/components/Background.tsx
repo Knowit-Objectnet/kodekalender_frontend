@@ -1,5 +1,7 @@
 import { FC } from "react"
 
+import { ReactComponent as StreetLamp } from "/assets/svg/Streetlamp.svg"
+
 
 type BackgroundProps = {
 }
@@ -41,6 +43,18 @@ const TAPE_CONTAINER_CLASSES = `
 `
 
 const Background: FC<BackgroundProps> = () => (<>
+  <StreetLamp
+    className={`
+      absolute
+      left-1/2
+      top-1/2
+      origin-center
+      translate-x-[calc(-50%-clamp(24rem,40vw,32rem))]
+      translate-y-[-50%]
+      z-[-2]
+      h-[56.25rem]
+    `}
+  />
   <div className={TAPE_WRAPPER_CLASSES}>
     <div
       className={`
