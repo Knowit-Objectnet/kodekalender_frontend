@@ -1214,6 +1214,16 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.54.0.tgz#4fab9a2ff7860082c304f750e94acd644cf984cf"
   integrity sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==
 
+"@fontsource-variable/nunito@^5.0.16":
+  version "5.0.16"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/nunito/-/nunito-5.0.16.tgz#6e2d868f219cacf7ddf4cc14bf8302bf7a2cb67a"
+  integrity sha512-ZmmtDc/oBk7l3Tn33OmjUkcOapL8O/8w78Xm9AML0+t00gu5msH/BL5yeowLh8pFnKCIPsTYHqxnu5xdM1N+dA==
+
+"@fontsource/twinkle-star@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fontsource/twinkle-star/-/twinkle-star-5.0.17.tgz#8a0ba272c27beb41539942262bed1ff223cd602c"
+  integrity sha512-Y8geTc67IQ0YXrSLqAqFoyT8bCx3CaY/0FaWAOXEBEpq2hgkuti5DtpHo8v2kIjGTTNcbsP9zbVHARL4cGlrJA==
+
 "@headlessui/react@^1.4.0":
   version "1.7.17"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.17.tgz#a0ec23af21b527c030967245fd99776aa7352bc6"

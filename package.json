@@ -13,6 +13,8 @@
     "typecheck-ci": "tsc --noEmit"
   },
   "dependencies": {
+    "@fontsource-variable/nunito": "^5.0.16",
+    "@fontsource/twinkle-star": "^5.0.17",
     "@headlessui/react": "^1.4.0",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
