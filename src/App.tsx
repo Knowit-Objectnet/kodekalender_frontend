@@ -17,6 +17,8 @@ import Solutions from "./pages/Solutions"
 import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
 import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
 import PageFooter from "./components/PageFooter"
+import Admin from "./pages/Admin"
+import Users from "./pages/User"
 
 
 const LazyAdmin = () => {

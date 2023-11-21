@@ -1,6 +1,6 @@
 import { Popover } from "@headlessui/react"
 import { forEach, join, pickBy } from "lodash"
-import { useEffect, useRef, FC, useState } from "react"
+import { FC, useEffect, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { useDebounce } from "use-debounce"
@@ -10,12 +10,12 @@ import { SignUpParameters, UpdateUserParameters, useDeleteUser } from "../../api
 import { QueryError } from "../../axios"
 import UserPage from "../../pages/users/UserPage"
 import { squish } from "../../utils"
-import FormElement from "../form/FormElement"
-import FormElementCustom from "../form/FormElementCustom"
 import Button from "../Button"
 import CheckMark from "../checkmarks/CheckMark"
+import FormCustomCheckbox from "../form/FormCustomCheckbox"
+import FormElement from "../form/FormElement"
+import FormElementCustom from "../form/FormElementCustom"
 import FormError from "../form/FormError"
-import FormCustomCheckbox from '../form/FormCustomCheckbox'
 
 
 const DELETE_USER_CONFIRM = squish(`
@@ -29,7 +29,6 @@ type UserFormProps = {
   newForm?: boolean
 }
 
-/* eslint-disable */
 const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
   const navigate = useNavigate()
 
@@ -41,13 +40,14 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
     reset,
     setError,
     clearErrors,
+    control,
     formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields }
   } = useForm<SignUpParameters>()
 
+  console.log(dirtyFields)
 
-  const optInMarketingValue = watch('opt_in_marketing')
 
-  
+  const optInMarketingValue = watch("opt_in_marketing")
 
   useEffect(() => {
     if (newForm) return
@@ -70,6 +70,14 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
   const [debouncedAvatarUrl] = useDebounce(avatarUrl, 500)
 
   const onSubmit = (data: UpdateUserParameters) => {
+    // A little hacky way to make yes/no required
+    if (optInMarketingValue === undefined) {
+      setError("opt_in_marketing", { message: "Du må velge enten Ja eller Nei" })
+      return
+    } else {
+      clearErrors("opt_in_marketing")
+    }
+
     submit(
       newForm
         ? data
@@ -112,24 +120,23 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
         )}
 
 
-        {newForm ? (
-          <>
+        {newForm
+          ? (
             <FormCustomCheckbox
               label="Jeg samtykker i å bli kontaktet for rekrutteringsformål i etterkant av konkurransen."
               val={optInMarketingValue}
               setValue={setValue}
             />
-          </>
-        ) : (
-          <>
+          )
+          : (
             <FormElement
               label="Jeg samtykker i å bli kontaktet for rekrutteringsformål i etterkant av konkurransen."
               type="checkbox"
               {...register("opt_in_marketing")}
               labelClassName="mt-4"
             />
-          </>
-        )}
+          )
+        }
         <div className="text-opacity-60 text-gray-700">
           <em>Vi ønsker å kontakte deg om jobbmuligheter etter konkurransen er over. Huk av hvis du ønsker å motta mail om dette.{newForm && " Du kan endre dette senere."}</em>
         </div>
@@ -226,6 +233,5 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
     </UserPage>
   )
 }
-/* eslint-enable */
 
 export default UserForm

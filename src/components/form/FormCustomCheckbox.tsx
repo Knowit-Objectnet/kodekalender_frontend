@@ -41,7 +41,7 @@ const FormCustomCheckbox = forwardRef<HTMLInputElement, PropsWithChildren<FormEl
             className={clsx("form-checkbox ml-1", className)}
             type="checkbox"
             name="opt-in-yes"
-            onClick={() => yesOnClick()}
+            onChange={() => yesOnClick()}
             {...inputProps}
           />
         </label>
@@ -53,7 +53,7 @@ const FormCustomCheckbox = forwardRef<HTMLInputElement, PropsWithChildren<FormEl
             className={clsx("form-checkbox ml-1", className)}
             type="checkbox"
             name="opt-in-no"
-            onClick={() => noOnClick()}
+            onChange={() => noOnClick()}
             {...inputProps}
           />
         </label>
