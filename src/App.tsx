@@ -79,7 +79,6 @@ const App = () => {
       className={`
         grid
         grid-rows-[auto_1fr_auto_auto]
-        __min-h-[calc(100vh+1.5rem)]
         min-h-screen
         items-center
       `}
