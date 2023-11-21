@@ -36,12 +36,8 @@
     }
   }
 
-  // Shrink a little more to avoid notch in landscape mode. Also looks decent on desktop.
   @media only screen and (orientation: landscape) {
     #content-container {
-      width: 90vw;
-      margin: 0 auto;
-
       // Account for bottom inset explicitly
       @supports(padding:max(0px)) {
         padding-bottom: env(safe-area-inset-bottom, 0vmin);

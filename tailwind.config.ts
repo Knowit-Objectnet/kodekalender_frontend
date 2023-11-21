@@ -21,7 +21,7 @@ const colors = {
 // sizes from Figma design
 const spacing = fromPairs(map([
   // every 0.125rem up to 8rem
-  ...range(0.125, 8, 0.125),
+  ...range(0, 8, 0.125),
   // every 0.25rem up to 16rem
   ...range(8, 16, 0.25),
   // every 0.5rem up to 32rem

@@ -5,6 +5,7 @@ import Button from "../components/Button"
 import { Header1, Header3 } from "../components/text"
 import useCountdownParts from "../hooks/useCountdownParts"
 import { cl, getActiveYear } from "../utils"
+import PageContent from "../components/PageContent"
 
 
 type TimerDisplayProps = {
@@ -38,7 +39,7 @@ const TimerDisplay: FC<TimerDisplayProps> = memo(({ t, className }) => {
 })
 
 const Separator = () => (
-  <Header3 as="span" className="text-xl w-25">:</Header3>
+  <Header3 as="span" className="text-xl mx-3">:</Header3>
 )
 
 const Countdown = () => {
@@ -46,7 +47,7 @@ const Countdown = () => {
 
 
   return (
-    <main
+    <PageContent
       className={`
         grid
         grid-flow-row
@@ -63,7 +64,7 @@ const Countdown = () => {
           m-auto
 
           inline-grid
-          grid-cols-[repeat(3,_auto_minmax(0,_1fr))_auto]
+          grid-cols-[repeat(7,auto)]
           grid-rows-[auto_1fr]
 
           justify-items-center
@@ -98,7 +99,7 @@ const Countdown = () => {
         <span className="font-bold">Er du Nordpolens flittigste alv?</span>
         <Button icon="edit">Registrer deg</Button>
       </div>
-    </main>
+    </PageContent>
   )
 }
 

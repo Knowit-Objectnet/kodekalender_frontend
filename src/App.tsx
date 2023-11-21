@@ -81,6 +81,7 @@ const App = () => {
         grid-rows-[auto_1fr_auto_auto]
         min-h-screen
         items-center
+        justify-items-center
       `}
     >
       <PageHeader setLeaderboardHidden={setLeaderboardHidden} />

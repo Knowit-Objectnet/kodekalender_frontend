@@ -1,6 +1,6 @@
 import DoorBorder from "../components/Door/DoorBorder"
 import { FCWithChildren } from "../../types/utils_types"
-import { cl } from "../utils"
+import PageContent from "../components/PageContent"
 
 
 type PageProps = {
@@ -9,19 +9,13 @@ type PageProps = {
 }
 
 const Page: FCWithChildren<PageProps> = ({ className, wrapperClassName, children }) => (
-  <main
-    className={cl(
-      "w-376",
-      "mx-auto",
-      wrapperClassName
-    )}
-  >
+  <PageContent className={wrapperClassName}>
     {/* <DoorBorder /> */}
 
     <div className={className}>
       {children}
     </div>
-  </main>
+  </PageContent>
 )
 
 export default Page

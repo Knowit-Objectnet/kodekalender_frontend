@@ -44,7 +44,7 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   const raffleStarted = useIsRaffleStarted()
 
   return (
-    <header className="h-60 mx-[calc(-5vw+2.5rem)]">
+    <header className="h-60 w-full px-20">
       <nav className="h-full flex flex-cols align-center gap-4 md:gap-16">
         <Link to="/" className="flex flex-col justify-center child:leading-none child:text-center" tabIndex={1}>
           <div className="font-bold">Kodekalender</div>
