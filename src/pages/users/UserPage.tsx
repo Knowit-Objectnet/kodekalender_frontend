@@ -12,10 +12,10 @@ const UserPage: FCWithChildren<UserPageProps> = ({ title, onSubmit, children }) 
   const Container = onSubmit ? "form" : "div"
 
   return (
-    <Page className="max-w-[36rem] mx-auto py-12 px-8 md:px-12 bg-purple-700 rounded-md space-y-8 grid place-content-center children:w-[clamp(16rem,50vw,24rem)]">
+    <Page className="max-w-288 mx-auto py-24 px-16 md:px-24 bg-purple-700 rounded-md space-y-16 grid place-content-center child:w-[clamp(16rem,50vw,24rem)]">
       <Header1 className="text-center">{title}</Header1>
 
-      <Container className="space-y-8" onSubmit={onSubmit}>
+      <Container className="space-y-16" onSubmit={onSubmit}>
         {children}
       </Container>
     </Page>

@@ -1,18 +1,24 @@
 import clsx from "clsx"
-import { HTMLAttributes } from "react"
+import { ElementType, HTMLAttributes } from "react"
 
 import { FCWithChildren } from "../../../types/utils_types"
 
 
-type Header2Props = HTMLAttributes<HTMLHeadingElement>
+type Header2Props = HTMLAttributes<HTMLHeadingElement> & {
+  as?: ElementType
+}
 
-const Header2: FCWithChildren<Header2Props> = ({ children, className, ...rest }) => (
-  <h2
-    className={clsx("font-['Twinkle_Star'] text-[54px]", className)}
-    {...rest}
-  >
-    {children}
-  </h2>
-)
+const Header2: FCWithChildren<Header2Props> = ({ children, className, as = "h2", ...rest }) => {
+  const Component = as
+
+  return (
+    <Component
+      className={clsx("font-['Twinkle_Star'] text-xl tracking-[0.03475rem]", className)}
+      {...rest}
+    >
+      {children}
+    </Component>
+  )
+}
 
 export default Header2

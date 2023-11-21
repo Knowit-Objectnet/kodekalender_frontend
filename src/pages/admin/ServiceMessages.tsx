@@ -27,7 +27,7 @@ const ServiceMessages = () => {
       <div className="text-center">
         <Header1>Driftsmeldinger</Header1>
       </div>
-      <div className="grid grid-cols-1 gap-6 justify-items-center">
+      <div className="grid grid-cols-1 gap-12 justify-items-center">
         {isEmpty(serviceMessages)
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {
@@ -37,14 +37,14 @@ const ServiceMessages = () => {
 
             return (
               <div key={serviceMessage.uuid} className="w-full max-w-[40rem]">
-                <div className="m-2 space-x-4">
+                <div className="m-4 space-x-8">
                   <Link to={`/admin/service_messages/${serviceMessage.uuid}/edit`}>
                     <Button content="Rediger" />
                   </Link>
                   <Button content="Slett" onClick={() => deleteServiceMessage(serviceMessage.uuid)} />
                 </div>
                 <ServiceMessage
-                  className={clsx("border-2 p-4 rounded-md w-full", messageClasses)}
+                  className={clsx("border-2 p-8 rounded-md w-full", messageClasses)}
                   serviceMessage={serviceMessage}
                 />
               </div>

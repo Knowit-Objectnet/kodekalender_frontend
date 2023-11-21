@@ -2,59 +2,41 @@ import { FC } from "react"
 import { Link } from "react-router-dom"
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from "react-icons/fa"
 
-import Header2 from "./text/Header2"
+import ExternalLink from "./ExternalLink"
 
+const facebookLabel = "Besøk oss på Facebook"
+const twitterLabel = "Følg oss på Twitter/X"
+const githubLabel = "Se hva vi gjør på GitHub"
+const mediumLabel = "Følg oss på Medium"
+// TODO: Instagram?
 
 const PageFooter: FC = () => (
-  <footer className="md:mt-8 lg:mt-16 space-y-4 max-w-2xl text-center p-8 md:p-2 m-auto">
-    <Header2>Om kodekalenderen</Header2>
-    <p>
-      Kodekalenderen er høytidskalenderen for deg som er glad i
-      programmering. Bak hver luke skjuler det seg en oppgave du må svare
-      på i form av en enkel tekststreng eller et tall. Lukene varierer i
-      vanskelighetsgrad og utforming, men felles for alle er at de er
-      best egnet for å løses med kode.
-    </p>
-    <p>
-      En ny luke åpnes hver dag klokken 04:00 helt fram til jul. For hver
-      luke du løser før klokken 04:00 på andre juledag får du et lodd i
-      trekningen av en valgfri telefon eller nettbrett. Løs så mange luker
-      som mulig for å øke vinnersjansene dine!
-    </p>
-    <p>
-      {/* TODO: Fix emoji accessibility (?) */}
-      🎄 <em>Lykke til og god jul!</em> 🎄
-    </p>
+  <footer className="md:mt-16 lg:mt-32 space-y-8 max-w-336 text-center p-16 md:p-4 m-auto">
+    <div className="m-auto flex justify-between align-center">
+      <Link className="underline" to="/about">Om kodekalenderen</Link>
+      <Link className="underline" to="/gdpr">Personopplysninger</Link>
+      <a className="underline" href="mailto:julekalender@knowit.no" title="Send oss en e-post!">Kontakt oss</a>
+      <ExternalLink
+        className="underline"
+        href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
+        title="Søk på stilling som Systemutvikler Backend, Mobil og/eller Frontend!"
+      >
+        Jobb i Knowit
+      </ExternalLink>
+    </div>
 
-    <p>
-      <Link className="underline" to="/gdpr" title="gdpr">Les om vår håndtering av personopplysninger</Link>
-    </p>
-
-    <Header2 className="pt-4">Kontakt oss</Header2>
-    <p>
-      Funnet en feil? Ris eller ros? Send oss en mail!{" "}
-      <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
-      <br />
-      Følg utviklingen og kom med innspill på vårt{" "}
-      <a className="underline" href="https://github.com/knowit/julekalender_frontend" target="_blank" rel="noopener noreferrer" title="GitHub repo">GitHub repo</a>
-      !
-    </p>
-
-    <Header2 className="pt-4">
-      <a className="underline" href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend" target="_blank" rel="noopener noreferrer">
-        Jobbe i Knowit?
-      </a>
-    </Header2>
-    <p>
+    {/* Hvordan få med denne? Den er morsom :) */}
+    {/* <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
       en av våre alver på <a className="underline" href="mailto:julenissen@knowit.no">julenissen@knowit.no</a>
       for en uformell prat.
-    </p>
-    <div className="m-auto flex justify-between align-center w-32">
-      <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook" /></a>
-      <a href="https://twitter.com/knowitnorge" target="_blank" rel="noopener noreferrer"><FaTwitter aria-label="Facebook" /></a>
-      <a href="https://github.com/knowit/" target="_blank" rel="noopener noreferrer"><FaGithub aria-label="Facebook" /></a>
-      <a href="https://knowitlabs.no/" target="_blank" rel="noopener noreferrer"><FaMedium aria-label="Facebook" /></a>
+    </p> */}
+
+    <div className="m-auto flex justify-between align-center">
+      <ExternalLink href="https://www.facebook.com/weareknowit" aria-label={facebookLabel}><FaFacebook /></ExternalLink>
+      <ExternalLink href="https://twitter.com/knowitnorge" aria-label={twitterLabel}><FaTwitter /></ExternalLink>
+      <ExternalLink href="https://github.com/knowit/" aria-label={githubLabel}><FaGithub /></ExternalLink>
+      <ExternalLink href="https://knowitlabs.no/" aria-label={mediumLabel}><FaMedium /></ExternalLink>
     </div>
   </footer>
 )

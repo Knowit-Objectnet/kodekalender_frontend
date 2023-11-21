@@ -5,8 +5,8 @@ import Button from "../Button"
 
 
 const AdminHeader: FC = () => (
-  <header className="space-x-16">
-    <span className="space-x-8">
+  <header className="space-x-32">
+    <span className="space-x-16">
       <Link to="/admin/doors">
         <Button content="Luker" />
       </Link>
@@ -15,7 +15,7 @@ const AdminHeader: FC = () => (
       </Link>
     </span>
 
-    <span className="space-x-8">
+    <span className="space-x-16">
       <Link to="/admin/service_messages">
         <Button content="Driftsmeldinger" />
       </Link>

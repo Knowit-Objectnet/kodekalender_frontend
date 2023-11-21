@@ -89,7 +89,7 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
                 Jobber du i Knowit?
               </div>
             </Popover.Button>
-            <Popover.Panel className="bg-white rounded p-2">
+            <Popover.Panel className="bg-white rounded p-4">
               Du vil ikke kunne delta i premietrekningen. Vennligst registrer deg med Knowit-adresse.
             </Popover.Panel>
           </Popover>
@@ -101,7 +101,7 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
           type="password"
           minLength={8}
           maxLength={128}
-          labelClassName="mt-4"
+          labelClassName="mt-8"
           className="w-full"
           {...register("password", { required: newForm })}
         />
@@ -112,7 +112,7 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
           type="password"
           minLength={8}
           maxLength={128}
-          labelClassName="mt-4"
+          labelClassName="mt-8"
           className="w-full"
           {...register("password_confirmation", { required: newForm })}
         />
@@ -120,7 +120,7 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
       </div>
 
 
-      <div className="!mt-12">
+      <div className="!mt-24">
         <div className="text-gray/60">
           <em>Dersom du vil delta i kommentarfeltet.<br />Brukernavnet vises i kommentarfeltet og på ledertavlen.{newForm && " Du kan endre dette senere."}</em>
         </div>
@@ -129,14 +129,14 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
           label="Brukernavn"
           type="text"
           maxLength={30}
-          labelClassName="mt-1"
+          labelClassName="mt-2"
           className="w-full"
           {...register("username")}
         />
         <FormError error={errors.username} />
         {/^.+@.+\..+$/.test(username ?? "") && <FormError error={{ type: "pattern", message: "Dette ser ut som en e-postadresse! Er du sikker på at du mente å sette dette som brukernavn (synlig for alle)?" }} />}
 
-        <FormElementCustom label="Profilbilde" className="mt-4 w-full">
+        <FormElementCustom label="Profilbilde" className="mt-8 w-full">
           <input
             ref={fileInputRef}
             className="hidden"
@@ -157,9 +157,8 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
             }}
           />
           <Button
-            className="block h-12 max-w-full line-clamp-1 form-input"
+            className="block h-24 max-w-full line-clamp-1 form-input"
             type="button"
-            underline={false}
             content={avatar ? avatar.name : "Velg bilde (maks 2MB)"}
             onClick={() => fileInputRef.current?.click()}
           />
@@ -169,19 +168,19 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
           type="url"
           maxLength={256}
           placeholder="... eller oppgi URL"
-          className="mt-1 form-input w-full"
+          className="mt-2 form-input w-full"
           {...register("avatar_url")}
         />
         {(avatar || debouncedAvatarUrl || user?.avatar) && (
-          <img className="my-2 w-avatar" src={debouncedAvatarUrl || (avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} />
+          <img className="my-4 w-avatar" src={debouncedAvatarUrl || (avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} />
         )}
         <FormError error={errors.avatar_url} />
       </div>
 
 
-      {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && <CheckMark wrapperClassName="mx-auto w-16" message="Lagret!" />}
-      <Button type="submit" disabled={!isDirty || isSubmitting} underline={false} className="mt-8 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
-      {!newForm && <Button type="button" onClick={deleteUser} underline={false} className="mt-4 block mx-auto text-red-700" content="Slett bruker" />}
+      {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />}
+      <Button type="submit" disabled={!isDirty || isSubmitting} className="mt-16 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
+      {!newForm && <Button type="button" onClick={deleteUser} className="mt-8 block mx-auto text-red-700" content="Slett bruker" />}
     </UserPage>
   )
 }

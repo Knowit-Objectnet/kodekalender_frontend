@@ -49,7 +49,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   return (<>
     {map(leaderboardWithPosition, ([solvedCount, entries]) =>
       <div key={solvedCount}>
-        <Header3 className="sticky top-0 py-1 bg-purple-700 rounded-md -space-y-1" key={solvedCount} >
+        <Header3 className="sticky top-0 py-2 bg-purple-700 rounded-md -space-y-2" key={solvedCount} >
           <div className="text-lg font-semibold tracking-wide">
             {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
           </div>
@@ -57,7 +57,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
             {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
           </div>
         </Header3>
-        <div className="pt-2 pb-4 space-y-1">
+        <div className="pt-4 pb-8 space-y-2">
           {map(entries, (user) => {
             let displayName: ReactNode = user.username
             if (!displayName) {

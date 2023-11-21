@@ -34,19 +34,19 @@ const SignIn: FC = () => {
         <FormElement
           label="Passord"
           type="password"
-          labelClassName="mt-4"
+          labelClassName="mt-8"
           className="w-full"
           {...register("password")}
         />
 
         {error && <div><em className="text-red-700">{error.error}</em></div>}
 
-        <Button type="submit" className="mt-6 block mx-auto" content="Logg inn" />
+        <Button type="submit" className="mt-12 block mx-auto" content="Logg inn" />
 
-        <Link to="/users/sign_up" className="mt-6 block text-center">
+        <Link to="/users/sign_up" className="mt-12 block text-center">
           <Button type="button" sm content="Ny bruker?" />
         </Link>
-        <Link to={`/users/lost_password?email=${encodeURIComponent(email)}`} className="mt-2 block text-center">
+        <Link to={`/users/lost_password?email=${encodeURIComponent(email)}`} className="mt-4 block text-center">
           <Button type="button" sm content="Glemt passord?" />
         </Link>
       </div>

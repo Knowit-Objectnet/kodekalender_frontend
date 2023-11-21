@@ -15,7 +15,7 @@ const DoorSelect: FC<DoorSelectProps> = ({ door, setDoor }) => {
   if (!challenges) return null
 
   return (
-    <label className="block space-x-4">
+    <label className="block space-x-8">
       <select className="form-select" defaultValue={door} onChange={((e) => setDoor(parseInt(e.target.value)))}>
         {map(sortBy(compact(values(challenges)), "door"), ({ door, title }, i) =>
           <option key={i} value={door} label={`Luke ${door}: ${title}`}>{`Luke ${door}: ${title}`}</option>

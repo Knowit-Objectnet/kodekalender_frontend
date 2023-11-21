@@ -16,7 +16,7 @@ const NewServiceMessage: FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-16">
       <div className="text-center">
         <span className="text-4xl font-semibold">Ny driftsmelding</span>
       </div>

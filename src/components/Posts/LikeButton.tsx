@@ -34,14 +34,14 @@ const LikeButton: FC<LikeProps> = ({ post }) => {
   return (
     <button
       className={clsx(
-        isOwnPost ? "cursor-default" : "cursor-pointer hover:children:text-red-500 hover:children:scale-[120%]",
-        "inline-block space-x-0.5"
+        isOwnPost ? "cursor-default" : "cursor-pointer hover:child:text-red-500 hover:child:scale-[120%]",
+        "inline-block space-x-1"
       )}
       onClick={liked ? unlikePost : likePost}
     >
       <Favorite
         className={clsx(
-          "inline-block -mt-1 fill-current w-3 transition duration-200 ease-out-cubic",
+          "inline-block -mt-2 fill-current w-6 transition duration-200 ease-out-cubic",
             post.likes > 0 ? "text-red-500" : "text-red-300"
         )}
       />

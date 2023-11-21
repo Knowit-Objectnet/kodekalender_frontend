@@ -47,7 +47,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
                 <ServiceMessage
                   key={serviceMessage.uuid}
                   className={clsx(
-                    "p-4 w-full pt-8 md:p-4 md:w-[36rem]",
+                    "p-8 w-full pt-16 md:p-8 md:w-288",
                     serviceMessage.resolved && "text-opacity-70"
                   )}
                   serviceMessage={serviceMessage}

@@ -29,13 +29,13 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({ serviceMessage, newFo
   const { data: doors } = useChallenges({ select: (challenges) => map(keys(challenges), parseInt) })
 
   return (
-    <div className="space-y-8">
-      <form className="space-y-4" onSubmit={handleSubmit(submit)}>
-        <div className="space-x-4">
+    <div className="space-y-16">
+      <form className="space-y-8" onSubmit={handleSubmit(submit)}>
+        <div className="space-x-8">
           <Button type="submit">Lagre</Button>
         </div>
 
-        <div className={clsx("grid grid-cols-3 gap-4")}>
+        <div className={clsx("grid grid-cols-3 gap-8")}>
           <FormElement
             label="Innhold"
             type="text"

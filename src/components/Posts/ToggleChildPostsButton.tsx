@@ -17,13 +17,13 @@ const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, sh
 
   // TODO: Hover style
   return (
-    <button className={clsx("space-x-2", className)} onClick={toggleShowChildPosts}>
+    <button className={clsx("space-x-4", className)} onClick={toggleShowChildPosts}>
       <span>
         {showChildPosts ? "Skjul" : "Vis"} {numberString(numChildPosts, true)} svar
       </span>
       <FaChevronDown
         className={clsx(
-          "-mt-0.5 inline w-4 transition-all ease-out-cubic duration-300",
+          "-mt-1 inline w-8 transition-all ease-out-cubic duration-300",
           showChildPosts && "-rotate-180"
         )}
       />

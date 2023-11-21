@@ -8,7 +8,7 @@ type AddChildPostButtonProps = {
 
 const AddChildPostButton: FC<AddChildPostButtonProps> = ({ toggleShowForm }) => (
   // TODO: Hover style
-  <button className="space-x-2" onClick={toggleShowForm}>
+  <button className="space-x-4" onClick={toggleShowForm}>
     <span>
       Legg til svar
     </span>

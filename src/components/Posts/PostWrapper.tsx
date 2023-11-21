@@ -86,13 +86,13 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
       id={post.uuid}
       ref={scrollRef}
       className={clsx(
-        "relative rounded-md bg-purple-500 py-4 px-2 md:px-4",
+        "relative rounded-md bg-purple-500 py-8 px-4 md:px-4",
         isDeepLinkedPost && "ring-inset ring-4 ring-yellow-400",
         wrapperClassName
       )}
     >
       {!post.deleted && (
-        <div className="absolute w-4 sm:w-8 lg:w-10 xl:w-avatar">
+        <div className="absolute w-8 sm:w-16 lg:w-20 xl:w-avatar">
           <img
             className="rounded-full w-full flex items-center justify-center"
             src={post.author.avatar ?? ""} // TODO: Placeholder avatar
@@ -100,16 +100,16 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
           />
         </div>
       )}
-      <div className={clsx("mx-4 sm:mx-8 lg:mx-10 xl:mx-avatar", contentClassName)}>
-        <div className="relative px-1 sm:px-2 md:px-4">
+      <div className={clsx("mx-8 sm:mx-16 lg:mx-20 xl:mx-avatar", contentClassName)}>
+        <div className="relative px-2 sm:px-4 md:px-8">
           <div className="font-semibold text-xl">
             {!post.deleted && post.author.username}
           </div>
 
-          <div className="absolute top-0 right-0 flex flex-row-reverse space-x-reverse space-x-4">
+          <div className="absolute top-0 right-0 flex flex-row-reverse space-x-reverse space-x-8">
             <time className="text-sm sm:text-base">{timestamp}</time>
             {!post.deleted && isOwnPost && !isEditing && (
-              <div className="space-x-4 mt-[-2px]">
+              <div className="space-x-8 mt-1">
                 <Button sm onClick={toggleEditing} onMouseEnter={() => prefetchMarkdown(post.uuid)}>Rediger</Button>
                 <Button sm onClick={deletePost}>Slett</Button>
               </div>
@@ -118,12 +118,12 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
 
           {/* XXX: Potentially broken colors */}
           {isEditing && !isMarkdownLoading && (
-            <div className="space-y-2 my-4">
+            <div className="space-y-4 my-8">
               {preview && (
                 <PostPreview
                   html={previewHtml}
                   isLoading={previewLoading}
-                  className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-white bg-gray"
+                  className="w-full min-h-[5rem] p-4 rounded-t border-b-2 border-white bg-gray"
                 />
               )}
 
@@ -131,25 +131,25 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
                 autoFocus
                 ref={editFieldRef}
                 className={clsx(
-                  "block w-full min-h-[5rem] p-2 text-sm md:text-base outline-none rounded-t bg-gray/30 border-b-2 border-white",
+                  "block w-full min-h-40 p-4 text-sm md:text-base outline-none rounded-t bg-gray/30 border-b-2 border-white",
                   preview && "hidden"
                 )}
                 defaultValue={markdown}
               />
 
               <div className="flex justify-between">
-                <Button sm underline={false} onClick={() => setIsEditing(false)} content="Avbryt" />
+                <Button sm onClick={() => setIsEditing(false)} content="Avbryt" />
 
-                <div className="space-x-4">
-                  <Button sm underline={false} disabled={isPostUpdating} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />
-                  <Button sm underline={false} disabled={isPostUpdating} onClick={updatePost} content="Lagre" />
+                <div className="space-x-8">
+                  <Button sm disabled={isPostUpdating} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />
+                  <Button sm disabled={isPostUpdating} onClick={updatePost} content="Lagre" />
                 </div>
               </div>
             </div>
           )}
 
           {!isEditing && !post.deleted && (
-            <PostProse html={post.content} className="my-4 md:my-8" />
+            <PostProse html={post.content} className="my-8 md:my-16" />
           )}
 
           <div className={clsx(className)}>

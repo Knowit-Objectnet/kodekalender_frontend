@@ -18,7 +18,7 @@
       font-[Nunito]
       font-normal
 
-      text-[20px]
+      text-base
       ;
     }
 
@@ -32,7 +32,7 @@
     }
 
     :not(pre) > & {
-      @apply shadow-md rounded-sm py-0.5 px-1;
+      @apply shadow-md rounded-sm py-1 px-2;
     }
   }
 

@@ -73,7 +73,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
           transition={{ duration: 0.2, delay: 0.2, ease: easeInCubic }}
         />
       </svg>
-      <p className="text-center mt-1">
+      <p className="text-center mt-2">
         {countdown} sekund{countdown !== 1 && "er"}
       </p>
     </Wrapper>

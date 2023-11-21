@@ -30,26 +30,26 @@ import { ReactComponent as TwitterIcon } from "../../../assets/svg/icons/twitter
 const ICONS = {
   bell: BellIcon,
   "bell-sm": BellSmIcon,
-  bruker: BrukerIcon,
+  user: BrukerIcon,
   chart: ChartIcon,
-  del: DelIcon,
+  share: DelIcon,
   facebook: FacebookIcon,
   github: GithubIcon,
-  hus: HusIcon,
+  house: HusIcon,
   info: InfoIcon,
-  insta: InstaIcon,
+  instagram: InstaIcon,
   "knowit-logo": KnowitLogoIcon,
-  "last-opp": LastOppIcon,
-  lenke: LenkeIcon,
-  "logg-inn": LoggInnIcon,
-  lukk: LukkIcon,
+  upload: LastOppIcon,
+  link: LenkeIcon,
+  signin: LoggInnIcon,
+  close: LukkIcon,
   mail: MailIcon,
-  meny: MenyIcon,
+  menu: MenyIcon,
   mute: MuteIcon,
   person: PersonIcon,
-  pil: PilIcon,
-  premie: PremieIcon,
-  rediger: RedigerIcon,
+  arrow: PilIcon,
+  award: PremieIcon,
+  edit: RedigerIcon,
   sound: SoundIcon,
   twitter: TwitterIcon
 }
@@ -59,11 +59,28 @@ export type IconProps = {
   className?: ClassValue
 }
 
-// TODO: Put default styles here, line height, whatever
 const Icon: FC<IconProps> = ({ name, className }) => {
   const IconComponent = ICONS[name]
 
-  return <i className={clsx("", className)}><IconComponent /></i>
+  return (
+    <i
+      className={clsx(
+        `
+          inline-block
+          align-middle
+
+          w-16
+          h-16
+
+          child:w-full
+          child:h-full
+        `,
+        className
+      )}
+    >
+      <IconComponent />
+    </i>
+  )
 }
 
 export default Icon

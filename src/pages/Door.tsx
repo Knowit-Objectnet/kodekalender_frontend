@@ -43,7 +43,7 @@ const Door: FC = () => {
       </div>
       <ServiceMessageAlert
         door={door}
-        className="w-9 h-10 md:w-12 md:h-12 absolute left-12 md:left-20 top-16"
+        className="w-18 h-20 md:w-24 md:h-24 absolute left-24 md:left-40 top-32"
       />
     </Page>
   )

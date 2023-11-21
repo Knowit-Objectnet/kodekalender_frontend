@@ -1,7 +1,8 @@
+import { fromPairs, map, range, toInteger, toString } from "lodash"
 import type { Config } from "tailwindcss"
-import defaultTheme from "tailwindcss/defaultTheme"
 import plugin from "tailwindcss/plugin"
 
+// Kodekalender 2023 design colors
 const colors = {
   black: "#333333",
   gray: "#9A9A9B",
@@ -15,6 +16,19 @@ const colors = {
   turqoise : { "900": "#357268", "800": "#3C867C", "700": "#358F79", "600": "#52AE94", "500": "#63B792", "400": "#A2DAD0", "300": "#D4DDDD", "200": "#DFE8E8", "100": "#EBF1F1" },
 }
 
+// Overwrite spacings to default to /8rem instead of /4rem, to match standard
+// sizes from Figma design
+const spacing = fromPairs(map([
+  // every 0.125rem up to 8rem
+  ...range(0.125, 8, 0.125),
+  // every 0.25rem up to 16rem
+  ...range(8.25, 16, 0.25),
+  // every 0.5rem up to 32rem
+  ...range(16.5, 32, 0.5),
+  // every 1rem up to 64rem
+  ...range(33, 64, 1)
+] , (rem) => [toString(toInteger(rem * 8)), `${rem}rem`]))
+
 // Add variant for light mode
 const lightModeVariant = plugin(({ addVariant }) => {
   addVariant("light", `:is(.light &)`)
@@ -26,6 +40,19 @@ export default {
   ],
   darkMode: 'class',
   theme: {
+    // Total overwrites
+    spacing,
+    fontSize: {
+      // Our own text sizes
+      "xs": ["0.75rem", "1rem"], // 12px
+      "sm": ["1rem", "1.5rem"],    // 16px
+      "base": ["1.25rem", "1.75rem"], // 20px
+      "lg": ["1.75rem", "2.1875rem"], // 28px
+      "xl": ["3.375rem", "1"], // 54px
+      "2xl": ["4.375rem", "1"], // 70px
+    },
+
+    // Theme extension
     extend: {
       colors: {
         ...colors,
@@ -70,7 +97,7 @@ export default {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    require("tailwindcss-children"),
+    require("tailwind-children"),
     require("@whiterussianstudio/tailwind-easing"),
     require("@tailwindcss/forms")({ strategy: "class" }),
     lightModeVariant

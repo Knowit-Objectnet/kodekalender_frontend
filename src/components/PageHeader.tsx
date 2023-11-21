@@ -10,7 +10,8 @@ import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
 import ThemeButton from "./ThemeButton"
-import Icon from "./Icons/Icon"
+import { getActiveYear } from "../utils"
+import Header2 from "./text/Header2"
 
 
 const ServiceMessageBadge = () => {
@@ -22,7 +23,7 @@ const ServiceMessageBadge = () => {
   const classes = "absolute w-full h-full bg-red-600 rounded-full"
 
   return (
-    <div className="absolute top-[-.2rem] right-[-.3rem] w-2 h-2">
+    <div className="absolute top-[-.2rem] right-[-.3rem] w-4 h-4">
       <span className={classes} />
 
       {/* Animate badge if there are any general service messages */}
@@ -43,28 +44,31 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
 
   return (
     <header>
-      <nav className="p-4 flex flex-cols space-x-2 md:space-x-8">
-        <a className="inline-block" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}>
-          <Icon name="knowit-logo" className="h-7 md:h-10 fill-current" />
-        </a>
-        {/* <div className="float-right h-10 mt-0.5 md:mt-1 flex flex-row-reverse flex-wrap space-x-reverse space-x-2 md:space-x-8 space-y-reverse space-y-2"> */}
+      <nav className="p-8 flex flex-cols space-x-4 md:space-x-16">
+        <Link to="/" className="flex flex-col child:leading-none child:text-center" tabIndex={1}>
+          <div className="font-bold">Kodekalender</div>
+          <Header2 as="div">{getActiveYear()}</Header2>
+        </Link>
         <div
           className={clsx(
-            "float-right",
-            "mt-0.5",
-            "md:mt-1",
-            "w-full",
-            "flex",
-            "flex-col",
-            "gap-2",
-            "md:gap-8",
-            "md:flex-row-reverse",
-            "children:flex",
-            "children:flex-row-reverse",
-            "children:gap-4",
-            "md:children:gap-8",
-            "children:items-center",
-            "children:flex-wrap",
+            `
+              float-right
+              mt-1
+              md:mt-2
+              w-full
+              flex
+              flex-col
+              gap-4
+              md:gap-16
+              md:flex-row-reverse
+
+              child:flex
+              child:flex-row-reverse
+              child:gap-8
+              md:child:gap-16
+              child:items-center
+              child:flex-wrap
+            `,
             className
           )}
         >

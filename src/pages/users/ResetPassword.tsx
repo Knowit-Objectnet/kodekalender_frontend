@@ -42,7 +42,7 @@ const ResetPassword: FC = () => {
       <FormElement
         label="Passord"
         type="password"
-        labelClassName="mt-4"
+        labelClassName="mt-8"
         className="w-full"
         {...register("password", { required: true })}
       />
@@ -51,7 +51,7 @@ const ResetPassword: FC = () => {
       <FormElement
         label="Bekreft passord"
         type="password"
-        labelClassName="mt-4"
+        labelClassName="mt-8"
         className="w-full"
         {...register("password_confirmation", { required: true })}
       />

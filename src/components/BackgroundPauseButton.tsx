@@ -11,10 +11,7 @@ const BackgroundPauseButton: FC<BackgroundPauseButtonProps> = ({ paused, onToggl
   <label
       title="Varm laptop? 🔥"
       className={clsx(
-        "absolute",
-        "bottom-0",
-        "left-0",
-        "p-1",
+        "p-2",
         "shadow",
         "text-xs",
         "pointer-events-auto",
@@ -23,7 +20,7 @@ const BackgroundPauseButton: FC<BackgroundPauseButtonProps> = ({ paused, onToggl
     >
     <input
         type="checkbox"
-        className="mr-1 w-3 cursor-pointer"
+        className="mr-2 w-6 cursor-pointer"
         checked={paused}
         onClick={onTogglePaused} // Also triggered by click to surrounding label
         readOnly

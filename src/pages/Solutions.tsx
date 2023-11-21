@@ -21,15 +21,15 @@ const Solutions = () => {
   if (isLoading) return null
 
   return (
-    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md space-y-8">
+    <Page className="py-24 px-16 md:px-24 mx-8 md:mx-16 bg-purple-700 rounded-md space-y-16">
       <div className="text-center">
         <Header1>Løsninger</Header1>
       </div>
-      <div className="grid grid-cols-1 gap-6 justify-items-center">
+      <div className="grid grid-cols-1 gap-12 justify-items-center">
         {isEmpty(challenges)
           ? <div>Ingenting her!</div>
           : map(compact(values(challenges)), (challenge) => (
-            <div className="grid gap-1 justify-items-center">
+            <div className="grid gap-2 justify-items-center">
               <div className="tracking-wide">Luke {challenge.door} <span className="text-gray/40">&mdash;</span> <em>{challenge.title}</em></div>
               <div className="font-mono font-semibold text-lg max-w-full overflow-x-auto">{challenge.answer}</div>
             </div>

@@ -18,11 +18,15 @@ export const getActiveYear = () => {
   if (activeYearOverride)
     return activeYearOverride
 
-  // Active year rolls into January
-  return date.getMonth() < 11 ? year - 1 : year
+  // Active year rolls into February
+  if (date.getMonth() < 2)
+    return year - 1
+
+  return year
 }
 export const getDefaultActiveFrom = (door: number) => `${getActiveYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
 export const getDefaultActiveTo = () => `${getActiveYear()}-12-26T04:00+0100`
+export const getRaffleStart = () => new Date(`${getActiveYear()}-12-01T04:00+0100`)
 export const getRaffleEnd = () => new Date(`${getActiveYear()}-12-26T04:00+0100`)
 
 export const squish = (str: string) => replace(trim(str), /\s+/g, " ")

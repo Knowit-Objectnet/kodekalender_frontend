@@ -34,21 +34,21 @@ const Post: FC<PostProps> = ({ post, door }) => {
     <PostWrapper
       post={post}
       deleteConfirmText={DELETE_CONFIRM}
-      className="grid gap-2"
+      className="grid gap-4"
     >
       {post.deleted && (
-        <div className="text-gray/80 font-light text-center p-2 sm:p-6">
+        <div className="text-gray/80 font-light text-center p-4 sm:p-12">
           <em>Slettet innlegg</em>
         </div>
       )}
-      <footer className="grid grid-cols-2">
-        <div className="justify-self-start space-x-2 pl-2">
+      <footer className="grid grid-cols-4">
+        <div className="justify-self-start space-x-4 pl-4">
           {!post.deleted && (<>
             <LikeButton post={post} />
-            <SubscribeButton post={post} className="text-sm align-middle -mt-1" />
+            <SubscribeButton post={post} className="text-sm align-middle -mt-2" />
           </>)}
         </div>
-        <div className="justify-self-end space-x-4">
+        <div className="justify-self-end space-x-8">
           <AddChildPostButton toggleShowForm={toggleShowForm} />
           <ToggleChildPostsButton
             showChildPosts={showChildPosts}
@@ -70,11 +70,11 @@ const Post: FC<PostProps> = ({ post, door }) => {
           toggleShowForm={toggleShowForm}
           door={door}
           parent={post}
-          className="my-4"
+          className="my-8"
         />
       )}
 
-      {showChildPosts && (<div className="space-y-2 min-w-0">
+      {showChildPosts && (<div className="space-y-4 min-w-0">
         {map(post.children, (child) => (
           <ChildPost key={child.uuid} post={child} />
         ))}

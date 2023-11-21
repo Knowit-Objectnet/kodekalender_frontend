@@ -45,14 +45,14 @@ const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, sub
   const activeTo = challenge.active_to ?? getDefaultActiveTo()
 
   return (
-    <div className="space-y-8">
-      <form className="space-y-4" onSubmit={handleSubmit((data) => submit({ ...data, door: isDoorDirty ? door : challenge.door }))}>
-        <div className="space-x-4">
+    <div className="space-y-16">
+      <form className="space-y-8" onSubmit={handleSubmit((data) => submit({ ...data, door: isDoorDirty ? door : challenge.door }))}>
+        <div className="space-x-8">
           <Button type="submit">Lagre</Button>
           <Button type="button" className="uppercase" onClick={togglePreview}>{preview ? "Rediger" : "Forhåndsvisning"}</Button>
         </div>
 
-        <div className={clsx("grid grid-cols-3 gap-4", preview && "hidden")}>
+        <div className={clsx("grid grid-cols-3 gap-8", preview && "hidden")}>
           {newForm && (
             <FormElementCustom label="Luke" className="col-span-3">
               <select className="block form-select" defaultValue={availableDoors[0]} {...register("door", { required: true })}>

@@ -1,18 +1,24 @@
 import clsx from "clsx"
-import { HTMLAttributes } from "react"
+import { ElementType, HTMLAttributes } from "react"
 
 import { FCWithChildren } from "../../../types/utils_types"
 
 
-type Header3Props = HTMLAttributes<HTMLHeadingElement>
+type Header3Props = HTMLAttributes<HTMLHeadingElement> & {
+  as?: ElementType
+}
 
-const Header3: FCWithChildren<Header3Props> = ({ children, className, ...rest }) => (
-  <h3
-    className={clsx("font-[Nunito] text-[28px] font-bold", className)}
-    {...rest}
-  >
-    {children}
-  </h3>
-)
+const Header3: FCWithChildren<Header3Props> = ({ children, className, as = "h3", ...rest }) => {
+  const Component = as
+
+  return (
+    <Component
+      className={clsx("font-[Nunito] text-lg font-bold", className)}
+      {...rest}
+    >
+      {children}
+    </Component>
+  )
+}
 
 export default Header3

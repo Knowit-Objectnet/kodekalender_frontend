@@ -33,12 +33,12 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
   }
 
   return (
-    <div className={clsx("space-y-2", className)}>
+    <div className={clsx("space-y-4", className)}>
       {preview && (
         <PostPreview
           html={previewHtml}
           isLoading={previewLoading}
-          className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-white bg-gray"
+          className="w-full min-h-[5rem] p-4 rounded-t border-b-4 border-white bg-gray"
         />
       )}
 
@@ -46,7 +46,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         autoFocus
         ref={inputRef}
         className={clsx(
-          "block w-full min-h-[5rem] p-2 text-base rounded-t border-b-2 border-white bg-gray outline-none",
+          "block w-full min-h-[5rem] p-4 text-base rounded-t border-b-4 border-white bg-gray outline-none",
           preview && "hidden"
         )}
         onChange={setDirty}
@@ -54,11 +54,11 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
       />
 
       <div className="flex justify-between">
-        <Button sm underline={false} onClick={toggleShowForm} content="Avbryt" />
+        <Button sm onClick={toggleShowForm} content="Avbryt" />
 
-        <div className="space-x-4">
-          {isDirty && <Button sm underline={false} disabled={isLoading} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />}
-          <Button sm underline={false} disabled={isLoading} onClick={createPost} content="Svar" />
+        <div className="space-x-8">
+          {isDirty && <Button sm disabled={isLoading} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />}
+          <Button sm disabled={isLoading} onClick={createPost} content="Svar" />
         </div>
       </div>
     </div>

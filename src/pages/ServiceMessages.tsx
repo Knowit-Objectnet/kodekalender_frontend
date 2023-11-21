@@ -14,11 +14,11 @@ const ServiceMessages = () => {
   if (isLoading) return null
 
   return (
-    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-purple-700 rounded-md space-y-8">
+    <Page className="py-24 px-16 md:px-24 mx-8 md:mx-16 bg-purple-700 rounded-md space-y-16">
       <div className="text-center">
         <Header1>Driftsmeldinger</Header1>
       </div>
-      <div className="grid grid-cols-1 gap-4 justify-items-center">
+      <div className="grid grid-cols-1 gap-8 justify-items-center">
         {isEmpty(serviceMessages)
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {
@@ -29,7 +29,7 @@ const ServiceMessages = () => {
             return (
               <ServiceMessage
                 key={serviceMessage.uuid}
-                className={clsx("border-2 p-4 rounded-md w-full max-w-[40rem]", messageClasses)}
+                className={clsx("border-2 p-8 rounded-md w-full max-w-320", messageClasses)}
                 serviceMessage={serviceMessage}
               />
             )
