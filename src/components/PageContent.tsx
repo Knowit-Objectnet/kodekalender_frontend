@@ -19,7 +19,6 @@ const PageContent: FCWithChildren<PageContentProps> = ({ className, children }) 
   <main
     className={cl(
       `
-        w-376
         max-w-[90vw]
       `,
       className
