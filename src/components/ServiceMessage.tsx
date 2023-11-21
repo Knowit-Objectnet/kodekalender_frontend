@@ -3,7 +3,7 @@ import { FC } from "react"
 import { ServiceMessage as ServiceMessageType } from "../api/ServiceMessage"
 import { cl, getTimestamp } from "../utils"
 
-import Header3 from "./text/Header3"
+import { Header3 } from "./text"
 
 
 type ServiceMessageProps = {

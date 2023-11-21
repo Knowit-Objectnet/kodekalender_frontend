@@ -1,7 +1,8 @@
 import { FC } from "react"
 import { find, some } from "lodash"
 
-import { ReactComponent as Favorite } from "../svg/heart.svg"
+import { ReactComponent as Favorite } from "/assets/svg/icons/heart.svg"
+
 import { Post } from "../../api/Post"
 import { useCreateLike, useDeleteLike, useLikes } from "../../api/requests"
 import useIsOwnPost from "../../hooks/useIsOwnPost"

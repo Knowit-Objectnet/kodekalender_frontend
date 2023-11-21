@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 import LeaderBoardContent from "../components/LeaderboardContent"
-import Header1 from "../components/text/Header1"
+import { Header1 } from "../components/text"
 
 import Page from "./Page"
 

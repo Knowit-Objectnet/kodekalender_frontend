@@ -5,7 +5,7 @@ import { useDeleteServiceMessage } from "../../api/admin/requests"
 import { useServiceMessages } from "../../api/requests"
 import Button from "../../components/Button"
 import ServiceMessage from "../../components/ServiceMessage"
-import Header1 from "../../components/text/Header1"
+import { Header1 } from "../../components/text"
 import { cl } from "../../utils"
 
 

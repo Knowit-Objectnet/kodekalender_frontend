@@ -4,14 +4,14 @@ import { every, isEmpty, some } from "lodash"
 
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
-import { cl } from "../utils"
+import { cl, getActiveYear } from "../utils"
+import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 
 import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
 import ThemeButton from "./ThemeButton"
-import { getActiveYear } from "../utils"
-import Header2 from "./text/Header2"
+import { Header2 } from "./text"
 
 
 const ServiceMessageBadge = () => {
@@ -41,6 +41,7 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   const isAdmin = useIsAdmin()
   const { data: serviceMessages } = useServiceMessages()
   const prefetchLeaderboard = usePrefetchLeaderboard()
+  const raffleStarted = useIsRaffleStarted()
 
   return (
     <header>
@@ -82,11 +83,13 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
           </div>
 
           <div>
-            {/* Link to separate page on mobile */}
-            <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
-            <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
-              <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
-            </Link>
+            {raffleStarted && (<>
+              {/* Link to separate page on mobile */}
+              <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
+              <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
+                <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
+              </Link>
+            </>)}
 
             {!isEmpty(serviceMessages) && (
               // Only show link to service messages if there are any

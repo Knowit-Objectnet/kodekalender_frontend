@@ -1,12 +1,13 @@
 import { FC, useCallback, useRef, useState } from "react"
 import { Transition } from "@headlessui/react"
 
+import { ReactComponent as Close } from "/assets/svg/icons/close.svg"
+
 import useOnClickOutside from "../hooks/useOnClickOutside"
 
-import { ReactComponent as Flourish } from "./svg/pointsdecor.svg"
-import { ReactComponent as Close } from "./svg/close.svg"
+// import { ReactComponent as Flourish } from "./svg/pointsdecor.svg"
 import LeaderBoardContent from "./LeaderboardContent"
-import Header2 from "./text/Header2"
+import { Header2 } from "./text"
 
 
 type LeaderBoardAsideProps = {
@@ -54,7 +55,7 @@ const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) =
           <Close className="fill-current absolute top-0 right-0 m-4 cursor-pointer" onClick={closeBoard} />
           <div className="h-48 pt-4 text-2xl text-center">
             <Header2>Snille barn</Header2>
-            <Flourish className="-mt-16 h-40 w-full rotate-2" />
+            {/* <Flourish className="-mt-16 h-40 w-full rotate-2" /> */}
           </div>
           <div className="h-192 xl:h-384 text-center overflow-y-auto">
             <LeaderBoardContent />

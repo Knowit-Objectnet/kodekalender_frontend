@@ -5,6 +5,7 @@ import plugin from "tailwindcss/plugin"
 // Kodekalender 2023 design colors
 const colors = {
   black: "#333333",
+  "pure-black": "#000000",
   gray: "#9A9A9B",
   white: "#F8F9FA",
   purple :   { "900": "#111230", "800": "#1B1946", "700": "#2C2A56", "600": "#494778", "500": "#585684", "400": "#8A87AF", "300": "#8D8DB0", "200": "#9895B0", "100": "#A99EB6" },
@@ -58,11 +59,7 @@ export default {
         ...colors,
         "current": "currentColor"
       },
-      maxWidth: {
-        "kodekalender": "80rem"
-      },
       width: {
-        "kodekalender": "80rem",
         "avatar": "4.5rem"
       },
       margin: {

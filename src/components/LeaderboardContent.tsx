@@ -4,7 +4,7 @@ import { isEmpty, isNil, map, reduce, upperFirst } from "lodash"
 import { getRandomDisplayName, getObjKey, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
 
-import Header3 from "./text/Header3"
+import { Header3 } from "./text"
 
 
 type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]

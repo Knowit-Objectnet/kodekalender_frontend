@@ -2,7 +2,7 @@ import { lazy, memo, Suspense, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { FaCogs } from "react-icons/fa"
 
-import Gdpr from "./pages/Gdpr"
+import Privacy from "./pages/Privacy"
 import Door from "./pages/Door"
 import PageHeader from "./components/PageHeader"
 import StarBackground from "./components/StarBackground"
@@ -15,6 +15,11 @@ import Page from "./pages/Page"
 import Solutions from "./pages/Solutions"
 import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
 import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
+import useIsRaffleStarted from "./hooks/useIsRaffleStarted"
+import Countdown from "./pages/Countdown"
+import About from "./pages/About"
+import Career from "./pages/Career"
+import Contact from "./pages/Contact"
 import PageFooter from "./components/PageFooter"
 
 
@@ -62,6 +67,7 @@ const App = () => {
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
   const [bgAnimationPaused, toggleBgAnimationPaused] = useToggleBgAnimationState()
 
+  const raffleStarted = useIsRaffleStarted()
 
   return (<>
     <StarBackground paused={bgAnimationPaused} />
@@ -76,18 +82,28 @@ const App = () => {
         grid
         grid-rows-[auto_1fr_auto_auto]
         min-h-[calc(100vh+1.5rem)]
-        xh-[calc(100%+1.5rem)]
+        items-center
       `}
     >
       <PageHeader setLeaderboardHidden={setLeaderboardHidden} />
 
       <Routes>
-        <Route path="/" element={<Doors />} />
-        <Route path="/luke/:door" element={<Door />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/gdpr" element={<Gdpr />} />
+        {raffleStarted
+           ? (<>
+             <Route path="/" element={<Doors />} />
+             <Route path="/luke/:door" element={<Door />} />
+             <Route path="/leaderboard" element={<Leaderboard />} />
+             <Route path="/solutions" element={<Solutions />} />
+           </>) : (
+             <Route path="/" element={<Countdown />} />
+           )
+        }
+
+        <Route path="/about" element={<About />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/career" element={<Career />} />
         <Route path="/service_messages" element={<ServiceMessages />} />
-        <Route path="/solutions" element={<Solutions />} />
 
         <Route path="/admin" element={<LazyAdmin />} />
         <Route path="/users" element={<LazyUser />} />

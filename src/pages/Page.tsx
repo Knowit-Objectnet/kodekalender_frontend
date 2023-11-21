@@ -1,4 +1,3 @@
-import BackToDoorsButton from "../components/BackToDoorsButton"
 import DoorBorder from "../components/Door/DoorBorder"
 import { FCWithChildren } from "../../types/utils_types"
 import { cl } from "../utils"
@@ -14,16 +13,12 @@ const Page: FCWithChildren<PageProps> = ({ className, wrapperClassName, children
     className={cl(
       "w-376",
       "mx-auto",
-      "pointer-events-none", // Allow click through to animation toggle
-      "child:pointer-events-auto",
-      "pb-8",
       wrapperClassName
     )}
   >
-    <BackToDoorsButton />
-    <DoorBorder />
+    {/* <DoorBorder /> */}
 
-    <div className={clsx(className)}>
+    <div className={className}>
       {children}
     </div>
   </main>

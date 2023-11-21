@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react"
 
 import SubscribeButton from "../SubscribeButton"
 import { Challenge as ChallengeType } from "../../api/Challenge"
-import Header1 from "../text/Header1"
+import { Header1 } from "../text"
 
 import Input from "./Input"
 

@@ -2,7 +2,7 @@ import { isEmpty, map } from "lodash"
 
 import { useServiceMessages } from "../api/requests"
 import ServiceMessage from "../components/ServiceMessage"
-import Header1 from "../components/text/Header1"
+import { Header1 } from "../components/text"
 import { cl } from "../utils"
 
 import Page from "./Page"
