@@ -13,7 +13,7 @@ const githubLabel = "Se hva vi gjør på GitHub"
 const instagramLabel = "Følg oss på Instagram"
 
 const PageFooter: FC = () => (
-  <footer className="space-y-6">
+  <footer className="mt-19 space-y-6">
     <div className="grid justify-center">
       <ExternalLink href="https://knowit.no">
         <KnowitLogo />
