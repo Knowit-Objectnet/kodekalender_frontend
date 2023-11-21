@@ -1,8 +1,7 @@
 import { FC } from "react"
-import clsx from "clsx"
 import { FaChevronDown } from "react-icons/fa"
 
-import { numberString } from "../../utils"
+import { cl, numberString } from "../../utils"
 
 
 type ToggleChildPostsButtonProps = {
@@ -17,12 +16,12 @@ const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, sh
 
   // TODO: Hover style
   return (
-    <button className={clsx("space-x-4", className)} onClick={toggleShowChildPosts}>
+    <button className={cl("space-x-4", className)} onClick={toggleShowChildPosts}>
       <span>
         {showChildPosts ? "Skjul" : "Vis"} {numberString(numChildPosts, true)} svar
       </span>
       <FaChevronDown
-        className={clsx(
+        className={cl(
           "-mt-1 inline w-8 transition-all ease-out-cubic duration-300",
           showChildPosts && "-rotate-180"
         )}

@@ -1,5 +1,6 @@
-import clsx from "clsx"
 import { FC } from "react"
+
+import { cl } from "../../utils"
 
 
 type PostProseProps = {
@@ -9,7 +10,7 @@ type PostProseProps = {
 
 const PostProse: FC<PostProseProps> = ({ html, className }) => (
   <div
-    className={clsx(
+    className={cl(
       "prose prose-sm md:prose max-w-none md:max-w-none break-words",
       className
     )}

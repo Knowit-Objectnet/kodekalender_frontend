@@ -1,4 +1,3 @@
-import clsx, { ClassValue } from "clsx"
 import { FC } from "react"
 
 import { ReactComponent as BellIcon } from "../../../assets/svg/icons/bell.svg"
@@ -25,6 +24,7 @@ import { ReactComponent as PremieIcon } from "../../../assets/svg/icons/premie.s
 import { ReactComponent as RedigerIcon } from "../../../assets/svg/icons/rediger.svg"
 import { ReactComponent as SoundIcon } from "../../../assets/svg/icons/sound.svg"
 import { ReactComponent as TwitterIcon } from "../../../assets/svg/icons/twitter.svg"
+import { cl } from "../../utils"
 
 
 const ICONS = {
@@ -56,7 +56,7 @@ const ICONS = {
 
 export type IconProps = {
   name: keyof typeof ICONS
-  className?: ClassValue
+  className?: string
 }
 
 const Icon: FC<IconProps> = ({ name, className }) => {
@@ -64,7 +64,7 @@ const Icon: FC<IconProps> = ({ name, className }) => {
 
   return (
     <i
-      className={clsx(
+      className={cl(
         `
           inline-block
           align-middle

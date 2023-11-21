@@ -1,7 +1,7 @@
-import clsx, { ClassValue } from "clsx"
 import { get, has, isNil } from "lodash"
 
 import { ChallengeDict, SolvedStatus } from "../../api/Challenge"
+import { cl } from "../../utils"
 
 
 type DoorsUtilsBaseProps = {
@@ -16,13 +16,13 @@ type DoorsUtilsProps = DoorsUtilsBaseProps & {
 }
 
 export type DoorsProps = DoorsUtilsBaseProps & {
-  className?: ClassValue
+  className?: string
 }
 
 // TODO: Figure out new door styles
 export const getDoorStyleProps = ({ door, solvedStatus, challenges }: DoorsUtilsProps) => ({
   className: "text-green-600"
-    // clsx("fill-current", get(solvedStatus, door)
+    // cl("fill-current", get(solvedStatus, door)
     //   ? "text-lightbulb-green"
     //   : isNil(challenges) || !has(challenges, door)
     //     ? "text-lightbulb-dim"
@@ -31,7 +31,7 @@ export const getDoorStyleProps = ({ door, solvedStatus, challenges }: DoorsUtils
 })
 
 export const getDoorTextStyleProps = ({ door, challenges }: DoorsUtilsProps) => ({
-  className: clsx("text-gray-800", (isNil(challenges) || !has(challenges, door)) && "opacity-25" ),
+  className: cl("text-gray-800", (isNil(challenges) || !has(challenges, door)) && "opacity-25" ),
   fontFamily: "'Arial'"
 })
 

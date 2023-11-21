@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { isEmpty, map } from "lodash"
 import { Link } from "react-router-dom"
 
@@ -7,6 +6,7 @@ import { useServiceMessages } from "../../api/requests"
 import Button from "../../components/Button"
 import ServiceMessage from "../../components/ServiceMessage"
 import Header1 from "../../components/text/Header1"
+import { cl } from "../../utils"
 
 
 const ServiceMessages = () => {
@@ -44,7 +44,7 @@ const ServiceMessages = () => {
                   <Button content="Slett" onClick={() => deleteServiceMessage(serviceMessage.uuid)} />
                 </div>
                 <ServiceMessage
-                  className={clsx("border-2 p-8 rounded-md w-full", messageClasses)}
+                  className={cl("border-2 p-8 rounded-md w-full", messageClasses)}
                   serviceMessage={serviceMessage}
                 />
               </div>

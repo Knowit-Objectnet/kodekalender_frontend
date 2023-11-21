@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react"
-import clsx, { ClassValue } from "clsx"
 import { useLocation } from "react-router-dom"
 import TextareaAutosize from "react-autosize-textarea/lib"
 
 import { Post } from "../../api/Post"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
-import { getTimestamp } from "../../utils"
+import { cl, getTimestamp } from "../../utils"
 import Button from "../Button"
 import { useDeletePost, usePostMarkdown, usePrefetchPostMarkdown, useUpdatePost } from "../../api/requests"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
@@ -20,13 +19,13 @@ type PostWrapperProps = {
   deleteConfirmText: string
 
   // classes passed on to children, intuitive at call site
-  className?: ClassValue
+  className?: string
 
   // classes for overriding style of post sections mostly to allow different
   // styling of child posts
-  wrapperClassName?: ClassValue
-  contentClassName?: ClassValue
-  proseClassName?: ClassValue
+  wrapperClassName?: string
+  contentClassName?: string
+  proseClassName?: string
 }
 
 const PostWrapper: FCWithChildren<PostWrapperProps> = ({
@@ -85,7 +84,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
     <article
       id={post.uuid}
       ref={scrollRef}
-      className={clsx(
+      className={cl(
         "relative rounded-md bg-purple-500 py-8 px-4 md:px-4",
         isDeepLinkedPost && "ring-inset ring-4 ring-yellow-400",
         wrapperClassName
@@ -100,7 +99,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
           />
         </div>
       )}
-      <div className={clsx("mx-8 sm:mx-16 lg:mx-20 xl:mx-avatar", contentClassName)}>
+      <div className={cl("mx-8 sm:mx-16 lg:mx-20 xl:mx-avatar", contentClassName)}>
         <div className="relative px-2 sm:px-4 md:px-8">
           <div className="font-semibold text-xl">
             {!post.deleted && post.author.username}
@@ -130,7 +129,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
               <TextareaAutosize
                 autoFocus
                 ref={editFieldRef}
-                className={clsx(
+                className={cl(
                   "block w-full min-h-40 p-4 text-sm md:text-base outline-none rounded-t bg-gray/30 border-b-2 border-white",
                   preview && "hidden"
                 )}
@@ -152,7 +151,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
             <PostProse html={post.content} className="my-8 md:my-16" />
           )}
 
-          <div className={clsx(className)}>
+          <div className={className}>
             {children}
           </div>
         </div>

@@ -1,5 +1,7 @@
+import clsx, { ClassValue } from "clsx"
 import { format } from "date-fns"
 import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, replace, toString, trim } from "lodash"
+import { twMerge } from "tailwind-merge"
 
 import { Maybe, Nullable } from "../types/utils_types"
 
@@ -174,3 +176,8 @@ export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
 
   return undefined
 }
+
+
+// Replacement for clsx that also lets you overwrite tailwind values. The latest
+// tailwind utility in the resulting classes string will take effect.
+export const cl = (...classes: ClassValue[]) => twMerge(clsx(classes))

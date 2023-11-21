@@ -1,7 +1,6 @@
 import { lazy, memo, Suspense, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { FaCogs } from "react-icons/fa"
-import clsx from "clsx"
 
 import Gdpr from "./pages/Gdpr"
 import Door from "./pages/Door"
@@ -25,17 +24,17 @@ const LazyAdmin = () => {
   const Fallback = (
     <Page>
       <FaCogs
-        className={clsx(
-          "fixed",
-          "top-1/2",
-          "left-1/2",
-          "w-64",
-          "h-64",
-          "translate-x-[-50%]",
-          "translate-y-[-50%]",
-          "text-white/70",
-          "animate-pulse"
-        )}
+        className={`
+          fixed
+          top-1/2
+          left-1/2
+          w-64
+          h-64
+          translate-x-[-50%]
+          translate-y-[-50%]
+          text-white/70
+          animate-pulse
+        `}
       />
     </Page>
   )

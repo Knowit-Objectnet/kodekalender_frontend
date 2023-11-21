@@ -1,9 +1,9 @@
-import clsx from "clsx"
 import { isEmpty, map } from "lodash"
 
 import { useServiceMessages } from "../api/requests"
 import ServiceMessage from "../components/ServiceMessage"
 import Header1 from "../components/text/Header1"
+import { cl } from "../utils"
 
 import Page from "./Page"
 
@@ -29,7 +29,7 @@ const ServiceMessages = () => {
             return (
               <ServiceMessage
                 key={serviceMessage.uuid}
-                className={clsx("border-2 p-8 rounded-md w-full max-w-320", messageClasses)}
+                className={cl("border-2 p-8 rounded-md w-full max-w-320", messageClasses)}
                 serviceMessage={serviceMessage}
               />
             )

@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { formatISO } from "date-fns"
 import { isEmpty, keys, map, parseInt, toString } from "lodash"
 import { FC, memo } from "react"
@@ -35,7 +34,7 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({ serviceMessage, newFo
           <Button type="submit">Lagre</Button>
         </div>
 
-        <div className={clsx("grid grid-cols-3 gap-8")}>
+        <div className="grid grid-cols-3 gap-8">
           <FormElement
             label="Innhold"
             type="text"

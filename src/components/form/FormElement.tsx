@@ -1,5 +1,6 @@
-import clsx from "clsx"
 import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, PropsWithChildren } from "react"
+
+import { cl } from "../../utils"
 
 import FormElementCustom from "./FormElementCustom"
 
@@ -16,7 +17,7 @@ const FormElement = forwardRef<HTMLInputElement, PropsWithChildren<FormElementPr
     <FormElementCustom label={label} note={note} disabled={disabled} className={labelClassName}>
       <input
         ref={ref}
-        className={clsx("block form-input", disabled && "border-gray/30", className)}
+        className={cl("block form-input", disabled && "border-gray/30", className)}
         disabled={disabled}
         {...inputProps}
       >

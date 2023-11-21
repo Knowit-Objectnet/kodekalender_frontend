@@ -1,5 +1,6 @@
 import { FC } from "react"
-import clsx from "clsx"
+
+import { cl } from "../utils"
 
 
 type StarBackgroundProps = {
@@ -7,7 +8,7 @@ type StarBackgroundProps = {
 }
 
 const StarBackground: FC<StarBackgroundProps> = ({ paused }) => {
-  const animationClasses = clsx(
+  const animationClasses = cl(
     "fixed",
     "h-screen",
     "w-screen",
@@ -20,7 +21,7 @@ const StarBackground: FC<StarBackgroundProps> = ({ paused }) => {
   return (
     <div className="absolute h-screen w-screen pointer-events-none overflow-hidden">
       <div
-        className={clsx(
+        className={cl(
           animationClasses,
           "before:bg-stars-background",
           "z-[-300]",
@@ -28,7 +29,7 @@ const StarBackground: FC<StarBackgroundProps> = ({ paused }) => {
         )}
       />
       <div
-        className={clsx(
+        className={cl(
           animationClasses,
           "before:bg-stars-midground",
           "z-[-200]",
@@ -36,7 +37,7 @@ const StarBackground: FC<StarBackgroundProps> = ({ paused }) => {
         )}
       />
       <div
-        className={clsx(
+        className={cl(
           animationClasses,
           "before:bg-stars-foreground",
           "z-[-100]",

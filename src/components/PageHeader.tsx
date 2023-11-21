@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { every, isEmpty, some } from "lodash"
-import clsx from "clsx"
 
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
+import { cl } from "../utils"
 
 import SignInButton from "./SignInButton"
 import Button from "./Button"
@@ -27,7 +27,7 @@ const ServiceMessageBadge = () => {
       <span className={classes} />
 
       {/* Animate badge if there are any general service messages */}
-      {some(serviceMessages, { resolved: false, door: null }) && <span className={clsx(classes, "animate-ping")} />}
+      {some(serviceMessages, { resolved: false, door: null }) && <span className={`${classes} animate-ping`} />}
     </div>
   )
 }
@@ -50,7 +50,7 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
           <Header2 as="div">{getActiveYear()}</Header2>
         </Link>
         <div
-          className={clsx(
+          className={cl(
             `
               float-right
               mt-1
