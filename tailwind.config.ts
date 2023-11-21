@@ -23,11 +23,11 @@ const spacing = fromPairs(map([
   // every 0.125rem up to 8rem
   ...range(0.125, 8, 0.125),
   // every 0.25rem up to 16rem
-  ...range(8.25, 16, 0.25),
+  ...range(8, 16, 0.25),
   // every 0.5rem up to 32rem
-  ...range(16.5, 32, 0.5),
+  ...range(16, 32, 0.5),
   // every 1rem up to 64rem
-  ...range(33, 64, 1)
+  ...range(32, 64, 1)
 ] , (rem) => [toString(toInteger(rem * 8)), `${rem}rem`]))
 
 // Add variant for light mode
@@ -52,13 +52,13 @@ export default {
       "xl": ["3.375rem", "1"], // 54px
       "2xl": ["4.375rem", "1"], // 70px
     },
+    colors: {
+      ...colors,
+      "current": "currentColor"
+    },
 
     // Theme extension
     extend: {
-      colors: {
-        ...colors,
-        "current": "currentColor"
-      },
       width: {
         "avatar": "4.5rem"
       },
@@ -70,26 +70,7 @@ export default {
       },
       gap: {
         "door-elements": "4rem"
-      },
-      keyframes: {
-        stars: {
-          // The background images are exactly 1000px tall, must use exact
-          // transform to avoid tearing when the animation repeats. Setting 100%
-          // will transform based on the size of the containing element which is
-          // scaled to 200% screen height to always show the background image.
-          to: { transform: "translateY(-1000px)" }
-        }
-      },
-      animation: {
-        "stars-background": "60s linear 0s infinite normal both running stars",
-        "stars-midground": "40s linear 0s infinite normal both running stars",
-        "stars-foreground": "20s linear 0s infinite normal both running stars"
-      },
-      backgroundImage: (theme) => ({
-        "stars-background": "url('/assets/svg/background.svg')",
-        "stars-midground": "url('/assets/svg/midground.svg')",
-        "stars-foreground": "url('/assets/svg/foreground.svg')"
-      })
+      }
     }
   },
   plugins: [

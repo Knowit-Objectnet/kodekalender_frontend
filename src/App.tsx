@@ -5,7 +5,7 @@ import { FaCogs } from "react-icons/fa"
 import Privacy from "./pages/Privacy"
 import Door from "./pages/Door"
 import PageHeader from "./components/PageHeader"
-import StarBackground from "./components/StarBackground"
+import Background from "./components/Background"
 import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
@@ -14,7 +14,7 @@ import BackgroundPauseButton from "./components/BackgroundPauseButton"
 import Page from "./pages/Page"
 import Solutions from "./pages/Solutions"
 import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
-import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
+// import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
 import useIsRaffleStarted from "./hooks/useIsRaffleStarted"
 import Countdown from "./pages/Countdown"
 import About from "./pages/About"
@@ -65,12 +65,10 @@ const App = () => {
   useStoreAnchorVars()
 
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
-  const [bgAnimationPaused, toggleBgAnimationPaused] = useToggleBgAnimationState()
-
   const raffleStarted = useIsRaffleStarted()
 
   return (<>
-    <StarBackground paused={bgAnimationPaused} />
+    <Background />
     <LeaderBoardAside
       hidden={leaderboardHidden}
       closeHandler={() => setLeaderboardHidden(true)}
@@ -81,7 +79,8 @@ const App = () => {
       className={`
         grid
         grid-rows-[auto_1fr_auto_auto]
-        min-h-[calc(100vh+1.5rem)]
+        __min-h-[calc(100vh+1.5rem)]
+        min-h-screen
         items-center
       `}
     >
@@ -113,8 +112,6 @@ const App = () => {
       </Routes>
 
       <PageFooter />
-
-      <BackgroundPauseButton paused={bgAnimationPaused} onTogglePaused={toggleBgAnimationPaused} />
     </div>
   </>)
 }

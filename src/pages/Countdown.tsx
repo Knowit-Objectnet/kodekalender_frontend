@@ -88,7 +88,7 @@ const Countdown = () => {
         <TimerDisplay t={seconds} />
       </div>
 
-      <p className="w-300">
+      <p className="w-304">
         Bli med på Knowits julekalender! Hver dag før jul åpnes en ny luke med
         en oppgave du må løse. Vi trekker en heldig vinner som får en valgfri
         mobil eller nettbrett!
