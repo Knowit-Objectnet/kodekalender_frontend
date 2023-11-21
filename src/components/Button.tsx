@@ -28,6 +28,8 @@ const Button: FC<ButtonProps> = ({
       `
         bg-purple-700
         hover:bg-purple-900
+        hover:ring
+        hover:ring-purple-700
         active:bg-purple-500
         focus:outline-none
         focus:ring
