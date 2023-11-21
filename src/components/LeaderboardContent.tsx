@@ -1,5 +1,5 @@
 import { FC, ReactElement, ReactNode, useMemo } from "react"
-import { isEmpty, isNil, map, reduce, upperFirst } from "lodash"
+import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
 
 import { getRandomDisplayName, getObjKey, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"

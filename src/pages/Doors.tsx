@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get } from "lodash-es"
 import { useCallback, useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 

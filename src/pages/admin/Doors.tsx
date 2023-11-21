@@ -1,6 +1,6 @@
 import { FC, memo, useLayoutEffect, useMemo, useState } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import { isNil, minBy, values } from "lodash"
+import { isNil, minBy, values } from "lodash-es"
 
 import Challenge from "../../components/Door/Challenge"
 import PostsSection from "../../components/Posts/PostsSection"

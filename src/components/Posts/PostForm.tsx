@@ -1,6 +1,6 @@
 import { FC, useCallback, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
-import { isNil } from "lodash"
+import { isNil } from "lodash-es"
 import { Link } from "react-router-dom"
 
 import Button from "../Button"

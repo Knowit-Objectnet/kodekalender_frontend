@@ -1,4 +1,4 @@
-import { compact, isEmpty, map, values } from "lodash"
+import { compact, isEmpty, map, values } from "lodash-es"
 
 import { useChallenges } from "../api/requests"
 import useCurrentTime from "../hooks/useCurrentTime"

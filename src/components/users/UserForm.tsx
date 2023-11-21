@@ -1,5 +1,5 @@
 import { Popover } from "@headlessui/react"
-import { forEach, join, pickBy } from "lodash"
+import { forEach, join, pickBy } from "lodash-es"
 import { useEffect, useRef, FC } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"

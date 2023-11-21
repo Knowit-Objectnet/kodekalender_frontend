@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { every, isEmpty, some } from "lodash"
+import { every, isEmpty, some } from "lodash-es"
 
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"

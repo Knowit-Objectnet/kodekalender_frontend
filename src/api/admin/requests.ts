@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
 import axios, { AxiosRequestConfig } from "axios"
-import { isEmpty, isNumber, keyBy, pick, property } from "lodash"
+import { isEmpty, isNumber, keyBy, pick, property } from "lodash-es"
 
 import { QueryError } from "../../axios"
 import { ParentPost } from "../Post"

@@ -1,4 +1,4 @@
-import { get, has, isNil } from "lodash"
+import { get, has, isNil } from "lodash-es"
 
 import { ChallengeDict, SolvedStatus } from "../../api/Challenge"
 import { cl } from "../../utils"

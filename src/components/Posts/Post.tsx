@@ -1,5 +1,5 @@
 import { FC, memo } from "react"
-import { map } from "lodash"
+import { map } from "lodash-es"
 
 import { ParentPost } from "../../api/Post"
 import useBooleanToggle from "../../hooks/useBooleanToggle"

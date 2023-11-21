@@ -1,5 +1,5 @@
 import { motion, useAnimation } from "framer-motion"
-import { find } from "lodash"
+import { find } from "lodash-es"
 import { FC, useState } from "react"
 import { FaBellSlash, FaBell } from "react-icons/fa"
 import { useDebounce } from "use-debounce"

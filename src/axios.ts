@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
-import { includes, merge } from "lodash"
+import { includes, merge } from "lodash-es"
 
 
 export let authorizationToken: string | undefined = undefined

@@ -1,4 +1,4 @@
-import { fromPairs, map, range, toInteger, toString } from "lodash"
+import { fromPairs, map, range, toInteger, toString } from "lodash-es"
 import type { Config } from "tailwindcss"
 import plugin from "tailwindcss/plugin"
 

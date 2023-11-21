@@ -1,4 +1,4 @@
-import { reject, range, has } from "lodash"
+import { reject, range, has } from "lodash-es"
 
 import { useChallenges } from "../../api/admin/requests"
 

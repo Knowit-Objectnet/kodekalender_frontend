@@ -1,5 +1,5 @@
 import axios from "axios"
-import { forEach, isNil } from "lodash"
+import { forEach, isNil } from "lodash-es"
 import { useQueryClient, useMutation, useQuery } from "react-query"
 
 import { LoggedInWhoami, Whoami } from ".."

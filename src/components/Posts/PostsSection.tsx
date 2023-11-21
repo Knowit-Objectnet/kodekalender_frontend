@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { map } from "lodash"
+import { map } from "lodash-es"
 
 import { usePosts as useUserPosts } from "../../api/requests"
 

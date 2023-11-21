@@ -1,4 +1,4 @@
-import { isNil } from "lodash"
+import { isNil } from "lodash-es"
 import { FC } from "react"
 
 import PostProse from "./PostProse"

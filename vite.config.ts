@@ -1,7 +1,6 @@
 import { defineConfig } from "vite"
 import svgr from "@svgr/rollup"
 import { visualizer } from "rollup-plugin-visualizer"
-import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin"
 import { resolve } from "path"
 import react from "@vitejs/plugin-react"
 
@@ -35,7 +34,6 @@ export default defineConfig({
         ]
       }
     }),
-    process.env.NODE_ENV == 'production' && optimizeLodashImports(),
     visualizer()
   ],
   resolve: {

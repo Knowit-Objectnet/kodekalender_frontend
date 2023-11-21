@@ -1,4 +1,4 @@
-import { forEach, join } from "lodash"
+import { forEach, join } from "lodash-es"
 import { useEffect, FC } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "react-router-dom"

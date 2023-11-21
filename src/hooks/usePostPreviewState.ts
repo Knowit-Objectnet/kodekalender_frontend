@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash"
+import { isEmpty } from "lodash-es"
 import { RefObject, useCallback, useState } from "react"
 
 import { usePostPreview } from "../api/requests"

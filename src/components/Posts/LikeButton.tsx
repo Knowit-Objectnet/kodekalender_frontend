@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { find, some } from "lodash"
+import { find, some } from "lodash-es"
 
 import { ReactComponent as Favorite } from "/assets/svg/icons/heart.svg"
 

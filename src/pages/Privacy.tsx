@@ -1,4 +1,4 @@
-import { map } from "lodash"
+import { map } from "lodash-es"
 
 import Divider from "../components/Divider"
 import { getActiveYear } from "../utils"

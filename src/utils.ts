@@ -1,6 +1,6 @@
 import clsx, { ClassValue } from "clsx"
 import { format } from "date-fns"
-import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, replace, toString, trim } from "lodash"
+import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, replace, toString, trim } from "lodash-es"
 import { twMerge } from "tailwind-merge"
 
 import { Maybe, Nullable } from "../types/utils_types"

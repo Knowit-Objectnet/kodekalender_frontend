@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { forEach, range } from "lodash"
+import { forEach, range } from "lodash-es"
 
 import { DoorsProps } from "./doors_utils"
 

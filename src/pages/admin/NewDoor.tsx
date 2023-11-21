@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash"
+import { isEmpty } from "lodash-es"
 import { FC } from "react"
 import { useNavigate } from "react-router-dom"
 

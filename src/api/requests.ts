@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
-import { clone, findIndex, fromPairs, isEmpty, isNil, keyBy, padStart, property, toString } from "lodash"
+import { clone, findIndex, fromPairs, isEmpty, isNil, keyBy, padStart, property, toString } from "lodash-es"
 
 import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"

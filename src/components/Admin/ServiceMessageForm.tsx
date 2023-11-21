@@ -1,5 +1,5 @@
 import { formatISO } from "date-fns"
-import { isEmpty, keys, map, parseInt, toString } from "lodash"
+import { isEmpty, keys, map, parseInt, toString } from "lodash-es"
 import { FC, memo } from "react"
 import { useForm } from "react-hook-form"
 

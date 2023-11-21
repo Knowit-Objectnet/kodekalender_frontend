@@ -1,5 +1,5 @@
 import { Popover } from "@headlessui/react"
-import { filter, isEmpty, map, some } from "lodash"
+import { filter, isEmpty, map, some } from "lodash-es"
 import { FC } from "react"
 import { FaExclamationTriangle } from "react-icons/fa"
 

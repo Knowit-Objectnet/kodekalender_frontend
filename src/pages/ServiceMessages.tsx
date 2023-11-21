@@ -1,4 +1,4 @@
-import { isEmpty, map } from "lodash"
+import { isEmpty, map } from "lodash-es"
 
 import { useServiceMessages } from "../api/requests"
 import ServiceMessage from "../components/ServiceMessage"

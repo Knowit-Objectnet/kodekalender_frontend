@@ -1,4 +1,4 @@
-import { find } from "lodash"
+import { find } from "lodash-es"
 import { FC, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 

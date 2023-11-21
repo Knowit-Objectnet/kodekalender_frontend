@@ -1,4 +1,4 @@
-import { compact, map, sortBy, values } from "lodash"
+import { compact, map, sortBy, values } from "lodash-es"
 import { FC } from "react"
 
 import { useChallenges } from "../../api/admin/requests"

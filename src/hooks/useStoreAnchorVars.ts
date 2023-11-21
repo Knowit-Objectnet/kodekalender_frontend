@@ -1,4 +1,4 @@
-import { trimStart, split, filter, has, forEach } from "lodash"
+import { trimStart, split, filter, has, forEach } from "lodash-es"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 

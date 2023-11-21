@@ -1,4 +1,4 @@
-import { map, toString } from "lodash"
+import { map, toString } from "lodash-es"
 import { memo, useState, FC } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 import { useForm } from "react-hook-form"

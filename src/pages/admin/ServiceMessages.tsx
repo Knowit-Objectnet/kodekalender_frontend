@@ -1,4 +1,4 @@
-import { isEmpty, map } from "lodash"
+import { isEmpty, map } from "lodash-es"
 import { Link } from "react-router-dom"
 
 import { useDeleteServiceMessage } from "../../api/admin/requests"

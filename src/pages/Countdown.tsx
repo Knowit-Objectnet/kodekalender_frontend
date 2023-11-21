@@ -1,4 +1,4 @@
-import { toInteger } from "lodash"
+import { toInteger } from "lodash-es"
 import { FC, memo } from "react"
 
 import Button from "../components/Button"
