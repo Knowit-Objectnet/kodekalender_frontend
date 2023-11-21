@@ -10,7 +10,6 @@ import { ReactComponent as GithubIcon } from "../../../assets/svg/icons/github.s
 import { ReactComponent as HusIcon } from "../../../assets/svg/icons/hus.svg"
 import { ReactComponent as InfoIcon } from "../../../assets/svg/icons/info.svg"
 import { ReactComponent as InstaIcon } from "../../../assets/svg/icons/insta.svg"
-import { ReactComponent as KnowitLogoIcon } from "../../../assets/svg/icons/Knowit logo.svg"
 import { ReactComponent as LastOppIcon } from "../../../assets/svg/icons/last opp.svg"
 import { ReactComponent as LenkeIcon } from "../../../assets/svg/icons/lenke.svg"
 import { ReactComponent as LoggInnIcon } from "../../../assets/svg/icons/logg inn.svg"
@@ -38,7 +37,6 @@ const ICONS = {
   house: HusIcon,
   info: InfoIcon,
   instagram: InstaIcon,
-  "knowit-logo": KnowitLogoIcon,
   upload: LastOppIcon,
   link: LenkeIcon,
   signin: LoggInnIcon,
