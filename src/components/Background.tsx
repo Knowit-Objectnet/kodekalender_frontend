@@ -4,6 +4,7 @@ import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
 
 import { cl } from "../utils"
 import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
+import Snowflakes from "./Snowflakes"
 
 
 // Outermost container is fixed in screen space, has same size as screen, has no
@@ -70,33 +71,7 @@ const Background: FC = () => {
       </div>
     </>)}
 
-    {/* Snow */}
-    <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
-      <div
-        className={`
-        ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
-        before:blur-[1px]
-        before:w-[300%]
-        before:h-full
-        before:bg-[url('/assets/svgo/Snow.svg')]
-        before:bg-[length:1920px_1080px]
-        before:bg-repeat-x
-      `} />
-    </div>
-
-    {!raffleStarted && (<>
-      <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
-        <div
-          className={`
-          ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
-          before:blur-[1px]
-          before:w-[300%]
-          before:h-full
-          before:bg-[url('/assets/svgo/GoldSnow.svg')]
-          before:bg-[length:1920px_1080px]
-          before:bg-repeat-x
-        `} />
-      </div>
+  <Snowflakes />
 
       {/* Tape */}
       <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
