@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import { FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 import { useWhoami } from "../api/users/requests"
@@ -13,11 +12,11 @@ const SignInButton = () => {
   const { data: whoami } = useWhoami()
 
   const to = isAuthenticated && whoami ? "/users/edit" : "/users/sign_in"
-  const content = isAuthenticated && whoami ? <span><FaUser className="inline-block mr-4 -mt-2" />{whoami.username ?? "Min bruker"}</span>: "Logg inn"
+  const content = isAuthenticated && whoami?.username ? "Min bruker" : "Logg inn"
 
   return (
     <Link to={to}>
-      <Button tabIndex={3} content={content} />
+      <Button icon="user" content={content} />
     </Link>
   )
 }

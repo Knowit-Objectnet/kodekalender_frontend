@@ -25,12 +25,11 @@ const About = () => (
       mulig for å øke vinnersjansene dine!
     </p>
     <p className="text-center">
-      {/* TODO: Fix emoji accessibility (?) */}
       🎄 <em>Lykke til og god jul!</em> 🎄
     </p>
 
     {/* TODO: Hide if signed in */}
-    <Link className="inline-block place-self-center" to="/users">
+    <Link className="inline-block place-self-center" to="/users/sign_in">
       <Button icon="edit">Registrer deg</Button>
     </Link>
   </BasicPage>

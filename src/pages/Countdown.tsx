@@ -1,5 +1,6 @@
 import { toInteger } from "lodash-es"
 import { FC, memo } from "react"
+import { Link } from "react-router-dom"
 
 import Button from "../components/Button"
 import { Header1, Header3 } from "../components/text"
@@ -98,7 +99,9 @@ const Countdown = () => {
 
       <div className="space-x-8">
         <span className="font-bold">Er du Nordpolens flittigste alv?</span>
-        <Button icon="edit">Registrer deg</Button>
+        <Link to="/users/sign_in">
+          <Button icon="edit">Registrer deg</Button>
+        </Link>
       </div>
     </PageContent>
   )

@@ -13,7 +13,7 @@ const githubLabel = "Se hva vi gjør på GitHub"
 const instagramLabel = "Følg oss på Instagram"
 
 const PageFooter: FC = () => (
-  <footer className="mt-19 space-y-6">
+  <footer className="mt-19 mb-10 space-y-6">
     <div className="grid justify-center">
       <ExternalLink href="https://knowit.no">
         <KnowitLogo />
@@ -28,7 +28,7 @@ const PageFooter: FC = () => (
     </div>
 
     <div className="flex gap-12 justify-center align-center">
-      <ExternalLink href="https://github.com/knowit/" aria-label={githubLabel}><Icon name="github" /></ExternalLink>
+      <ExternalLink href="https://github.com/Knowit-Objectnet/" aria-label={githubLabel}><Icon name="github" /></ExternalLink>
       <ExternalLink href="https://www.facebook.com/weareknowit" aria-label={facebookLabel}><Icon name="facebook" /></ExternalLink>
       <ExternalLink href="https://instagram.com/weareknowit" aria-label={instagramLabel}><Icon name="instagram" /></ExternalLink>
       <ExternalLink href="https://twitter.com/knowitnorge" aria-label={twitterLabel}><Icon name="twitter" /></ExternalLink>
