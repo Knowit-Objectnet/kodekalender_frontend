@@ -1,5 +1,6 @@
 import clsx, { ClassValue } from "clsx"
 import { format } from "date-fns"
+import { nb } from "date-fns/locale"
 import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, replace, toString, trim } from "lodash-es"
 import { twMerge } from "tailwind-merge"
 
@@ -30,6 +31,13 @@ export const getDefaultActiveFrom = (door: number) => `${getActiveYear()}-12-${p
 export const getDefaultActiveTo = () => `${getActiveYear()}-12-26T04:00+0100`
 export const getRaffleStart = () => new Date(`${getActiveYear()}-12-01T04:00+0100`)
 export const getRaffleEnd = () => new Date(`${getActiveYear()}-12-26T04:00+0100`)
+
+const DATE_FORMATS = {
+  standard: "do MMMM p",
+  long: "'kl.' p 'den' do MMMM",
+  short: "dd.MM HH:mm"
+} as const
+export const dateFormat = (date: Date, fmt: keyof typeof DATE_FORMATS = "standard") => format(date, DATE_FORMATS[fmt], { locale: nb })
 
 export const squish = (str: string) => replace(trim(str), /\s+/g, " ")
 

@@ -4,7 +4,7 @@ import { FC, memo } from "react"
 import Button from "../components/Button"
 import { Header1, Header3 } from "../components/text"
 import useCountdownParts from "../hooks/useCountdownParts"
-import { cl, getActiveYear } from "../utils"
+import { cl, dateFormat, getActiveYear, getRaffleStart } from "../utils"
 import PageContent from "../components/PageContent"
 
 
@@ -71,6 +71,7 @@ const Countdown = () => {
           text-center
           child:self-center
         `}
+        title={`Første luke åpnes ${dateFormat(getRaffleStart(), "long")}.`}
       >
         <Header3 as="span">Dager</Header3>
         <span />
