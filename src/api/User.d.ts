@@ -8,6 +8,7 @@ type BaseWhoami = {
   is_user: boolean
 
   avatar: string | null
+  opt_in_marketing: boolean
 }
 
 export type GuestWhoami = BaseWhoami & {

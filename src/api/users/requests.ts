@@ -20,6 +20,7 @@ export type SignUpParameters = {
   avatar_url: string | undefined
   password: string
   password_confirmation: string
+  opt_in_marketing?: boolean
 }
 export const useSignUp = () => {
   const queryClient = useQueryClient()
@@ -27,8 +28,8 @@ export const useSignUp = () => {
   return useMutation<SignUpResponse, QueryError<{ errors: Record<keyof SignUpParameters, string[]> }>, SignUpParameters>(
     ["users", "signUp"],
     (payload) => {
-      const formData = new FormData
-      forEach(payload, (value, key) => value && formData.append(`user[${key}]`, value))
+      const formData = new FormData()
+      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value.toString()))
       return axios.post("/users", formData).then(({ data }) => data)
     },
     {
@@ -90,6 +91,7 @@ export type UpdateUserParameters = {
   avatar_url?: string
   password?: string
   password_confirmation?: string
+  opt_in_marketing?: boolean
 }
 export const useUpdateUser = () => {
   const queryClient = useQueryClient()
@@ -100,7 +102,7 @@ export const useUpdateUser = () => {
       console.log("user updating:")
       console.log({ payload })
       const formData = new FormData
-      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value))
+      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value.toString()))
       return axios.patch("/users", formData).then(({ data }) => data)
     },
     {
