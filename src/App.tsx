@@ -1,6 +1,5 @@
-import { lazy, memo, Suspense, useState } from "react"
+import { lazy, memo, Suspense, useEffect, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
-import { FaCogs } from "react-icons/fa"
 
 import Privacy from "./pages/Privacy"
 import Door from "./pages/Door"
@@ -21,33 +20,44 @@ import About from "./pages/About"
 import Career from "./pages/Career"
 import Contact from "./pages/Contact"
 import PageFooter from "./components/PageFooter"
-import Admin from "./pages/Admin"
-import Users from "./pages/User"
+import Icon, { IconProps } from "./components/Icons/Icon"
 
+
+const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
+  const [delayed, setDelayed] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setDelayed(false), 250)
+    return () => clearTimeout(t)
+  }, [setDelayed])
+
+  if (delayed)
+    return null
+
+  return (
+    <Page>
+      <Icon
+        name={icon}
+        className={`
+        fixed
+        top-1/2
+        left-1/2
+        w-64
+        h-64
+        translate-x-[-50%]
+        translate-y-[-50%]
+        text-purple-100/70
+        animate-pulse
+      `} />
+    </Page>
+  )
+})
 
 const LazyAdmin = () => {
   const Component = lazy(() => import("./pages/Admin"))
 
-  const Fallback = (
-    <Page>
-      <FaCogs
-        className={`
-          fixed
-          top-1/2
-          left-1/2
-          w-64
-          h-64
-          translate-x-[-50%]
-          translate-y-[-50%]
-          text-white/70
-          animate-pulse
-        `}
-      />
-    </Page>
-  )
-
   return (
-    <Suspense fallback={Fallback}>
+    <Suspense fallback={<Loader icon="edit" />}>
       <Component />
     </Suspense>
   )
@@ -57,7 +67,9 @@ const LazyUser = () => {
   const Component = lazy(() => import("./pages/User"))
 
   return (
-    <Component />
+    <Suspense fallback={<Loader icon="user" />}>
+      <Component />
+    </Suspense>
   )
 }
 
@@ -104,8 +116,8 @@ const App = () => {
         <Route path="/career" element={<Career />} />
         <Route path="/service_messages" element={<ServiceMessages />} />
 
-        <Route path="/admin/*" element={<Admin />} />
-        <Route path="/users/*" element={<Users />} />
+        <Route path="/admin/*" element={<LazyAdmin />} />
+        <Route path="/users/*" element={<LazyUser />} />
 
         {/* 404? - Route to main view */}
         <Route element={<Navigate to="/" />} />
