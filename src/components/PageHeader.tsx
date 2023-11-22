@@ -73,7 +73,7 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
             className
           )}
         >
-          <div>
+          <div className={cl({ hidden: import.meta.env.VITE_ENABLE_LIGHT_MODE !== "true" })}>
             <ThemeButton />
           </div>
 
