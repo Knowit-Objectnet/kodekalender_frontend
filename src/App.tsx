@@ -78,7 +78,7 @@ const App = () => {
       id="content-container"
       className={`
         grid
-        grid-rows-[auto_1fr_auto_auto]
+        grid-rows-[auto_1fr_auto]
         min-h-screen
         items-center
         justify-items-center
