@@ -38,6 +38,8 @@ const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
 const TAPE_CONTAINER_CLASSES = `
   ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
 
+  before:drop-shadow-xl
+
   before:w-[300%]
   before:h-full
   before:translate-x-[-33%]
@@ -51,6 +53,7 @@ const Background: FC<BackgroundProps> = () => (<>
   <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-5]`}>
     <StreetLamp
       className={`
+        blur-[.5px]
         absolute
         left-1/2
         top-1/2
@@ -66,6 +69,7 @@ const Background: FC<BackgroundProps> = () => (<>
     <div
       className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
+        before:blur-[1px]
         before:w-[500%]
         before:h-full
         before:bg-[url('/assets/img/Snø.png')]
@@ -79,6 +83,7 @@ const Background: FC<BackgroundProps> = () => (<>
     <div
       className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
+        before:blur-[1px]
         before:w-[500%]
         before:h-full
         before:bg-[url('/assets/img/Gull.png')]
