@@ -6,6 +6,8 @@ import { cl } from "../utils"
 import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 
 
+// Outermost container is fixed in screen space, has same size as screen, has no
+// overflow
 const BACKGROUND_WRAPPER_CLASSES = `
   fixed
   h-screen
@@ -77,7 +79,6 @@ const Background: FC = () => {
         before:bg-[url('/assets/svgo/Snow.svg')]
         before:bg-[length:1920px_1080px]
         before:bg-repeat-x
-        before:bg-opacity-10
       `} />
     </div>
 

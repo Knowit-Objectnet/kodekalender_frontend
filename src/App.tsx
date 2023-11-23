@@ -21,6 +21,7 @@ import Contact from "./pages/Contact"
 import PageFooter from "./components/PageFooter"
 import Icon, { IconProps } from "./components/Icons/Icon"
 import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
+import ContentBackground from "./components/ContentBackground"
 
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
@@ -105,6 +106,7 @@ const App = () => {
     <div
       id="content-container"
       className={`
+        relative
         grid
         grid-rows-[auto_1fr_auto]
         min-h-screen
@@ -112,6 +114,7 @@ const App = () => {
         justify-items-center
       `}
     >
+      <ContentBackground />
       <PageHeader setLeaderboardHidden={setLeaderboardHidden} />
 
       <Routes>
