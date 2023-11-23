@@ -34,8 +34,21 @@ const WelcomeBack: FC = () => {
   const fieldId = useId()
 
   return (
-    <BasicPage title="Velkommen tilbake!" onSubmit={handleSubmit(onSubmit)} containerClassName="gap-16">
+    <BasicPage title="Velkommen tilbake!" onSubmit={handleSubmit(onSubmit)} containerClassName="gap-16 text-justify">
       <FormProvider {...formMethods}>
+        <p>
+          Så gøy at du blir med i kodekalenderen vår i år igjen! Det er like
+          moro å arrangere hvert år (tross noen sene kvelder for å dra det i
+          land) og snart er vi i gang! Du vil motta en e-post når vi legger ut
+          den første luken i tilfelle du glemmer at det er blitt desember
+          allerede.
+        </p>
+
+        <p className="mb-20">
+          Vi gleder oss til å se hva slags gøyale løsninger dere kommer på i år.
+          Ses i kommentarfeltet! 🧝‍♂🧝‍♀️️🧝🎄
+        </p>
+
         <p>{getOptInMarketingNote(true)}</p>
 
         <FormElementCustom

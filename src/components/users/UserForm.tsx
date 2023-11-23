@@ -26,15 +26,15 @@ const DELETE_USER_CONFIRM = squish(`
   Er du sikker på at du vil slette brukeren din? Du vil ikke lenger være med i premietrekningen. Dette kan ikke reverseres.
 `)
 
-export const getOptInMarketingLabel = constant("Samtykker du til at vi kan kontakte deg etter konkurransen?")
+export const getOptInMarketingLabel = constant("Samtykker du til at vi kan kontakte deg om jobbmuligheter etter konkurransen?")
 export const getOptInMarketingNote = (editLater: boolean) => (
   `Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av for hvorvidt du ønsker å motta slik e-post.${editLater ? " Du kan endre dette senere." : ""}`
 )
 
 type UserFormProps = {
-
   user?: LoggedInWhoami
-  submit: (data: any) => void
+  // TODO: Here be dragons
+  submit: (data: any, options?: any) => void
   submitError: QueryError<{ errors: Record<keyof SignUpParameters, string[]> }> | null
   newForm?: boolean
 }
@@ -90,11 +90,9 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
     }
 
     submit(
-      newForm
-        ? data
-
-        // Submit only dirty data to avoid overwriting with null values
-        : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true)
+      // Submit only dirty data to avoid overwriting with null values
+      (newForm ? data : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true)),
+      newForm ? { onSuccess: () => navigate("/users/welcome") } : undefined
     )
   }
 
