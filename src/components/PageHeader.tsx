@@ -3,15 +3,15 @@ import { Link } from "react-router-dom"
 import { every, isEmpty, some } from "lodash-es"
 
 import { useIsAdmin } from "../hooks/useIsAdmin"
-import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
+import { useServiceMessages } from "../api/requests"
 import { cl, getActiveYear } from "../utils"
-import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 
 import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
 import ThemeButton from "./ThemeButton"
 import { Header2 } from "./text"
+import ShowLeaderboardButton from "./ShowLeaderboardButton"
 
 
 const ServiceMessageBadge = () => {
@@ -40,23 +40,22 @@ type HeaderProps = {
 const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   const isAdmin = useIsAdmin()
   const { data: serviceMessages } = useServiceMessages()
-  const prefetchLeaderboard = usePrefetchLeaderboard()
-  const raffleStarted = useIsRaffleStarted()
 
   return (
     <header className="h-60 w-full px-20">
       <nav className="h-full flex flex-cols align-center gap-4 md:gap-16">
+        {/* Go Home */}
         <Link to="/" className="flex flex-col justify-center child:leading-none child:text-center" tabIndex={1}>
           <div className="font-bold">Kodekalender</div>
           <Header2 as="div">{getActiveYear()}</Header2>
         </Link>
+
         <div
           className={cl(
             `
               float-right
-              mt-1
-              md:mt-2
               w-full
+
               flex
               flex-col
               gap-4
@@ -83,13 +82,7 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
           </div>
 
           <div>
-            {raffleStarted && (<>
-              {/* Link to separate page on mobile */}
-              <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
-              <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
-                <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
-              </Link>
-            </>)}
+            <ShowLeaderboardButton setLeaderboardHidden={setLeaderboardHidden} tabIndex={2} />
 
             {!isEmpty(serviceMessages) && (
               // Only show link to service messages if there are any
@@ -102,8 +95,7 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
             {isAdmin && (
               <>
                 <Link to="/admin" title="Super secret admin pages">
-                  <Button className="">Adminside</Button>
-                  {/* <Button className="md:hidden"><FaLock /></Button> */}
+                  <Button icon="edit">Adminside</Button>
                 </Link>
               </>
             )}

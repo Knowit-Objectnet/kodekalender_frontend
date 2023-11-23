@@ -29,12 +29,13 @@
     // Set theme class as early as possible to avoid FOUC. Default to dark mode,
     // check for system preference only if enabled at build time.
     let themeIsLight = false
-    if (import.meta.env.VITE_ENABLE_LIGHT_MODE === 'true') {
-      themeIsLight = localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)
+    // if (%VITE_LIGHT_MODE_ENABLED% === "true") {
+    if ("false" === "true") {
+      themeIsLight = localStorage.theme === "light" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
     }
 
-    document.documentElement.classList.toggle('light', themeIsLight)
-    document.documentElement.classList.toggle('dark', !themeIsLight)
+    document.documentElement.classList.toggle("light", themeIsLight)
+    document.documentElement.classList.toggle("dark", !themeIsLight)
   </script>
 
   <meta charset="utf-8" />

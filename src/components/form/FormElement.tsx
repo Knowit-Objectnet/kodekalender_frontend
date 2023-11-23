@@ -1,11 +1,10 @@
-import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, PropsWithChildren } from "react"
-
-import { cl } from "../../utils"
+import { forwardRef, PropsWithChildren, useId } from "react"
 
 import FormElementCustom from "./FormElementCustom"
+import FormInputElement, { FormInputElementProps } from "./FormInputElement"
 
 
-type FormElementProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
+type FormElementProps = FormInputElementProps & {
   label: string
   note?: string
   disabled?: boolean
@@ -13,19 +12,28 @@ type FormElementProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
 }
 
 const FormElement = forwardRef<HTMLInputElement, PropsWithChildren<FormElementProps>>(
-  ({ label, note, disabled, className, labelClassName, children, type, ...inputProps }, ref) => (
-    <FormElementCustom label={label} note={note} disabled={disabled} className={labelClassName}>
-      <input
-        ref={ref}
-        className={cl("block", type === "checkbox" ? "form-checkbox" : "form-input", disabled && "border-gray/30", className)}
+  ({ label, note, labelClassName, disabled, children, ...inputProps }, ref) => {
+    const id = useId()
+
+    return (
+      <FormElementCustom
+        htmlFor={id}
+        label={label}
+        note={note}
         disabled={disabled}
-        type={type}
-        {...inputProps}
+        className={labelClassName}
       >
-        {children}
-      </input>
-    </FormElementCustom>
-  )
+        <FormInputElement
+          id={id}
+          ref={ref}
+          disabled={disabled}
+          {...inputProps}
+        >
+          {children}
+        </FormInputElement>
+      </FormElementCustom>
+    )
+  }
 )
 
 export default FormElement

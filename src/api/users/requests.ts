@@ -1,5 +1,5 @@
 import axios from "axios"
-import { forEach, isNil } from "lodash-es"
+import { forEach, isBoolean, isNil } from "lodash-es"
 import { useQueryClient, useMutation, useQuery } from "react-query"
 
 import { LoggedInWhoami, Whoami } from ".."
@@ -12,6 +12,13 @@ export const useWhoami = () => (
   useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami, { staleTime: Infinity })
 )
 
+const mapFormDataValue = (value: string | boolean | File) => {
+  if (isBoolean(value))
+    return value ? "1" : "0"
+
+  return value
+}
+
 type SignUpResponse = LoggedInWhoami
 export type SignUpParameters = {
   email: string
@@ -20,7 +27,7 @@ export type SignUpParameters = {
   avatar_url: string | undefined
   password: string
   password_confirmation: string
-  opt_in_marketing?: boolean
+  opt_in_marketing: boolean
 }
 export const useSignUp = () => {
   const queryClient = useQueryClient()
@@ -29,7 +36,7 @@ export const useSignUp = () => {
     ["users", "signUp"],
     (payload) => {
       const formData = new FormData()
-      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value.toString()))
+      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value)))
       return axios.post("/users", formData).then(({ data }) => data)
     },
     {
@@ -102,7 +109,7 @@ export const useUpdateUser = () => {
       console.log("user updating:")
       console.log({ payload })
       const formData = new FormData
-      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value.toString()))
+      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value)))
       return axios.patch("/users", formData).then(({ data }) => data)
     },
     {

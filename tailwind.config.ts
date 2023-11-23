@@ -54,13 +54,18 @@ export default {
     },
     colors: {
       ...colors,
-      "current": "currentColor"
+      "current": "currentColor",
+      "inherit": "inherit",
+      "transparent": "transparent"
     },
 
     // Theme extension
     extend: {
       width: {
         "avatar": "4.5rem"
+      },
+      maxWidth: {
+        ...spacing
       },
       margin: {
         "avatar": "4.5rem",

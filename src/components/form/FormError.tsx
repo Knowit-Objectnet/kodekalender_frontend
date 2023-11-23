@@ -4,8 +4,8 @@ import { FieldError } from "react-hook-form"
 const FormError = ({ error }: { error: FieldError | undefined }) => (
   error
     ? (
-      <div className="!mt-0">
-        <em className="text-red-700">{error.message}</em>
+      <div>
+        <strong className="text-red-700">{error.message}</strong>
       </div>
       )
     : null

@@ -1,11 +1,8 @@
 import { defineConfig } from "vite"
 import svgr from "@svgr/rollup"
 import { visualizer } from "rollup-plugin-visualizer"
-import { resolve } from "path"
 import react from "@vitejs/plugin-react"
 
-
-const projectRootDir = resolve(__dirname)
 
 export default defineConfig({
   server: {
@@ -21,8 +18,8 @@ export default defineConfig({
         plugins: [
           {
             name: 'preset-default',
-            params:{
-              overrides:{
+            params: {
+              overrides: {
                 removeViewBox: false, // https://github.com/svg/svgo/issues/1128
                 cleanupIds: false,
                 cleanupNumericValues: { floatPrecision: 2 },

@@ -6,15 +6,22 @@ import { Header1, Header2 } from "../components/text"
 import Page from "./Page"
 
 
-type BasicPageProps = {
+export type BasicPageProps = {
   title: string
   className?: string
+  containerClassName?: string
+  onSubmit?: (data: any) => void
 }
 
-const BasicPage: FCWithChildren<BasicPageProps> = ({ title, className, children }) => (
-  <Page
-    className={cl(
-      `
+const BasicPage: FCWithChildren<BasicPageProps> = ({ title, className, containerClassName, onSubmit, children }) => {
+  const ContainerComponent = onSubmit ? "form" : "div"
+  const containerProps = onSubmit ? { onSubmit } : {}
+  const containerClasses = onSubmit ? "gap-6 mx-32" : "gap-12"
+
+  return (
+    <Page
+      className={cl(
+        `
         bg-purple-800
         rounded-[1.25rem]
 
@@ -24,17 +31,18 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({ title, className, children 
         px-24
         py-27
       `,
-      className
-    )}
-  >
-    <Header1 as={Header2} className="text-center">{title}</Header1>
+        className
+      )}
+    >
+      <Header1 as={Header2} className="text-center">{title}</Header1>
 
-    <Divider bgClasses="my-12 bg-purple-500" />
+      <Divider bgClasses="my-12 bg-purple-500" />
 
-    <div className="grid grid-flow-row gap-12">
-      {children}
-    </div>
-  </Page>
-)
+      <ContainerComponent className={cl("grid grid-flow-row", containerClasses, containerClassName)} {...containerProps }>
+        {children}
+      </ContainerComponent>
+    </Page>
+  )
+}
 
 export default BasicPage

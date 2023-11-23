@@ -5,8 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { SignInParameters, useSignIn } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
 import Button from "../../components/Button"
-
-import UserPage from "./UserPage"
+import BasicPage from "../BasicPage"
 
 
 const SignIn: FC = () => {
@@ -22,35 +21,34 @@ const SignIn: FC = () => {
   const email = watch("email")
 
   return (
-    <UserPage title="Logg inn" onSubmit={handleSubmit(onSubmit)}>
-      <div>
+    <BasicPage title="Logg inn" containerClassName="gap-24" onSubmit={handleSubmit(onSubmit)}>
+      <div className="w-full max-w-200 mx-auto flex flex-col items-center gap-6">
         <FormElement
           autoFocus
           label="E-post"
           type="email"
-          className="w-full"
           {...register("email")}
         />
         <FormElement
           label="Passord"
           type="password"
-          labelClassName="mt-8"
-          className="w-full"
           {...register("password")}
         />
 
         {error && <div><em className="text-red-700">{error.error}</em></div>}
 
-        <Button type="submit" className="mt-12 block mx-auto" content="Logg inn" />
+        <Button primary type="submit" icon="sign-in" content="Logg inn" />
+      </div>
 
-        <Link to="/users/sign_up" className="mt-12 block text-center">
-          <Button type="button" sm content="Ny bruker?" />
+      <div className="flex gap-12 justify-center">
+        <Link to="/users/sign_up">
+          <Button icon="edit" content="Ny bruker?" />
         </Link>
-        <Link to={`/users/lost_password?email=${encodeURIComponent(email)}`} className="mt-4 block text-center">
-          <Button type="button" sm content="Glemt passord?" />
+        <Link to={`/users/lost_password?email=${encodeURIComponent(email || "")}`}>
+          <Button icon="mail" content="Glemt passord?" />
         </Link>
       </div>
-    </UserPage>
+    </BasicPage>
   )
 }
 
