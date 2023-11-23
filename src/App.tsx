@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense, useEffect, useState } from "react"
+import { lazy, memo, Suspense, useCallback, useEffect, useMemo, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
 import Privacy from "./pages/Privacy"
@@ -77,13 +77,27 @@ const App = () => {
   useStoreAnchorVars()
 
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
-  const raffleStarted = useIsRaffleStarted()
+  const hideLeaderboard = useCallback(() => setLeaderboardHidden(true), [setLeaderboardHidden])
 
-  return (<>
+  const raffleStarted = useIsRaffleStarted()
+  const raffleRoutes = useMemo(() => (
+    raffleStarted
+      ? (<>
+        <Route path="/" element={<Doors />} />
+        <Route path="/luke/:door" element={<Door />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/solutions" element={<Solutions />} />
+      </>)
+      : <Route path="/" element={<Countdown />} />
+  ), [raffleStarted])
+
+  // Memoize entire application tree so we don't re-render anything when the
+  // useIsRaffleStarted timer triggers.
+  const content = useMemo(() => (<>
     <Background />
     <LeaderBoardAside
       hidden={leaderboardHidden}
-      closeHandler={() => setLeaderboardHidden(true)}
+      closeHandler={hideLeaderboard}
     />
 
     <div
@@ -99,16 +113,7 @@ const App = () => {
       <PageHeader setLeaderboardHidden={setLeaderboardHidden} />
 
       <Routes>
-        {raffleStarted
-           ? (<>
-             <Route path="/" element={<Doors />} />
-             <Route path="/luke/:door" element={<Door />} />
-             <Route path="/leaderboard" element={<Leaderboard />} />
-             <Route path="/solutions" element={<Solutions />} />
-           </>) : (
-             <Route path="/" element={<Countdown />} />
-           )
-        }
+        {raffleRoutes}
 
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
@@ -125,7 +130,9 @@ const App = () => {
 
       <PageFooter />
     </div>
-  </>)
+  </>), [leaderboardHidden, hideLeaderboard, setLeaderboardHidden, raffleRoutes])
+
+  return content
 }
 
 export default memo(App)

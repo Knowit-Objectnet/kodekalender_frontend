@@ -7,8 +7,7 @@ import { ResetPasswordParameters, useResetPassword } from "../../api/users/reque
 import FormElement from "../../components/form/FormElement"
 import Button from "../../components/Button"
 import FormError from "../../components/form/FormError"
-
-import UserPage from "./UserPage"
+import BasicPage from "../BasicPage"
 
 
 const ResetPassword: FC = () => {
@@ -31,19 +30,17 @@ const ResetPassword: FC = () => {
 
   if (isSubmitSuccessful && !isLoading &&!error) {
     return (
-      <UserPage title="Passord tilbakestilt">
+      <BasicPage title="Passord tilbakestilt">
         <div className="text-center">Du kan nå logge inn med ditt nye passord.</div>
-      </UserPage>
+      </BasicPage>
     )
   }
 
   return (
-    <UserPage title="Tilbakestill passord" onSubmit={handleSubmit(onSubmit)}>
+    <BasicPage title="Tilbakestill passord" onSubmit={handleSubmit(onSubmit)}>
       <FormElement
         label="Passord"
         type="password"
-        labelClassName="mt-8"
-        className="w-full"
         {...register("password", { required: true })}
       />
       <FormError error={errors.password} />
@@ -51,14 +48,12 @@ const ResetPassword: FC = () => {
       <FormElement
         label="Bekreft passord"
         type="password"
-        labelClassName="mt-8"
-        className="w-full"
         {...register("password_confirmation", { required: true })}
       />
       <FormError error={errors.password_confirmation} />
 
       <Button type="submit" className="block mx-auto" content="Tilbakestill passord" />
-    </UserPage>
+    </BasicPage>
   )
 }
 

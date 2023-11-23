@@ -1,12 +1,11 @@
 import { toInteger } from "lodash-es"
 import { FC, memo } from "react"
-import { Link } from "react-router-dom"
 
-import Button from "../components/Button"
 import { Header1, Header3 } from "../components/text"
 import useCountdownParts from "../hooks/useCountdownParts"
 import { cl, dateFormat, getActiveYear, getRaffleStart } from "../utils"
 import PageContent from "../components/PageContent"
+import RegisterButton from "../components/RegisterButton"
 
 
 type TimerDisplayProps = {
@@ -99,9 +98,7 @@ const Countdown = () => {
 
       <div className="space-x-8">
         <span className="font-bold">Er du Nordpolens flittigste alv?</span>
-        <Link to="/users/sign_in">
-          <Button icon="edit">Registrer deg</Button>
-        </Link>
+        <RegisterButton />
       </div>
     </PageContent>
   )

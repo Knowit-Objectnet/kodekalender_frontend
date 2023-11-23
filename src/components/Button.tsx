@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode } from "react"
 
 import { cl } from "../utils"
+import { Nullable } from "../../types/utils_types"
 
 import Icon, { IconProps } from "./Icons/Icon"
 
@@ -10,7 +11,8 @@ type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   content?: ReactNode
   disabled?: boolean
   sm?: boolean
-  icon?: IconProps["name"]
+  primary?: boolean
+  icon?: Nullable<IconProps["name"]>
   className?: string
 }
 
@@ -18,22 +20,17 @@ const Button: FC<ButtonProps> = ({
   content,
   disabled,
   sm = false,
+  primary = false,
   icon,
   children,
   className,
+  type = "button",
   ...restProps
 }) => (
   <button
     className={cl(
       `
         bg-purple-700
-        hover:bg-purple-900
-        hover:ring
-        hover:ring-purple-700
-        active:bg-purple-500
-        focus:outline-none
-        focus:ring
-        focus:ring-purple-100
 
         px-12
         py-3
@@ -44,11 +41,28 @@ const Button: FC<ButtonProps> = ({
         whitespace-nowrap
         align-middle
       `,
-      sm && "sm:text-sm",
-      disabled && "text-opacity-30",
+      !disabled && `
+        hover:bg-purple-900
+        hover:ring
+        hover:ring-purple-700
+
+        active:bg-purple-500
+
+        focus:outline-none
+        focus:ring
+        focus:ring-purple-100
+      `,
+      disabled && `
+        text-white/30
+      `,
+      {
+        "sm:text-sm": sm,
+        "bg-purple-600": primary
+      },
       className
     )}
     disabled={disabled}
+    type={type}
     {...restProps}
   >
     {icon && (<>

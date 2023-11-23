@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
 import { ReactComponent as BellIcon } from "../../../assets/svg/icons/bell.svg"
 import { ReactComponent as BellSmIcon } from "../../../assets/svg/icons/bell-sm.svg"
@@ -13,6 +13,7 @@ import { ReactComponent as InstaIcon } from "../../../assets/svg/icons/insta.svg
 import { ReactComponent as LastOppIcon } from "../../../assets/svg/icons/last opp.svg"
 import { ReactComponent as LenkeIcon } from "../../../assets/svg/icons/lenke.svg"
 import { ReactComponent as LoggInnIcon } from "../../../assets/svg/icons/logg inn.svg"
+import { ReactComponent as LoggUtIcon } from "../../../assets/svg/icons/logg ut.svg"
 import { ReactComponent as LukkIcon } from "../../../assets/svg/icons/lukk.svg"
 import { ReactComponent as MailIcon } from "../../../assets/svg/icons/mail.svg"
 import { ReactComponent as MenyIcon } from "../../../assets/svg/icons/meny.svg"
@@ -39,7 +40,8 @@ const ICONS = {
   instagram: InstaIcon,
   upload: LastOppIcon,
   link: LenkeIcon,
-  signin: LoggInnIcon,
+  "sign-in": LoggInnIcon,
+  "sign-out": LoggUtIcon,
   close: LukkIcon,
   mail: MailIcon,
   menu: MenyIcon,
@@ -52,12 +54,12 @@ const ICONS = {
   twitter: TwitterIcon
 }
 
-export type IconProps = {
+export type IconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
   name: keyof typeof ICONS
   className?: string
 }
 
-const Icon: FC<IconProps> = ({ name, className }) => {
+const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
   const IconComponent = ICONS[name]
 
   return (
@@ -67,6 +69,8 @@ const Icon: FC<IconProps> = ({ name, className }) => {
           inline-block
           align-middle
 
+          relative
+
           w-16
           h-16
 
@@ -75,8 +79,9 @@ const Icon: FC<IconProps> = ({ name, className }) => {
         `,
         className
       )}
+      {...rest}
     >
-      <IconComponent />
+      <IconComponent className="absolute w-full h-full -left-1 -top-1" />
     </i>
   )
 }

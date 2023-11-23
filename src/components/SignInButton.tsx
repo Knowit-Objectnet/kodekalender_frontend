@@ -11,12 +11,14 @@ const SignInButton = () => {
   const { isAuthenticated } = useContext(AuthContext)
   const { data: whoami } = useWhoami()
 
-  const to = isAuthenticated && whoami ? "/users/edit" : "/users/sign_in"
-  const content = isAuthenticated && whoami?.username ? "Min bruker" : "Logg inn"
+  const [to, icon, content] =
+    isAuthenticated && whoami
+      ? ["/users/edit", "user", "Min bruker"] as const
+      : ["/users/sign_in", "sign-in", "Logg inn"] as const
 
   return (
     <Link to={to}>
-      <Button icon="user" content={content} />
+      <Button icon={icon} content={content} />
     </Link>
   )
 }

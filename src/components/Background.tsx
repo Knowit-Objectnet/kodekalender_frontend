@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 
 import { ReactComponent as StreetLamp } from "/assets/svg/Streetlamp.svg"
 
@@ -121,4 +121,4 @@ const Background: FC<BackgroundProps> = () => (<>
   </div>
 </>)
 
-export default Background
+export default memo(Background)

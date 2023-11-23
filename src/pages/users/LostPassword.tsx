@@ -5,8 +5,7 @@ import { useLocation } from "react-router-dom"
 import { InitiateResetPasswordParameters, useInitiateResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
 import Button from "../../components/Button"
-
-import UserPage from "./UserPage"
+import BasicPage from "../BasicPage"
 
 
 const LostPassword: FC = () => {
@@ -22,17 +21,17 @@ const LostPassword: FC = () => {
 
   if (isSubmitSuccessful && !isLoading && !error) {
     return (
-      <UserPage title="Tilbakestillingsinstrukser sendt">
+      <BasicPage title="Tilbakestillingsinstrukser sendt">
         <div className="text-center">
           Dersom det finnes en konto med e-postadressen du oppga vil du snarlig
           få en e-post med instrukser for å tilbakestille ditt passord.
         </div>
-      </UserPage>
+      </BasicPage>
     )
   }
 
   return (
-    <UserPage title="Glemt passord" onSubmit={handleSubmit(onSubmit)}>
+    <BasicPage title="Glemt passord" onSubmit={handleSubmit(onSubmit)}>
       <FormElement
         autoFocus
         label="E-post"
@@ -42,8 +41,8 @@ const LostPassword: FC = () => {
         {...register("email")}
       />
 
-      <Button type="submit" className="block mx-auto" content="Send tilbakestillingsinstrukser" />
-    </UserPage>
+      <Button type="submit" content="Send tilbakestillingsinstrukser" />
+    </BasicPage>
   )
 }
 
