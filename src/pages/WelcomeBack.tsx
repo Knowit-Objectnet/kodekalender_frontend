@@ -1,4 +1,3 @@
-import { isNil } from "lodash-es"
 import { FC, useId } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
@@ -20,21 +19,9 @@ const WelcomeBack: FC = () => {
   const navigate = useNavigate()
 
   const formMethods = useForm<WelcomeBackForm>()
-  const {
-    handleSubmit,
-    setError,
-    clearErrors,
-    formState: { isSubmitting, isDirty, errors }
-  } = formMethods
+  const { handleSubmit, formState: { isSubmitting, isDirty, errors } } = formMethods
 
   const onSubmit = ({ opt_in_marketing }: WelcomeBackForm) => {
-    if (isNil(opt_in_marketing)) {
-      setError("opt_in_marketing", { message: "Du må velge enten Ja eller Nei" })
-      return
-    } else {
-      clearErrors("opt_in_marketing")
-    }
-
     updateUser(
       { opt_in_marketing },
       {

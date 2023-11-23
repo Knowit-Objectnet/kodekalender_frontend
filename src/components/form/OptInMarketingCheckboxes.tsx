@@ -34,11 +34,9 @@ type OptInMarketingCheckboxesProps = {
 }
 
 const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id, required = false, className }) => {
-  const { watch, setValue, control } = useFormContext<{ opt_in_marketing?: boolean }>()
+  const { setValue, control } = useFormContext<{ opt_in_marketing?: boolean }>()
 
   const { field: { value } } = useController({ control, name: NAME, rules: { validate: (value) => isNil(value) ? "Påkrevd" : true } })
-
-  console.log(watch("opt_in_marketing"))
 
   return (
     <div
