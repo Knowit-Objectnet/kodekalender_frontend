@@ -18,7 +18,10 @@ const SignOutButton = () => {
   return (
     <Button
       tabIndex={4}
-      onClick={() => signOut(null, { onSuccess: () => navigate("/") })}
+      onClick={() => {
+        if (window.confirm("Er du sikker på at du vil logge ut?"))
+          signOut(null, { onSuccess: () => navigate("/") })
+      }}
       content="Logg ut"
     />
   )
