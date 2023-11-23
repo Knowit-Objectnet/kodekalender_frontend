@@ -31,7 +31,7 @@ jobs:
 
       - name: Build
         env:
-          VITE_BACKEND_HOST: ${{ secrets.VITE_BACKEND_HOST }}
+          VITE_BACKEND_HOST: ${{ secrets.PROD_VITE_BACKEND_HOST }}
         run: |
           yarn build
 
