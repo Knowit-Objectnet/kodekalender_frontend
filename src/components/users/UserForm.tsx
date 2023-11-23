@@ -28,7 +28,7 @@ const DELETE_USER_CONFIRM = squish(`
 
 export const getOptInMarketingLabel = constant("Samtykker du til at vi kan kontakte deg etter konkurransen?")
 export const getOptInMarketingNote = (editLater: boolean) => (
-  `Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av hvorvidt du ønsker å motta slik e-post.${editLater ? " Du kan endre dette senere." : ""}`
+  `Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av for hvorvidt du ønsker å motta slik e-post.${editLater ? " Du kan endre dette senere." : ""}`
 )
 
 type UserFormProps = {
