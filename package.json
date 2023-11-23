@@ -6,11 +6,12 @@
   "scripts": {
     "serve": "vite",
     "preview": "vite preview --open --port 8080",
-    "build": "vite build",
+    "build": "yarn svgo && vite build",
     "lint": "eslint --ext .tsx,.ts,.d.ts,.jsx,.js  .",
     "lint-fix": "eslint --ext .tsx,.ts,.d.ts,.jsx,.js  --fix .",
     "typecheck": "tsc",
-    "typecheck-ci": "tsc --noEmit"
+    "typecheck-ci": "tsc --noEmit",
+    "svgo": "svgo --config svgo.config.cjs --pretty --indent 0 --recursive --folder assets/svg --output assets/svgo"
   },
   "dependencies": {
     "@fontsource-variable/nunito": "^5.0.16",

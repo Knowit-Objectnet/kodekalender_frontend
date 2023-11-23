@@ -1,6 +1,6 @@
 import { FC, memo } from "react"
 
-import { ReactComponent as StreetLamp } from "/assets/svg/Streetlamp.svg"
+import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
 
 import { cl } from "../utils"
 
@@ -41,16 +41,17 @@ const TAPE_CONTAINER_CLASSES = `
   before:h-full
   before:translate-x-[-33%]
 
-  before:bg-[url('/assets/svg/Teip.svg')]
+  before:bg-[url('/assets/svgo/Teip.svg')]
   before:bg-[length:1600px_80px]
   before:bg-repeat-x
 `
 
 const Background: FC = () => (<>
-  <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-5]`}>
-    <StreetLamp
+  {/* Streetlamp */}
+  <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute z-[-5]`}>
+    <Streetlamp
       className={`
-        blur-[.5px]
+        blur-[.3px]
         absolute
         left-1/2
         top-1/2
@@ -62,16 +63,18 @@ const Background: FC = () => (<>
     />
   </div>
 
+  {/* Snow */}
   <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
     <div
       className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
         before:blur-[1px]
-        before:w-[500%]
+        before:w-[300%]
         before:h-full
-        before:bg-[url('/assets/img/Snø.png')]
-        before:bg-[length:1280px_850px]
+        before:bg-[url('/assets/svgo/Snow.svg')]
+        before:bg-[length:1920px_1080px]
         before:bg-repeat-x
+        before:bg-opacity-10
       `}
     />
   </div>
@@ -81,15 +84,16 @@ const Background: FC = () => (<>
       className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
         before:blur-[1px]
-        before:w-[500%]
+        before:w-[300%]
         before:h-full
-        before:bg-[url('/assets/img/Gull.png')]
-        before:bg-[length:1280px_850px]
+        before:bg-[url('/assets/svgo/GoldSnow.svg')]
+        before:bg-[length:1920px_1080px]
         before:bg-repeat-x
       `}
     />
   </div>
 
+  {/* Tape */}
   <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
     <div
       className={`

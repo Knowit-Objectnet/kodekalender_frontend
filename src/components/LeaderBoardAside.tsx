@@ -1,7 +1,7 @@
 import { FC, useCallback, useRef, useState } from "react"
 import { Transition } from "@headlessui/react"
 
-import { ReactComponent as Close } from "/assets/svg/icons/close.svg"
+import { ReactComponent as Close } from "/assets/svgo/icons/close.svg"
 
 import useOnClickOutside from "../hooks/useOnClickOutside"
 
