@@ -1,8 +1,9 @@
-import { FC, memo } from "react"
+import { FC, memo, useMemo } from "react"
 
 import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
 
 import { cl } from "../utils"
+import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 
 
 const BACKGROUND_WRAPPER_CLASSES = `
@@ -46,11 +47,14 @@ const TAPE_CONTAINER_CLASSES = `
   before:bg-repeat-x
 `
 
-const Background: FC = () => (<>
-  {/* Streetlamp */}
-  <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute z-[-5]`}>
-    <Streetlamp
-      className={`
+const Background: FC = () => {
+  const raffleStarted = useIsRaffleStarted()
+
+  const content = useMemo(() => (<>
+    {/* Streetlamp */}
+    <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute z-[-5]`}>
+      <Streetlamp
+        className={`
         blur-[.3px]
         absolute
         left-1/2
@@ -59,14 +63,13 @@ const Background: FC = () => (<>
         translate-x-[calc(-50%-clamp(24rem,40vw,32rem))]
         translate-y-[-50%]
         h-[56.25rem]
-      `}
-    />
-  </div>
+      `} />
+    </div>
 
-  {/* Snow */}
-  <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
-    <div
-      className={`
+    {/* Snow */}
+    <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
+      <div
+        className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
         before:blur-[1px]
         before:w-[300%]
@@ -75,13 +78,12 @@ const Background: FC = () => (<>
         before:bg-[length:1920px_1080px]
         before:bg-repeat-x
         before:bg-opacity-10
-      `}
-    />
-  </div>
+      `} />
+    </div>
 
-  <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
-    <div
-      className={`
+    <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
+      <div
+        className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
         before:blur-[1px]
         before:w-[300%]
@@ -89,37 +91,39 @@ const Background: FC = () => (<>
         before:bg-[url('/assets/svgo/GoldSnow.svg')]
         before:bg-[length:1920px_1080px]
         before:bg-repeat-x
-      `}
-    />
-  </div>
+      `} />
+    </div>
 
-  {/* Tape */}
-  <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
-    <div
-      className={`
-        ${TAPE_CONTAINER_CLASSES}
-        z-[-2]
-        before:top-4
-        before:translate-x-[-33%]
-        before:origin-[calc(66%-40rem)_0%]
-        before:rotate-[15deg]
-      `}
-    />
-  </div>
+    {!raffleStarted && (<>
+      {/* Tape */}
+      <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
+        <div
+          className={`
+          ${TAPE_CONTAINER_CLASSES}
+          z-[-2]
+          before:top-4
+          before:translate-x-[-33%]
+          before:origin-[calc(66%-40rem)_0%]
+          before:rotate-[15deg]
+        `} />
+      </div>
 
-  <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-1]`}>
-    <div
-      className={`
-        ${TAPE_CONTAINER_CLASSES}
-        z-[-1]
-        before:bottom-50
-        before:bg-bottom
-        before:origin-[calc(33%+30rem)_0%]
-        before:rotate-[-5deg]
-        before:scale-x-[-1]
-      `}
-    />
-  </div>
-</>)
+      <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-1]`}>
+        <div
+          className={`
+          ${TAPE_CONTAINER_CLASSES}
+          z-[-1]
+          before:bottom-50
+          before:bg-bottom
+          before:origin-[calc(33%+30rem)_0%]
+          before:rotate-[-5deg]
+          before:scale-x-[-1]
+        `} />
+      </div>
+    </>)}
+  </>), [raffleStarted])
+
+  return content
+}
 
 export default memo(Background)
