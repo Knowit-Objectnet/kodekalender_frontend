@@ -1,4 +1,4 @@
-import { forEach, join, pickBy } from "lodash-es"
+import { constant, forEach, join, pickBy, some } from "lodash-es"
 import { FC, memo, useEffect, useId, useRef } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
@@ -8,7 +8,7 @@ import { LoggedInWhoami } from "../../api"
 import { SignUpParameters, UpdateUserParameters, useDeleteUser } from "../../api/users/requests"
 import { QueryError } from "../../axios"
 import BasicPage from "../../pages/BasicPage"
-import { squish } from "../../utils"
+import { cl, squish } from "../../utils"
 import Button from "../Button"
 import CheckMark from "../checkmarks/CheckMark"
 import FormElement from "../form/FormElement"
@@ -17,13 +17,22 @@ import FormError from "../form/FormError"
 import NoteElements from "../form/NoteElements"
 import FormInputElement from "../form/FormInputElement"
 import OptInMarketingCheckboxes from "../form/OptInMarketingCheckboxes"
+import { getAnchorVar } from "../../hooks/useStoreAnchorVars"
+import FormGroup from "../form/FormGroup"
+
 
 
 const DELETE_USER_CONFIRM = squish(`
   Er du sikker på at du vil slette brukeren din? Du vil ikke lenger være med i premietrekningen. Dette kan ikke reverseres.
 `)
 
+export const getOptInMarketingLabel = constant("Samtykker du til at vi kan kontakte deg etter konkurransen?")
+export const getOptInMarketingNote = (editLater: boolean) => (
+  `Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av hvorvidt du ønsker å motta slik e-post.${editLater ? " Du kan endre dette senere." : ""}`
+)
+
 type UserFormProps = {
+
   user?: LoggedInWhoami
   submit: (data: any) => void
   submitError: QueryError<{ errors: Record<keyof SignUpParameters, string[]> }> | null
@@ -48,12 +57,16 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
   const fileUploadId = useId()
   const optInMarketingId = useId()
 
-  const optInMarketingValue = watch("opt_in_marketing")
-
+  // Set default values from user object if is edit form. Defaultvalues directly
+  // to useForm had some weirdness, so use reset instead. Might be a 2020-bug.
   useEffect(() => {
     if (newForm) return
 
-    reset({ email: user?.email ?? "", username: user?.username ?? "", opt_in_marketing: user?.opt_in_marketing ?? false})
+    reset({
+      email: user?.email ?? "",
+      username: user?.username ?? "",
+      opt_in_marketing: user?.has_answered_opt_in_marketing ? user?.opt_in_marketing : undefined
+    })
     clearErrors()
   }, [newForm, user, reset, clearErrors])
 
@@ -71,12 +84,9 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
   const [debouncedAvatarUrl] = useDebounce(avatarUrl, 500)
 
   const onSubmit = (data: UpdateUserParameters) => {
-    // A little hacky way to make yes/no required
-    if (optInMarketingValue === undefined) {
-      setError("opt_in_marketing", { message: "Du må velge enten Ja eller Nei" })
-      return
-    } else {
-      clearErrors("opt_in_marketing")
+    if (getAnchorVar("debug")) {
+      console.log("UserForm onSubmit")
+      console.log({ data })
     }
 
     submit(
@@ -88,6 +98,10 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
     )
   }
 
+  if (getAnchorVar("debug")) {
+    console.log({ errors })
+  }
+
   const deleteUser = () => {
     if (window.confirm(DELETE_USER_CONFIRM)) {
       doDeleteUser(null, { onSuccess: () => navigate("/") })
@@ -95,19 +109,18 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
   }
 
   return (
-    <BasicPage title={newForm ? "Ny bruker" : "Rediger bruker"} containerClassName="gap-6 mx-32" onSubmit={handleSubmit(onSubmit)}>
+    <BasicPage title={newForm ? "Ny bruker" : "Rediger bruker"} containerClassName={cl("gap-6 mx-32 group", some(errors) && "errors")} onSubmit={handleSubmit(onSubmit)}>
       <FormProvider {...formMethods}>
-        <div>
+        <FormGroup error={errors.email} dirty={dirtyFields.email}>
           <FormElement
+            required={newForm}
             autoFocus={newForm}
             label="E-post"
             note="Innlogging og kontakt ved premiering."
             type="email"
-            maxLength={128}
             {...register("email", { required: newForm })}
           />
-          <FormError error={errors.email} />
-        </div>
+        </FormGroup>
 
         {newForm && (
           <div className="grid grid-cols-[auto_auto_1fr] gap-4">
@@ -119,30 +132,26 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
           </div>
         )}
 
-        <div>
+        <FormGroup error={errors.password} dirty={dirtyFields.password}>
           <FormElement
+            required={newForm}
             label="Passord"
             note={!newForm ? "La være blank for å beholde passord" : undefined}
             type="password"
-            minLength={8}
-            maxLength={128}
             {...register("password", { required: newForm })}
           />
-          <FormError error={errors.password} />
-        </div>
+        </FormGroup>
 
-        <div>
+        <FormGroup error={errors.password_confirmation} dirty={dirtyFields.password_confirmation}>
           <FormElement
+            required={newForm}
             label="Bekreft passord"
             type="password"
-            minLength={8}
-            maxLength={128}
             {...register("password_confirmation", { required: newForm })}
           />
-          <FormError error={errors.password_confirmation} />
-        </div>
+        </FormGroup>
 
-        <div>
+        <FormGroup error={errors.username} dirty={dirtyFields.username}>
           <FormElement
             autoComplete="nickname"
             label="Brukernavn"
@@ -150,14 +159,12 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
               Du kan oppgi brukernavn dersom du vil delta i komentarfeltet og være synlig i ledertavlen.${newForm && "Du kan endre dette senere."}
             `)}
             type="text"
-            maxLength={30}
             {...register("username")}
           />
-          <FormError error={errors.username} />
           {/^.+@.+\..+$/.test(username ?? "") && <FormError error={{ type: "pattern", message: "Dette ser ut som en e-postadresse! Er du sikker på at du mente å sette dette som brukernavn (synlig for alle)?" }} />}
-        </div>
+        </FormGroup>
 
-        <div>
+        <FormGroup error={errors.avatar} dirty={dirtyFields.avatar}>
           <FormElementCustom htmlFor={fileUploadId} label="Profilbilde">
             <input
               id={fileUploadId}
@@ -184,35 +191,39 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
               content={avatar ? avatar.name : "Velg bilde (maks 2MB)"}
               onClick={() => fileInputRef.current?.click()}
             />
-            <FormError error={errors.avatar} />
           </FormElementCustom>
+        </FormGroup>
+        <FormGroup error={errors.avatar_url} dirty={dirtyFields.avatar_url}>
           <FormInputElement
             type="url"
             maxLength={256}
             placeholder="... eller oppgi URL"
-            className="mt-2 form-input w-full"
             {...register("avatar_url")}
           />
           {(avatar || debouncedAvatarUrl || user?.avatar) && (
             <img className="w-avatar" src={debouncedAvatarUrl || (avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} />
           )}
-          <FormError error={errors.avatar_url} />
-        </div>
+        </FormGroup>
 
-        <div>
+        <FormGroup error={errors.opt_in_marketing} dirty={dirtyFields.opt_in_marketing}>
           <FormElementCustom
+            required={newForm}
             htmlFor={optInMarketingId}
-            label="Samtykke til at vi kan kontakte deg etter konkurransen"
-            note={`Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av hvis du ønsker å motta slik e-post.${newForm && " Du kan endre dette senere."}`}
+            label={getOptInMarketingLabel()}
+            note={getOptInMarketingNote(newForm)}
             noteDirection="bottom"
           >
-            <OptInMarketingCheckboxes id={optInMarketingId} />
+            <OptInMarketingCheckboxes
+              required
+              id={optInMarketingId}
+              className="float-left"
+            />
           </FormElementCustom>
-        </div>
+        </FormGroup>
 
         <div className="flex flex-col items-center gap-32">
           {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />}
-          <Button primary type="submit" disabled={!isDirty || isSubmitting} className="" content={newForm ? "Opprett bruker" : "Lagre"} />
+          <Button primary formNoValidate type="submit" disabled={!isDirty || isSubmitting} className="" content={newForm ? "Opprett bruker" : "Lagre"} />
           {!newForm && <Button type="button" onClick={deleteUser} className="text-red-700" content="Slett bruker" />}
         </div>
       </FormProvider>

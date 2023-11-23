@@ -5,6 +5,7 @@ import { useQueryClient, useMutation, useQuery } from "react-query"
 import { LoggedInWhoami, Whoami } from ".."
 import { QueryError } from "../../axios"
 import { EmptyObject } from "../../../types/utils_types"
+import { getAnchorVar } from "../../hooks/useStoreAnchorVars"
 
 
 const getWhoami = () => axios.get("/users/whoami").then(({ data }) => data)
@@ -106,8 +107,11 @@ export const useUpdateUser = () => {
   return useMutation<UpdateUserResponse, QueryError<{ errors: Record<keyof UpdateUserParameters, string[]> }>, UpdateUserParameters>(
     ["users", "udate"],
     (payload) => {
-      console.log("user updating:")
-      console.log({ payload })
+      if (getAnchorVar("debug")) {
+        console.log("user updating:")
+        console.log({ payload })
+      }
+
       const formData = new FormData
       forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value)))
       return axios.patch("/users", formData).then(({ data }) => data)

@@ -9,7 +9,7 @@ const useToggleBgAnimationState = (): [boolean, () => void] => {
       localStorage.setItem("bg-animation-paused", (!value).toString())
       return !value
     })
-  }, [setValue]);
+  }, [setValue])
 
   return [value, toggleValue]
 }

@@ -14,9 +14,12 @@ export type BasicPageProps = {
 }
 
 const BasicPage: FCWithChildren<BasicPageProps> = ({ title, className, containerClassName, onSubmit, children }) => {
-  const ContainerComponent = onSubmit ? "form" : "div"
-  const containerProps = onSubmit ? { onSubmit } : {}
-  const containerClasses = onSubmit ? "gap-6 mx-32" : "gap-12"
+  // If onSubmit given, wrap page in a form component and set a little tighter
+  // gap for form fields
+  const [ContainerComponent, containerProps, containerClasses] =
+    onSubmit
+      ? ["form", { onSubmit }, "gap-6 mx-32"] as const
+      : ["div", {}, "gap-12"] as const
 
   return (
     <Page
@@ -38,7 +41,7 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({ title, className, container
 
       <Divider bgClasses="my-12 bg-purple-500" />
 
-      <ContainerComponent className={cl("grid grid-flow-row", containerClasses, containerClassName)} {...containerProps }>
+      <ContainerComponent className={cl("grid grid-flow-row", containerClasses, containerClassName)} {...containerProps}>
         {children}
       </ContainerComponent>
     </Page>

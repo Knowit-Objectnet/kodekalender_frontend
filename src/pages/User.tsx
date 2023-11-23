@@ -6,6 +6,7 @@ import LostPassword from "./users/LostPassword"
 import ResetPassword from "./users/ResetPassword"
 import SignIn from "./users/SignIn"
 import SignUp from "./users/SignUp"
+import WelcomeBack from "./WelcomeBack"
 
 
 const Users: FC = () => (
@@ -15,6 +16,7 @@ const Users: FC = () => (
     <Route path="sign_up" element={<SignUp />} />
     <Route path="lost_password" element={<LostPassword />} />
     <Route path="password/edit" element={<ResetPassword />} />
+    <Route path="welcome_back" element={<WelcomeBack />} />
 
     <Route element={<Navigate to="doors" />} />
   </Routes>

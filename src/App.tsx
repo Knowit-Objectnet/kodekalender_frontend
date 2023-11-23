@@ -9,7 +9,6 @@ import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
 import ServiceMessages from "./pages/ServiceMessages"
-import BackgroundPauseButton from "./components/BackgroundPauseButton"
 import Page from "./pages/Page"
 import Solutions from "./pages/Solutions"
 import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
@@ -21,6 +20,7 @@ import Career from "./pages/Career"
 import Contact from "./pages/Contact"
 import PageFooter from "./components/PageFooter"
 import Icon, { IconProps } from "./components/Icons/Icon"
+import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
@@ -75,6 +75,8 @@ const LazyUser = () => {
 
 const App = () => {
   useStoreAnchorVars()
+
+  useWelcomeBackRedirect()
 
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
   const hideLeaderboard = useCallback(() => setLeaderboardHidden(true), [setLeaderboardHidden])

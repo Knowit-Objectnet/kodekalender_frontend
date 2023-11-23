@@ -5,9 +5,6 @@ import { ReactComponent as StreetLamp } from "/assets/svg/Streetlamp.svg"
 import { cl } from "../utils"
 
 
-type BackgroundProps = {
-}
-
 const BACKGROUND_WRAPPER_CLASSES = `
   fixed
   h-screen
@@ -49,7 +46,7 @@ const TAPE_CONTAINER_CLASSES = `
   before:bg-repeat-x
 `
 
-const Background: FC<BackgroundProps> = () => (<>
+const Background: FC = () => (<>
   <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-5]`}>
     <StreetLamp
       className={`

@@ -3,7 +3,10 @@ import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
 
-export const ANCHOR_VARS = { year: (s: string) => parseInt(s) } as const
+export const ANCHOR_VARS = {
+  year: (s: string) => parseInt(s),
+  debug: (s: string) => s === "true"
+} as const
 
 export function getAnchorVar<N extends keyof typeof ANCHOR_VARS>(name: N): ReturnType<typeof ANCHOR_VARS[N]> | undefined
 /* eslint-disable no-redeclare */

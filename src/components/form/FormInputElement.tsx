@@ -25,6 +25,9 @@ export const FormInputElement = forwardRef<HTMLInputElement, PropsWithChildren<F
 
           placeholder:text-purple-400
           placeholder:font-light
+
+          group-[.error]:border-red-700
+          group-[.error]:text-red-700
         `,
         disabled && "border-gray/30",
         className

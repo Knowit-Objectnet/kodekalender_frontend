@@ -1,7 +1,7 @@
-import { FC, useId } from "react"
-import { useFormContext } from "react-hook-form"
+import { isNil } from "lodash-es"
+import { FC } from "react"
+import { useController, useFormContext } from "react-hook-form"
 
-import { SignUpParameters } from "../../api/users/requests"
 import { cl } from "../../utils"
 
 
@@ -25,19 +25,40 @@ const CHECKBOX_CLASSES = cl(`
   h-8
 `)
 
-const SET_VALUE_OPTS = { shouldDirty: true, shouldTouch: true } as const
+const SET_VALUE_OPTS = { shouldDirty: true, shouldTouch: true, shouldValidate: true } as const
 
-type OptInMarketingCheckboxesProps = { id: string }
+type OptInMarketingCheckboxesProps = {
+  id: string
+  className?: string
+  required?: boolean
+}
 
-const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id }) => {
-  const { setValue, getValues } = useFormContext<SignUpParameters>()
+const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id, required = false, className }) => {
+  const { watch, setValue, control } = useFormContext<{ opt_in_marketing?: boolean }>()
 
-  const value = getValues("opt_in_marketing")
+  const { field: { value } } = useController({ control, name: NAME, rules: { validate: (value) => isNil(value) ? "Påkrevd" : true } })
+
+  console.log(watch("opt_in_marketing"))
 
   return (
-    <div className="flex gap-10">
+    <div
+      className={cl(
+        `
+          flex
+          gap-10
+          group-[.error]:border-red-700
+          group-[.error]:border-2
+          group-[.error]:text-red-700
+          group-[.error]:px-6
+          group-[.error]:py-1
+          group-[.error]:rounded-xl
+        `,
+        className
+      )}
+    >
       <label>
         <input
+          aria-hidden="true"
           type="checkbox"
           name={NAME}
           className={CHECKBOX_CLASSES}
@@ -50,6 +71,7 @@ const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id }) => 
 
       <label>
         <input
+          aria-hidden="true"
           type="checkbox"
           name={NAME}
           className={CHECKBOX_CLASSES}
@@ -61,7 +83,14 @@ const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id }) => 
       </label>
 
       {/* Hidden checkbox for label target and accessibility */}
-      <input type="checkbox" id={id} className="hidden" checked={value === true} onChange={() => setValue(NAME, !value, SET_VALUE_OPTS)} />
+      <input
+        required={required}
+        type="checkbox"
+        id={id}
+        className="hidden"
+        checked={value === true}
+        onChange={() => setValue(NAME, !value, SET_VALUE_OPTS)}
+      />
     </div>
   )
 }

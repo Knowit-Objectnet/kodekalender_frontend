@@ -19,12 +19,10 @@ const RegisterButton = () => {
   if (disabled)
     return null
 
-  const Component = disabled ? "div" : Link
-
   return (
-    <Component className="inline-block" to={to} aria-disabled={disabled}>
+    <Link className="inline-block" to={to} aria-disabled={disabled}>
       <Button icon={icon} content={content} disabled={disabled} />
-    </Component>
+    </Link>
   )
 }
 

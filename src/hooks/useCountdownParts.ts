@@ -1,6 +1,7 @@
-import { intervalToDuration } from 'date-fns'
+import { intervalToDuration } from "date-fns"
 
 import { getRaffleStart } from "../utils"
+
 import useCurrentTime from "./useCurrentTime"
 
 

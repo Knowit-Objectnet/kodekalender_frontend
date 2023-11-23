@@ -11,14 +11,15 @@ import BasicPage from "../BasicPage"
 const SignIn: FC = () => {
   const navigate = useNavigate()
 
-  const { register, handleSubmit, watch } = useForm<SignInParameters>()
+  const { register, handleSubmit, getValues } = useForm<SignInParameters>()
   const { mutate: signIn, error } = useSignIn()
 
   const onSubmit = (data: SignInParameters) => {
-    signIn(data, { onSuccess: () => navigate("/") })
+    signIn(
+      data,
+      { onSuccess: () => navigate("/") }
+    )
   }
-
-  const email = watch("email")
 
   return (
     <BasicPage title="Logg inn" containerClassName="gap-24" onSubmit={handleSubmit(onSubmit)}>
@@ -44,7 +45,15 @@ const SignIn: FC = () => {
         <Link to="/users/sign_up">
           <Button icon="edit" content="Ny bruker?" />
         </Link>
-        <Link to={`/users/lost_password?email=${encodeURIComponent(email || "")}`}>
+        <Link
+          to="/users/lost_password"
+          onClick={(e) => {
+            const email = getValues("email") || ""
+            const url = new URL(e.currentTarget.href)
+            url.searchParams.set("email", email)
+            e.currentTarget.href = url.toString()
+          }}
+        >
           <Button icon="mail" content="Glemt passord?" />
         </Link>
       </div>

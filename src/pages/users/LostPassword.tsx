@@ -21,17 +21,18 @@ const LostPassword: FC = () => {
 
   if (isSubmitSuccessful && !isLoading && !error) {
     return (
-      <BasicPage title="Tilbakestillingsinstrukser sendt">
-        <div className="text-center">
+      <BasicPage title="Glemt passord">
+        <p className="text-center">Tilbakestillingsinstrukser sendt.</p>
+        <p className="text-center">
           Dersom det finnes en konto med e-postadressen du oppga vil du snarlig
           få en e-post med instrukser for å tilbakestille ditt passord.
-        </div>
+        </p>
       </BasicPage>
     )
   }
 
   return (
-    <BasicPage title="Glemt passord" onSubmit={handleSubmit(onSubmit)}>
+    <BasicPage title="Glemt passord" onSubmit={handleSubmit(onSubmit)} containerClassName="gap-16">
       <FormElement
         autoFocus
         label="E-post"
@@ -41,7 +42,7 @@ const LostPassword: FC = () => {
         {...register("email")}
       />
 
-      <Button type="submit" content="Send tilbakestillingsinstrukser" />
+      <Button primary type="submit" content="Send tilbakestillingsinstrukser" className="mx-auto" />
     </BasicPage>
   )
 }
