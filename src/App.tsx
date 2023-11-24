@@ -127,7 +127,7 @@ const App = () => {
         <Route path="/service_messages" element={<ServiceMessages />} />
 
         <Route path="/admin/*" element={<LazyAdmin />} />
-        <Route path="/users/*" element={<LazyUser />} />
+        {/* <Route path="/users/*" element={<LazyUser />} /> */}
 
         {/* 404? - Route to main view */}
         <Route element={<Navigate to="/" />} />
