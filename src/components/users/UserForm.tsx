@@ -19,6 +19,7 @@ import FormInputElement from "../form/FormInputElement"
 import OptInMarketingCheckboxes from "../form/OptInMarketingCheckboxes"
 import { getAnchorVar } from "../../hooks/useStoreAnchorVars"
 import FormGroup from "../form/FormGroup"
+import SubmitButton from "../SubmitButton"
 
 
 
@@ -221,7 +222,7 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
 
         <div className="flex flex-col items-center gap-32">
           {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />}
-          <Button primary formNoValidate type="submit" disabled={!isDirty || isSubmitting} className="" content={newForm ? "Opprett bruker" : "Lagre"} />
+          <SubmitButton disabled={!isDirty || isSubmitting} className="" content={newForm ? "Opprett bruker" : "Lagre"} />
           {!newForm && <Button type="button" onClick={deleteUser} className="text-red-700" content="Slett bruker" />}
         </div>
       </FormProvider>

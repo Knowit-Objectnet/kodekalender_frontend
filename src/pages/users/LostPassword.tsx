@@ -4,8 +4,8 @@ import { useLocation } from "react-router-dom"
 
 import { InitiateResetPasswordParameters, useInitiateResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
-import Button from "../../components/Button"
 import BasicPage from "../BasicPage"
+import SubmitButton from "../../components/SubmitButton"
 
 
 const LostPassword: FC = () => {
@@ -42,7 +42,7 @@ const LostPassword: FC = () => {
         {...register("email")}
       />
 
-      <Button primary type="submit" content="Send tilbakestillingsinstrukser" className="mx-auto" />
+      <SubmitButton content="Send tilbakestillingsinstrukser" className="mx-auto" />
     </BasicPage>
   )
 }

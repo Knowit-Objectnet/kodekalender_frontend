@@ -6,6 +6,7 @@ import { SignInParameters, useSignIn } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
 import Button from "../../components/Button"
 import BasicPage from "../BasicPage"
+import SubmitButton from "../../components/SubmitButton"
 
 
 const SignIn: FC = () => {
@@ -28,17 +29,17 @@ const SignIn: FC = () => {
           autoFocus
           label="E-post"
           type="email"
-          {...register("email")}
+          {...register("email", { required: true })}
         />
         <FormElement
           label="Passord"
           type="password"
-          {...register("password")}
+          {...register("password", { required: true })}
         />
 
         {error && <div><em className="text-red-700">{error.error}</em></div>}
 
-        <Button primary type="submit" icon="sign-in" content="Logg inn" />
+        <SubmitButton icon="sign-in" content="Logg inn" />
       </div>
 
       <div className="flex gap-12 justify-center">

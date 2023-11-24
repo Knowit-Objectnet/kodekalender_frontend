@@ -7,7 +7,7 @@ import Icon, { IconProps } from "./Icons/Icon"
 
 
 type HTMLButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-type ButtonProps = Omit<HTMLButtonProps, "content"> & {
+export type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   content?: ReactNode
   disabled?: boolean
   sm?: boolean

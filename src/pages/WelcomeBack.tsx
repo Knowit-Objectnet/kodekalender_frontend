@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom"
 import { getOptInMarketingLabel, getOptInMarketingNote } from "../components/users/UserForm"
 import OptInMarketingCheckboxes from "../components/form/OptInMarketingCheckboxes"
 import FormElementCustom from "../components/form/FormElementCustom"
-import Button from "../components/Button"
 import { useUpdateUser } from "../api/users/requests"
 import FormError from "../components/form/FormError"
+import SubmitButton from "../components/SubmitButton"
 
 import BasicPage from "./BasicPage"
 
@@ -61,7 +61,7 @@ const WelcomeBack: FC = () => {
         </FormElementCustom>
         <FormError error={errors.opt_in_marketing} />
 
-        <Button primary type="submit" disabled={!isDirty || isSubmitting} className="mx-auto" content="Lagre" />
+        <SubmitButton disabled={!isDirty || isSubmitting} className="mx-auto" content="Lagre" />
       </FormProvider>
     </BasicPage>
   )
