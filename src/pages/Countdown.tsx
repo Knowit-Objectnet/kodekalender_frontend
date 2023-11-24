@@ -101,7 +101,7 @@ const Countdown = () => {
         mobil eller nettbrett!
       </p>
 
-      {/* <div className="space-x-8">
+      <div className="space-x-8">
         {isAuthenticated
           ? <span className="font-bold">Lykke til!</span>
           : (<>
@@ -109,7 +109,7 @@ const Countdown = () => {
             <RegisterButton />
           </>)
         }
-      </div> */}
+      </div>
     </PageContent>
   )
 }

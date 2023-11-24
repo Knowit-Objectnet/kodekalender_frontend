@@ -76,10 +76,10 @@ const PageHeader: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
             <ThemeButton />
           </div>
 
-          {/* <div>
+          <div>
             <SignOutButton />
             <SignInButton />
-          </div> */}
+          </div>
 
           <div>
             <ShowLeaderboardButton setLeaderboardHidden={setLeaderboardHidden} tabIndex={2} />
