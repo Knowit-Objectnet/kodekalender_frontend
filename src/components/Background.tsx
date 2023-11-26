@@ -71,12 +71,12 @@ const Background: FC = () => {
       </div>
     </>)}
 
-  <Snowflakes />
+    <Snowflakes />
 
-      {/* Tape */}
-      <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
-        <div
-          className={`
+    {/* Tape */}
+    <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
+      <div
+        className={`
           ${TAPE_CONTAINER_CLASSES}
           z-[-2]
           before:top-4
@@ -84,11 +84,11 @@ const Background: FC = () => {
           before:origin-[calc(66%-40rem)_0%]
           before:rotate-[15deg]
         `} />
-      </div>
+    </div>
 
-      <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-1]`}>
-        <div
-          className={`
+    <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-1]`}>
+      <div
+        className={`
           ${TAPE_CONTAINER_CLASSES}
           z-[-1]
           before:bottom-50
@@ -97,8 +97,7 @@ const Background: FC = () => {
           before:rotate-[-5deg]
           before:scale-x-[-1]
         `} />
-      </div>
-    </>)}
+    </div>
   </>), [raffleStarted])
 
   return content
