@@ -2,18 +2,13 @@
   @for $i from 1 through 24 {
     --door-#{$i}-open-display: none;
     --door-#{$i}-solved-display: none;
-    --door-#{$i}-easteregg-display: none;
 
-    #door-#{$i}-open {
+    #Open\:\:#{$i} {
       display: var(--door-#{$i}-open-display);
     }
 
-    #door-#{$i}-solved {
+    #Solved\:\:#{$i} {
       display: var(--door-#{$i}-solved-display);
-    }
-
-    #door-#{$i}-easteregg {
-      display: var(--door-#{$i}-easteregg-display);
     }
   }
 }

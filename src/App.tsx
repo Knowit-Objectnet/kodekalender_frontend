@@ -107,6 +107,8 @@ const App = () => {
       id="content-container"
       className={`
         relative
+        max-w-screen
+        overflow-x-visible
         grid
         grid-rows-[auto_1fr_auto]
         min-h-screen
