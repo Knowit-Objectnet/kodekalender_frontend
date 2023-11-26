@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom"
 
 export const ANCHOR_VARS = {
   year: (s: string) => parseInt(s),
-  debug: (s: string) => s === "true"
+  debug: (s: string) => s === "true",
+  raffle_started: (s: string) => s === "true"
 } as const
 
 export function getAnchorVar<N extends keyof typeof ANCHOR_VARS>(name: N): ReturnType<typeof ANCHOR_VARS[N]> | undefined
