@@ -26,7 +26,7 @@ const Snowflakes: React.FC = () => {
 
         function draw() {
             if (ctx && canvas) {
-                ctx.fillStyle = '#000044';
+                ctx.fillStyle = '#111230';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = "#ffffff";
 
@@ -89,7 +89,7 @@ const Snowflakes: React.FC = () => {
         }
     }, []);
 
-    return <canvas ref={canvasRef} />
+    return <canvas style={{ position: 'absolute', width: '100%', height: '100%', zIndex: -100 }} ref={canvasRef} />
 }
 
 export default Snowflakes;
