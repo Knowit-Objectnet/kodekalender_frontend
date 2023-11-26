@@ -17,11 +17,11 @@ const SignOutButton: FC<ButtonProps> = (buttonProps) => {
 
   return (
     <Button
-      tabIndex={4}
       onClick={() => {
         if (window.confirm("Er du sikker på at du vil logge ut?"))
           signOut(null, { onSuccess: () => navigate("/") })
       }}
+      icon="sign-out"
       content="Logg ut"
       {...buttonProps}
     />

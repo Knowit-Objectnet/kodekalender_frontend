@@ -108,31 +108,28 @@ const MenuAside: FC = () => {
           `}
         >
           <MenuGroup>
-            {isAuthenticated
-              ? <MenuButton as={SignOutButton} icon="user" />
-              : <MenuButton as={SignInButton} icon="user" />
-            }
+            <MenuButton as={SignInButton} />
+            <MenuButton as={SignOutButton} /> {/* Hides itself if not logged in */}
             <MenuButton as={ThemeButton} className={cl({ hidden: import.meta.env.VITE_ENABLE_LIGHT_MODE !== "true" })} />
-            <MenuButton as={ShowLeaderboardButton} icon="award" />
           </MenuGroup>
 
-          {(isAdmin || !isEmpty(serviceMessages)) && (
-            <MenuGroup>
-              {!isEmpty(serviceMessages) && (
-                // Only show link to service messages if there are any
-                <Link className="relative" to="/service_messages" tabIndex={3}>
-                  <MenuButton content="Driftsmeldinger" />
-                  <ServiceMessageBadge />
-                </Link>
-              )}
+          <MenuGroup>
+            <MenuButton as={ShowLeaderboardButton} icon="award" />
 
-              {isAdmin && (
-                <Link to="/admin" title="Super secret admin pages">
-                  <MenuButton icon="edit" content="Adminside" />
-                </Link>
-              )}
-            </MenuGroup>
-          )}
+            {!isEmpty(serviceMessages) && (
+              // Only show link to service messages if there are any
+              <Link className="relative" to="/service_messages" tabIndex={3}>
+                <MenuButton content="Driftsmeldinger" />
+                <ServiceMessageBadge />
+              </Link>
+            )}
+
+            {isAdmin && (
+              <Link to="/admin" title="Super secret admin pages">
+                <MenuButton icon="edit" content="Adminside" />
+              </Link>
+            )}
+          </MenuGroup>
 
           <MenuGroup>
             <Link to="/about"><MenuButton icon="info" content="Om kodekalenderen" /></Link>
