@@ -60,10 +60,6 @@ const MenuAside: FC = () => {
     closeHandlerWithTransition()
   }, [closeHandlerWithTransition]))
 
-  const closeBoard = () => {
-    closeHandlerWithTransition()
-  }
-
   if (!showMenu && !hiddenTransitioning) return null
 
   return (

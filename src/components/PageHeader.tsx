@@ -1,22 +1,18 @@
-import { FC, useContext } from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 
 import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
 
-import { cl, getActiveYear } from "../utils"
+import { AsidesContext } from "../AsidesContext"
+import { getActiveYear } from "../utils"
 
 import SignInButton from "./SignInButton"
 import { Header2 } from "./text"
 import ExternalLink from "./ExternalLink"
 import Button from "./Button"
-import { AsidesContext } from "../AsidesContext"
 
 
-type HeaderProps = {
-  className?: string
-}
-
-const PageHeader: FC<HeaderProps> = ({ className }) => {
+const PageHeader = () => {
   const { setShowMenu } = useContext(AsidesContext)
 
   return (
