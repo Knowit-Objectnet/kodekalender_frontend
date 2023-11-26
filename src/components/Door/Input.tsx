@@ -7,6 +7,7 @@ import { useCreateSolution } from "../../api/requests"
 import useIsDoorSolved from "../../hooks/useIsDoorSolved"
 import WaitMark from "../checkmarks/WaitMark"
 import { cl } from "../../utils"
+import Icon from "../Icons/Icon"
 
 
 type InputProps = {
@@ -54,7 +55,7 @@ const Input: FC<InputProps> = ({ door }) => {
     return (
       <CheckMark
         wrapperClassName="w-32 md:w-56 mx-auto"
-        message={`Bra jobba!${door === 24 ? " Og god jul! 🥳": ""}`}
+        message={`Bra jobba!${door === 24 ? " Og god jul! 🥳" : ""}`}
         scrollTo={attemptCount > 0}
       />
     )
@@ -75,18 +76,29 @@ const Input: FC<InputProps> = ({ door }) => {
 
   return (
     <>
-      <input
-        className={cl("h-16 w-full p-0 bg-transparent border-0 border-current border-b", { "text-red-700": isWrongAnswer })}
-        placeholder="Ditt svar:"
-        value={answer}
-        maxLength={128}
-        onChange={(e) => {
-          setAnswer(e.target.value)
-          setDirty(true)
-        }}
-        onKeyPress={(e) => { if (e.key === "Enter") { submitAnswer() }}}
-      />
-      <button className="block mx-auto mt-4" disabled={!answer} onClick={() => submitAnswer()}>Send inn svar</button>
+      <div
+        className="relative flex items-center">
+        <input
+          className={cl("form-input pr-22 w-full rounded-xl border-purple-500 bg-transparent border-2 placeholder:text-purple-400 placeholder:font-bold font-bold", { "text-red-700": isWrongAnswer })}
+          placeholder="Ditt svar:"
+          value={answer}
+          maxLength={128}
+          onChange={(e) => {
+            setAnswer(e.target.value)
+            setDirty(true)
+          }}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              submitAnswer()
+            }
+          }}
+        />
+
+        {answer && <Icon name="send" className="absolute right-6 child:top-0 child:left-0" onClick={() => submitAnswer()} />}
+      </div>
+
+      <div className="w-full text-center text-sm">Når du har løst oppgaven kan du se kommentarfeltet!</div>
+
       {(isWrongAnswer || error) && (
         <WrongMark
           wrapperClassName="w-32 md:w-56 mx-auto mt-16"

@@ -28,7 +28,7 @@ const spacing = fromPairs(map([
   ...range(16, 32, 0.5),
   // every 1rem up to 64rem
   ...range(32, 64, 1)
-] , (rem) => [toString(toInteger(rem * 8)), `${rem}rem`]))
+], (rem) => [toString(toInteger(rem * 8)), `${rem}rem`]))
 
 // Add variant for light mode
 const lightModeVariant = plugin(({ addVariant }) => {
@@ -39,7 +39,7 @@ export default {
   content: [
     "./src/**/*.{ts,tsx,svg}"
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     // Total overwrites
     spacing,
@@ -75,6 +75,28 @@ export default {
       },
       gap: {
         "door-elements": "4rem"
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': colors.white,
+            '--tw-prose-headings': colors.white,
+            // '--tw-prose-lead': theme('colors.pink[700]'),
+            '--tw-prose-links': colors.white,
+            // '--tw-prose-bold': theme('colors.pink[900]'),
+            // '--tw-prose-counters': theme('colors.pink[600]'),
+            // '--tw-prose-bullets': theme('colors.pink[400]'),
+            // '--tw-prose-hr': theme('colors.pink[300]'),
+            '--tw-prose-quotes': colors.white,
+            // '--tw-prose-quote-borders': theme('colors.pink[300]'),
+            // '--tw-prose-captions': theme('colors.pink[700]'),
+            // '--tw-prose-code': theme('colors.pink[900]'),
+            // '--tw-prose-pre-code': theme('colors.pink[100]'),
+            // '--tw-prose-pre-bg': theme('colors.pink[900]'),
+            // '--tw-prose-th-borders': theme('colors.pink[300]'),
+            // '--tw-prose-td-borders': theme('colors.pink[200]'),
+          }
+        }
       }
     }
   },

@@ -23,6 +23,7 @@ import { ReactComponent as PilIcon } from "/assets/svgo/icons/pil.svg"
 import { ReactComponent as PremieIcon } from "/assets/svgo/icons/premie.svg"
 import { ReactComponent as RedigerIcon } from "/assets/svgo/icons/rediger.svg"
 import { ReactComponent as SoundIcon } from "/assets/svgo/icons/sound.svg"
+import { ReactComponent as SendIcon } from "/assets/svgo/icons/send.svg"
 import { ReactComponent as TwitterIcon } from "/assets/svgo/icons/twitter.svg"
 
 import { cl } from "../../utils"
@@ -52,7 +53,8 @@ const ICONS = {
   award: PremieIcon,
   edit: RedigerIcon,
   sound: SoundIcon,
-  twitter: TwitterIcon
+  twitter: TwitterIcon,
+  send: SendIcon
 }
 
 export type IconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
@@ -77,12 +79,15 @@ const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
 
           child:w-full
           child:h-full
+          
+          child:-left-1
+          child:-top-1
         `,
         className
       )}
       {...rest}
     >
-      <IconComponent className="absolute w-full h-full -left-1 -top-1" />
+      <IconComponent className="absolute w-full h-full" />
     </i>
   )
 }
