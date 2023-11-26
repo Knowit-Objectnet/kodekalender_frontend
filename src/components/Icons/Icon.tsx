@@ -10,6 +10,7 @@ import { ReactComponent as GithubIcon } from "/assets/svgo/icons/github.svg"
 import { ReactComponent as HusIcon } from "/assets/svgo/icons/hus.svg"
 import { ReactComponent as InfoIcon } from "/assets/svgo/icons/info.svg"
 import { ReactComponent as InstaIcon } from "/assets/svgo/icons/insta.svg"
+import { ReactComponent as KnowitIcon } from "/assets/svgo/icons/knowit.svg"
 import { ReactComponent as LastOppIcon } from "/assets/svgo/icons/last opp.svg"
 import { ReactComponent as LenkeIcon } from "/assets/svgo/icons/lenke.svg"
 import { ReactComponent as LoggInnIcon } from "/assets/svgo/icons/logg inn.svg"
@@ -40,6 +41,7 @@ const ICONS = {
   info: InfoIcon,
   instagram: InstaIcon,
   upload: LastOppIcon,
+  knowit: KnowitIcon,
   link: LenkeIcon,
   "sign-in": LoggInnIcon,
   "sign-out": LoggUtIcon,
@@ -82,7 +84,7 @@ const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
       )}
       {...rest}
     >
-      <IconComponent className="absolute w-full h-full -left-1 -top-1" />
+      <IconComponent className="absolute -left-1 -top-1" />
     </i>
   )
 }

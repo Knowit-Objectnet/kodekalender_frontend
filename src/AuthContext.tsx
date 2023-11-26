@@ -13,7 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false
 })
 
-const AuthContextProvider: FCWithChildren = ({ children }) => {
+export const AuthContextProvider: FCWithChildren = ({ children }) => {
   const { data: whoami } = useWhoami()
 
   return (
@@ -22,5 +22,3 @@ const AuthContextProvider: FCWithChildren = ({ children }) => {
     </AuthContext.Provider>
   )
 }
-
-export default AuthContextProvider

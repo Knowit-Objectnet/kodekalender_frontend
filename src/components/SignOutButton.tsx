@@ -1,13 +1,13 @@
-import { useContext } from "react"
+import { FC, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useSignOut } from "../api/users/requests"
 import { AuthContext } from "../AuthContext"
 
-import Button from "./Button"
+import Button, { ButtonProps } from "./Button"
 
 
-const SignOutButton = () => {
+const SignOutButton: FC<ButtonProps> = (buttonProps) => {
   const navigate = useNavigate()
 
   const { isAuthenticated } = useContext(AuthContext)
@@ -23,6 +23,7 @@ const SignOutButton = () => {
           signOut(null, { onSuccess: () => navigate("/") })
       }}
       content="Logg ut"
+      {...buttonProps}
     />
   )
 }

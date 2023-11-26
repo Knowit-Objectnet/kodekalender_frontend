@@ -55,10 +55,12 @@ const Button: FC<ButtonProps> = ({
       disabled && `
         text-white/30
       `,
-      {
-        "sm:text-sm": sm,
-        "bg-purple-600": primary
-      },
+      sm && `
+        sm:text-sm
+        px-8
+        py-2
+      `,
+      { "bg-purple-600": primary },
       className
     )}
     disabled={disabled}
@@ -66,7 +68,10 @@ const Button: FC<ButtonProps> = ({
     {...restProps}
   >
     {icon && (<>
-      <Icon name={icon} className="mr-3" />
+      <Icon
+        name={icon}
+        className={cl("mr-3", sm && "mr-2 w-10 h-10")}
+      />
     </>)}
     {content ?? children}
   </button>

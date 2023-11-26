@@ -1,21 +1,18 @@
-import { FC, useCallback, useRef, useState } from "react"
+import { FC, useCallback, useContext, useRef, useState } from "react"
 import { Transition } from "@headlessui/react"
 
 import { ReactComponent as Close } from "/assets/svgo/icons/close.svg"
 
 import useOnClickOutside from "../hooks/useOnClickOutside"
+import { AsidesContext } from "../AsidesContext"
 
-// import { ReactComponent as Flourish } from "./svg/pointsdecor.svg"
 import LeaderBoardContent from "./LeaderboardContent"
 import { Header2 } from "./text"
 
 
-type LeaderBoardAsideProps = {
-  hidden: boolean
-  closeHandler: () => void
-}
+const LeaderBoardAside: FC = () => {
+  const { showLeaderboard, setShowLeaderboard } = useContext(AsidesContext)
 
-const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) => {
   const clickableLeaderboardRef = useRef<HTMLDivElement>(null)
   const [hiddenTransitioning, setHiddenTransitioning] = useState(false)
 
@@ -23,9 +20,9 @@ const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) =
     setHiddenTransitioning(true)
     setTimeout(() => {
       setHiddenTransitioning(false)
-      closeHandler()
+      setShowLeaderboard(false)
     }, 300)
-  }, [closeHandler])
+  }, [])
 
   useOnClickOutside(clickableLeaderboardRef, useCallback(() => {
     if (!clickableLeaderboardRef.current) return
@@ -37,10 +34,10 @@ const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) =
     closeHandlerWithTransition()
   }
 
-  if (hidden && !hiddenTransitioning) return null
+  if (!showLeaderboard && !hiddenTransitioning) return null
 
   return (
-    <aside className="z-20 absolute top-0 right-0 pt-14 w-full sm:w-204 sm:pr-12 overflow-hidden pointer-events-none">
+    <aside className="z-20 fixed top-0 right-0 pt-14 w-full sm:w-204 sm:pr-12 overflow-hidden pointer-events-none">
       <Transition
         appear={true}
         show={!hiddenTransitioning}

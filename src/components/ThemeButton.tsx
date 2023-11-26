@@ -1,11 +1,11 @@
 import { FC, useCallback, useState } from "react"
 
-import Button from "./Button"
+import Button, { ButtonProps } from "./Button"
 
 
 const INITIAL_THEME_IS_LIGHT = localStorage.theme === "light" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
 
-const ThemeButton: FC = () => {
+const ThemeButton: FC<ButtonProps> = (buttonProps) => {
   const [themeIsLight, setThemeIsLight] = useState(INITIAL_THEME_IS_LIGHT)
 
   const switchTheme = useCallback(() => {
@@ -20,7 +20,7 @@ const ThemeButton: FC = () => {
   }, [themeIsLight, setThemeIsLight])
 
   return (
-    <Button onClick={switchTheme}>
+    <Button onClick={switchTheme} {...buttonProps}>
       {themeIsLight ? "Dark mode" : "Light mode"}
     </Button>
   )

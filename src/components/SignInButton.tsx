@@ -1,11 +1,12 @@
+import { FC } from "react"
 import { Link } from "react-router-dom"
 
 import useAuthenticatedWhoami from "../hooks/useAuthenticatedWhoami"
 
-import Button from "./Button"
+import Button, { ButtonProps } from "./Button"
 
 
-const SignInButton = () => {
+const SignInButton: FC<ButtonProps> = (buttonProps) => {
   const whoami = useAuthenticatedWhoami()
 
   const [to, icon, content] =
@@ -15,7 +16,7 @@ const SignInButton = () => {
 
   return (
     <Link to={to}>
-      <Button icon={icon} content={content} />
+      <Button icon={icon} content={content} {...buttonProps} />
     </Link>
   )
 }
