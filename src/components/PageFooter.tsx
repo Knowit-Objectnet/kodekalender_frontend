@@ -5,7 +5,7 @@ import Icon from "./Icons/Icon"
 
 const PageFooter = () => (
   <footer className="mt-19 mb-10 space-y-6">
-    <div className="flex gap-12 justify-center align-center flex-wrap">
+    <div className="flex flex-wrap gap-12 max-sm:gap-x-8 max-sm:gap-y-4 justify-center align-center">
       <Link className="underline" to="/about">
         Om kodekalenderen
       </Link>

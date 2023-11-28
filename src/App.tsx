@@ -98,13 +98,14 @@ const App = () => {
     <div
       id="content-container"
       className={`
-        max-w-screen
+        relative
+        w-screen
         overflow-x-visible
-        grid
-        grid-rows-[auto_1fr_auto]
         min-h-screen
-        items-center
-        justify-items-center
+
+        flex
+        flex-col
+        justify-between
       `}
     >
       <ContentBackground />

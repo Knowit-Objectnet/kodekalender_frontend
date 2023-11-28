@@ -23,6 +23,7 @@ const createHeader = (n: 1 | 2 | 3 | 4): FCWithChildren<HeaderComponentProps> =>
     return (
       <HeaderComponent
         className={cl(
+          "shadow-black/70 [text-shadow:_1px_1px_2px_var(--tw-shadow-color)]",
           HEADER_CLASSES[n - 1],
           className
         )}

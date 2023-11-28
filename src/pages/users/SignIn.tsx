@@ -42,7 +42,7 @@ const SignIn: FC = () => {
         <SubmitButton icon="sign-in" content="Logg inn" />
       </div>
 
-      <div className="flex gap-12 justify-center">
+      <div className="flex flex-wrap gap-6 md:gap-12 justify-center">
         <Link to="/users/sign_up">
           <Button icon="edit" content="Ny bruker?" />
         </Link>

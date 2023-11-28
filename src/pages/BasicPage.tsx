@@ -5,6 +5,7 @@ import { Header1, Header2 } from "../components/text"
 
 import Page from "./Page"
 
+
 export type BasicPageProps = {
   title: string
   className?: string
@@ -22,7 +23,7 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
   // If onSubmit given, wrap page in a form component and set a little tighter
   // gap for form fields
   const [ContainerComponent, containerProps, containerClasses] = onSubmit
-    ? (["form", { onSubmit }, "gap-6 mx-32"] as const)
+    ? (["form", { onSubmit }, "gap-6 sm:mx-32"] as const)
     : (["div", {}, "gap-12"] as const)
 
   return (
@@ -38,6 +39,10 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         px-8
         sm:px-24
         py-27
+
+
+        mx-auto
+        max-w-[clamp(0rem,57.5rem,90vw+3rem)]
       `,
         className
       )}

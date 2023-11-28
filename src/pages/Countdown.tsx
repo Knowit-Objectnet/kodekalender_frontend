@@ -29,13 +29,14 @@ const TimerDisplay: FC<TimerDisplayProps> = memo(({ countdownPartIndex, classNam
           child:border-purple-900
           child:rounded-2xl
           child:bg-purple-700
-          child:p-15
+
+          child:p-[clamp(1rem,6vw,1.5rem)]
         `,
         className
       )}
     >
-      <Header3 as="span" className="!text-2xl">{tens}</Header3>
-      <Header3 as="span" className="!text-2xl">{ones}</Header3>
+      <Header3 as="span" className="!text-[clamp(1.95rem,6vw,2.625rem)]">{tens}</Header3>
+      <Header3 as="span" className="!text-[clamp(1.95rem,6vw,2.625rem)]">{ones}</Header3>
     </div>
   ), [tens, ones, className])
 
@@ -43,7 +44,7 @@ const TimerDisplay: FC<TimerDisplayProps> = memo(({ countdownPartIndex, classNam
 })
 
 const Separator = () => (
-  <Header3 as="span" className="text-xl mx-3">:</Header3>
+  <Header3 as="span" className="!text-[clamp(1.95rem,6vw,2.625rem)] mx-3">:</Header3>
 )
 
 const Countdown = () => {
@@ -55,11 +56,14 @@ const Countdown = () => {
         grid
         grid-flow-row
         gap-24
+        max-md:gap-12
 
         content-center
         justify-items-center
+        text-center
 
-        w-full
+        md:w-full
+        max-md:px-10
       `}
     >
       <Header1 className="inline-block leading-none">Kodekalender {getActiveYear()}</Header1>
@@ -72,36 +76,57 @@ const Countdown = () => {
           grid-cols-[repeat(7,auto)]
           grid-rows-[auto_1fr]
 
+          max-md:grid-cols-[repeat(3,auto)]
+          max-md:grid-rows-[auto_1fr_auto_1fr]
+
           justify-items-center
           text-center
-          child:self-center
+          descendant:self-center
         `}
         title={`Første luke åpnes ${dateFormat(getRaffleStart(), "long")}.`}
       >
         <Header3 as="span">Dager</Header3>
         <span />
         <Header3 as="span">Timer</Header3>
-        <span />
-        <Header3 as="span">Minutter</Header3>
-        <span />
-        <Header3 as="span">Sekunder</Header3>
+
+        <div className="contents max-md:hidden">
+          <span />
+          <Header3 as="span">Minutter</Header3>
+          <span />
+          <Header3 as="span">Sekunder</Header3>
+        </div>
 
         <TimerDisplay countdownPartIndex={0} />
         <Separator />
         <TimerDisplay countdownPartIndex={1} />
-        <Separator />
-        <TimerDisplay countdownPartIndex={2} />
-        <Separator />
-        <TimerDisplay countdownPartIndex={3} />
+
+        <div className="contents max-md:hidden">
+          <Separator />
+          <TimerDisplay countdownPartIndex={2} />
+          <Separator />
+          <TimerDisplay countdownPartIndex={3} />
+        </div>
+
+        <div className="hidden max-md:contents">
+          <div className="contents child:mt-12">
+            <Header3 as="span">Minutter</Header3>
+            <span />
+            <Header3 as="span">Sekunder</Header3>
+          </div>
+
+          <TimerDisplay countdownPartIndex={2} />
+          <Separator />
+          <TimerDisplay countdownPartIndex={3} />
+        </div>
       </div>
 
-      <p className="w-304">
+      <p className="max-w-304 max-sm:text-justify">
         Bli med på Knowits julekalender! Hver dag før jul åpnes en ny luke med
         en oppgave du må løse. Vi trekker en heldig vinner som får en valgfri
         mobil eller nettbrett!
       </p>
 
-      <div className="space-x-8">
+      <div className="flex flex-wrap justify-center gap-8 max-mad:gap-4">
         {isAuthenticated
           ? <span className="font-bold">Lykke til!</span>
           : (<>
