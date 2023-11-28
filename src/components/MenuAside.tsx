@@ -10,11 +10,9 @@ import { cl } from "../utils"
 import { useServiceMessages } from "../api/requests"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { AsidesContext } from "../AsidesContext"
-import { AuthContext } from "../AuthContext"
 import { FCWithChildren } from "../../types/utils_types"
 
 import SignOutButton from "./SignOutButton"
-import ShowLeaderboardButton from "./ShowLeaderboardButton"
 import ThemeButton from "./ThemeButton"
 import Button, { ButtonProps } from "./Button"
 import ServiceMessageBadge from "./ServiceMessageBadge"
@@ -28,17 +26,8 @@ const MenuGroup: FCWithChildren = ({ children }) => (
   </div>
 )
 
-const MenuButton: FC<ButtonProps & { as?: ElementType }> = ({ as = Button, ...buttonProps}) => {
-  const Component = as
-
-  return (
-    <Component className="w-full text-left" sm {...buttonProps} />
-  )
-}
-
 const MenuAside: FC = () => {
   const { showMenu, setShowMenu } = useContext(AsidesContext)
-  const { isAuthenticated } = useContext(AuthContext)
 
   const clickableMenuRef = useRef<HTMLDivElement>(null)
   const [hiddenTransitioning, setHiddenTransitioning] = useState(false)
@@ -52,7 +41,7 @@ const MenuAside: FC = () => {
       setHiddenTransitioning(false)
       setShowMenu(false)
     }, 300)
-  }, [])
+  }, [setShowMenu])
 
   useOnClickOutside(clickableMenuRef, useCallback(() => {
     if (!clickableMenuRef.current) return
@@ -61,6 +50,13 @@ const MenuAside: FC = () => {
   }, [closeHandlerWithTransition]))
 
   if (!showMenu && !hiddenTransitioning) return null
+  const MenuButton: FC<ButtonProps & { as?: ElementType }> = ({ as = Button, ...buttonProps }) => {
+    const Component = as
+
+    return (
+      <Component className="w-full text-left" sm onClick={() => closeHandlerWithTransition()} {...buttonProps} />
+    )
+  }
 
   return (
     <aside
@@ -112,7 +108,7 @@ const MenuAside: FC = () => {
           </MenuGroup>
 
           <MenuGroup>
-            <MenuButton as={ShowLeaderboardButton} icon="award" />
+            <Link to="/leaderboard"><MenuButton icon="award" content="Ledertavle" /></Link>
 
             {!isEmpty(serviceMessages) && (
               // Only show link to service messages if there are any
