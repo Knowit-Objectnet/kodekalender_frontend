@@ -21,7 +21,7 @@ const PageContent: FCWithChildren<PageContentProps> = ({
   <main
     className={cl(
       `
-        mx-90
+        mx-4
         lg:mx-[11.25rem]
         min-h-full
       `,
