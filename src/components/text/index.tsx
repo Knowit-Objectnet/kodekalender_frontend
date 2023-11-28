@@ -5,10 +5,10 @@ import { FCWithChildren } from "../../../types/utils_types"
 
 
 const HEADER_CLASSES = [
-  "font-['Twinkle_Star'] text-2xl tracking-[0.03475rem]",
-  "font-['Twinkle_Star'] text-xl tracking-[0.03375rem]",
-  "font-['Nunito_Variable'] text-lg font-bold",
-  "font-['Nunito_Variable'] text-lg"
+  "font-['Twinkle_Star'] text-xl sm:text2xl md:text-3xl tracking-[0.03475rem]",
+  "font-['Twinkle_Star'] text-lg sm:text-xl md:text-2xl tracking-[0.03375rem]",
+  "font-['Nunito_Variable'] text-base sm:text-lg font-bold",
+  "font-['Nunito_Variable'] text-base sm:text-lg"
 ] as const
 
 type HeaderComponentProps = HTMLAttributes<HTMLHeadingElement> & {
