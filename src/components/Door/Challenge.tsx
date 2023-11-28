@@ -26,7 +26,7 @@ const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamb
         </div>
 
         <div
-          className="prose prose-xl"
+          className="prose"
           dangerouslySetInnerHTML={{ __html: challenge.content }}
         />
 

@@ -79,6 +79,7 @@ export default {
       typography: {
         DEFAULT: {
           css: {
+            fontSize: '18px',
             '--tw-prose-body': colors.white,
             '--tw-prose-headings': colors.white,
             // '--tw-prose-lead': theme('colors.pink[700]'),
