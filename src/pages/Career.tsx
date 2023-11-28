@@ -11,7 +11,7 @@ const Career = () => (
       en av våre alver for en uformell prat!
     </p>
 
-    <div className="flex justify-center gap-8">
+    <div className="flex flex-wrap justify-center gap-8">
       <ExternalLink
         className="underline"
         href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
@@ -19,6 +19,7 @@ const Career = () => (
       >
         <Button icon="link">Jobb i Knowit</Button>
       </ExternalLink>
+
       <a href="mailto:julenissen@knowit.no">
         <Button icon="mail">
           Kontakt alvene

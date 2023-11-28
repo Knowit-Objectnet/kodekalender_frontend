@@ -62,11 +62,12 @@ export type IconProps = DetailedHTMLProps<
   HTMLAttributes<HTMLElement>,
   HTMLElement
 > & {
+  sm?: boolean
   name: keyof typeof ICONS
   className?: string
 }
 
-const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
+const Icon: FC<IconProps> = ({ sm = false, name, className, ...rest }) => {
   const IconComponent = ICONS[name]
 
   return (
@@ -76,17 +77,18 @@ const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
           relative
           inline-block
 
-          h-16
-
-          w-16
+          h-[1.575rem]
+          w-[1.575rem]
           align-middle
 
           child:-left-1
           child:-top-1
-          
+
+
           child:h-full
           child:w-full
         `,
+        sm && "h-[1.35rem] w-[1.35rem] child:left-[.5px] child:top-[.5px]",
         className
       )}
       {...rest}

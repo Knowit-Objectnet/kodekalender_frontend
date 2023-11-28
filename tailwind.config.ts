@@ -49,8 +49,9 @@ export default {
       "sm": ["0.875rem", "1.35rem"],    // 14px
       "base": ["1.125rem", "1.575rem"], // 18px
       "lg": ["1.75rem", "2.1875rem"], // 28px
-      "xl": ["3.375rem", "1"], // 54px
-      "2xl": ["4.375rem", "1"], // 70px
+      "xl": ["2.625rem", "1"], // 42px
+      "2xl": ["3.375rem", "1"], // 54px
+      "3xl": ["4.375rem", "1"], // 70px
     },
     colors: {
       ...colors,

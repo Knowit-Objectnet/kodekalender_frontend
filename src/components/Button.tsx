@@ -49,12 +49,14 @@ const Button: FC<ButtonProps> = ({
         `
         hover:bg-purple-900
         hover:ring
+        hover:ring-inset
         hover:ring-purple-700
 
         active:bg-purple-500
 
         focus:outline-none
         focus:ring
+        focus:ring-inset
         focus:ring-purple-100
       `,
       disabled &&
@@ -75,7 +77,7 @@ const Button: FC<ButtonProps> = ({
     type={type}
     {...restProps}
   >
-    {icon && <Icon name={icon} className={cl(sm && "w-10 h-10")} />}
+    {icon && <Icon name={icon} sm={sm} className={cl(sm && "w-10 h-10")} />}
     {content ?? children}
   </button>
 )

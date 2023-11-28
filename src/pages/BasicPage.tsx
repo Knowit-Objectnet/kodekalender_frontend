@@ -42,7 +42,7 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         className
       )}
     >
-      <Header2 as={Header1} className="text-center max-sm:text-lg">
+      <Header2 as={Header1} className="text-center">
         {title}
       </Header2>
 

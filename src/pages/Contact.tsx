@@ -7,16 +7,16 @@ import BasicPage from "./BasicPage"
 const Contact = () => (
   <BasicPage title="Kontakt oss">
     <p className="-mb-4 text-center">Følg utviklingen og kom med innspill eller Pull Requests på GitHub!</p>
-    <div className="flex justify-center gap-8">
-      <ExternalLink href="https://github.com/Knowit-Objectnet">
-        <Button icon="link">
-          Knowit GitHub
-        </Button>
-      </ExternalLink>
-
+    <div className="flex flex-wrap justify-center gap-8">
       <ExternalLink href="https://github.com/Knowit-Objectnet/kodekalender_frontend">
         <Button icon="link">
           Knowit GitHub - Kodekalender
+        </Button>
+      </ExternalLink>
+
+      <ExternalLink href="https://github.com/Knowit-Objectnet">
+        <Button icon="link">
+          Knowit GitHub
         </Button>
       </ExternalLink>
     </div>
