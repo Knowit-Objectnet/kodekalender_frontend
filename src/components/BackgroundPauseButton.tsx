@@ -7,19 +7,10 @@ type BackgroundPauseButtonProps = {
   onTogglePaused: () => void
 }
 
-const BackgroundPauseButton: FC<BackgroundPauseButtonProps> = ({
-  paused,
-  onTogglePaused
-}) => (
+const BackgroundPauseButton: FC<BackgroundPauseButtonProps> = ({ paused, onTogglePaused }) => (
   <label
     title="Varm laptop? 🔥"
-    className={cl(
-      "p-2",
-      "shadow",
-      "text-xs",
-      "pointer-events-auto",
-      "cursor-pointer"
-    )}
+    className={cl("p-2", "shadow", "text-xs", "pointer-events-auto", "cursor-pointer")}
   >
     <input
       type="checkbox"

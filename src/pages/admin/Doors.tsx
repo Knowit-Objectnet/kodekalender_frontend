@@ -20,19 +20,13 @@ const Doors: FC = () => {
 
   // Find the first available challenge in case we need to choose a default door
   const { data: challenges } = useChallenges()
-  const minChallenge = useMemo(
-    () => minBy(values(challenges), "door"),
-    [challenges]
-  )
+  const minChallenge = useMemo(() => minBy(values(challenges), "door"), [challenges])
 
-  const { mutate: doDeleteChallenge, isLoading: isDeleting } =
-    useDeleteChallenge()
+  const { mutate: doDeleteChallenge, isLoading: isDeleting } = useDeleteChallenge()
 
   const deleteChallenge = () => {
     if (
-      !window.confirm(
-        `Er du sikker på at du vil slette luke ${door} "${adminChallenge?.title}"?`
-      )
+      !window.confirm(`Er du sikker på at du vil slette luke ${door} "${adminChallenge?.title}"?`)
     )
       return
 
@@ -47,9 +41,7 @@ const Doors: FC = () => {
     )
   }
 
-  const [door, setDoor] = useState<number | undefined>(
-    paramMatch && parseInt(paramMatch.door)
-  )
+  const [door, setDoor] = useState<number | undefined>(paramMatch && parseInt(paramMatch.door))
 
   // If no door is set (through query or user choice), default to first available door
   useLayoutEffect(() => {

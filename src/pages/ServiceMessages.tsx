@@ -29,10 +29,7 @@ const ServiceMessages = () => {
             return (
               <ServiceMessage
                 key={serviceMessage.uuid}
-                className={cl(
-                  "w-full max-w-320 rounded-md border-2 p-8",
-                  messageClasses
-                )}
+                className={cl("w-full max-w-320 rounded-md border-2 p-8", messageClasses)}
                 serviceMessage={serviceMessage}
               />
             )

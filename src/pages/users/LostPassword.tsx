@@ -2,10 +2,7 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "react-router-dom"
 
-import {
-  InitiateResetPasswordParameters,
-  useInitiateResetPassword
-} from "../../api/users/requests"
+import { InitiateResetPasswordParameters, useInitiateResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
 import BasicPage from "../BasicPage"
 import SubmitButton from "../../components/SubmitButton"
@@ -30,19 +27,15 @@ const LostPassword: FC = () => {
       <BasicPage title="Glemt passord">
         <p className="text-center">Tilbakestillingsinstrukser sendt.</p>
         <p className="text-center">
-          Dersom det finnes en konto med e-postadressen du oppga vil du snarlig
-          få en e-post med instrukser for å tilbakestille ditt passord.
+          Dersom det finnes en konto med e-postadressen du oppga vil du snarlig få en e-post med
+          instrukser for å tilbakestille ditt passord.
         </p>
       </BasicPage>
     )
   }
 
   return (
-    <BasicPage
-      title="Glemt passord"
-      onSubmit={handleSubmit(onSubmit)}
-      containerClassName="gap-16"
-    >
+    <BasicPage title="Glemt passord" onSubmit={handleSubmit(onSubmit)} containerClassName="gap-16">
       <FormElement
         autoFocus
         label="E-post"
@@ -52,10 +45,7 @@ const LostPassword: FC = () => {
         {...register("email")}
       />
 
-      <SubmitButton
-        content="Send tilbakestillingsinstrukser"
-        className="mx-auto"
-      />
+      <SubmitButton content="Send tilbakestillingsinstrukser" className="mx-auto" />
     </BasicPage>
   )
 }

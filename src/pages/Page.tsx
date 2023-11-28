@@ -7,11 +7,7 @@ type PageProps = {
   wrapperClassName?: string
 }
 
-const Page: FCWithChildren<PageProps> = ({
-  className,
-  wrapperClassName,
-  children
-}) => (
+const Page: FCWithChildren<PageProps> = ({ className, wrapperClassName, children }) => (
   <PageContent className={wrapperClassName}>
     {/* <DoorBorder /> */}
 

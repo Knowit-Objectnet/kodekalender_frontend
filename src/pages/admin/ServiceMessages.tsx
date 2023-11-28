@@ -38,9 +38,7 @@ const ServiceMessages = () => {
             return (
               <div key={serviceMessage.uuid} className="w-full max-w-[40rem]">
                 <div className="m-4 space-x-8">
-                  <Link
-                    to={`/admin/service_messages/${serviceMessage.uuid}/edit`}
-                  >
+                  <Link to={`/admin/service_messages/${serviceMessage.uuid}/edit`}>
                     <Button content="Rediger" />
                   </Link>
                   <Button
@@ -49,10 +47,7 @@ const ServiceMessages = () => {
                   />
                 </div>
                 <ServiceMessage
-                  className={cl(
-                    "w-full rounded-md border-2 p-8",
-                    messageClasses
-                  )}
+                  className={cl("w-full rounded-md border-2 p-8", messageClasses)}
                   serviceMessage={serviceMessage}
                 />
               </div>

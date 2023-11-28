@@ -16,32 +16,19 @@ type ChildPostFormProps = {
   className?: string
 }
 
-const ChildPostForm: FC<ChildPostFormProps> = ({
-  toggleShowForm,
-  door,
-  parent,
-  className
-}) => {
+const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, className }) => {
   const { mutate: doCreatePost, isLoading } = useCreatePost()
 
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [isDirty, setIsDirty] = useState(false)
   const setDirty = useCallback(() => setIsDirty(true), [setIsDirty])
-  const [
-    preview,
-    previewHtml,
-    previewLoading,
-    togglePreview,
-    updatePreviewContent
-  ] = usePostPreviewState(inputRef)
+  const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] =
+    usePostPreviewState(inputRef)
 
   const createPost = async () => {
     if (!inputRef.current) return
 
-    doCreatePost(
-      { door, parent, content: inputRef.current.value },
-      { onSuccess: toggleShowForm }
-    )
+    doCreatePost({ door, parent, content: inputRef.current.value }, { onSuccess: toggleShowForm })
     toggleShowForm()
   }
 

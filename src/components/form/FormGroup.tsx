@@ -11,11 +11,7 @@ type FormGroupProps = {
   dirty: Maybe<boolean>
 }
 
-const FormGroup: FC<PropsWithChildren<FormGroupProps>> = ({
-  error,
-  dirty,
-  children
-}) => (
+const FormGroup: FC<PropsWithChildren<FormGroupProps>> = ({ error, dirty, children }) => (
   <div className={cl("group", { error, dirty })}>
     {children}
     <FormError error={error} />

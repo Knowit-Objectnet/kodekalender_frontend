@@ -6,8 +6,8 @@ import BasicPage from "./BasicPage"
 const Career = () => (
   <BasicPage title="Jobbe i Knowit?">
     <p>
-      Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med en av
-      våre alver for en uformell prat!
+      Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med en av våre alver for en
+      uformell prat!
     </p>
 
     <div className="flex justify-center gap-8">

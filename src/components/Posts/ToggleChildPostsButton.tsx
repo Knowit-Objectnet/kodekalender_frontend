@@ -20,13 +20,9 @@ const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({
 
   // TODO: Hover style
   return (
-    <button
-      className={cl("space-x-4", className)}
-      onClick={toggleShowChildPosts}
-    >
+    <button className={cl("space-x-4", className)} onClick={toggleShowChildPosts}>
       <span>
-        {showChildPosts ? "Skjul" : "Vis"} {numberString(numChildPosts, true)}{" "}
-        svar
+        {showChildPosts ? "Skjul" : "Vis"} {numberString(numChildPosts, true)} svar
       </span>
       <FaChevronDown
         className={cl(

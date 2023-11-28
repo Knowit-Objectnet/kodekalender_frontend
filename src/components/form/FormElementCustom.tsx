@@ -35,24 +35,18 @@ const FormElementCustom: FCWithChildren<FormElementCustomProps> = ({
       ? "grid-flow-row grid-cols-[auto_auto_1fr]"
       : "grid-flow-row grid-cols-[auto_auto]"
 
-  const inputWrapperClasses =
-    noteDirection === "right" ? "col-span-3" : "col-span-2"
+  const inputWrapperClasses = noteDirection === "right" ? "col-span-3" : "col-span-2"
 
   return (
     <div className={`grid self-stretch ${gridClasses} gap-x-4 gap-y-3`}>
-      <label
-        className={cl("font-bold", disabled && "text-gray/30", className)}
-        {...labelProps}
-      >
+      <label className={cl("font-bold", disabled && "text-gray/30", className)} {...labelProps}>
         {required && <span className="font-bold text-red-700">* </span>}
         {label}
       </label>
 
       {note && <NoteElements note={note} />}
 
-      <div className={cl(inputWrapperClasses, inputWrapperClassName)}>
-        {children}
-      </div>
+      <div className={cl(inputWrapperClasses, inputWrapperClassName)}>{children}</div>
     </div>
   )
 }

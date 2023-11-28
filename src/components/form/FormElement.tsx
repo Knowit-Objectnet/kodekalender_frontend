@@ -10,22 +10,8 @@ type FormElementProps = FormInputElementProps & {
   labelClassName?: string
 }
 
-const FormElement = forwardRef<
-  HTMLInputElement,
-  PropsWithChildren<FormElementProps>
->(
-  (
-    {
-      label,
-      note,
-      labelClassName,
-      disabled,
-      children,
-      required,
-      ...inputProps
-    },
-    ref
-  ) => {
+const FormElement = forwardRef<HTMLInputElement, PropsWithChildren<FormElementProps>>(
+  ({ label, note, labelClassName, disabled, children, required, ...inputProps }, ref) => {
     const id = useId()
 
     return (
@@ -37,13 +23,7 @@ const FormElement = forwardRef<
         disabled={disabled}
         className={labelClassName}
       >
-        <FormInputElement
-          id={id}
-          ref={ref}
-          disabled={disabled}
-          required={required}
-          {...inputProps}
-        >
+        <FormInputElement id={id} ref={ref} disabled={disabled} required={required} {...inputProps}>
           {children}
         </FormInputElement>
       </FormElementCustom>

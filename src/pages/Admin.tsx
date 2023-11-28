@@ -37,10 +37,7 @@ const Admin: FC = () => {
 
         <Route path="service_messages" element={<ServiceMessages />} />
         <Route path="service_messages/new" element={<NewServiceMessage />} />
-        <Route
-          path="service_messages/:uuid/edit"
-          element={<EditServiceMessage />}
-        />
+        <Route path="service_messages/:uuid/edit" element={<EditServiceMessage />} />
 
         <Route element={<Navigate to="doors" />} />
       </Routes>

@@ -14,11 +14,7 @@ const EMPTY_STYLES = times(24, constant(undefined))
 
 type DoorStatus = "solved" | "open" | "closed"
 
-const DoorsDesktop: FC<DoorsProps> = ({
-  className,
-  challenges,
-  solvedStatus
-}) => {
+const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) => {
   const doorsState: DoorStatus[] = useMemo(
     () =>
       map(range(1, 25), (i) => {
@@ -61,25 +57,17 @@ const DoorsDesktop: FC<DoorsProps> = ({
   /*
    * Generate all link elements that are to be overlayed on the doors to link through to each challenge.
    */
-  const [doorElementStyles, setDoorElementStyles] = useState<
-    Maybe<Record<string, number>>[]
-  >(times(24, () => ({})))
+  const [doorElementStyles, setDoorElementStyles] = useState<Maybe<Record<string, number>>[]>(
+    times(24, () => ({}))
+  )
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const doorElementRefs = times(24, () => useRef<HTMLAnchorElement>(null))
   const doorElements = useMemo(
     () =>
-      map(
-        zip(doorsState, doorElementStyles, doorElementRefs),
-        ([state, styles, ref], i) =>
-          state === "closed" ? null : (
-            <Link
-              key={i}
-              to={`/luke/${i + 1}`}
-              ref={ref}
-              style={styles}
-              className="fixed"
-            />
-          )
+      map(zip(doorsState, doorElementStyles, doorElementRefs), ([state, styles, ref], i) =>
+        state === "closed" ? null : (
+          <Link key={i} to={`/luke/${i + 1}`} ref={ref} style={styles} className="fixed" />
+        )
       ),
     [doorsState, doorElementStyles, doorElementRefs]
   )
@@ -103,8 +91,7 @@ const DoorsDesktop: FC<DoorsProps> = ({
         return
       }
 
-      const doorsLayerNode =
-        doorsContainerRef.current.querySelector("#Lockedx24")
+      const doorsLayerNode = doorsContainerRef.current.querySelector("#Lockedx24")
       if (!doorsLayerNode) return
 
       const styles = map(doorElementRefs, (ref, i) => {
@@ -124,8 +111,7 @@ const DoorsDesktop: FC<DoorsProps> = ({
       })
 
       // If we got no styles, that means somehow no dom node was found for any door. Unlikely. Try again in a jiffy.
-      if (every(styles, (s) => s === undefined))
-        timeout = setTimeout(updateLinkPositions)
+      if (every(styles, (s) => s === undefined)) timeout = setTimeout(updateLinkPositions)
 
       setDoorElementStyles(styles)
     }
@@ -145,12 +131,9 @@ const DoorsDesktop: FC<DoorsProps> = ({
   }, [doorsContainerRef, ...doorElementRefs])
 
   useLayoutEffect(() => {
-    forEach(
-      doorsContainerRef.current?.querySelectorAll("#Locked24 ~ *"),
-      (node) => {
-        node.classList.add("pointer-events-none")
-      }
-    )
+    forEach(doorsContainerRef.current?.querySelectorAll("#Locked24 ~ *"), (node) => {
+      node.classList.add("pointer-events-none")
+    })
   }, [])
 
   return (

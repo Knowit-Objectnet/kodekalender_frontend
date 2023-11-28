@@ -48,11 +48,7 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
       <Divider bgClasses="my-12 bg-purple-500" />
 
       <ContainerComponent
-        className={cl(
-          "grid grid-flow-row",
-          containerClasses,
-          containerClassName
-        )}
+        className={cl("grid grid-flow-row", containerClasses, containerClassName)}
         {...containerProps}
       >
         {children}

@@ -29,11 +29,7 @@ const Post: FC<PostProps> = ({ post, door }) => {
   const [showChildPosts, toggleShowChildPosts] = useBooleanToggle(true)
 
   return (
-    <PostWrapper
-      post={post}
-      deleteConfirmText={DELETE_CONFIRM}
-      className="grid gap-4"
-    >
+    <PostWrapper post={post} deleteConfirmText={DELETE_CONFIRM} className="grid gap-4">
       {post.deleted && (
         <div className="p-4 text-center font-light text-gray/80 sm:p-12">
           <em>Slettet innlegg</em>
@@ -44,10 +40,7 @@ const Post: FC<PostProps> = ({ post, door }) => {
           {!post.deleted && (
             <>
               <LikeButton post={post} />
-              <SubscribeButton
-                post={post}
-                className="-mt-2 align-middle text-sm"
-              />
+              <SubscribeButton post={post} className="-mt-2 align-middle text-sm" />
             </>
           )}
         </div>
@@ -67,12 +60,7 @@ const Post: FC<PostProps> = ({ post, door }) => {
        * media sizes?
        */}
       {showForm && (
-        <ChildPostForm
-          toggleShowForm={toggleShowForm}
-          door={door}
-          parent={post}
-          className="my-8"
-        />
+        <ChildPostForm toggleShowForm={toggleShowForm} door={door} parent={post} className="my-8" />
       )}
 
       {showChildPosts && (

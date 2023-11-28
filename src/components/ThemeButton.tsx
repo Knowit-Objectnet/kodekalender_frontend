@@ -4,8 +4,7 @@ import Button, { ButtonProps } from "./Button"
 
 const INITIAL_THEME_IS_LIGHT =
   localStorage.theme === "light" ||
-  (!("theme" in localStorage) &&
-    window.matchMedia("(prefers-color-scheme: light)").matches)
+  (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
 
 const ThemeButton: FC<ButtonProps> = (buttonProps) => {
   const [themeIsLight, setThemeIsLight] = useState(INITIAL_THEME_IS_LIGHT)

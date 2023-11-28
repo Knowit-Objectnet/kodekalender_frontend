@@ -1,11 +1,6 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  UseQueryOptions
-} from "react-query"
+import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
 import {
   clone,
   findIndex,
@@ -60,51 +55,39 @@ export const usePrefetchLikes = () => {
   )
 }
 
-const getChallenges = () =>
-  axios.get("/challenges").then(({ data }) => keyBy(data, "door"))
+const getChallenges = () => axios.get("/challenges").then(({ data }) => keyBy(data, "door"))
 export const useChallenges = () =>
   useQuery<ChallengeDict, QueryError>(["challenges"], getChallenges, {
     staleTime: 600_000
   })
 export const useChallenge = (door: Maybe<number>) =>
-  useQuery<ChallengeDict, QueryError, ChallengeDict[number]>(
-    ["challenges"],
-    getChallenges,
-    {
-      staleTime: 600_000,
-      select: property(door!),
-      enabled: isPresent(door)
-    }
-  )
+  useQuery<ChallengeDict, QueryError, ChallengeDict[number]>(["challenges"], getChallenges, {
+    staleTime: 600_000,
+    select: property(door!),
+    enabled: isPresent(door)
+  })
 
 const getSolvedStatus = (): Promise<SolvedStatus> =>
-  axios
-    .get("/users/solved")
-    .then(({ data: { solved_status } }) => fromPairs(solved_status))
-export const useSolvedStatus = (
-  opts?: UseQueryOptions<SolvedStatus, QueryError>
-) => {
+  axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
+export const useSolvedStatus = (opts?: UseQueryOptions<SolvedStatus, QueryError>) => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<SolvedStatus, QueryError>(
-    ["users", "solved"],
-    getSolvedStatus,
-    { staleTime: 600_000, enabled: isAuthenticated, ...opts }
-  )
+  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, {
+    staleTime: 600_000,
+    enabled: isAuthenticated,
+    ...opts
+  })
 }
 
 const getPosts = (door: number) =>
-  axios
-    .get(`/challenges/${challengeIdParam(door)}/posts`)
-    .then(({ data }) => data)
+  axios.get(`/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
 export const usePosts = (door: number) => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<ParentPost[], QueryError>(
-    ["posts", door],
-    () => getPosts(door),
-    { refetchInterval: 300_000, enabled: isAuthenticated }
-  )
+  return useQuery<ParentPost[], QueryError>(["posts", door], () => getPosts(door), {
+    refetchInterval: 300_000,
+    enabled: isAuthenticated
+  })
 }
 export const usePrefetchPosts = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -112,8 +95,7 @@ export const usePrefetchPosts = () => {
 
   return useCallback(
     (door: number) =>
-      isAuthenticated &&
-      queryClient.prefetchQuery(["posts", door], () => getPosts(door)),
+      isAuthenticated && queryClient.prefetchQuery(["posts", door], () => getPosts(door)),
     [queryClient, isAuthenticated]
   )
 }
@@ -132,56 +114,43 @@ export const usePrefetchLeaderboard = () => {
   )
 }
 
-const getSubscriptions = () =>
-  axios.get("/subscriptions").then(({ data }) => data)
+const getSubscriptions = () => axios.get("/subscriptions").then(({ data }) => data)
 export const useSubscriptions = () => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<Subscriptions, QueryError>(
-    ["users", "subscriptions"],
-    getSubscriptions,
-    { staleTime: 600_000, enabled: isAuthenticated }
-  )
+  return useQuery<Subscriptions, QueryError>(["users", "subscriptions"], getSubscriptions, {
+    staleTime: 600_000,
+    enabled: isAuthenticated
+  })
 }
 
-const getServiceMessages = () =>
-  axios.get("/service_messages").then(({ data }) => data)
+const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)
 export const useServiceMessages = <TSelected = ServiceMessage[]>(
   options?: UseQueryOptions<ServiceMessage[], QueryError, TSelected>
 ) =>
-  useQuery<ServiceMessage[], QueryError, TSelected>(
-    ["serviceMessages"],
-    getServiceMessages,
-    { ...options, staleTime: 60_000, refetchInterval: 60_000 }
-  )
+  useQuery<ServiceMessage[], QueryError, TSelected>(["serviceMessages"], getServiceMessages, {
+    ...options,
+    staleTime: 60_000,
+    refetchInterval: 60_000
+  })
 
 const getPostMarkdown = (post_uuid: string) =>
-  axios
-    .get("/markdown", { params: { post_uuid } })
-    .then(({ data: { markdown } }) => markdown)
-export const usePostMarkdown = (
-  post_uuid: string,
-  options?: UseQueryOptions<string, QueryError>
-) =>
-  useQuery<string, QueryError>(
-    ["posts", "markdown", post_uuid],
-    () => getPostMarkdown(post_uuid),
-    { ...options, staleTime: 600_000 }
-  )
+  axios.get("/markdown", { params: { post_uuid } }).then(({ data: { markdown } }) => markdown)
+export const usePostMarkdown = (post_uuid: string, options?: UseQueryOptions<string, QueryError>) =>
+  useQuery<string, QueryError>(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid), {
+    ...options,
+    staleTime: 600_000
+  })
 export const usePrefetchPostMarkdown = () => {
   const queryClient = useQueryClient()
   return useCallback(
     (post_uuid: string) =>
-      queryClient.prefetchQuery(["posts", "markdown", post_uuid], () =>
-        getPostMarkdown(post_uuid)
-      ),
+      queryClient.prefetchQuery(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid)),
     [queryClient]
   )
 }
 
-export const getPostPreview = async (
-  markdownContent: string | undefined | null
-) => {
+export const getPostPreview = async (markdownContent: string | undefined | null) => {
   if (isEmpty(markdownContent)) return
 
   return await axios
@@ -202,11 +171,7 @@ export type CreateSolutionParameters = { door: number; answer: string }
 export const useCreateSolution = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<
-    CreateSolutionResponse,
-    QueryError,
-    CreateSolutionParameters
-  >(
+  return useMutation<CreateSolutionResponse, QueryError, CreateSolutionParameters>(
     ["solutions", "createSolution"],
     ({ door, answer }) =>
       axios
@@ -335,8 +300,7 @@ export const useDeletePost = () => {
     ["posts", "deletePost"],
     ({ post }) => axios.delete(`/posts/${post.uuid}`),
     {
-      onSettled: (_data, _err, { post }) =>
-        queryClient.invalidateQueries(["posts", post.door])
+      onSettled: (_data, _err, { post }) => queryClient.invalidateQueries(["posts", post.door])
     }
   )
 }
@@ -351,15 +315,11 @@ export const useUpdatePost = () => {
 
   return useMutation<Post, QueryError, UpdatePostParameters>(
     ["posts", "updatePost"],
-    ({ post, content }) =>
-      axios.put(`/posts/${post.uuid}`, { post: { content } }),
+    ({ post, content }) => axios.put(`/posts/${post.uuid}`, { post: { content } }),
     {
       onMutate: async ({ post, html }) => {
         await queryClient.cancelQueries(["posts", post.door])
-        const posts = queryClient.getQueryData<ParentPost[]>([
-          "posts",
-          post.door
-        ])
+        const posts = queryClient.getQueryData<ParentPost[]>(["posts", post.door])
 
         if (!posts || isNil(html)) return posts
 
@@ -386,38 +346,27 @@ export const useUpdatePost = () => {
   )
 }
 
-export type CreateSubscriptionParameters =
-  | { door: number }
-  | { postUuid: string }
+export type CreateSubscriptionParameters = { door: number } | { postUuid: string }
 export const useCreateSubscription = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<
-    never,
-    QueryError,
-    CreateSubscriptionParameters,
-    Subscriptions
-  >(
+  return useMutation<never, QueryError, CreateSubscriptionParameters, Subscriptions>(
     ["subscriptions", "createSubscription"],
     (data) => axios.post("/subscriptions", data),
     {
       onMutate: async (subscription) => {
         await queryClient.cancelQueries(["users", "subscriptions"])
-        const subscriptions = queryClient.getQueryData<Subscriptions>([
-          "users",
-          "subscriptions"
-        ])
+        const subscriptions = queryClient.getQueryData<Subscriptions>(["users", "subscriptions"])
 
-        queryClient.setQueryData<Subscriptions>(
-          ["users", "subscriptions"],
-          () => [...(subscriptions ?? []), { ...subscription, uuid: "" }]
-        )
+        queryClient.setQueryData<Subscriptions>(["users", "subscriptions"], () => [
+          ...(subscriptions ?? []),
+          { ...subscription, uuid: "" }
+        ])
 
         return subscriptions
       },
       onError: (_err, _vars, subscriptions) => {
-        if (subscriptions)
-          queryClient.setQueryData(["users", "subscriptions"], subscriptions)
+        if (subscriptions) queryClient.setQueryData(["users", "subscriptions"], subscriptions)
       },
       onSettled: () => {
         queryClient.invalidateQueries(["users", "subscriptions"])
@@ -430,12 +379,7 @@ export type DeleteSubscriptionParameters = { uuid: string }
 export const useDeleteSubscription = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<
-    never,
-    QueryError,
-    DeleteSubscriptionParameters,
-    Subscriptions
-  >(
+  return useMutation<never, QueryError, DeleteSubscriptionParameters, Subscriptions>(
     ["subscriptions", "deleteSubscription"],
     ({ uuid }) => axios.delete(`/subscriptions/${uuid}`),
     {

@@ -5,10 +5,7 @@ import { Nullable } from "../../types/utils_types"
 
 import Icon, { IconProps } from "./Icons/Icon"
 
-type HTMLButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
+type HTMLButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 export type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   content?: ReactNode
   disabled?: boolean

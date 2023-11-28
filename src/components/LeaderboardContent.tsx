@@ -6,10 +6,7 @@ import { useLeaderboard } from "../api/requests"
 
 import { Header3 } from "./text"
 
-type LeaderboardGroup = [
-  number,
-  Array<{ username: string | null; position: number }>
-]
+type LeaderboardGroup = [number, Array<{ username: string | null; position: number }>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
@@ -88,9 +85,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
 
               return (
                 <p key={getObjKey(user)}>
-                  <span className="text-xs tracking-wide text-gray/40">
-                    {user.position}.
-                  </span>
+                  <span className="text-xs tracking-wide text-gray/40">{user.position}.</span>
                   &nbsp;{displayName}
                 </p>
               )

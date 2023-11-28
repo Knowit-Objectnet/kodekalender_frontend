@@ -42,20 +42,16 @@ export const getActiveYear = () => {
 export const getDefaultActiveFrom = (door: number) =>
   `${getActiveYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
 export const getDefaultActiveTo = () => `${getActiveYear()}-12-26T04:00+0100`
-export const getRaffleStart = () =>
-  new Date(`${getActiveYear()}-12-01T04:00+0100`)
-export const getRaffleEnd = () =>
-  new Date(`${getActiveYear()}-12-26T04:00+0100`)
+export const getRaffleStart = () => new Date(`${getActiveYear()}-12-01T04:00+0100`)
+export const getRaffleEnd = () => new Date(`${getActiveYear()}-12-26T04:00+0100`)
 
 const DATE_FORMATS = {
   standard: "do MMMM p",
   long: "'kl.' p 'den' do MMMM",
   short: "dd.MM HH:mm"
 } as const
-export const dateFormat = (
-  date: Date,
-  fmt: keyof typeof DATE_FORMATS = "standard"
-) => format(date, DATE_FORMATS[fmt], { locale: nb })
+export const dateFormat = (date: Date, fmt: keyof typeof DATE_FORMATS = "standard") =>
+  format(date, DATE_FORMATS[fmt], { locale: nb })
 
 export const squish = (str: string) => replace(trim(str), /\s+/g, " ")
 
@@ -124,8 +120,7 @@ export const numberString = (n: number, neutral = false): string => {
     // Hundre og x, tolv hundre og x
     if (n >= 100) {
       const hundreds = Math.floor(n / 100)
-      const s =
-        hundreds >= 2 ? `${numberString(hundreds, true)} hundre` : "hundre"
+      const s = hundreds >= 2 ? `${numberString(hundreds, true)} hundre` : "hundre"
       str += isEmpty(str) ? s : ` ${s}`
       n -= hundreds * 100
       and = true
@@ -221,16 +216,12 @@ export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
 export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
   value: Nullable<Maybe<T>>,
   presentFunc: (v: T) => TPresentReturn,
-  notPresentFuncOrValue?:
-    | ((v: Nullable<Maybe<T>>) => TNotPresentReturn)
-    | TNotPresentReturn
+  notPresentFuncOrValue?: ((v: Nullable<Maybe<T>>) => TNotPresentReturn) | TNotPresentReturn
 ): TPresentReturn | TNotPresentReturn | undefined {
   if (isPresent(value)) return presentFunc(value)
 
   if (!isNil(notPresentFuncOrValue))
-    return isFunction(notPresentFuncOrValue)
-      ? notPresentFuncOrValue(value)
-      : notPresentFuncOrValue
+    return isFunction(notPresentFuncOrValue) ? notPresentFuncOrValue(value) : notPresentFuncOrValue
 
   return undefined
 }

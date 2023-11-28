@@ -38,9 +38,9 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({
   const { mutateAsync: uploadFile } = useUploadFile()
 
   // FileObjects is source of truth for form files
-  const [fileObjects, setFileObjects] = useState<
-    Array<ChallengeFile & { fileId: number }>
-  >(map(challenge.files, (file) => ({ ...file, fileId: fileIdCounter++ })))
+  const [fileObjects, setFileObjects] = useState<Array<ChallengeFile & { fileId: number }>>(
+    map(challenge.files, (file) => ({ ...file, fileId: fileIdCounter++ }))
+  )
   useEffect(() => {
     setValue("files", map(fileObjects, "signed_id"))
   }, [setValue, fileObjects])
@@ -64,9 +64,7 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({
           filename: file.name,
           content_type: file.type,
           byte_size: file.size,
-          checksum: btoa(
-            SparkMD5.ArrayBuffer.hash(await file.arrayBuffer(), true)
-          )
+          checksum: btoa(SparkMD5.ArrayBuffer.hash(await file.arrayBuffer(), true))
         }
 
         const { signed_id, direct_upload } = await createBlob({ blob: payload })
@@ -105,10 +103,7 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({
 
   return (
     <div className={cl("space-y-4", className)}>
-      <FormElementCustom
-        label="Filer"
-        note="husk å dobbeltsjekke riktig filnavn i markdown"
-      >
+      <FormElementCustom label="Filer" note="husk å dobbeltsjekke riktig filnavn i markdown">
         <input
           ref={fileInputRef}
           className="hidden"
@@ -141,15 +136,11 @@ const AttachmentsInput: FC<AttachmentsInputProps> = ({
                   className="absolute -left-2 -top-2 h-[calc(100%+.5rem)] bg-purple-400/20"
                 />
               )}
-              <span className="line-clamp-1 inline-block w-[calc(100%-1.5rem)]">
-                {filename}
-              </span>
+              <span className="line-clamp-1 inline-block w-[calc(100%-1.5rem)]">{filename}</span>
               <FaTimes
                 className="absolute right-4 top-0 h-full w-6 cursor-pointer"
                 onClick={() =>
-                  setFileObjects((oldFileObjects) =>
-                    reject(oldFileObjects, { signed_id })
-                  )
+                  setFileObjects((oldFileObjects) => reject(oldFileObjects, { signed_id }))
                 }
               />
             </span>

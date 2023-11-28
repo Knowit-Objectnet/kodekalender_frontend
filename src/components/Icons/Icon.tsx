@@ -56,10 +56,7 @@ const ICONS = {
   twitter: TwitterIcon
 }
 
-export type IconProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLElement>,
-  HTMLElement
-> & {
+export type IconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
   name: keyof typeof ICONS
   className?: string
 }

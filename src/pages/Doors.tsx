@@ -2,12 +2,7 @@ import { get } from "lodash-es"
 import { useCallback, useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 
-import {
-  useChallenges,
-  usePrefetchLikes,
-  usePrefetchPosts,
-  useSolvedStatus
-} from "../api/requests"
+import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import DoorsDesktop from "../components/Doors/DoorsDesktop"
 import DoorsMobile from "../components/Doors/DoorsMobile"
 import RaffleNotification from "../components/RaffleNotification"

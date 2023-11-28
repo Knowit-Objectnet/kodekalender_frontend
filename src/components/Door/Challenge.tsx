@@ -12,11 +12,7 @@ type ChallengeProps = {
   preamble?: ReactNode
 }
 
-const Challenge: FC<ChallengeProps> = ({
-  challenge,
-  withoutInput = false,
-  preamble
-}) => {
+const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamble }) => {
   if (!challenge) return null
 
   return (

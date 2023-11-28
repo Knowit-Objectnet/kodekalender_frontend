@@ -4,34 +4,21 @@ import { includes, merge } from "lodash-es"
 export let authorizationToken: string | undefined = undefined
 export let csrfToken: string | undefined = undefined
 
-export const setAuthorizationToken = (newToken: string) =>
-  (authorizationToken = newToken)
+export const setAuthorizationToken = (newToken: string) => (authorizationToken = newToken)
 export const setCsrfToken = (newToken: string) => (csrfToken = newToken)
 
 const activeStorageRegexp = new RegExp("/rails/active_storage/")
-const csrfMethods = [
-  "post",
-  "patch",
-  "put",
-  "delete",
-  "POST",
-  "PATCH",
-  "PUT",
-  "DELETE"
-]
+const csrfMethods = ["post", "patch", "put", "delete", "POST", "PATCH", "PUT", "DELETE"]
 
 axios.interceptors.request.use((config) => {
   const headers: Record<string, string> = {}
 
   if (authorizationToken) headers["Authorization"] = authorizationToken
-  if (includes(csrfMethods, config.method) && csrfToken)
-    headers["X-CSRF-Token"] = csrfToken
+  if (includes(csrfMethods, config.method) && csrfToken) headers["X-CSRF-Token"] = csrfToken
 
   return merge(config, {
     // Default to .json format for all normal endpoints. Active Storage attachments are not served as JSON.
-    url: activeStorageRegexp.test(config.url ?? "")
-      ? config.url
-      : `${config.url}.json`,
+    url: activeStorageRegexp.test(config.url ?? "") ? config.url : `${config.url}.json`,
 
     baseURL: import.meta.env.VITE_BACKEND_HOST,
     headers,
@@ -73,9 +60,6 @@ axios.interceptors.response.use(
   }
 )
 
-export type QueryAxiosError = Partial<
-  Pick<AxiosResponse, "headers" | "status" | "statusText">
->
-export type QueryError<
-  T extends Record<string, unknown> = { message: string }
-> = T & QueryAxiosError
+export type QueryAxiosError = Partial<Pick<AxiosResponse, "headers" | "status" | "statusText">>
+export type QueryError<T extends Record<string, unknown> = { message: string }> = T &
+  QueryAxiosError

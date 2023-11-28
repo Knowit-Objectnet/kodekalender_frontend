@@ -1,13 +1,6 @@
 import { Transition } from "@headlessui/react"
 import { isEmpty } from "lodash-es"
-import {
-  ElementType,
-  FC,
-  useCallback,
-  useContext,
-  useRef,
-  useState
-} from "react"
+import { ElementType, FC, useCallback, useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 
 import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
@@ -32,10 +25,7 @@ const MenuGroup: FCWithChildren = ({ children }) => (
   <div className="flex flex-col gap-4">{children}</div>
 )
 
-const MenuButton: FC<ButtonProps & { as?: ElementType }> = ({
-  as = Button,
-  ...buttonProps
-}) => {
+const MenuButton: FC<ButtonProps & { as?: ElementType }> = ({ as = Button, ...buttonProps }) => {
   const Component = as
 
   return <Component className="w-full text-left" sm {...buttonProps} />
@@ -118,8 +108,7 @@ const MenuAside: FC = () => {
         >
           <MenuGroup>
             <MenuButton as={SignInButton} />
-            <MenuButton as={SignOutButton} />{" "}
-            {/* Hides itself if not logged in */}
+            <MenuButton as={SignOutButton} /> {/* Hides itself if not logged in */}
             <MenuButton
               as={ThemeButton}
               className={cl({
@@ -180,10 +169,7 @@ const MenuAside: FC = () => {
             >
               <MenuButton icon="instagram" content="Instagram" />
             </ExternalLink>
-            <ExternalLink
-              href="https://twitter.com/knowitnorge"
-              aria-label="Følg oss på Twitter/X"
-            >
+            <ExternalLink href="https://twitter.com/knowitnorge" aria-label="Følg oss på Twitter/X">
               <MenuButton icon="twitter" content="Twitter" />
             </ExternalLink>
           </MenuGroup>

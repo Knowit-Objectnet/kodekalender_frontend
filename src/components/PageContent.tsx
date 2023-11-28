@@ -14,10 +14,7 @@ type PageContentProps = {
  * Must account for notch on phones in landscape mode. We set a max width,
  * centering is taken care of by grid parent.
  */
-const PageContent: FCWithChildren<PageContentProps> = ({
-  className,
-  children
-}) => (
+const PageContent: FCWithChildren<PageContentProps> = ({ className, children }) => (
   <main
     className={cl(
       `

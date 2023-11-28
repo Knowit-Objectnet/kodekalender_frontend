@@ -21,10 +21,7 @@ const createHeader =
     const HeaderComponent = as
 
     return (
-      <HeaderComponent
-        className={cl(HEADER_CLASSES[n - 1], className)}
-        {...rest}
-      >
+      <HeaderComponent className={cl(HEADER_CLASSES[n - 1], className)} {...rest}>
         {children}
       </HeaderComponent>
     )

@@ -12,10 +12,7 @@ export type AdminChallenge = Omit<Challenge, "content"> & {
   markdown_content: string
   files: Array<File>
 }
-export type AdminChallengeDict = Record<
-  number,
-  (AdminChallenge & { content: string }) | undefined
->
+export type AdminChallengeDict = Record<number, (AdminChallenge & { content: string }) | undefined>
 
 export type AdminChallengePayload = Omit<
   AdminChallenge,

@@ -3,10 +3,7 @@ import { memo, useState, FC } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 import { useForm } from "react-hook-form"
 
-import {
-  AdminChallenge,
-  AdminChallengePayload
-} from "../../api/admin/Challenge"
+import { AdminChallenge, AdminChallengePayload } from "../../api/admin/Challenge"
 import { useChallengePreview } from "../../api/admin/requests"
 import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
 import {
@@ -28,11 +25,7 @@ type ChallengeFormProps = {
   submit: (challenge: AdminChallengePayload) => void
 }
 
-const ChallengeForm: FC<ChallengeFormProps> = ({
-  challenge,
-  newForm = false,
-  submit
-}) => {
+const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, submit }) => {
   const [preview, setPreview] = useState<boolean>(false)
 
   const {
@@ -48,8 +41,7 @@ const ChallengeForm: FC<ChallengeFormProps> = ({
     defaultValues: { ...challenge, files: map(challenge.files, "signed_id") }
   })
 
-  const [challengePreview, setChallengePreview] =
-    useState<AdminChallengePayload>()
+  const [challengePreview, setChallengePreview] = useState<AdminChallengePayload>()
   const { data: markdownPreview } = useChallengePreview(challengePreview, {
     enabled: preview
   })
@@ -66,8 +58,7 @@ const ChallengeForm: FC<ChallengeFormProps> = ({
   // Selects are weird. Door is set to 1 on first render, even though `d` is given as default value.
   const door = watch("door")
   const activeFrom =
-    challenge.active_from ??
-    getDefaultActiveFrom(isDoorDirty ? door : challenge.door)
+    challenge.active_from ?? getDefaultActiveFrom(isDoorDirty ? door : challenge.door)
   const activeTo = challenge.active_to ?? getDefaultActiveTo()
 
   return (

@@ -20,22 +20,12 @@ const Input: FC<InputProps> = ({ door }) => {
   const [dirty, setDirty] = useState(false)
   const isDoorSolved = useIsDoorSolved(door)
 
-  const {
-    mutate: createSolution,
-    isLoading,
-    error,
-    reset
-  } = useCreateSolution()
+  const { mutate: createSolution, isLoading, error, reset } = useCreateSolution()
   const [rateLimitTimeout, setRateLimitTimeout] = useState(0)
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> | undefined
 
-    if (
-      error &&
-      error.status === 429 &&
-      error.headers &&
-      error.headers["retry-after"]
-    ) {
+    if (error && error.status === 429 && error.headers && error.headers["retry-after"]) {
       const retryAfter = parseInt(error.headers["retry-after"])
 
       setRateLimitTimeout(retryAfter)
@@ -55,8 +45,7 @@ const Input: FC<InputProps> = ({ door }) => {
     setAttemptCount((count) => count + 1)
   }
 
-  const isWrongAnswer =
-    !isDoorSolved && attemptCount > 0 && !isLoading && !dirty
+  const isWrongAnswer = !isDoorSolved && attemptCount > 0 && !isLoading && !dirty
 
   if (!isDoorSolved && !isAuthenticated) return <p>Logg inn for å delta!</p>
 
@@ -86,10 +75,9 @@ const Input: FC<InputProps> = ({ door }) => {
   return (
     <>
       <input
-        className={cl(
-          "h-16 w-full border-0 border-b border-current bg-transparent p-0",
-          { "text-red-700": isWrongAnswer }
-        )}
+        className={cl("h-16 w-full border-0 border-b border-current bg-transparent p-0", {
+          "text-red-700": isWrongAnswer
+        })}
         placeholder="Ditt svar:"
         value={answer}
         maxLength={128}
@@ -103,11 +91,7 @@ const Input: FC<InputProps> = ({ door }) => {
           }
         }}
       />
-      <button
-        className="mx-auto mt-4 block"
-        disabled={!answer}
-        onClick={() => submitAnswer()}
-      >
+      <button className="mx-auto mt-4 block" disabled={!answer} onClick={() => submitAnswer()}>
         Send inn svar
       </button>
       {(isWrongAnswer || error) && (

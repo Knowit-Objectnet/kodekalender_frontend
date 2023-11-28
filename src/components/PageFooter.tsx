@@ -29,22 +29,13 @@ const PageFooter = () => (
       >
         <Icon name="github" />
       </ExternalLink>
-      <ExternalLink
-        href="https://www.facebook.com/weareknowit"
-        aria-label="Besøk oss på Facebook"
-      >
+      <ExternalLink href="https://www.facebook.com/weareknowit" aria-label="Besøk oss på Facebook">
         <Icon name="facebook" />
       </ExternalLink>
-      <ExternalLink
-        href="https://instagram.com/weareknowit"
-        aria-label="Følg oss på Instagram"
-      >
+      <ExternalLink href="https://instagram.com/weareknowit" aria-label="Følg oss på Instagram">
         <Icon name="instagram" />
       </ExternalLink>
-      <ExternalLink
-        href="https://twitter.com/knowitnorge"
-        aria-label="Følg oss på Twitter/X"
-      >
+      <ExternalLink href="https://twitter.com/knowitnorge" aria-label="Følg oss på Twitter/X">
         <Icon name="twitter" />
       </ExternalLink>
     </div>

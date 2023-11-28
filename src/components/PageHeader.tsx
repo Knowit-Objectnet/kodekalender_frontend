@@ -34,12 +34,7 @@ const PageHeader = () => {
         <div className="place-self-center-end flex flex-row gap-8">
           <SignInButton sm />
 
-          <Button
-            sm
-            icon="menu"
-            content="Meny"
-            onClick={() => setShowMenu((state) => !state)}
-          />
+          <Button sm icon="menu" content="Meny" onClick={() => setShowMenu((state) => !state)} />
         </div>
       </nav>
     </header>

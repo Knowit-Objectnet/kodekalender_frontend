@@ -19,11 +19,7 @@ const SignIn: FC = () => {
   }
 
   return (
-    <BasicPage
-      title="Logg inn"
-      containerClassName="gap-24"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <BasicPage title="Logg inn" containerClassName="gap-24" onSubmit={handleSubmit(onSubmit)}>
       <div className="mx-auto flex w-full max-w-200 flex-col items-center gap-6">
         <FormElement
           autoFocus

@@ -10,11 +10,7 @@ const useWelcomeBackRedirect = () => {
 
   useEffect(() => {
     // Redirect to welcome_back if at root and logged in
-    if (
-      location.pathname === "/" &&
-      whoami &&
-      !whoami.has_answered_opt_in_marketing
-    ) {
+    if (location.pathname === "/" && whoami && !whoami.has_answered_opt_in_marketing) {
       navigate("/users/welcome_back")
     }
 

@@ -42,9 +42,7 @@ export const useSignUp = () => {
       const formData = new FormData()
       forEach(
         payload,
-        (value, key) =>
-          !isNil(value) &&
-          formData.append(`user[${key}]`, mapFormDataValue(value))
+        (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value))
       )
       return axios.post("/users", formData).then(({ data }) => data)
     },
@@ -64,14 +62,9 @@ export type SignInParameters = {
 export const useSignIn = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<
-    SignInResponse,
-    QueryError<{ error: string }>,
-    SignInParameters
-  >(
+  return useMutation<SignInResponse, QueryError<{ error: string }>, SignInParameters>(
     ["users", "signIn"],
-    (payload) =>
-      axios.post("/users/sign_in", { user: payload }).then(({ data }) => data),
+    (payload) => axios.post("/users/sign_in", { user: payload }).then(({ data }) => data),
     {
       onSuccess: (data) => {
         queryClient.setQueryData<Whoami>(["users", "whoami"], data)
@@ -136,9 +129,7 @@ export const useUpdateUser = () => {
       const formData = new FormData()
       forEach(
         payload,
-        (value, key) =>
-          !isNil(value) &&
-          formData.append(`user[${key}]`, mapFormDataValue(value))
+        (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value))
       )
       return axios.patch("/users", formData).then(({ data }) => data)
     },

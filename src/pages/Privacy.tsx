@@ -64,13 +64,7 @@ const SECTIONS = [
   ]
 ]
 
-const PrivacySection = ({
-  header,
-  content
-}: {
-  header: string
-  content: string
-}) => (
+const PrivacySection = ({ header, content }: { header: string; content: string }) => (
   <>
     <li>
       <p className="mb-2 font-bold">{header}</p>
@@ -87,24 +81,19 @@ const Privacy = () => (
     <ul className="mx-8 list-disc">
       <li>Vi bruker cookies for innlogging.</li>
       <li>
-        Registrert e-postadresse kan brukes til å kontakte deg om du vinner,
-        eller til rekrutteringsformål dersom du har tillat det.
+        Registrert e-postadresse kan brukes til å kontakte deg om du vinner, eller til
+        rekrutteringsformål dersom du har tillat det.
       </li>
+      <li>Registrert brukernavn og profilbilde er synlige i diskusjonsfeltet og ledertavlen.</li>
       <li>
-        Registrert brukernavn og profilbilde er synlige i diskusjonsfeltet og
-        ledertavlen.
-      </li>
-      <li>
-        Dersom du vil slette brukerdataen din kan du gjøre dette på brukersiden
-        din, eller ved å kontakte oss.
+        Dersom du vil slette brukerdataen din kan du gjøre dette på brukersiden din, eller ved å
+        kontakte oss.
       </li>
     </ul>
 
     <Divider bgClasses="my-12 bg-purple-500" />
 
-    <Header4>
-      Personverkerklæring for Knowit Kodekalender {getActiveYear()}
-    </Header4>
+    <Header4>Personverkerklæring for Knowit Kodekalender {getActiveYear()}</Header4>
 
     <ol className="mx-8 list-decimal space-y-12">
       {map(SECTIONS, ([header, content], i) => (
@@ -113,8 +102,7 @@ const Privacy = () => (
     </ol>
 
     <div className="mt-24 text-center">
-      Henvendelser om hvilke opplysninger som er registrert, retting og sletting
-      kan sendes til{" "}
+      Henvendelser om hvilke opplysninger som er registrert, retting og sletting kan sendes til{" "}
       <a className="underline" href="mailto:julekalender@knowit.no">
         julekalender@knowit.no
       </a>{" "}

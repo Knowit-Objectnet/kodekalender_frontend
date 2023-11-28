@@ -5,11 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { useDebounce } from "use-debounce"
 
 import { LoggedInWhoami } from "../../api"
-import {
-  SignUpParameters,
-  UpdateUserParameters,
-  useDeleteUser
-} from "../../api/users/requests"
+import { SignUpParameters, UpdateUserParameters, useDeleteUser } from "../../api/users/requests"
 import { QueryError } from "../../axios"
 import BasicPage from "../../pages/BasicPage"
 import { cl, squish } from "../../utils"
@@ -47,12 +43,7 @@ type UserFormProps = {
   newForm?: boolean
 }
 
-const UserForm: FC<UserFormProps> = ({
-  user,
-  submit,
-  submitError,
-  newForm = false
-}) => {
+const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
   const navigate = useNavigate()
 
   const formMethods = useForm<SignUpParameters>()
@@ -64,13 +55,7 @@ const UserForm: FC<UserFormProps> = ({
     reset,
     setError,
     clearErrors,
-    formState: {
-      isSubmitting,
-      isSubmitSuccessful,
-      errors,
-      isDirty,
-      dirtyFields
-    }
+    formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields }
   } = formMethods
 
   const fileUploadId = useId()
@@ -84,9 +69,7 @@ const UserForm: FC<UserFormProps> = ({
     reset({
       email: user?.email ?? "",
       username: user?.username ?? "",
-      opt_in_marketing: user?.has_answered_opt_in_marketing
-        ? user?.opt_in_marketing
-        : undefined
+      opt_in_marketing: user?.has_answered_opt_in_marketing ? user?.opt_in_marketing : undefined
     })
     clearErrors()
   }, [newForm, user, reset, clearErrors])
@@ -116,11 +99,7 @@ const UserForm: FC<UserFormProps> = ({
       // Submit only dirty data to avoid overwriting with null values
       newForm
         ? data
-        : pickBy(
-            data,
-            (_value, key) =>
-              dirtyFields[key as keyof UpdateUserParameters] === true
-          ),
+        : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true),
       newForm ? { onSuccess: () => navigate("/users/welcome") } : undefined
     )
   }
@@ -173,10 +152,7 @@ const UserForm: FC<UserFormProps> = ({
           />
         </FormGroup>
 
-        <FormGroup
-          error={errors.password_confirmation}
-          dirty={dirtyFields.password_confirmation}
-        >
+        <FormGroup error={errors.password_confirmation} dirty={dirtyFields.password_confirmation}>
           <FormElement
             required={newForm}
             label="Bekreft passord"
@@ -248,19 +224,13 @@ const UserForm: FC<UserFormProps> = ({
             <img
               className="w-avatar"
               src={
-                debouncedAvatarUrl ||
-                (avatar && URL.createObjectURL(avatar)) ||
-                user?.avatar ||
-                ""
+                debouncedAvatarUrl || (avatar && URL.createObjectURL(avatar)) || user?.avatar || ""
               }
             />
           )}
         </FormGroup>
 
-        <FormGroup
-          error={errors.opt_in_marketing}
-          dirty={dirtyFields.opt_in_marketing}
-        >
+        <FormGroup error={errors.opt_in_marketing} dirty={dirtyFields.opt_in_marketing}>
           <FormElementCustom
             required={newForm}
             htmlFor={optInMarketingId}
@@ -268,22 +238,14 @@ const UserForm: FC<UserFormProps> = ({
             note={getOptInMarketingNote(newForm)}
             noteDirection="bottom"
           >
-            <OptInMarketingCheckboxes
-              required
-              id={optInMarketingId}
-              className="float-left"
-            />
+            <OptInMarketingCheckboxes required id={optInMarketingId} className="float-left" />
           </FormElementCustom>
         </FormGroup>
 
         <div className="flex flex-col items-center gap-32">
-          {!newForm &&
-            isDirty &&
-            !isSubmitting &&
-            isSubmitSuccessful &&
-            !submitError && (
-              <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />
-            )}
+          {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && (
+            <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />
+          )}
           <SubmitButton
             disabled={!isDirty || isSubmitting}
             className=""

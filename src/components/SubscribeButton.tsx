@@ -5,11 +5,7 @@ import { FaBellSlash, FaBell } from "react-icons/fa"
 import { useDebounce } from "use-debounce"
 
 import { ParentPost } from "../api"
-import {
-  useCreateSubscription,
-  useDeleteSubscription,
-  useSubscriptions
-} from "../api/requests"
+import { useCreateSubscription, useDeleteSubscription, useSubscriptions } from "../api/requests"
 import { cl } from "../utils"
 
 type SubscribeButtonProps = {
@@ -20,11 +16,7 @@ type SubscribeButtonProps = {
 
 const ANIMATION_DURATION = 700
 
-const SubscribeButton: FC<SubscribeButtonProps> = ({
-  door,
-  post,
-  className
-}) => {
+const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) => {
   const { data: subscriptions } = useSubscriptions()
   const { mutate: createSubscription } = useCreateSubscription()
   const { mutate: deleteSubscription } = useDeleteSubscription()
@@ -32,10 +24,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
   const animationControl = useAnimation()
   const [animating, setAnimating] = useState(false)
 
-  const subscription = find(
-    subscriptions,
-    door ? { door } : { postUuid: post?.uuid }
-  )
+  const subscription = find(subscriptions, door ? { door } : { postUuid: post?.uuid })
   const [debouncedSubscription] = useDebounce(subscription, ANIMATION_DURATION)
 
   if (!subscriptions) return null

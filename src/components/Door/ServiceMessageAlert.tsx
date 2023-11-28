@@ -13,10 +13,7 @@ type ServiceMessageAlertProps = {
   className?: string
 }
 
-const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({
-  door,
-  className
-}) => {
+const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) => {
   const { data: doorServiceMessages } = useServiceMessages({
     select: (serviceMessages) => filter(serviceMessages, { door })
   })
@@ -46,11 +43,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({
             {map(doorServiceMessages, (serviceMessage, idx) => (
               <>
                 {idx > 0 && (
-                  <Divider
-                    bgClasses={cl(
-                      hasErrors ? "bg-red-700/70" : "bg-yellow-400/70"
-                    )}
-                  />
+                  <Divider bgClasses={cl(hasErrors ? "bg-red-700/70" : "bg-yellow-400/70")} />
                 )}
                 <ServiceMessage
                   key={serviceMessage.uuid}

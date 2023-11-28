@@ -3,10 +3,7 @@ import { useEffect, FC } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "react-router-dom"
 
-import {
-  ResetPasswordParameters,
-  useResetPassword
-} from "../../api/users/requests"
+import { ResetPasswordParameters, useResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
 import Button from "../../components/Button"
 import BasicPage from "../BasicPage"
@@ -14,9 +11,7 @@ import FormGroup from "../../components/form/FormGroup"
 
 const ResetPassword: FC = () => {
   const { search } = useLocation()
-  const paramMatch = search.match(
-    /reset_password_token=(?<resetPasswordToken>\S+)/
-  )?.groups
+  const paramMatch = search.match(/reset_password_token=(?<resetPasswordToken>\S+)/)?.groups
 
   const {
     register,
@@ -43,9 +38,7 @@ const ResetPassword: FC = () => {
   if (isSubmitSuccessful && !isLoading && !error) {
     return (
       <BasicPage title="Passord tilbakestilt">
-        <div className="text-center">
-          Du kan nå logge inn med ditt nye passord.
-        </div>
+        <div className="text-center">Du kan nå logge inn med ditt nye passord.</div>
       </BasicPage>
     )
   }
@@ -60,10 +53,7 @@ const ResetPassword: FC = () => {
         />
       </FormGroup>
 
-      <FormGroup
-        error={errors.password_confirmation}
-        dirty={dirtyFields.password_confirmation}
-      >
+      <FormGroup error={errors.password_confirmation} dirty={dirtyFields.password_confirmation}>
         <FormElement
           label="Bekreft passord"
           type="password"
@@ -71,11 +61,7 @@ const ResetPassword: FC = () => {
         />
       </FormGroup>
 
-      <Button
-        type="submit"
-        className="mx-auto block"
-        content="Tilbakestill passord"
-      />
+      <Button type="submit" className="mx-auto block" content="Tilbakestill passord" />
     </BasicPage>
   )
 }

@@ -45,20 +45,14 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
   const isOwnPost = useIsOwnPost(post)
 
   const [isEditing, setIsEditing] = useState(false)
-  const { data: markdown, isLoading: isMarkdownLoading } = usePostMarkdown(
-    post.uuid,
-    { enabled: isEditing }
-  )
+  const { data: markdown, isLoading: isMarkdownLoading } = usePostMarkdown(post.uuid, {
+    enabled: isEditing
+  })
   const prefetchMarkdown = usePrefetchPostMarkdown()
 
   const editFieldRef = useRef<HTMLTextAreaElement>(null)
-  const [
-    preview,
-    previewHtml,
-    previewLoading,
-    togglePreview,
-    updatePreviewContent
-  ] = usePostPreviewState(editFieldRef)
+  const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] =
+    usePostPreviewState(editFieldRef)
 
   const { mutate: doUpdatePost, isLoading: isPostUpdating } = useUpdatePost()
   const { mutate: doDeletePost } = useDeletePost()
@@ -116,23 +110,15 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
           />
         </div>
       )}
-      <div
-        className={cl("mx-8 sm:mx-16 lg:mx-20 xl:mx-avatar", contentClassName)}
-      >
+      <div className={cl("mx-8 sm:mx-16 lg:mx-20 xl:mx-avatar", contentClassName)}>
         <div className="relative px-2 sm:px-4 md:px-8">
-          <div className="text-xl font-semibold">
-            {!post.deleted && post.author.username}
-          </div>
+          <div className="text-xl font-semibold">{!post.deleted && post.author.username}</div>
 
           <div className="absolute right-0 top-0 flex flex-row-reverse space-x-8 space-x-reverse">
             <time className="text-sm sm:text-base">{timestamp}</time>
             {!post.deleted && isOwnPost && !isEditing && (
               <div className="mt-1 space-x-8">
-                <Button
-                  sm
-                  onClick={toggleEditing}
-                  onMouseEnter={() => prefetchMarkdown(post.uuid)}
-                >
+                <Button sm onClick={toggleEditing} onMouseEnter={() => prefetchMarkdown(post.uuid)}>
                   Rediger
                 </Button>
                 <Button sm onClick={deletePost}>
@@ -164,11 +150,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
               />
 
               <div className="flex justify-between">
-                <Button
-                  sm
-                  onClick={() => setIsEditing(false)}
-                  content="Avbryt"
-                />
+                <Button sm onClick={() => setIsEditing(false)} content="Avbryt" />
 
                 <div className="space-x-8">
                   <Button
@@ -178,12 +160,7 @@ const PostWrapper: FCWithChildren<PostWrapperProps> = ({
                     onMouseEnter={updatePreviewContent}
                     content={preview ? "Rediger" : "Forhåndsvis"}
                   />
-                  <Button
-                    sm
-                    disabled={isPostUpdating}
-                    onClick={updatePost}
-                    content="Lagre"
-                  />
+                  <Button sm disabled={isPostUpdating} onClick={updatePost} content="Lagre" />
                 </div>
               </div>
             </div>

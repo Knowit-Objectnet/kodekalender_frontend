@@ -11,14 +11,7 @@ type ServiceMessageProps = {
 }
 
 const ServiceMessage: FC<ServiceMessageProps> = ({
-  serviceMessage: {
-    content,
-    resolution_content,
-    created_at,
-    resolved,
-    resolved_at,
-    door
-  },
+  serviceMessage: { content, resolution_content, created_at, resolved, resolved_at, door },
   className
 }) => (
   <div className={cl("relative space-y-4", className)}>

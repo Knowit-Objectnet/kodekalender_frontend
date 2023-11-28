@@ -8,17 +8,16 @@ import Wrapper, { CheckmarkWrapperProps } from "./CheckmarkWrapper"
 const OFFSET = 65.1
 const R = 62.1
 
-export const WaitMark: FC<
-  CheckmarkWrapperProps & { retryAfter: number; className: string }
-> = ({ retryAfter, className, ...props }) => {
+export const WaitMark: FC<CheckmarkWrapperProps & { retryAfter: number; className: string }> = ({
+  retryAfter,
+  className,
+  ...props
+}) => {
   const [countdown, setCountdown] = useState(retryAfter)
   const circleControls = useAnimation()
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setCountdown((x) => (x > 0 ? x - 1 : x)),
-      1000
-    )
+    const interval = setInterval(() => setCountdown((x) => (x > 0 ? x - 1 : x)), 1000)
 
     return () => clearInterval(interval)
   }, [setCountdown])

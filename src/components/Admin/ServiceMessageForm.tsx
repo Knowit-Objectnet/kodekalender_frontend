@@ -21,17 +21,14 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({
   newForm = false,
   submit
 }) => {
-  const { register, handleSubmit, setValue } =
-    useForm<AdminServiceMessagePayload>({
-      defaultValues: {
-        ...serviceMessage,
-        ...(!newForm && {
-          resolved_at: getTimestampForInputField(
-            serviceMessage.resolved_at ?? formatISO(new Date())
-          )
-        })
-      }
-    })
+  const { register, handleSubmit, setValue } = useForm<AdminServiceMessagePayload>({
+    defaultValues: {
+      ...serviceMessage,
+      ...(!newForm && {
+        resolved_at: getTimestampForInputField(serviceMessage.resolved_at ?? formatISO(new Date()))
+      })
+    }
+  })
 
   const { data: doors } = useChallenges({
     select: (challenges) => map(keys(challenges), parseInt)
@@ -76,8 +73,7 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({
               className="form-select block"
               defaultValue={serviceMessage.door ?? undefined}
               {...register("door", {
-                setValueAs: (value: string) =>
-                  isEmpty(value) ? undefined : parseInt(value)
+                setValueAs: (value: string) => (isEmpty(value) ? undefined : parseInt(value))
               })}
             >
               <option label="-" value="" />
@@ -92,9 +88,7 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({
               <FormElement
                 label="Opprettet"
                 type="datetime-local"
-                value={getTimestampForInputField(
-                  serviceMessage.created_at ?? ""
-                )}
+                value={getTimestampForInputField(serviceMessage.created_at ?? "")}
                 disabled
               />
               <div>

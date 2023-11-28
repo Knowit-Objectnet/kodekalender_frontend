@@ -2,10 +2,7 @@ import { FC, useId } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 
-import {
-  getOptInMarketingLabel,
-  getOptInMarketingNote
-} from "../components/users/UserForm"
+import { getOptInMarketingLabel, getOptInMarketingNote } from "../components/users/UserForm"
 import OptInMarketingCheckboxes from "../components/form/OptInMarketingCheckboxes"
 import FormElementCustom from "../components/form/FormElementCustom"
 import { useUpdateUser } from "../api/users/requests"
@@ -46,16 +43,15 @@ const WelcomeBack: FC = () => {
     >
       <FormProvider {...formMethods}>
         <p>
-          Så gøy at du blir med i kodekalenderen vår i år igjen! Det er like
-          moro å arrangere hvert år (tross noen sene kvelder for å dra det i
-          land) og snart er vi i gang! Du vil motta en e-post når vi legger ut
-          den første luken i tilfelle du glemmer at det er blitt desember
+          Så gøy at du blir med i kodekalenderen vår i år igjen! Det er like moro å arrangere hvert
+          år (tross noen sene kvelder for å dra det i land) og snart er vi i gang! Du vil motta en
+          e-post når vi legger ut den første luken i tilfelle du glemmer at det er blitt desember
           allerede.
         </p>
 
         <p className="mb-20">
-          Vi gleder oss til å se hva slags gøyale løsninger dere kommer på i år.
-          Ses i kommentarfeltet! 🧝‍♂🧝‍♀️️🧝🎄
+          Vi gleder oss til å se hva slags gøyale løsninger dere kommer på i år. Ses i
+          kommentarfeltet! 🧝‍♂🧝‍♀️️🧝🎄
         </p>
 
         <p>{getOptInMarketingNote(true)}</p>
@@ -70,11 +66,7 @@ const WelcomeBack: FC = () => {
         </FormElementCustom>
         <FormError error={errors.opt_in_marketing} />
 
-        <SubmitButton
-          disabled={!isDirty || isSubmitting}
-          className="mx-auto"
-          content="Lagre"
-        />
+        <SubmitButton disabled={!isDirty || isSubmitting} className="mx-auto" content="Lagre" />
       </FormProvider>
     </BasicPage>
   )

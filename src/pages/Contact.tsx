@@ -18,14 +18,8 @@ const Contact = () => (
       </ExternalLink>
     </div>
 
-    <p className="-mb-4 mt-8 text-center">
-      Funnet en feil? Ris eller ros? Send oss en mail!
-    </p>
-    <a
-      className="text-center"
-      href="mailto:julekalender@knowit.no"
-      title="Send oss en e-post!"
-    >
+    <p className="-mb-4 mt-8 text-center">Funnet en feil? Ris eller ros? Send oss en mail!</p>
+    <a className="text-center" href="mailto:julekalender@knowit.no" title="Send oss en e-post!">
       <Button icon="mail">Kontakt oss</Button>
     </a>
   </BasicPage>

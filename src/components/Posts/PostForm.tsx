@@ -30,13 +30,8 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [isDirty, setIsDirty] = useState(false)
   const setDirty = useCallback(() => setIsDirty(true), [setIsDirty])
-  const [
-    preview,
-    previewHtml,
-    previewLoading,
-    togglePreview,
-    updatePreviewContent
-  ] = usePostPreviewState(inputRef)
+  const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] =
+    usePostPreviewState(inputRef)
 
   const createPost = async () => {
     if (!inputRef.current) return

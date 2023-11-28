@@ -19,10 +19,7 @@ const usePostPreviewState = (
     updatePreviewContent()
 
     // Toggle state to ON only if there is content to preview
-    setPreview(
-      (state) =>
-        !state && !!inputRef.current && !isEmpty(inputRef.current.value)
-    )
+    setPreview((state) => !state && !!inputRef.current && !isEmpty(inputRef.current.value))
   }, [inputRef, updatePreviewContent, setPreview])
 
   return [preview, data?.html, isLoading, togglePreview, updatePreviewContent]

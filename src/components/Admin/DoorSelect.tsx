@@ -20,16 +20,13 @@ const DoorSelect: FC<DoorSelectProps> = ({ door, setDoor }) => {
         defaultValue={door}
         onChange={(e) => setDoor(parseInt(e.target.value))}
       >
-        {map(
-          sortBy(compact(values(challenges)), "door"),
-          ({ door, title }, i) => (
-            <option
-              key={i}
-              value={door}
-              label={`Luke ${door}: ${title}`}
-            >{`Luke ${door}: ${title}`}</option>
-          )
-        )}
+        {map(sortBy(compact(values(challenges)), "door"), ({ door, title }, i) => (
+          <option
+            key={i}
+            value={door}
+            label={`Luke ${door}: ${title}`}
+          >{`Luke ${door}: ${title}`}</option>
+        ))}
       </select>
     </label>
   )

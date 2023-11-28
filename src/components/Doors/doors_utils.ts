@@ -19,11 +19,7 @@ export type DoorsProps = DoorsUtilsBaseProps & {
 }
 
 // TODO: Figure out new door styles
-export const getDoorStyleProps = ({
-  door,
-  solvedStatus,
-  challenges
-}: DoorsUtilsProps) => ({
+export const getDoorStyleProps = ({ door, solvedStatus, challenges }: DoorsUtilsProps) => ({
   className: "text-green-600"
   // cl("fill-current", get(solvedStatus, door)
   //   ? "text-lightbulb-green"
@@ -33,14 +29,8 @@ export const getDoorStyleProps = ({
   // )
 })
 
-export const getDoorTextStyleProps = ({
-  door,
-  challenges
-}: DoorsUtilsProps) => ({
-  className: cl(
-    "text-gray-800",
-    (isNil(challenges) || !has(challenges, door)) && "opacity-25"
-  ),
+export const getDoorTextStyleProps = ({ door, challenges }: DoorsUtilsProps) => ({
+  className: cl("text-gray-800", (isNil(challenges) || !has(challenges, door)) && "opacity-25"),
   fontFamily: "'Arial'"
 })
 
@@ -55,8 +45,7 @@ export const getDoorLinkProps = ({
   ...(has(challenges, door)
     ? {
         to: `/luke/${door}`,
-        onMouseEnter: () =>
-          prefetch(door) /*, onClick: () => navigateToDoor(door) */
+        onMouseEnter: () => prefetch(door) /*, onClick: () => navigateToDoor(door) */
       }
     : { to: "/", className: "cursor-not-allowed" })
 })

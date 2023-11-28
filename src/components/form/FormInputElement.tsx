@@ -1,9 +1,4 @@
-import {
-  DetailedHTMLProps,
-  forwardRef,
-  InputHTMLAttributes,
-  PropsWithChildren
-} from "react"
+import { DetailedHTMLProps, forwardRef, InputHTMLAttributes, PropsWithChildren } from "react"
 
 import { cl } from "../../utils"
 

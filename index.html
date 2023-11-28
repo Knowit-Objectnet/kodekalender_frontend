@@ -21,11 +21,7 @@
               return s.replace(/~and~/g, "&")
             })
             .join("?")
-          window.history.replaceState(
-            null,
-            null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          )
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash)
         }
       })(window.location)
     </script>
@@ -38,8 +34,7 @@
       if ("false" === "true") {
         themeIsLight =
           localStorage.theme === "light" ||
-          (!("theme" in localStorage) &&
-            window.matchMedia("(prefers-color-scheme: light)").matches)
+          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
       }
 
       document.documentElement.classList.toggle("light", themeIsLight)
@@ -48,10 +43,7 @@
 
     <meta charset="utf-8" />
     <link rel="icon" href="/public/favicon.svg" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="rgb(17, 18, 48)" />
     <meta property="og:url" content="https://julekalender.knowit.no" />
     <meta property="og:type" content="website" />
@@ -64,10 +56,7 @@
     <meta property="twitter:url" content="https://julekalender.knowit.no" />
     <meta name="twitter:title" content="Kodekalender 2023" />
     <meta name="twitter:description" content="Kodekalender 2023 fra Knowit" />
-    <meta
-      name="twitter:image"
-      content="https://julekalender.knowit.no/og.jpg"
-    />
+    <meta name="twitter:image" content="https://julekalender.knowit.no/og.jpg" />
 
     <meta name="description" content="Kodekalender 2023 fra Knowit" />
     <title>Knowit Kodekalender 2023</title>
