@@ -6,7 +6,6 @@ import { Header2, Header4 } from "../components/text"
 
 import BasicPage from "./BasicPage"
 
-
 const SECTIONS = [
   [
     "Behandlingsansvarlig",
@@ -19,10 +18,7 @@ const SECTIONS = [
     og eventuelt profilbilde lastet opp eller oppgitt ved URL. Brukernavn og
     profilbilde er synlig i løsningen.`
   ],
-  [
-    "Formål med behandlingen",
-    "Påmelding/deltagelse i konkurranse."
-  ],
+  ["Formål med behandlingen", "Påmelding/deltagelse i konkurranse."],
   [
     "Grunnlaget for behandlingen",
     `Innhentede data er nødvendig for å delta i konkurranse og diskusjonsfelt,
@@ -68,10 +64,16 @@ const SECTIONS = [
   ]
 ]
 
-const PrivacySection = ({ header, content }: { header: string, content: string }) => (
+const PrivacySection = ({
+  header,
+  content
+}: {
+  header: string
+  content: string
+}) => (
   <>
     <li>
-      <p className="font-bold mb-2">{header}</p>
+      <p className="mb-2 font-bold">{header}</p>
       <p>{content}</p>
     </li>
   </>
@@ -79,26 +81,47 @@ const PrivacySection = ({ header, content }: { header: string, content: string }
 
 const Privacy = () => (
   <BasicPage title="Personverkerklæring">
-    <Header4 as={Header2} className="text-center"><em>TL;DR</em></Header4>
-    <ul className="list-disc mx-8">
+    <Header4 as={Header2} className="text-center">
+      <em>TL;DR</em>
+    </Header4>
+    <ul className="mx-8 list-disc">
       <li>Vi bruker cookies for innlogging.</li>
-      <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner, eller til rekrutteringsformål dersom du har tillat det.</li>
-      <li>Registrert brukernavn og profilbilde er synlige i diskusjonsfeltet og ledertavlen.</li>
-      <li>Dersom du vil slette brukerdataen din kan du gjøre dette på brukersiden din, eller ved å kontakte oss.</li>
+      <li>
+        Registrert e-postadresse kan brukes til å kontakte deg om du vinner,
+        eller til rekrutteringsformål dersom du har tillat det.
+      </li>
+      <li>
+        Registrert brukernavn og profilbilde er synlige i diskusjonsfeltet og
+        ledertavlen.
+      </li>
+      <li>
+        Dersom du vil slette brukerdataen din kan du gjøre dette på brukersiden
+        din, eller ved å kontakte oss.
+      </li>
     </ul>
 
     <Divider bgClasses="my-12 bg-purple-500" />
 
-    <Header4>Personverkerklæring for Knowit Kodekalender {getActiveYear()}</Header4>
+    <Header4>
+      Personverkerklæring for Knowit Kodekalender {getActiveYear()}
+    </Header4>
 
-    <ol className="list-decimal mx-8 space-y-12">
-      {map(SECTIONS, ([header, content], i) => <PrivacySection key={i} header={header} content={squish(content)} />)}
+    <ol className="mx-8 list-decimal space-y-12">
+      {map(SECTIONS, ([header, content], i) => (
+        <PrivacySection key={i} header={header} content={squish(content)} />
+      ))}
     </ol>
 
     <div className="mt-24 text-center">
-      Henvendelser om hvilke opplysninger som er registrert, retting og
-      sletting kan sendes til <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>{" "}
-      eller <a className="underline" href="mailto:personvern@knowit.no">personvern@knowit.no</a>
+      Henvendelser om hvilke opplysninger som er registrert, retting og sletting
+      kan sendes til{" "}
+      <a className="underline" href="mailto:julekalender@knowit.no">
+        julekalender@knowit.no
+      </a>{" "}
+      eller{" "}
+      <a className="underline" href="mailto:personvern@knowit.no">
+        personvern@knowit.no
+      </a>
     </div>
   </BasicPage>
 )

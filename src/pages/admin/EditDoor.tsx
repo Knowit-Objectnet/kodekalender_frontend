@@ -6,7 +6,6 @@ import { useChallenge, useUpdateChallenge } from "../../api/admin/requests"
 import ChallengeForm from "../../components/Admin/ChallengeForm"
 import { guardPresent } from "../../utils"
 
-
 const EditDoor: FC = () => {
   const { door: doorString } = useParams<{ door: string }>()
   const door = guardPresent(doorString, parseInt)
@@ -16,16 +15,17 @@ const EditDoor: FC = () => {
   const { mutate: updateChallenge } = useUpdateChallenge()
 
   const submit = (challenge: AdminChallengePayload) => {
-    updateChallenge({ challenge }, { onSuccess: () => navigate(`/admin/doors?door=${challenge.door}`) })
+    updateChallenge(
+      { challenge },
+      { onSuccess: () => navigate(`/admin/doors?door=${challenge.door}`) }
+    )
   }
 
   useLayoutEffect(() => {
-    if (!door || (!isLoading && !challenge))
-      navigate("/admin/doors/new")
+    if (!door || (!isLoading && !challenge)) navigate("/admin/doors/new")
   }, [door, isLoading, challenge, navigate])
 
-  if (!door || (isLoading || !challenge))
-    return null
+  if (!door || isLoading || !challenge) return null
 
   return (
     <div className="space-y-16">

@@ -6,13 +6,16 @@ import { cl } from "../../utils"
 
 import FormError from "./FormError"
 
-
 type FormGroupProps = {
   error: Maybe<FieldError>
   dirty: Maybe<boolean>
 }
 
-const FormGroup: FC<PropsWithChildren<FormGroupProps>> = ({ error, dirty, children }) => (
+const FormGroup: FC<PropsWithChildren<FormGroupProps>> = ({
+  error,
+  dirty,
+  children
+}) => (
   <div className={cl("group", { error, dirty })}>
     {children}
     <FormError error={error} />

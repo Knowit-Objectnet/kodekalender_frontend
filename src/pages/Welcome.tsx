@@ -5,7 +5,6 @@ import Button from "../components/Button"
 
 import BasicPage from "./BasicPage"
 
-
 const Welcome: FC = () => (
   <BasicPage title="Velkommen!" containerClassName="text-center">
     <p>

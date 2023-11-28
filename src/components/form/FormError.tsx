@@ -1,14 +1,9 @@
 import { FieldError } from "react-hook-form"
 
-
 const FormError = ({ error }: { error: FieldError | undefined }) => {
-  if (!error)
-    return null
+  if (!error) return null
 
-  const message =
-    error.type == "required"
-      ? "Påkrevd"
-      : error.message
+  const message = error.type == "required" ? "Påkrevd" : error.message
 
   return (
     <div>

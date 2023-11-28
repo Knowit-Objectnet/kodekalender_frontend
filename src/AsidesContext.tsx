@@ -3,7 +3,6 @@ import { Dispatch, SetStateAction, createContext, useState } from "react"
 
 import { FCWithChildren } from "../types/utils_types"
 
-
 type AsidesContextType = {
   showLeaderboard: boolean
   showMenu: boolean
@@ -19,7 +18,10 @@ export const AsidesContext = createContext<AsidesContextType>({
 })
 
 export const AsidesContextProvider: FCWithChildren = ({ children }) => {
-  const [state, setState] = useState({ showLeaderboard: false, showMenu: false })
+  const [state, setState] = useState({
+    showLeaderboard: false,
+    showMenu: false
+  })
 
   const contextValue: AsidesContextType = {
     ...state,
@@ -38,7 +40,7 @@ export const AsidesContextProvider: FCWithChildren = ({ children }) => {
       setState({ ...state, showMenu: val_or_setter })
 
       return val_or_setter
-    },
+    }
   }
 
   return (

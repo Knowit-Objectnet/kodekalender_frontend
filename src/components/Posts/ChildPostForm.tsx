@@ -9,7 +9,6 @@ import { cl } from "../../utils"
 
 import PostPreview from "./PostPreview"
 
-
 type ChildPostFormProps = {
   toggleShowForm: () => void
   door: number
@@ -17,18 +16,32 @@ type ChildPostFormProps = {
   className?: string
 }
 
-const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, className }) => {
+const ChildPostForm: FC<ChildPostFormProps> = ({
+  toggleShowForm,
+  door,
+  parent,
+  className
+}) => {
   const { mutate: doCreatePost, isLoading } = useCreatePost()
 
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [isDirty, setIsDirty] = useState(false)
   const setDirty = useCallback(() => setIsDirty(true), [setIsDirty])
-  const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] = usePostPreviewState(inputRef)
+  const [
+    preview,
+    previewHtml,
+    previewLoading,
+    togglePreview,
+    updatePreviewContent
+  ] = usePostPreviewState(inputRef)
 
   const createPost = async () => {
     if (!inputRef.current) return
 
-    doCreatePost({ door, parent, content: inputRef.current.value }, { onSuccess: toggleShowForm })
+    doCreatePost(
+      { door, parent, content: inputRef.current.value },
+      { onSuccess: toggleShowForm }
+    )
     toggleShowForm()
   }
 
@@ -38,7 +51,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         <PostPreview
           html={previewHtml}
           isLoading={previewLoading}
-          className="w-full min-h-[5rem] p-4 rounded-t border-b-4 border-white bg-gray"
+          className="min-h-[5rem] w-full rounded-t border-b-4 border-white bg-gray p-4"
         />
       )}
 
@@ -46,7 +59,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         autoFocus
         ref={inputRef}
         className={cl(
-          "block w-full min-h-[5rem] p-4 text-base rounded-t border-b-4 border-white bg-gray outline-none",
+          "block min-h-[5rem] w-full rounded-t border-b-4 border-white bg-gray p-4 text-base outline-none",
           preview && "hidden"
         )}
         onChange={setDirty}
@@ -57,7 +70,15 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         <Button sm onClick={toggleShowForm} content="Avbryt" />
 
         <div className="space-x-8">
-          {isDirty && <Button sm disabled={isLoading} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />}
+          {isDirty && (
+            <Button
+              sm
+              disabled={isLoading}
+              onClick={togglePreview}
+              onMouseEnter={updatePreviewContent}
+              content={preview ? "Rediger" : "Forhåndsvis"}
+            />
+          )}
           <Button sm disabled={isLoading} onClick={createPost} content="Svar" />
         </div>
       </div>

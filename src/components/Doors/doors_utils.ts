@@ -3,7 +3,6 @@ import { get, has, isNil } from "lodash-es"
 import { ChallengeDict, SolvedStatus } from "../../api/Challenge"
 import { cl } from "../../utils"
 
-
 type DoorsUtilsBaseProps = {
   solvedStatus: SolvedStatus | undefined
   challenges: ChallengeDict | undefined
@@ -20,27 +19,44 @@ export type DoorsProps = DoorsUtilsBaseProps & {
 }
 
 // TODO: Figure out new door styles
-export const getDoorStyleProps = ({ door, solvedStatus, challenges }: DoorsUtilsProps) => ({
+export const getDoorStyleProps = ({
+  door,
+  solvedStatus,
+  challenges
+}: DoorsUtilsProps) => ({
   className: "text-green-600"
-    // cl("fill-current", get(solvedStatus, door)
-    //   ? "text-lightbulb-green"
-    //   : isNil(challenges) || !has(challenges, door)
-    //     ? "text-lightbulb-dim"
-    //     : "text-lightbulb-yellow"
-    // )
+  // cl("fill-current", get(solvedStatus, door)
+  //   ? "text-lightbulb-green"
+  //   : isNil(challenges) || !has(challenges, door)
+  //     ? "text-lightbulb-dim"
+  //     : "text-lightbulb-yellow"
+  // )
 })
 
-export const getDoorTextStyleProps = ({ door, challenges }: DoorsUtilsProps) => ({
-  className: cl("text-gray-800", (isNil(challenges) || !has(challenges, door)) && "opacity-25" ),
+export const getDoorTextStyleProps = ({
+  door,
+  challenges
+}: DoorsUtilsProps) => ({
+  className: cl(
+    "text-gray-800",
+    (isNil(challenges) || !has(challenges, door)) && "opacity-25"
+  ),
   fontFamily: "'Arial'"
 })
 
-export const getDoorLinkProps = ({ door, challenges, prefetch, navigateToDoor }: DoorsUtilsProps) => ( {
+export const getDoorLinkProps = ({
+  door,
+  challenges,
+  prefetch,
+  navigateToDoor
+}: DoorsUtilsProps) => ({
   tabIndex: door + 3,
   title: `Luke ${door}`,
-  ...(
-    has(challenges, door)
-      ? { to: `/luke/${door}`, onMouseEnter: () => prefetch(door) /*, onClick: () => navigateToDoor(door) */ }
-      : { to: "/", className: "cursor-not-allowed" }
-  )
+  ...(has(challenges, door)
+    ? {
+        to: `/luke/${door}`,
+        onMouseEnter: () =>
+          prefetch(door) /*, onClick: () => navigateToDoor(door) */
+      }
+    : { to: "/", className: "cursor-not-allowed" })
 })

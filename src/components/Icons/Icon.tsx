@@ -28,7 +28,6 @@ import { ReactComponent as TwitterIcon } from "/assets/svgo/icons/twitter.svg"
 
 import { cl } from "../../utils"
 
-
 const ICONS = {
   bell: BellIcon,
   "bell-sm": BellSmIcon,
@@ -57,7 +56,10 @@ const ICONS = {
   twitter: TwitterIcon
 }
 
-export type IconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
+export type IconProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLElement>,
+  HTMLElement
+> & {
   name: keyof typeof ICONS
   className?: string
 }
@@ -69,16 +71,16 @@ const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
     <i
       className={cl(
         `
-          inline-block
-          align-middle
-
           relative
+          inline-block
 
-          w-16
           h-16
 
-          child:w-full
+          w-16
+          align-middle
+
           child:h-full
+          child:w-full
         `,
         className
       )}

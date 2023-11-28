@@ -1,6 +1,5 @@
 import { Nullable } from "../../types/utils_types"
 
-
 export type ServiceMessage = {
   uuid: string
   content: string

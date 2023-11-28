@@ -13,7 +13,6 @@ import ToggleChildPostsButton from "./ToggleChildPostsButton"
 import PostWrapper from "./PostWrapper"
 import ChildPost from "./ChildPost"
 
-
 const DELETE_CONFIRM = squish(`
   Er du sikker på at du vil slette innlegget ditt? Dersom noen har svart
   på innlegget vil det fortsatt være synlig at det har vært et innlegg
@@ -29,7 +28,6 @@ const Post: FC<PostProps> = ({ post, door }) => {
   const [showForm, toggleShowForm] = useBooleanToggle(false)
   const [showChildPosts, toggleShowChildPosts] = useBooleanToggle(true)
 
-
   return (
     <PostWrapper
       post={post}
@@ -37,18 +35,23 @@ const Post: FC<PostProps> = ({ post, door }) => {
       className="grid gap-4"
     >
       {post.deleted && (
-        <div className="text-gray/80 font-light text-center p-4 sm:p-12">
+        <div className="p-4 text-center font-light text-gray/80 sm:p-12">
           <em>Slettet innlegg</em>
         </div>
       )}
       <footer className="grid grid-cols-4">
-        <div className="justify-self-start space-x-4 pl-4">
-          {!post.deleted && (<>
-            <LikeButton post={post} />
-            <SubscribeButton post={post} className="text-sm align-middle -mt-2" />
-          </>)}
+        <div className="space-x-4 justify-self-start pl-4">
+          {!post.deleted && (
+            <>
+              <LikeButton post={post} />
+              <SubscribeButton
+                post={post}
+                className="-mt-2 align-middle text-sm"
+              />
+            </>
+          )}
         </div>
-        <div className="justify-self-end space-x-8">
+        <div className="space-x-8 justify-self-end">
           <AddChildPostButton toggleShowForm={toggleShowForm} />
           <ToggleChildPostsButton
             showChildPosts={showChildPosts}
@@ -58,13 +61,11 @@ const Post: FC<PostProps> = ({ post, door }) => {
         </div>
       </footer>
 
-      {
-        /*
-        * TODO: This looks pretty bad on mobile. Figure out way to fix.
-        * useBreakPoint hook and show different elements entirely on different
-        * media sizes?
-        */
-      }
+      {/*
+       * TODO: This looks pretty bad on mobile. Figure out way to fix.
+       * useBreakPoint hook and show different elements entirely on different
+       * media sizes?
+       */}
       {showForm && (
         <ChildPostForm
           toggleShowForm={toggleShowForm}
@@ -74,11 +75,13 @@ const Post: FC<PostProps> = ({ post, door }) => {
         />
       )}
 
-      {showChildPosts && (<div className="space-y-4 min-w-0">
-        {map(post.children, (child) => (
-          <ChildPost key={child.uuid} post={child} />
-        ))}
-      </div>)}
+      {showChildPosts && (
+        <div className="min-w-0 space-y-4">
+          {map(post.children, (child) => (
+            <ChildPost key={child.uuid} post={child} />
+          ))}
+        </div>
+      )}
     </PostWrapper>
   )
 }

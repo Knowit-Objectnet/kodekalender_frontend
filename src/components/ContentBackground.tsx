@@ -2,7 +2,6 @@ import { FC, memo } from "react"
 
 import { cl } from "../utils"
 
-
 // Outermost container follows content scroll, has no overflow
 const BACKGROUND_WRAPPER_CLASSES = `
   absolute
@@ -25,21 +24,24 @@ const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
   before:absolute
 `
 
-const ContentBackground: FC = () => (<>
-  {/* Snow */}
-  <div className={cl(BACKGROUND_WRAPPER_CLASSES, "z-[-4]")}>
-    <div
-      className={`
+const ContentBackground: FC = () => (
+  <>
+    {/* Snow */}
+    <div className={cl(BACKGROUND_WRAPPER_CLASSES, "z-[-4]")}>
+      <div
+        className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
         before:top-[880px]
-        before:blur-[1px]
-        before:w-[300%]
         before:h-full
+        before:w-[300%]
         before:bg-[url('/assets/svgo/SnowSmall.svg')]
         before:bg-[length:1920px_1080px]
         before:bg-repeat-y
-      `} />
-  </div>
-</>)
+        before:blur-[1px]
+      `}
+      />
+    </div>
+  </>
+)
 
 export default memo(ContentBackground)

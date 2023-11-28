@@ -2,7 +2,6 @@ import { FC } from "react"
 
 import { cl } from "../../utils"
 
-
 type PostProseProps = {
   html: string
   className?: string
@@ -11,7 +10,7 @@ type PostProseProps = {
 const PostProse: FC<PostProseProps> = ({ html, className }) => (
   <div
     className={cl(
-      "prose prose-sm md:prose max-w-none md:max-w-none break-words",
+      "prose prose-sm max-w-none break-words md:prose md:max-w-none",
       className
     )}
     dangerouslySetInnerHTML={{ __html: html }}

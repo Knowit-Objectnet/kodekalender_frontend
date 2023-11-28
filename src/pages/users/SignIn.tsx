@@ -8,7 +8,6 @@ import Button from "../../components/Button"
 import BasicPage from "../BasicPage"
 import SubmitButton from "../../components/SubmitButton"
 
-
 const SignIn: FC = () => {
   const navigate = useNavigate()
 
@@ -16,15 +15,16 @@ const SignIn: FC = () => {
   const { mutate: signIn, error } = useSignIn()
 
   const onSubmit = (data: SignInParameters) => {
-    signIn(
-      data,
-      { onSuccess: () => navigate("/") }
-    )
+    signIn(data, { onSuccess: () => navigate("/") })
   }
 
   return (
-    <BasicPage title="Logg inn" containerClassName="gap-24" onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-full max-w-200 mx-auto flex flex-col items-center gap-6">
+    <BasicPage
+      title="Logg inn"
+      containerClassName="gap-24"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="mx-auto flex w-full max-w-200 flex-col items-center gap-6">
         <FormElement
           autoFocus
           label="E-post"
@@ -37,12 +37,16 @@ const SignIn: FC = () => {
           {...register("password", { required: true })}
         />
 
-        {error && <div><em className="text-red-700">{error.error}</em></div>}
+        {error && (
+          <div>
+            <em className="text-red-700">{error.error}</em>
+          </div>
+        )}
 
         <SubmitButton icon="sign-in" content="Logg inn" />
       </div>
 
-      <div className="flex gap-12 justify-center">
+      <div className="flex justify-center gap-12">
         <Link to="/users/sign_up">
           <Button icon="edit" content="Ny bruker?" />
         </Link>

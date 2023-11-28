@@ -5,8 +5,10 @@ import { cl } from "../../utils"
 
 import NoteElements from "./NoteElements"
 
-
-type FormElementCustomProps = DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> & {
+type FormElementCustomProps = DetailedHTMLProps<
+  LabelHTMLAttributes<HTMLLabelElement>,
+  HTMLLabelElement
+> & {
   required?: boolean
   label: string
   note?: string
@@ -15,25 +17,31 @@ type FormElementCustomProps = DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelEle
   inputWrapperClassName?: string
 }
 
-const FormElementCustom: FCWithChildren<FormElementCustomProps> = ({ required = false, label, note, noteDirection = "right", disabled, className, children, inputWrapperClassName, ...labelProps }) => {
+const FormElementCustom: FCWithChildren<FormElementCustomProps> = ({
+  required = false,
+  label,
+  note,
+  noteDirection = "right",
+  disabled,
+  className,
+  children,
+  inputWrapperClassName,
+  ...labelProps
+}) => {
   // Adjust grid to allow for extra row if note is to be placed on the bottom of
   // the label.
-  const gridClasses = noteDirection === "right"
-    ? "grid-flow-row grid-cols-[auto_auto_1fr]"
-    : "grid-flow-row grid-cols-[auto_auto]"
+  const gridClasses =
+    noteDirection === "right"
+      ? "grid-flow-row grid-cols-[auto_auto_1fr]"
+      : "grid-flow-row grid-cols-[auto_auto]"
 
-  const inputWrapperClasses = noteDirection === "right"
-    ? "col-span-3"
-    : "col-span-2"
+  const inputWrapperClasses =
+    noteDirection === "right" ? "col-span-3" : "col-span-2"
 
   return (
-    <div className={`self-stretch grid ${gridClasses} gap-x-4 gap-y-3`}>
+    <div className={`grid self-stretch ${gridClasses} gap-x-4 gap-y-3`}>
       <label
-        className={cl(
-          "font-bold",
-          disabled && "text-gray/30",
-          className
-        )}
+        className={cl("font-bold", disabled && "text-gray/30", className)}
         {...labelProps}
       >
         {required && <span className="font-bold text-red-700">* </span>}

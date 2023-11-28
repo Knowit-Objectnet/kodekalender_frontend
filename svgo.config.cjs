@@ -2,7 +2,7 @@ module.exports = {
   multipass: true,
   plugins: [
     {
-      name: 'preset-default',
+      name: "preset-default",
       params: {
         overrides: {
           cleanupNumericValues: { floatPrecision: 2 },
@@ -11,11 +11,11 @@ module.exports = {
         }
       }
     },
-    'removeDimensions', // Removes width= and height= in favor of viewbox (scales properly)
-    'reusePaths',
-    'cleanupIds',
-    'minifyStyles',
-    'mergeStyles',
-    'mergePaths'
+    "removeDimensions", // Removes width= and height= in favor of viewbox (scales properly)
+    "reusePaths",
+    "cleanupIds",
+    "minifyStyles",
+    "mergeStyles",
+    "mergePaths"
   ]
 }

@@ -82,7 +82,6 @@ rules:
     - warn
     - always-multiline
 
-
   # JSX
   react/jsx-indent:
     - warn
@@ -103,7 +102,6 @@ rules:
     - warn
     - maximum: 1
       when: multiline
-
 
   # TypeScript
   "@typescript-eslint/consistent-type-definitions":
@@ -162,7 +160,6 @@ rules:
   # Handled by TypeScript
   no-redeclare:
     - off
-
 
   # React
   react/function-component-definition:

@@ -5,8 +5,10 @@ import { Nullable } from "../../types/utils_types"
 
 import Icon, { IconProps } from "./Icons/Icon"
 
-
-type HTMLButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+type HTMLButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>
 export type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   content?: ReactNode
   disabled?: boolean
@@ -30,35 +32,38 @@ const Button: FC<ButtonProps> = ({
   <button
     className={cl(
       `
+        whitespace-nowrap
+
+        rounded-full
         bg-purple-700
 
         px-12
+
         py-3
-
-        rounded-full
-
-        font-bold
-        whitespace-nowrap
         align-middle
+        font-bold
       `,
-      !disabled && `
+      !disabled &&
+        `
         hover:bg-purple-900
         hover:ring
         hover:ring-purple-700
 
-        active:bg-purple-500
-
         focus:outline-none
+
         focus:ring
         focus:ring-purple-100
+        active:bg-purple-500
       `,
-      disabled && `
+      disabled &&
+        `
         text-white/30
       `,
-      sm && `
-        sm:text-sm
+      sm &&
+        `
         px-8
         py-2
+        sm:text-sm
       `,
       { "bg-purple-600": primary },
       className
@@ -67,12 +72,11 @@ const Button: FC<ButtonProps> = ({
     type={type}
     {...restProps}
   >
-    {icon && (<>
-      <Icon
-        name={icon}
-        className={cl("mr-3", sm && "mr-2 w-10 h-10")}
-      />
-    </>)}
+    {icon && (
+      <>
+        <Icon name={icon} className={cl("mr-3", sm && "mr-2 h-10 w-10")} />
+      </>
+    )}
     {content ?? children}
   </button>
 )

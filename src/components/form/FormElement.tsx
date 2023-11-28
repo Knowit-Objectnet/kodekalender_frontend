@@ -3,7 +3,6 @@ import { forwardRef, PropsWithChildren, useId } from "react"
 import FormElementCustom from "./FormElementCustom"
 import FormInputElement, { FormInputElementProps } from "./FormInputElement"
 
-
 type FormElementProps = FormInputElementProps & {
   label: string
   note?: string
@@ -11,8 +10,22 @@ type FormElementProps = FormInputElementProps & {
   labelClassName?: string
 }
 
-const FormElement = forwardRef<HTMLInputElement, PropsWithChildren<FormElementProps>>(
-  ({ label, note, labelClassName, disabled, children, required, ...inputProps }, ref) => {
+const FormElement = forwardRef<
+  HTMLInputElement,
+  PropsWithChildren<FormElementProps>
+>(
+  (
+    {
+      label,
+      note,
+      labelClassName,
+      disabled,
+      children,
+      required,
+      ...inputProps
+    },
+    ref
+  ) => {
     const id = useId()
 
     return (

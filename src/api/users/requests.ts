@@ -7,15 +7,14 @@ import { QueryError } from "../../axios"
 import { EmptyObject } from "../../../types/utils_types"
 import { getAnchorVar } from "../../hooks/useStoreAnchorVars"
 
-
 const getWhoami = () => axios.get("/users/whoami").then(({ data }) => data)
-export const useWhoami = () => (
-  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami, { staleTime: Infinity })
-)
+export const useWhoami = () =>
+  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami, {
+    staleTime: Infinity
+  })
 
 const mapFormDataValue = (value: string | boolean | File) => {
-  if (isBoolean(value))
-    return value ? "1" : "0"
+  if (isBoolean(value)) return value ? "1" : "0"
 
   return value
 }
@@ -33,11 +32,20 @@ export type SignUpParameters = {
 export const useSignUp = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<SignUpResponse, QueryError<{ errors: Record<keyof SignUpParameters, string[]> }>, SignUpParameters>(
+  return useMutation<
+    SignUpResponse,
+    QueryError<{ errors: Record<keyof SignUpParameters, string[]> }>,
+    SignUpParameters
+  >(
     ["users", "signUp"],
     (payload) => {
       const formData = new FormData()
-      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value)))
+      forEach(
+        payload,
+        (value, key) =>
+          !isNil(value) &&
+          formData.append(`user[${key}]`, mapFormDataValue(value))
+      )
       return axios.post("/users", formData).then(({ data }) => data)
     },
     {
@@ -56,9 +64,14 @@ export type SignInParameters = {
 export const useSignIn = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<SignInResponse, QueryError<{ error: string }>, SignInParameters>(
+  return useMutation<
+    SignInResponse,
+    QueryError<{ error: string }>,
+    SignInParameters
+  >(
     ["users", "signIn"],
-    (payload) => axios.post("/users/sign_in", { user: payload }).then(({ data }) => data),
+    (payload) =>
+      axios.post("/users/sign_in", { user: payload }).then(({ data }) => data),
     {
       onSuccess: (data) => {
         queryClient.setQueryData<Whoami>(["users", "whoami"], data)
@@ -71,12 +84,14 @@ type InitiateResetPasswordResponse = EmptyObject
 export type InitiateResetPasswordParameters = {
   email: string
 }
-export const useInitiateResetPassword = () => (
-  useMutation<InitiateResetPasswordResponse, QueryError<{ error: string }>, InitiateResetPasswordParameters>(
-    ["users", "initiateResetPassword"],
-    (payload) => axios.post("/users/password", { user: payload }).then(({ data }) => data)
+export const useInitiateResetPassword = () =>
+  useMutation<
+    InitiateResetPasswordResponse,
+    QueryError<{ error: string }>,
+    InitiateResetPasswordParameters
+  >(["users", "initiateResetPassword"], (payload) =>
+    axios.post("/users/password", { user: payload }).then(({ data }) => data)
   )
-)
 
 type ResetPasswordResponse = EmptyObject
 export type ResetPasswordParameters = {
@@ -84,12 +99,14 @@ export type ResetPasswordParameters = {
   password: string
   password_confirmation: string
 }
-export const useResetPassword = () => (
-  useMutation<ResetPasswordResponse, QueryError<{ errors: Record<keyof SignUpParameters, string[]> }>, ResetPasswordParameters>(
-    ["users", "resetPassword"],
-    (payload) => axios.put("/users/password", { user: payload }).then(({ data }) => data)
+export const useResetPassword = () =>
+  useMutation<
+    ResetPasswordResponse,
+    QueryError<{ errors: Record<keyof SignUpParameters, string[]> }>,
+    ResetPasswordParameters
+  >(["users", "resetPassword"], (payload) =>
+    axios.put("/users/password", { user: payload }).then(({ data }) => data)
   )
-)
 
 type UpdateUserResponse = LoggedInWhoami
 export type UpdateUserParameters = {
@@ -104,7 +121,11 @@ export type UpdateUserParameters = {
 export const useUpdateUser = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<UpdateUserResponse, QueryError<{ errors: Record<keyof UpdateUserParameters, string[]> }>, UpdateUserParameters>(
+  return useMutation<
+    UpdateUserResponse,
+    QueryError<{ errors: Record<keyof UpdateUserParameters, string[]> }>,
+    UpdateUserParameters
+  >(
     ["users", "udate"],
     (payload) => {
       if (getAnchorVar("debug")) {
@@ -112,8 +133,13 @@ export const useUpdateUser = () => {
         console.log({ payload })
       }
 
-      const formData = new FormData
-      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, mapFormDataValue(value)))
+      const formData = new FormData()
+      forEach(
+        payload,
+        (value, key) =>
+          !isNil(value) &&
+          formData.append(`user[${key}]`, mapFormDataValue(value))
+      )
       return axios.patch("/users", formData).then(({ data }) => data)
     },
     {

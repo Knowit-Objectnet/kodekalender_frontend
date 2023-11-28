@@ -12,7 +12,6 @@ import NewServiceMessage from "./admin/NewServiceMessage"
 import ServiceMessages from "./admin/ServiceMessages"
 import Page from "./Page"
 
-
 // TODO: Deleted posts? User list? Ban users?
 const Admin: FC = () => {
   const navigate = useNavigate()
@@ -22,15 +21,13 @@ const Admin: FC = () => {
   useLayoutEffect(() => {
     // Limit access to admin pages. User can still perform admin actions
     // programmatically, but they will be rejected by backend.
-    if (!isLoading && (!whoami || !whoami.is_admin))
-      navigate("/")
+    if (!isLoading && (!whoami || !whoami.is_admin)) navigate("/")
   }, [isLoading, whoami, navigate])
 
-  if (!isLoading && (!whoami || !whoami.is_admin))
-    return null
+  if (!isLoading && (!whoami || !whoami.is_admin)) return null
 
   return (
-    <Page className="py-24 px-16 md:px-24 mx-8 md:mx-16 bg-purple-700 rounded-md space-y-16">
+    <Page className="mx-8 space-y-16 rounded-md bg-purple-700 px-16 py-24 md:mx-16 md:px-24">
       <AdminHeader />
 
       <Routes>
@@ -40,7 +37,10 @@ const Admin: FC = () => {
 
         <Route path="service_messages" element={<ServiceMessages />} />
         <Route path="service_messages/new" element={<NewServiceMessage />} />
-        <Route path="service_messages/:uuid/edit" element={<EditServiceMessage />} />
+        <Route
+          path="service_messages/:uuid/edit"
+          element={<EditServiceMessage />}
+        />
 
         <Route element={<Navigate to="doors" />} />
       </Routes>

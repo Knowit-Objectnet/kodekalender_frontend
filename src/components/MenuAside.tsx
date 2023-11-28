@@ -1,6 +1,13 @@
 import { Transition } from "@headlessui/react"
 import { isEmpty } from "lodash-es"
-import { ElementType, FC, useCallback, useContext, useRef, useState } from "react"
+import {
+  ElementType,
+  FC,
+  useCallback,
+  useContext,
+  useRef,
+  useState
+} from "react"
 import { Link } from "react-router-dom"
 
 import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
@@ -21,19 +28,17 @@ import ServiceMessageBadge from "./ServiceMessageBadge"
 import SignInButton from "./SignInButton"
 import ExternalLink from "./ExternalLink"
 
-
 const MenuGroup: FCWithChildren = ({ children }) => (
-  <div className="flex flex-col gap-4">
-    {children}
-  </div>
+  <div className="flex flex-col gap-4">{children}</div>
 )
 
-const MenuButton: FC<ButtonProps & { as?: ElementType }> = ({ as = Button, ...buttonProps}) => {
+const MenuButton: FC<ButtonProps & { as?: ElementType }> = ({
+  as = Button,
+  ...buttonProps
+}) => {
   const Component = as
 
-  return (
-    <Component className="w-full text-left" sm {...buttonProps} />
-  )
+  return <Component className="w-full text-left" sm {...buttonProps} />
 }
 
 const MenuAside: FC = () => {
@@ -54,11 +59,14 @@ const MenuAside: FC = () => {
     }, 300)
   }, [])
 
-  useOnClickOutside(clickableMenuRef, useCallback(() => {
-    if (!clickableMenuRef.current) return
+  useOnClickOutside(
+    clickableMenuRef,
+    useCallback(() => {
+      if (!clickableMenuRef.current) return
 
-    closeHandlerWithTransition()
-  }, [closeHandlerWithTransition]))
+      closeHandlerWithTransition()
+    }, [closeHandlerWithTransition])
+  )
 
   if (!showMenu && !hiddenTransitioning) return null
 
@@ -66,18 +74,19 @@ const MenuAside: FC = () => {
     <aside
       className={`
 
-        fixed
         pointer-events-none
+        fixed
 
-        z-20
-        top-48
         right-0
+        top-48
+        z-20
 
         w-full
+        overflow-hidden
         sm:w-140
         sm:pr-12
-        overflow-hidden
-      `}>
+      `}
+    >
       <Transition
         appear={true}
         show={!hiddenTransitioning}
@@ -98,19 +107,25 @@ const MenuAside: FC = () => {
             flex-col
             gap-12
 
-            bg-purple-800
+            rounded-md
             border-purple-900
 
+            bg-purple-800
             px-8
             py-12
-            rounded-md
             sm:rounded-xl
           `}
         >
           <MenuGroup>
             <MenuButton as={SignInButton} />
-            <MenuButton as={SignOutButton} /> {/* Hides itself if not logged in */}
-            <MenuButton as={ThemeButton} className={cl({ hidden: import.meta.env.VITE_ENABLE_LIGHT_MODE !== "true" })} />
+            <MenuButton as={SignOutButton} />{" "}
+            {/* Hides itself if not logged in */}
+            <MenuButton
+              as={ThemeButton}
+              className={cl({
+                hidden: import.meta.env.VITE_ENABLE_LIGHT_MODE !== "true"
+              })}
+            />
           </MenuGroup>
 
           <MenuGroup>
@@ -132,19 +147,46 @@ const MenuAside: FC = () => {
           </MenuGroup>
 
           <MenuGroup>
-            <Link to="/about"><MenuButton icon="info" content="Om kodekalenderen" /></Link>
-            <Link to="/privacy"><MenuButton icon="user" content="Personopplysninger" /></Link>
-            <Link to="/contact"><MenuButton icon="knowit" content="Kontakt oss" /></Link>
-            <Link to="/career"><MenuButton icon="mail" content="Jobb i Knowit" /></Link>
+            <Link to="/about">
+              <MenuButton icon="info" content="Om kodekalenderen" />
+            </Link>
+            <Link to="/privacy">
+              <MenuButton icon="user" content="Personopplysninger" />
+            </Link>
+            <Link to="/contact">
+              <MenuButton icon="knowit" content="Kontakt oss" />
+            </Link>
+            <Link to="/career">
+              <MenuButton icon="mail" content="Jobb i Knowit" />
+            </Link>
           </MenuGroup>
 
           <MenuGroup>
-            <ExternalLink href="https://github.com/Knowit-Objectnet/" aria-label="Se hva vi gjør på GitHub"><MenuButton icon="github" content="GitHub" /></ExternalLink>
-            <ExternalLink href="https://www.facebook.com/weareknowit" aria-label="Besøk oss på Facebook"><MenuButton icon="facebook" content="Facebook" /></ExternalLink>
-            <ExternalLink href="https://instagram.com/weareknowit" aria-label="Følg oss på Instagram"><MenuButton icon="instagram" content="Instagram" /></ExternalLink>
-            <ExternalLink href="https://twitter.com/knowitnorge" aria-label="Følg oss på Twitter/X"><MenuButton icon="twitter" content="Twitter" /></ExternalLink>
+            <ExternalLink
+              href="https://github.com/Knowit-Objectnet/"
+              aria-label="Se hva vi gjør på GitHub"
+            >
+              <MenuButton icon="github" content="GitHub" />
+            </ExternalLink>
+            <ExternalLink
+              href="https://www.facebook.com/weareknowit"
+              aria-label="Besøk oss på Facebook"
+            >
+              <MenuButton icon="facebook" content="Facebook" />
+            </ExternalLink>
+            <ExternalLink
+              href="https://instagram.com/weareknowit"
+              aria-label="Følg oss på Instagram"
+            >
+              <MenuButton icon="instagram" content="Instagram" />
+            </ExternalLink>
+            <ExternalLink
+              href="https://twitter.com/knowitnorge"
+              aria-label="Følg oss på Twitter/X"
+            >
+              <MenuButton icon="twitter" content="Twitter" />
+            </ExternalLink>
           </MenuGroup>
-
 
           <ExternalLink href="https://knowit.no" className="self-center">
             <KnowitLogo />

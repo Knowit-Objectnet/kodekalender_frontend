@@ -24,7 +24,6 @@ import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
 import MenuAside from "./components/MenuAside"
 
-
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
   const [delayed, setDelayed] = useState(true)
 
@@ -33,8 +32,7 @@ const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
     return () => clearTimeout(t)
   }, [setDelayed])
 
-  if (delayed)
-    return null
+  if (delayed) return null
 
   return (
     <Page>
@@ -42,15 +40,16 @@ const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
         name={icon}
         className={`
         fixed
-        top-1/2
         left-1/2
-        w-64
+        top-1/2
         h-64
+        w-64
         translate-x-[-50%]
         translate-y-[-50%]
-        text-purple-100/70
         animate-pulse
-      `} />
+        text-purple-100/70
+      `}
+      />
     </Page>
   )
 })
@@ -80,58 +79,67 @@ const App = () => {
   useWelcomeBackRedirect()
 
   const raffleStarted = useIsRaffleStarted()
-  const raffleRoutes = useMemo(() => (
-    raffleStarted
-      ? (<>
-        <Route path="/" element={<Doors />} />
-        <Route path="/luke/:door" element={<Door />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/solutions" element={<Solutions />} />
-      </>)
-      : <Route path="/" element={<Countdown />} />
-  ), [raffleStarted])
+  const raffleRoutes = useMemo(
+    () =>
+      raffleStarted ? (
+        <>
+          <Route path="/" element={<Doors />} />
+          <Route path="/luke/:door" element={<Door />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/solutions" element={<Solutions />} />
+        </>
+      ) : (
+        <Route path="/" element={<Countdown />} />
+      ),
+    [raffleStarted]
+  )
 
   // Memoize entire application tree so we don't re-render anything when the
   // useIsRaffleStarted timer triggers.
-  const content = useMemo(() => (<>
-    <Background />
-    <LeaderBoardAside />
-    <MenuAside />
+  const content = useMemo(
+    () => (
+      <>
+        <Background />
+        <LeaderBoardAside />
+        <MenuAside />
 
-    <div
-      id="content-container"
-      className={`
+        <div
+          id="content-container"
+          className={`
         max-w-screen
-        overflow-x-visible
         grid
-        grid-rows-[auto_1fr_auto]
         min-h-screen
+        grid-rows-[auto_1fr_auto]
         items-center
         justify-items-center
+        overflow-x-visible
       `}
-    >
-      <ContentBackground />
-      <PageHeader />
+        >
+          <ContentBackground />
+          <PageHeader />
 
-      <Routes>
-        {raffleRoutes}
+          <Routes>
+            {raffleRoutes}
 
-        <Route path="/about" element={<About />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/career" element={<Career />} />
-        <Route path="/service_messages" element={<ServiceMessages />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/service_messages" element={<ServiceMessages />} />
 
-        <Route path="/admin/*" element={<LazyAdmin />} />
-        <Route path="/users/*" element={<LazyUser />} />
+            <Route path="/admin/*" element={<LazyAdmin />} />
+            <Route path="/users/*" element={<LazyUser />} />
 
-        {/* 404? - Route to main view */}
-        <Route element={<Navigate to="/" />} />
-      </Routes>
+            {/* 404? - Route to main view */}
+            <Route element={<Navigate to="/" />} />
+          </Routes>
 
-      <PageFooter />
-    </div>
-  </>), [raffleRoutes])
+          <PageFooter />
+        </div>
+      </>
+    ),
+    [raffleRoutes]
+  )
 
   return content
 }

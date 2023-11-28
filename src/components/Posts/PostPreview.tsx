@@ -3,7 +3,6 @@ import { FC } from "react"
 
 import PostProse from "./PostProse"
 
-
 type PostPreviewProps = {
   html: string | undefined
   isLoading: boolean

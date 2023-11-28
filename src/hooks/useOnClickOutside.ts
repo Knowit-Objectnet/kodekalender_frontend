@@ -1,7 +1,11 @@
 import { DependencyList, RefObject, useEffect } from "react"
 
 // From: https://usehooks.com/useOnClickOutside/
-const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (e: MouseEvent | TouchEvent) => void, dependencies: DependencyList = []) => {
+const useOnClickOutside = (
+  ref: RefObject<HTMLElement>,
+  handler: (e: MouseEvent | TouchEvent) => void,
+  dependencies: DependencyList = []
+) => {
   useEffect(
     () => {
       const listener = (event: MouseEvent | TouchEvent) => {

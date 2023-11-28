@@ -7,23 +7,26 @@ import { useCreateChallenge } from "../../api/admin/requests"
 import ChallengeForm from "../../components/Admin/ChallengeForm"
 import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
 
-
 const NewDoor: FC = () => {
   const navigate = useNavigate()
 
   const { mutate: createChallenge } = useCreateChallenge()
 
   const submit = (challenge: AdminChallengePayload) => {
-    createChallenge({ challenge }, { onSuccess: () => navigate(`/admin/doors?door=${challenge.door}`) })
+    createChallenge(
+      { challenge },
+      { onSuccess: () => navigate(`/admin/doors?door=${challenge.door}`) }
+    )
   }
 
   const availableDoors = useAvailableDoors()
 
-  if (isEmpty(availableDoors)) return (
-    <div className="text-center">
-      <span className="text-4xl font-semibold">Ingen ledige luker!</span>
-    </div>
-  )
+  if (isEmpty(availableDoors))
+    return (
+      <div className="text-center">
+        <span className="text-4xl font-semibold">Ingen ledige luker!</span>
+      </div>
+    )
 
   return (
     <div className="space-y-16">
@@ -31,7 +34,18 @@ const NewDoor: FC = () => {
         <span className="text-4xl font-semibold">Ny luke</span>
       </div>
 
-      <ChallengeForm newForm challenge={{ door: availableDoors[0], title: "", author: "", answer: "", markdown_content: "", files: [] }} submit={submit} />
+      <ChallengeForm
+        newForm
+        challenge={{
+          door: availableDoors[0],
+          title: "",
+          author: "",
+          answer: "",
+          markdown_content: "",
+          files: []
+        }}
+        submit={submit}
+      />
     </div>
   )
 }

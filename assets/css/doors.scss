@@ -13,17 +13,26 @@
   }
 }
 
-#doors-desktop, #doors-mobile { display: none; }
+#doors-desktop,
+#doors-mobile {
+  display: none;
+}
 
 // Mobile doors are shown only in portrait mode (vh > vw) and below the sm: breakpoint.
 @media only screen and (max-width: 639px) and (orientation: portrait) {
-  #doors-mobile  { display: block; }
+  #doors-mobile {
+    display: block;
+  }
 }
 @media only screen and (min-width: 640px) and (orientation: portrait) {
-  #doors-desktop { display: block; }
+  #doors-desktop {
+    display: block;
+  }
 }
 
 // Desktop doors are always shown in landscape mode (vw > vh)
 @media only screen and (orientation: landscape) {
-  #doors-desktop { display: block; }
+  #doors-desktop {
+    display: block;
+  }
 }

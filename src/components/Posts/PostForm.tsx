@@ -11,7 +11,6 @@ import { useWhoami } from "../../api/users/requests"
 
 import PostPreview from "./PostPreview"
 
-
 const FORM_PLACEHOLDER = squish(`
   Legg igjen en kommentar! Vi har støtte for markdown med
   syntax highlighting. Alle blokk-elementer (kode, lister,
@@ -31,7 +30,13 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [isDirty, setIsDirty] = useState(false)
   const setDirty = useCallback(() => setIsDirty(true), [setIsDirty])
-  const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] = usePostPreviewState(inputRef)
+  const [
+    preview,
+    previewHtml,
+    previewLoading,
+    togglePreview,
+    updatePreviewContent
+  ] = usePostPreviewState(inputRef)
 
   const createPost = async () => {
     if (!inputRef.current) return
@@ -49,9 +54,15 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
 
   if (isSubmitted) {
     return (
-      <div className="bg-purple-500 rounded-md px-16 py-8 w-192 space-y-8 grid place-content-center">
+      <div className="grid w-192 place-content-center space-y-8 rounded-md bg-purple-500 px-16 py-8">
         <p className="text-center">Du finner kommentaren din nederst!</p>
-        <Button onClick={() => { setIsSubmitted(false); setIsDirty(false) }} content="Legg igjen ny kommentar?" />
+        <Button
+          onClick={() => {
+            setIsSubmitted(false)
+            setIsDirty(false)
+          }}
+          content="Legg igjen ny kommentar?"
+        />
       </div>
     )
   }
@@ -60,8 +71,10 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
 
   if (isNil(whoami.username)) {
     return (
-      <div className="bg-purple-500 rounded-md px-16 py-8 w-192 space-y-8 grid place-content-center">
-        <p className="text-center">Du må oppgi et brukernavn for å kunne delta i kommentarfeltet.</p>
+      <div className="grid w-192 place-content-center space-y-8 rounded-md bg-purple-500 px-16 py-8">
+        <p className="text-center">
+          Du må oppgi et brukernavn for å kunne delta i kommentarfeltet.
+        </p>
         <Link className="mx-auto" to="/users/edit">
           <Button content="Rediger bruker" />
         </Link>
@@ -70,19 +83,19 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
   }
 
   return (
-    <div className="bg-purple-500 w-full rounded-md px-8 pt-8 pb-4 flex flex-col items-end">
+    <div className="flex w-full flex-col items-end rounded-md bg-purple-500 px-8 pb-4 pt-8">
       {preview && (
         <PostPreview
           html={previewHtml}
           isLoading={previewLoading}
-          className="w-full min-h-[5rem] pb-4 rounded-b-none border-b-4 border-white"
+          className="min-h-[5rem] w-full rounded-b-none border-b-4 border-white pb-4"
         />
       )}
 
       {/* If this element is unmounted, we must restore the current value. Easier to just hide. */}
       <TextareaAutosize
         className={cl(
-          "block w-full h-40 p-0 pb-4 outline-none bg-transparent border-b-4 border-white",
+          "block h-40 w-full border-b-4 border-white bg-transparent p-0 pb-4 outline-none",
           preview && "hidden"
         )}
         ref={inputRef}
@@ -101,7 +114,7 @@ const PostForm: FC<PostFormProps> = ({ door }) => {
           />
         )}
         <Button
-          className="bg-none border-none cursor-pointer ml-8 p-8 font-medium uppercase"
+          className="ml-8 cursor-pointer border-none bg-none p-8 font-medium uppercase"
           disabled={isLoading}
           onClick={createPost}
           value="Lagre"

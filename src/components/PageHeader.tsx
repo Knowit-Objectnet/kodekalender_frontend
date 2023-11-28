@@ -11,18 +11,17 @@ import { Header2 } from "./text"
 import ExternalLink from "./ExternalLink"
 import Button from "./Button"
 
-
 const PageHeader = () => {
   const { setShowMenu } = useContext(AsidesContext)
 
   return (
     <header className="h-60 w-full px-20">
-      <nav className="h-full grid grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-4 md:gap-16">
+      <nav className="grid h-full grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-4 md:gap-16">
         {/* Go Home */}
         <Link
           to="/"
           title="Til forsiden"
-          className="place-self-center-start flex flex-col justify-center child:leading-none child:text-center"
+          className="place-self-center-start flex flex-col justify-center child:text-center child:leading-none"
         >
           <div className="font-bold">Kodekalender</div>
           <Header2 as="div">{getActiveYear()}</Header2>

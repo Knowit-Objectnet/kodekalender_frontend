@@ -13,43 +13,43 @@
 }
 
 @layer base {
-  html, body {
+  html,
+  body {
     @apply min-h-screen overflow-x-hidden;
   }
 
   body {
-    @apply
-      bg-purple-900
-      text-white
-
-      light:bg-purple-200
-      light:text-black
-
+    @apply bg-purple-900
       font-['Nunito_Variable']
-      font-normal
 
       text-base
-      ;
-    }
+      font-normal
+
+      text-white
+      light:bg-purple-200
+
+      light:text-black;
+  }
 
   // Cannot style dynamic inner HTML directly, so must do it here
   code {
     @apply tracking-tight md:tracking-normal;
 
     // Remove backticks around inline code and whitespace after block code
-    &:before, &:after {
+    &:before,
+    &:after {
       content: none !important;
     }
 
     :not(pre) > & {
-      @apply shadow-md rounded-sm py-1 px-2;
+      @apply rounded-sm px-2 py-1 shadow-md;
     }
   }
 
   @media only screen and (orientation: landscape) {
     #content-container {
       // Account for bottom inset explicitly
-      @supports(padding:max(0px)) {
+      @supports (padding: max(0px)) {
         padding-bottom: env(safe-area-inset-bottom, 0vmin);
       }
     }

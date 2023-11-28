@@ -1,7 +1,6 @@
 import { FCWithChildren } from "../../types/utils_types"
 import { cl } from "../utils"
 
-
 type PageContentProps = {
   className?: string
 }
@@ -15,13 +14,16 @@ type PageContentProps = {
  * Must account for notch on phones in landscape mode. We set a max width,
  * centering is taken care of by grid parent.
  */
-const PageContent: FCWithChildren<PageContentProps> = ({ className, children }) => (
+const PageContent: FCWithChildren<PageContentProps> = ({
+  className,
+  children
+}) => (
   <main
     className={cl(
       `
+        min-h-full
         w-[46.875rem]
         max-w-[90vw]
-        min-h-full
       `,
       className
     )}
