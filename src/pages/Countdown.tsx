@@ -34,8 +34,8 @@ const TimerDisplay: FC<TimerDisplayProps> = memo(({ countdownPartIndex, classNam
         className
       )}
     >
-      <Header3 as="span" className="text-xl">{tens}</Header3>
-      <Header3 as="span" className="text-xl">{ones}</Header3>
+      <Header3 as="span" className="!text-2xl">{tens}</Header3>
+      <Header3 as="span" className="!text-2xl">{ones}</Header3>
     </div>
   ), [tens, ones, className])
 
