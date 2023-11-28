@@ -5,18 +5,23 @@ import useAuthenticatedWhoami from "../hooks/useAuthenticatedWhoami"
 
 import Button, { ButtonProps } from "./Button"
 
+type SignInProps = {
+  linkClass?: string
+}
 
-const SignInButton: FC<ButtonProps> = (buttonProps) => {
+const SignInButton: FC<ButtonProps & SignInProps> = ({
+  linkClass,
+  ...rest
+}) => {
   const whoami = useAuthenticatedWhoami()
 
-  const [to, icon, content] =
-    whoami
-      ? ["/users/edit", "user", whoami.username ?? "Min bruker"] as const
-      : ["/users/sign_in", "sign-in", "Logg inn"] as const
+  const [to, icon, content] = whoami
+    ? (["/users/edit", "user", whoami.username ?? "Min bruker"] as const)
+    : (["/users/sign_in", "sign-in", "Logg inn"] as const)
 
   return (
-    <Link to={to}>
-      <Button icon={icon} content={content} {...buttonProps} />
+    <Link to={to} className={linkClass}>
+      <Button icon={icon} content={content} {...rest} />
     </Link>
   )
 }

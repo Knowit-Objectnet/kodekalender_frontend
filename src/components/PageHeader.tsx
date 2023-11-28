@@ -11,12 +11,11 @@ import { Header2 } from "./text"
 import ExternalLink from "./ExternalLink"
 import Button from "./Button"
 
-
 const PageHeader = () => {
   const { setShowMenu } = useContext(AsidesContext)
 
   return (
-    <header className="h-60 w-full px-20">
+    <header className="h-60 w-full px-10 sm:px-20">
       <nav className="h-full grid grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-4 md:gap-16">
         {/* Go Home */}
         <Link
@@ -33,11 +32,12 @@ const PageHeader = () => {
         </ExternalLink>
 
         <div className="place-self-center-end flex flex-row gap-8">
-          <SignInButton />
-
+          <SignInButton linkClass="hidden sm:block" />
           <Button
             icon="menu"
-            content="Meny"
+            content={<span className="hidden sm:inline">Meny</span>}
+            aria-label="Åpne meny"
+            title="Åpne meny"
             onClick={() => setShowMenu((state) => !state)}
           />
         </div>
