@@ -28,7 +28,7 @@ const spacing = fromPairs(map([
   ...range(16, 32, 0.5),
   // every 1rem up to 64rem
   ...range(32, 64, 1)
-] , (rem) => [toString(toInteger(rem * 8)), `${rem}rem`]))
+], (rem) => [toString(toInteger(rem * 8)), `${rem}rem`]))
 
 // Add variant for light mode
 const lightModeVariant = plugin(({ addVariant }) => {
@@ -39,15 +39,15 @@ export default {
   content: [
     "./src/**/*.{ts,tsx,svg}"
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     // Total overwrites
     spacing,
     fontSize: {
       // Our own text sizes
       "xs": ["0.75rem", "1rem"], // 12px
-      "sm": ["1rem", "1.5rem"],    // 16px
-      "base": ["1.25rem", "1.75rem"], // 20px
+      "sm": ["0.875rem", "1.35rem"],    // 14px
+      "base": ["1.125rem", "1.575rem"], // 18px
       "lg": ["1.75rem", "2.1875rem"], // 28px
       "xl": ["3.375rem", "1"], // 54px
       "2xl": ["4.375rem", "1"], // 70px
@@ -75,6 +75,29 @@ export default {
       },
       gap: {
         "door-elements": "4rem"
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            fontSize: '1.125rem',
+            '--tw-prose-body': colors.white,
+            '--tw-prose-headings': colors.white,
+            // '--tw-prose-lead': theme('colors.pink[700]'),
+            '--tw-prose-links': colors.white,
+            // '--tw-prose-bold': theme('colors.pink[900]'),
+            // '--tw-prose-counters': theme('colors.pink[600]'),
+            // '--tw-prose-bullets': theme('colors.pink[400]'),
+            // '--tw-prose-hr': theme('colors.pink[300]'),
+            '--tw-prose-quotes': colors.white,
+            // '--tw-prose-quote-borders': theme('colors.pink[300]'),
+            // '--tw-prose-captions': theme('colors.pink[700]'),
+            // '--tw-prose-code': theme('colors.pink[900]'),
+            // '--tw-prose-pre-code': theme('colors.pink[100]'),
+            // '--tw-prose-pre-bg': theme('colors.pink[900]'),
+            // '--tw-prose-th-borders': theme('colors.pink[300]'),
+            // '--tw-prose-td-borders': theme('colors.pink[200]'),
+          }
+        }
       }
     }
   },

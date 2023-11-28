@@ -33,10 +33,9 @@ const PageHeader = () => {
         </ExternalLink>
 
         <div className="place-self-center-end flex flex-row gap-8">
-          <SignInButton sm />
+          <SignInButton />
 
           <Button
-            sm
             icon="menu"
             content="Meny"
             onClick={() => setShowMenu((state) => !state)}

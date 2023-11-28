@@ -65,7 +65,6 @@ const MenuAside: FC = () => {
   return (
     <aside
       className={`
-
         fixed
         pointer-events-none
 
@@ -91,7 +90,6 @@ const MenuAside: FC = () => {
         <div
           ref={clickableMenuRef}
           className={`
-            xrelative
             pointer-events-auto
 
             flex
