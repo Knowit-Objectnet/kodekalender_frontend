@@ -31,13 +31,7 @@ const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamb
         />
 
         {!withoutInput && (
-          <>
-
-            <Input door={challenge.door} />
-            {/*<div className="absolute bottom-0 right-0">*/}
-            {/*  <SubscribeButton door={challenge.door} className="text-xl" />*/}
-            {/*</div>*/}
-          </>
+          <Input door={challenge.door} />
         )}
       </div>
     </div>
