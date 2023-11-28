@@ -40,9 +40,9 @@ const TAPE_CONTAINER_CLASSES = `
 
   before:drop-shadow-xl
 
-  before:w-[300%]
+  before:w-[500%]
   before:h-full
-  before:translate-x-[-33%]
+  before:translate-x-[-46%]
 
   before:bg-[url('/assets/svgo/Teip.svg')]
   before:bg-[length:1600px_80px]
@@ -116,9 +116,9 @@ const Background: FC = () => {
           className={`
           ${TAPE_CONTAINER_CLASSES}
           z-[-1]
-          before:bottom-50
+          before:bottom-[clamp(0rem,12.5rem,calc(5vw+8.9rem))]
           before:bg-bottom
-          before:origin-[calc(33%+30rem)_0%]
+          before:origin-[calc(63%+30rem)_1000%]
           before:rotate-[-5deg]
           before:scale-x-[-1]
         `} />
