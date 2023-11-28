@@ -53,20 +53,22 @@ const Background: FC = () => {
   const raffleStarted = useIsRaffleStarted()
 
   const content = useMemo(() => (<>
-    {/* Streetlamp */}
-    <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute z-[-5]`}>
-      <Streetlamp
-        className={`
-        blur-[.3px]
-        absolute
-        left-1/2
-        top-1/2
-        origin-center
-        translate-x-[calc(-50%-clamp(24rem,40vw,32rem))]
-        translate-y-[-50%]
-        h-[56.25rem]
-      `} />
-    </div>
+    {!raffleStarted && (<>
+      {/* Streetlamp */}
+      <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute z-[-5]`}>
+        <Streetlamp
+          className={`
+          blur-[.3px]
+          absolute
+          left-1/2
+          top-1/2
+          origin-center
+          translate-x-[calc(-50%-clamp(24rem,40vw,32rem))]
+          translate-y-[-50%]
+          h-[56.25rem]
+        `} />
+      </div>
+    </>)}
 
     {/* Snow */}
     <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
@@ -82,20 +84,20 @@ const Background: FC = () => {
       `} />
     </div>
 
-    <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
-      <div
-        className={`
-        ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
-        before:blur-[1px]
-        before:w-[300%]
-        before:h-full
-        before:bg-[url('/assets/svgo/GoldSnow.svg')]
-        before:bg-[length:1920px_1080px]
-        before:bg-repeat-x
-      `} />
-    </div>
-
     {!raffleStarted && (<>
+      <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
+        <div
+          className={`
+          ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
+          before:blur-[1px]
+          before:w-[300%]
+          before:h-full
+          before:bg-[url('/assets/svgo/GoldSnow.svg')]
+          before:bg-[length:1920px_1080px]
+          before:bg-repeat-x
+        `} />
+      </div>
+
       {/* Tape */}
       <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
         <div

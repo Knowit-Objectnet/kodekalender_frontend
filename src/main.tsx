@@ -13,7 +13,8 @@ import "../assets/css/syntax_highlight.scss"
 
 import "./axios"
 import App from "./App"
-import AuthContext from "./AuthContext"
+import { AuthContextProvider } from "./AuthContext"
+import { AsidesContextProvider } from "./AsidesContext"
 
 
 const Main = () => {
@@ -28,11 +29,13 @@ const Main = () => {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <AuthContext>
-          <ReactQueryDevtools />
+        <AsidesContextProvider>
+          <AuthContextProvider>
+            <ReactQueryDevtools />
 
-          <App />
-        </AuthContext>
+            <App />
+          </AuthContextProvider>
+        </AsidesContextProvider>
       </QueryClientProvider>
     </BrowserRouter>
   )

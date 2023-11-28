@@ -3,10 +3,10 @@ import { useCallback, useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
-import PageFooter from "../components/PageFooter"
 import DoorsDesktop from "../components/Doors/DoorsDesktop"
 import DoorsMobile from "../components/Doors/DoorsMobile"
 import RaffleNotification from "../components/RaffleNotification"
+import PageContent from "../components/PageContent"
 
 
 const Doors = () => {
@@ -33,15 +33,13 @@ const Doors = () => {
   }), [challenges, solvedStatus, prefetch, navigate])
 
   return (
-    <main>
+    <PageContent className="w-full">
       <RaffleNotification />
 
       {/* Visibility toggle done with media queries in CSS */}
       <DoorsDesktop {...lightProps} />
       <DoorsMobile {...lightProps} />
-
-      <PageFooter />
-    </main>
+    </PageContent>
   )
 }
 

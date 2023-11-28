@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense, useCallback, useEffect, useMemo, useState } from "react"
+import { lazy, memo, Suspense, useEffect, useMemo, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
 import Privacy from "./pages/Privacy"
@@ -22,6 +22,7 @@ import PageFooter from "./components/PageFooter"
 import Icon, { IconProps } from "./components/Icons/Icon"
 import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
+import MenuAside from "./components/MenuAside"
 
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
@@ -76,11 +77,7 @@ const LazyUser = () => {
 
 const App = () => {
   useStoreAnchorVars()
-
   useWelcomeBackRedirect()
-
-  const [leaderboardHidden, setLeaderboardHidden] = useState(true)
-  const hideLeaderboard = useCallback(() => setLeaderboardHidden(true), [setLeaderboardHidden])
 
   const raffleStarted = useIsRaffleStarted()
   const raffleRoutes = useMemo(() => (
@@ -98,15 +95,14 @@ const App = () => {
   // useIsRaffleStarted timer triggers.
   const content = useMemo(() => (<>
     <Background />
-    <LeaderBoardAside
-      hidden={leaderboardHidden}
-      closeHandler={hideLeaderboard}
-    />
+    <LeaderBoardAside />
+    <MenuAside />
 
     <div
       id="content-container"
       className={`
-        relative
+        max-w-screen
+        overflow-x-visible
         grid
         grid-rows-[auto_1fr_auto]
         min-h-screen
@@ -115,7 +111,7 @@ const App = () => {
       `}
     >
       <ContentBackground />
-      <PageHeader setLeaderboardHidden={setLeaderboardHidden} />
+      <PageHeader />
 
       <Routes>
         {raffleRoutes}
@@ -135,7 +131,7 @@ const App = () => {
 
       <PageFooter />
     </div>
-  </>), [leaderboardHidden, hideLeaderboard, setLeaderboardHidden, raffleRoutes])
+  </>), [raffleRoutes])
 
   return content
 }

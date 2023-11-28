@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
-import { ReactComponent as BellIcon } from "/assets/svgo/icons/bell.svg"
 import { ReactComponent as BellSmIcon } from "/assets/svgo/icons/bell-sm.svg"
+import { ReactComponent as BellIcon } from "/assets/svgo/icons/bell.svg"
 import { ReactComponent as BrukerIcon } from "/assets/svgo/icons/bruker.svg"
 import { ReactComponent as ChartIcon } from "/assets/svgo/icons/chart.svg"
 import { ReactComponent as DelIcon } from "/assets/svgo/icons/del.svg"
@@ -10,6 +10,7 @@ import { ReactComponent as GithubIcon } from "/assets/svgo/icons/github.svg"
 import { ReactComponent as HusIcon } from "/assets/svgo/icons/hus.svg"
 import { ReactComponent as InfoIcon } from "/assets/svgo/icons/info.svg"
 import { ReactComponent as InstaIcon } from "/assets/svgo/icons/insta.svg"
+import { ReactComponent as KnowitIcon } from "/assets/svgo/icons/knowit.svg"
 import { ReactComponent as LastOppIcon } from "/assets/svgo/icons/last opp.svg"
 import { ReactComponent as LenkeIcon } from "/assets/svgo/icons/lenke.svg"
 import { ReactComponent as LoggInnIcon } from "/assets/svgo/icons/logg inn.svg"
@@ -22,12 +23,11 @@ import { ReactComponent as PersonIcon } from "/assets/svgo/icons/person.svg"
 import { ReactComponent as PilIcon } from "/assets/svgo/icons/pil.svg"
 import { ReactComponent as PremieIcon } from "/assets/svgo/icons/premie.svg"
 import { ReactComponent as RedigerIcon } from "/assets/svgo/icons/rediger.svg"
-import { ReactComponent as SoundIcon } from "/assets/svgo/icons/sound.svg"
 import { ReactComponent as SendIcon } from "/assets/svgo/icons/send.svg"
+import { ReactComponent as SoundIcon } from "/assets/svgo/icons/sound.svg"
 import { ReactComponent as TwitterIcon } from "/assets/svgo/icons/twitter.svg"
 
 import { cl } from "../../utils"
-
 
 const ICONS = {
   bell: BellIcon,
@@ -41,6 +41,7 @@ const ICONS = {
   info: InfoIcon,
   instagram: InstaIcon,
   upload: LastOppIcon,
+  knowit: KnowitIcon,
   link: LenkeIcon,
   "sign-in": LoggInnIcon,
   "sign-out": LoggUtIcon,
@@ -57,7 +58,10 @@ const ICONS = {
   send: SendIcon
 }
 
-export type IconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
+export type IconProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLElement>,
+  HTMLElement
+> & {
   name: keyof typeof ICONS
   className?: string
 }
@@ -69,25 +73,25 @@ const Icon: FC<IconProps> = ({ name, className, ...rest }) => {
     <i
       className={cl(
         `
-          inline-block
-          align-middle
-
           relative
+          inline-block
 
-          w-16
           h-16
 
-          child:w-full
-          child:h-full
-          
+          w-16
+          align-middle
+
           child:-left-1
           child:-top-1
+          
+          child:h-full
+          child:w-full
         `,
         className
       )}
       {...rest}
     >
-      <IconComponent className="absolute w-full h-full" />
+      <IconComponent className="absolute h-full w-full" />
     </i>
   )
 }

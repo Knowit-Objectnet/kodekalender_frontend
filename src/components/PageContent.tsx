@@ -21,6 +21,7 @@ const PageContent: FCWithChildren<PageContentProps> = ({ className, children }) 
       `
         w-[46.875rem]
         max-w-[90vw]
+        min-h-full
       `,
       className
     )}

@@ -1,23 +1,12 @@
-import { FC } from "react"
 import { Link } from "react-router-dom"
 
 import ExternalLink from "./ExternalLink"
 import Icon from "./Icons/Icon"
 
-import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
 
-
-const facebookLabel = "Besøk oss på Facebook"
-const twitterLabel = "Følg oss på Twitter/X"
-const githubLabel = "Se hva vi gjør på GitHub"
-const instagramLabel = "Følg oss på Instagram"
-
-const PageFooter: FC = () => (
+const PageFooter = () => (
   <footer className="mt-19 mb-10 space-y-6">
     <div className="grid justify-center">
-      <ExternalLink href="https://knowit.no">
-        <KnowitLogo />
-      </ExternalLink>
     </div>
 
     <div className="flex gap-12 justify-center align-center">
@@ -28,10 +17,10 @@ const PageFooter: FC = () => (
     </div>
 
     <div className="flex gap-12 justify-center align-center">
-      <ExternalLink href="https://github.com/Knowit-Objectnet/" aria-label={githubLabel}><Icon name="github" /></ExternalLink>
-      <ExternalLink href="https://www.facebook.com/weareknowit" aria-label={facebookLabel}><Icon name="facebook" /></ExternalLink>
-      <ExternalLink href="https://instagram.com/weareknowit" aria-label={instagramLabel}><Icon name="instagram" /></ExternalLink>
-      <ExternalLink href="https://twitter.com/knowitnorge" aria-label={twitterLabel}><Icon name="twitter" /></ExternalLink>
+      <ExternalLink href="https://github.com/Knowit-Objectnet/" aria-label="Se hva vi gjør på GitHub"><Icon name="github" /></ExternalLink>
+      <ExternalLink href="https://www.facebook.com/weareknowit" aria-label="Besøk oss på Facebook"><Icon name="facebook" /></ExternalLink>
+      <ExternalLink href="https://instagram.com/weareknowit" aria-label="Følg oss på Instagram"><Icon name="instagram" /></ExternalLink>
+      <ExternalLink href="https://twitter.com/knowitnorge" aria-label="Følg oss på Twitter/X"><Icon name="twitter" /></ExternalLink>
     </div>
   </footer>
 )
