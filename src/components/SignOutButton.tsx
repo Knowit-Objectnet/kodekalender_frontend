@@ -6,7 +6,6 @@ import { AuthContext } from "../AuthContext"
 
 import Button, { ButtonProps } from "./Button"
 
-
 const SignOutButton: FC<ButtonProps> = (buttonProps) => {
   const navigate = useNavigate()
 

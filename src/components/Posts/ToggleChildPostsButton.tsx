@@ -3,7 +3,6 @@ import { FaChevronDown } from "react-icons/fa"
 
 import { cl, numberString } from "../../utils"
 
-
 type ToggleChildPostsButtonProps = {
   className?: string
   showChildPosts: boolean
@@ -11,7 +10,12 @@ type ToggleChildPostsButtonProps = {
   numChildPosts: number
 }
 
-const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, showChildPosts, toggleShowChildPosts, numChildPosts }) => {
+const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({
+  className,
+  showChildPosts,
+  toggleShowChildPosts,
+  numChildPosts
+}) => {
   if (numChildPosts === 0) return null
 
   // TODO: Hover style
@@ -22,7 +26,7 @@ const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, sh
       </span>
       <FaChevronDown
         className={cl(
-          "-mt-1 inline w-8 transition-all ease-out-cubic duration-300",
+          "-mt-1 inline w-8 transition-all duration-300 ease-out-cubic",
           showChildPosts && "-rotate-180"
         )}
       />

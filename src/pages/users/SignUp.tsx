@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 import { SignUpParameters, useSignUp } from "../../api/users/requests"
 import UserForm from "../../components/users/UserForm"
 
-
 const SignUp: FC = () => {
   const navigate = useNavigate()
 
@@ -14,13 +13,7 @@ const SignUp: FC = () => {
     signUp(data, { onSuccess: () => navigate("/") })
   }
 
-  return (
-    <UserForm
-      submit={submit}
-      submitError={error}
-      newForm
-    />
-  )
+  return <UserForm submit={submit} submitError={error} newForm />
 }
 
 export default SignUp

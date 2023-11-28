@@ -8,7 +8,6 @@ import useIsDoorSolved from "../../hooks/useIsDoorSolved"
 import WaitMark from "../checkmarks/WaitMark"
 import { cl } from "../../utils"
 
-
 type InputProps = {
   door: number
 }
@@ -54,7 +53,7 @@ const Input: FC<InputProps> = ({ door }) => {
     return (
       <CheckMark
         wrapperClassName="w-32 md:w-56 mx-auto"
-        message={`Bra jobba!${door === 24 ? " Og god jul! 🥳": ""}`}
+        message={`Bra jobba!${door === 24 ? " Og god jul! 🥳" : ""}`}
         scrollTo={attemptCount > 0}
       />
     )
@@ -76,7 +75,9 @@ const Input: FC<InputProps> = ({ door }) => {
   return (
     <>
       <input
-        className={cl("h-16 w-full p-0 bg-transparent border-0 border-current border-b", { "text-red-700": isWrongAnswer })}
+        className={cl("h-16 w-full border-0 border-b border-current bg-transparent p-0", {
+          "text-red-700": isWrongAnswer
+        })}
         placeholder="Ditt svar:"
         value={answer}
         maxLength={128}
@@ -84,9 +85,15 @@ const Input: FC<InputProps> = ({ door }) => {
           setAnswer(e.target.value)
           setDirty(true)
         }}
-        onKeyPress={(e) => { if (e.key === "Enter") { submitAnswer() }}}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            submitAnswer()
+          }
+        }}
       />
-      <button className="block mx-auto mt-4" disabled={!answer} onClick={() => submitAnswer()}>Send inn svar</button>
+      <button className="mx-auto mt-4 block" disabled={!answer} onClick={() => submitAnswer()}>
+        Send inn svar
+      </button>
       {(isWrongAnswer || error) && (
         <WrongMark
           wrapperClassName="w-32 md:w-56 mx-auto mt-16"

@@ -9,7 +9,6 @@ import SignUp from "./users/SignUp"
 import WelcomeBack from "./WelcomeBack"
 import Welcome from "./Welcome"
 
-
 const Users: FC = () => (
   <Routes>
     <Route path="edit" element={<EditUser />} />

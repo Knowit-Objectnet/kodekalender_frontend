@@ -8,14 +8,15 @@ import Divider from "../Divider"
 import ServiceMessage from "../ServiceMessage"
 import { cl } from "../../utils"
 
-
 type ServiceMessageAlertProps = {
   door: number
   className?: string
 }
 
 const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) => {
-  const { data: doorServiceMessages } = useServiceMessages({ select: (serviceMessages) => filter(serviceMessages, { door }) })
+  const { data: doorServiceMessages } = useServiceMessages({
+    select: (serviceMessages) => filter(serviceMessages, { door })
+  })
 
   if (isEmpty(doorServiceMessages)) return null
 
@@ -35,7 +36,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
         <Popover.Panel className="fixed left-[5%] min-w-[90%] md:absolute md:left-0 md:min-w-min">
           <div
             className={cl(
-              "grid place-items-center bg-purple-700 border-2 border-opacity-70 rounded-md shadow-lg",
+              "grid place-items-center rounded-md border-2 border-opacity-70 bg-purple-700 shadow-lg",
               hasErrors ? "border-red-700" : "border-yellow-400"
             )}
           >
@@ -47,7 +48,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
                 <ServiceMessage
                   key={serviceMessage.uuid}
                   className={cl(
-                    "p-8 w-full pt-16 md:p-8 md:w-288",
+                    "w-full p-8 pt-16 md:w-288 md:p-8",
                     serviceMessage.resolved && "text-opacity-70"
                   )}
                   serviceMessage={serviceMessage}

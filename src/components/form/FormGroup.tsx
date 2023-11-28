@@ -6,7 +6,6 @@ import { cl } from "../../utils"
 
 import FormError from "./FormError"
 
-
 type FormGroupProps = {
   error: Maybe<FieldError>
   dirty: Maybe<boolean>

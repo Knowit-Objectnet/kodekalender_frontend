@@ -11,7 +11,6 @@ import SubmitButton from "../components/SubmitButton"
 
 import BasicPage from "./BasicPage"
 
-
 type WelcomeBackForm = { opt_in_marketing?: boolean }
 
 const WelcomeBack: FC = () => {
@@ -19,7 +18,10 @@ const WelcomeBack: FC = () => {
   const navigate = useNavigate()
 
   const formMethods = useForm<WelcomeBackForm>()
-  const { handleSubmit, formState: { isSubmitting, isDirty, errors } } = formMethods
+  const {
+    handleSubmit,
+    formState: { isSubmitting, isDirty, errors }
+  } = formMethods
 
   const onSubmit = ({ opt_in_marketing }: WelcomeBackForm) => {
     updateUser(
@@ -34,19 +36,22 @@ const WelcomeBack: FC = () => {
   const fieldId = useId()
 
   return (
-    <BasicPage title="Velkommen tilbake!" onSubmit={handleSubmit(onSubmit)} containerClassName="gap-16 text-justify">
+    <BasicPage
+      title="Velkommen tilbake!"
+      onSubmit={handleSubmit(onSubmit)}
+      containerClassName="gap-16 text-justify"
+    >
       <FormProvider {...formMethods}>
         <p>
-          Så gøy at du blir med i kodekalenderen vår i år igjen! Det er like
-          moro å arrangere hvert år (tross noen sene kvelder for å dra det i
-          land) og snart er vi i gang! Du vil motta en e-post når vi legger ut
-          den første luken i tilfelle du glemmer at det er blitt desember
+          Så gøy at du blir med i kodekalenderen vår i år igjen! Det er like moro å arrangere hvert
+          år (tross noen sene kvelder for å dra det i land) og snart er vi i gang! Du vil motta en
+          e-post når vi legger ut den første luken i tilfelle du glemmer at det er blitt desember
           allerede.
         </p>
 
         <p className="mb-20">
-          Vi gleder oss til å se hva slags gøyale løsninger dere kommer på i år.
-          Ses i kommentarfeltet! 🧝‍♂🧝‍♀️️🧝🎄
+          Vi gleder oss til å se hva slags gøyale løsninger dere kommer på i år. Ses i
+          kommentarfeltet! 🧝‍♂🧝‍♀️️🧝🎄
         </p>
 
         <p>{getOptInMarketingNote(true)}</p>
@@ -54,7 +59,7 @@ const WelcomeBack: FC = () => {
         <FormElementCustom
           htmlFor={fieldId}
           label={getOptInMarketingLabel()}
-          className="text-center col-span-3"
+          className="col-span-3 text-center"
           inputWrapperClassName="mx-auto"
         >
           <OptInMarketingCheckboxes required id={fieldId} />

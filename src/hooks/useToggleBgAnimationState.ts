@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react"
 
-
 const useToggleBgAnimationState = (): [boolean, () => void] => {
   const [value, setValue] = useState(localStorage.getItem("bg-animation-paused") === "true")
 

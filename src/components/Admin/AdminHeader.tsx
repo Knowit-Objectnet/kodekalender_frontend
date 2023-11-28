@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 import Button from "../Button"
 
-
 const AdminHeader: FC = () => (
   <header className="space-x-32">
     <span className="space-x-16">
@@ -25,6 +24,5 @@ const AdminHeader: FC = () => (
     </span>
   </header>
 )
-
 
 export default AdminHeader

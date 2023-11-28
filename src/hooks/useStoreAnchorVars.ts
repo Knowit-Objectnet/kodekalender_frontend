@@ -2,17 +2,24 @@ import { trimStart, split, filter, has, forEach } from "lodash-es"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
-
 export const ANCHOR_VARS = {
   year: (s: string) => parseInt(s),
   debug: (s: string) => s === "true",
   raffle_started: (s: string) => s === "true"
 } as const
 
-export function getAnchorVar<N extends keyof typeof ANCHOR_VARS>(name: N): ReturnType<typeof ANCHOR_VARS[N]> | undefined
+export function getAnchorVar<N extends keyof typeof ANCHOR_VARS>(
+  name: N
+): ReturnType<(typeof ANCHOR_VARS)[N]> | undefined
 /* eslint-disable no-redeclare */
-export function getAnchorVar<N extends keyof typeof ANCHOR_VARS, F extends ReturnType<typeof ANCHOR_VARS[N]>>(name: N, fallback: F): ReturnType<typeof ANCHOR_VARS[N]> | F
-export function getAnchorVar<N extends keyof typeof ANCHOR_VARS, F extends ReturnType<typeof ANCHOR_VARS[N]>>(name: N, fallback?: F) {
+export function getAnchorVar<
+  N extends keyof typeof ANCHOR_VARS,
+  F extends ReturnType<(typeof ANCHOR_VARS)[N]>
+>(name: N, fallback: F): ReturnType<(typeof ANCHOR_VARS)[N]> | F
+export function getAnchorVar<
+  N extends keyof typeof ANCHOR_VARS,
+  F extends ReturnType<(typeof ANCHOR_VARS)[N]>
+>(name: N, fallback?: F) {
   const value = window.sessionStorage.getItem(`anchor_vars/${name}`)
 
   if (value) {

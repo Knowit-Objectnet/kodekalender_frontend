@@ -11,7 +11,6 @@ import { guardPresent } from "../utils"
 
 import Page from "./Page"
 
-
 const Door: FC = () => {
   const navigate = useNavigate()
 
@@ -24,16 +23,13 @@ const Door: FC = () => {
   const solved = useIsDoorSolved(door)
 
   // Redirect home if no challenge found.
-  if (!isLoading && !challenge)
-    navigate("/")
+  if (!isLoading && !challenge) navigate("/")
 
   useLayoutEffect(() => {
-    if (!door || (!isLoading && !challenge))
-      navigate("/")
+    if (!door || (!isLoading && !challenge)) navigate("/")
   }, [door, isLoading, challenge, navigate])
 
-  if (!door || (!isLoading && !challenge))
-    return null
+  if (!door || (!isLoading && !challenge)) return null
 
   return (
     <Page className="relative">
@@ -43,7 +39,7 @@ const Door: FC = () => {
       </div>
       <ServiceMessageAlert
         door={door}
-        className="w-18 h-20 md:w-24 md:h-24 absolute left-24 md:left-40 top-32"
+        className="absolute left-24 top-32 h-20 w-18 md:left-40 md:h-24 md:w-24"
       />
     </Page>
   )

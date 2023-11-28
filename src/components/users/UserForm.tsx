@@ -21,22 +21,25 @@ import { getAnchorVar } from "../../hooks/useStoreAnchorVars"
 import FormGroup from "../form/FormGroup"
 import SubmitButton from "../SubmitButton"
 
-
-
 const DELETE_USER_CONFIRM = squish(`
   Er du sikker på at du vil slette brukeren din? Du vil ikke lenger være med i premietrekningen. Dette kan ikke reverseres.
 `)
 
-export const getOptInMarketingLabel = constant("Samtykker du til at vi kan kontakte deg om jobbmuligheter etter konkurransen?")
-export const getOptInMarketingNote = (editLater: boolean) => (
-  `Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av for hvorvidt du ønsker å motta slik e-post.${editLater ? " Du kan endre dette senere." : ""}`
+export const getOptInMarketingLabel = constant(
+  "Samtykker du til at vi kan kontakte deg om jobbmuligheter etter konkurransen?"
 )
+export const getOptInMarketingNote = (editLater: boolean) =>
+  `Vi ønsker å kunne kontakte deg om jobbmuligheter etter at konkurransen er over. Huk av for hvorvidt du ønsker å motta slik e-post.${
+    editLater ? " Du kan endre dette senere." : ""
+  }`
 
 type UserFormProps = {
   user?: LoggedInWhoami
   // TODO: Here be dragons
   submit: (data: any, options?: any) => void
-  submitError: QueryError<{ errors: Record<keyof SignUpParameters, string[]> }> | null
+  submitError: QueryError<{
+    errors: Record<keyof SignUpParameters, string[]>
+  }> | null
   newForm?: boolean
 }
 
@@ -72,7 +75,9 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
   }, [newForm, user, reset, clearErrors])
 
   useEffect(() => {
-    forEach(submitError?.errors, (messages, key) => setError(key as any, { message: join(messages, ", ") }))
+    forEach(submitError?.errors, (messages, key) =>
+      setError(key as any, { message: join(messages, ", ") })
+    )
   }, [submitError, setError])
 
   const { mutate: doDeleteUser } = useDeleteUser()
@@ -92,7 +97,9 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
 
     submit(
       // Submit only dirty data to avoid overwriting with null values
-      (newForm ? data : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true)),
+      newForm
+        ? data
+        : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true),
       newForm ? { onSuccess: () => navigate("/users/welcome") } : undefined
     )
   }
@@ -108,7 +115,11 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
   }
 
   return (
-    <BasicPage title={newForm ? "Ny bruker" : "Rediger bruker"} containerClassName={cl("gap-6 mx-32 group", some(errors) && "errors")} onSubmit={handleSubmit(onSubmit)}>
+    <BasicPage
+      title={newForm ? "Ny bruker" : "Rediger bruker"}
+      containerClassName={cl("gap-6 mx-32 group", some(errors) && "errors")}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <FormProvider {...formMethods}>
         <FormGroup error={errors.email} dirty={dirtyFields.email}>
           <FormElement
@@ -155,12 +166,22 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
             autoComplete="nickname"
             label="Brukernavn"
             note={squish(`
-              Du kan oppgi brukernavn dersom du vil delta i komentarfeltet og være synlig i ledertavlen.${newForm && "Du kan endre dette senere."}
+              Du kan oppgi brukernavn dersom du vil delta i komentarfeltet og være synlig i ledertavlen.${
+                newForm && "Du kan endre dette senere."
+              }
             `)}
             type="text"
             {...register("username")}
           />
-          {/^.+@.+\..+$/.test(username ?? "") && <FormError error={{ type: "pattern", message: "Dette ser ut som en e-postadresse! Er du sikker på at du mente å sette dette som brukernavn (synlig for alle)?" }} />}
+          {/^.+@.+\..+$/.test(username ?? "") && (
+            <FormError
+              error={{
+                type: "pattern",
+                message:
+                  "Dette ser ut som en e-postadresse! Er du sikker på at du mente å sette dette som brukernavn (synlig for alle)?"
+              }}
+            />
+          )}
         </FormGroup>
 
         <FormGroup error={errors.avatar} dirty={dirtyFields.avatar}>
@@ -200,7 +221,12 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
             {...register("avatar_url")}
           />
           {(avatar || debouncedAvatarUrl || user?.avatar) && (
-            <img className="w-avatar" src={debouncedAvatarUrl || (avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} />
+            <img
+              className="w-avatar"
+              src={
+                debouncedAvatarUrl || (avatar && URL.createObjectURL(avatar)) || user?.avatar || ""
+              }
+            />
           )}
         </FormGroup>
 
@@ -212,18 +238,27 @@ const UserForm: FC<UserFormProps> = ({ user, submit, submitError, newForm = fals
             note={getOptInMarketingNote(newForm)}
             noteDirection="bottom"
           >
-            <OptInMarketingCheckboxes
-              required
-              id={optInMarketingId}
-              className="float-left"
-            />
+            <OptInMarketingCheckboxes required id={optInMarketingId} className="float-left" />
           </FormElementCustom>
         </FormGroup>
 
         <div className="flex flex-col items-center gap-32">
-          {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />}
-          <SubmitButton disabled={!isDirty || isSubmitting} className="" content={newForm ? "Opprett bruker" : "Lagre"} />
-          {!newForm && <Button type="button" onClick={deleteUser} className="text-red-700" content="Slett bruker" />}
+          {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && (
+            <CheckMark wrapperClassName="mx-auto w-32" message="Lagret!" />
+          )}
+          <SubmitButton
+            disabled={!isDirty || isSubmitting}
+            className=""
+            content={newForm ? "Opprett bruker" : "Lagre"}
+          />
+          {!newForm && (
+            <Button
+              type="button"
+              onClick={deleteUser}
+              className="text-red-700"
+              content="Slett bruker"
+            />
+          )}
         </div>
       </FormProvider>
     </BasicPage>

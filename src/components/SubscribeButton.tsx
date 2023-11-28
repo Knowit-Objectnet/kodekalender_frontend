@@ -8,7 +8,6 @@ import { ParentPost } from "../api"
 import { useCreateSubscription, useDeleteSubscription, useSubscriptions } from "../api/requests"
 import { cl } from "../utils"
 
-
 type SubscribeButtonProps = {
   door?: number
   post?: ParentPost
@@ -32,22 +31,17 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) =>
   if (!door && !post) return null
 
   const subscribe = () => {
-    if (door)
-      createSubscription({ door })
-    else if (post)
-      createSubscription({ postUuid: post.uuid })
+    if (door) createSubscription({ door })
+    else if (post) createSubscription({ postUuid: post.uuid })
   }
 
   const unsubscribe = () => {
-    if (subscription)
-      deleteSubscription(subscription)
+    if (subscription) deleteSubscription(subscription)
   }
 
   const onClick = () => {
-    if (subscription)
-      unsubscribe()
-    else
-      subscribe()
+    if (subscription) unsubscribe()
+    else subscribe()
 
     setAnimating(true)
     animationControl.start({
@@ -64,14 +58,18 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) =>
       className={cl("", className)}
       title={
         subscription
-          ? `Slutt å motta e-postvarsel om nye ${door ? "innlegg på denne luken" : "svar på dette innlegget"}`
-          : `Motta varsel på e-post om nye ${door ? "innlegg på denne luken" : "svar på dette innlegget"}`
+          ? `Slutt å motta e-postvarsel om nye ${
+              door ? "innlegg på denne luken" : "svar på dette innlegget"
+            }`
+          : `Motta varsel på e-post om nye ${
+              door ? "innlegg på denne luken" : "svar på dette innlegget"
+            }`
       }
       onClick={onClick}
       onMouseEnter={() => animationControl.start({ rotate: -10 })}
       onMouseLeave={() => !animating && animationControl.start({ rotate: 0 })}
     >
-      <motion.div className="origin-top" animate={animationControl} >
+      <motion.div className="origin-top" animate={animationControl}>
         {debouncedSubscription ? <FaBellSlash /> : <FaBell />}
       </motion.div>
     </motion.button>

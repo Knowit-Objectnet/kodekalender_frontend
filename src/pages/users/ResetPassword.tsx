@@ -9,15 +9,22 @@ import Button from "../../components/Button"
 import BasicPage from "../BasicPage"
 import FormGroup from "../../components/form/FormGroup"
 
-
 const ResetPassword: FC = () => {
   const { search } = useLocation()
   const paramMatch = search.match(/reset_password_token=(?<resetPasswordToken>\S+)/)?.groups
 
-  const { register, handleSubmit, setValue, setError, formState: { errors, dirtyFields, isSubmitSuccessful } } = useForm<ResetPasswordParameters>()
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setError,
+    formState: { errors, dirtyFields, isSubmitSuccessful }
+  } = useForm<ResetPasswordParameters>()
   const { mutate: resetPassword, error, isLoading } = useResetPassword()
   useEffect(() => {
-    forEach(error?.errors, (messages, key) => setError(key as any, { message: join(messages, ", ") }))
+    forEach(error?.errors, (messages, key) =>
+      setError(key as any, { message: join(messages, ", ") })
+    )
   }, [error, setError])
 
   useEffect(() => {
@@ -28,7 +35,7 @@ const ResetPassword: FC = () => {
     resetPassword(data)
   }
 
-  if (isSubmitSuccessful && !isLoading &&!error) {
+  if (isSubmitSuccessful && !isLoading && !error) {
     return (
       <BasicPage title="Passord tilbakestilt">
         <div className="text-center">Du kan nå logge inn med ditt nye passord.</div>
@@ -54,7 +61,7 @@ const ResetPassword: FC = () => {
         />
       </FormGroup>
 
-      <Button type="submit" className="block mx-auto" content="Tilbakestill passord" />
+      <Button type="submit" className="mx-auto block" content="Tilbakestill passord" />
     </BasicPage>
   )
 }

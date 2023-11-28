@@ -1,7 +1,6 @@
 import { FCWithChildren } from "../../types/utils_types"
 import { cl } from "../utils"
 
-
 type PageContentProps = {
   className?: string
 }
@@ -19,9 +18,9 @@ const PageContent: FCWithChildren<PageContentProps> = ({ className, children }) 
   <main
     className={cl(
       `
+        min-h-full
         w-[46.875rem]
         max-w-[90vw]
-        min-h-full
       `,
       className
     )}

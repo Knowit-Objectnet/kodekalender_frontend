@@ -8,7 +8,6 @@ import DoorsMobile from "../components/Doors/DoorsMobile"
 import RaffleNotification from "../components/RaffleNotification"
 import PageContent from "../components/PageContent"
 
-
 const Doors = () => {
   const navigate = useNavigate()
 
@@ -17,20 +16,24 @@ const Doors = () => {
   const prefetchPosts = usePrefetchPosts()
   const prefetchLikes = usePrefetchLikes()
 
+  const prefetch = useCallback(
+    (door: number) => {
+      prefetchLikes()
 
-  const prefetch = useCallback((door: number) => {
-    prefetchLikes()
+      if (get(solvedStatus, door)) prefetchPosts(door)
+    },
+    [prefetchLikes, prefetchPosts, solvedStatus]
+  )
 
-    if (get(solvedStatus, door))
-      prefetchPosts(door)
-  }, [prefetchLikes, prefetchPosts, solvedStatus])
-
-  const lightProps = useMemo(() => ({
-    challenges,
-    solvedStatus,
-    prefetch,
-    navigateToDoor: (door: number) => navigate(`/luke/${door}`)
-  }), [challenges, solvedStatus, prefetch, navigate])
+  const lightProps = useMemo(
+    () => ({
+      challenges,
+      solvedStatus,
+      prefetch,
+      navigateToDoor: (door: number) => navigate(`/luke/${door}`)
+    }),
+    [challenges, solvedStatus, prefetch, navigate]
+  )
 
   return (
     <PageContent className="w-full">

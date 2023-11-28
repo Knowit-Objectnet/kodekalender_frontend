@@ -8,7 +8,6 @@ import PageContent from "../components/PageContent"
 import RegisterButton from "../components/RegisterButton"
 import { AuthContext } from "../AuthContext"
 
-
 type TimerDisplayProps = {
   countdownPartIndex: 0 | 1 | 2 | 3
   className?: string
@@ -19,31 +18,40 @@ const TimerDisplay: FC<TimerDisplayProps> = memo(({ countdownPartIndex, classNam
   const tens = toInteger(t / 10)
   const ones = t % 10
 
-  const content = useMemo(() => (
-    <div
-      className={cl(
-        `
+  const content = useMemo(
+    () => (
+      <div
+        className={cl(
+          `
           flex
 
+          child:rounded-2xl
           child:border-2
           child:border-purple-900
-          child:rounded-2xl
           child:bg-purple-700
           child:p-15
         `,
-        className
-      )}
-    >
-      <Header3 as="span" className="text-xl">{tens}</Header3>
-      <Header3 as="span" className="text-xl">{ones}</Header3>
-    </div>
-  ), [tens, ones, className])
+          className
+        )}
+      >
+        <Header3 as="span" className="text-xl">
+          {tens}
+        </Header3>
+        <Header3 as="span" className="text-xl">
+          {ones}
+        </Header3>
+      </div>
+    ),
+    [tens, ones, className]
+  )
 
   return content
 })
 
 const Separator = () => (
-  <Header3 as="span" className="text-xl mx-3">:</Header3>
+  <Header3 as="span" className="mx-3 text-xl">
+    :
+  </Header3>
 )
 
 const Countdown = () => {
@@ -53,13 +61,13 @@ const Countdown = () => {
     <PageContent
       className={`
         grid
+        w-full
         grid-flow-row
-        gap-24
 
         content-center
         justify-items-center
 
-        w-full
+        gap-24
       `}
     >
       <Header1 className="inline-block leading-none">Kodekalender {getActiveYear()}</Header1>
@@ -96,19 +104,19 @@ const Countdown = () => {
       </div>
 
       <p className="w-304">
-        Bli med på Knowits julekalender! Hver dag før jul åpnes en ny luke med
-        en oppgave du må løse. Vi trekker en heldig vinner som får en valgfri
-        mobil eller nettbrett!
+        Bli med på Knowits julekalender! Hver dag før jul åpnes en ny luke med en oppgave du må
+        løse. Vi trekker en heldig vinner som får en valgfri mobil eller nettbrett!
       </p>
 
       <div className="space-x-8">
-        {isAuthenticated
-          ? <span className="font-bold">Lykke til!</span>
-          : (<>
+        {isAuthenticated ? (
+          <span className="font-bold">Lykke til!</span>
+        ) : (
+          <>
             <span className="font-bold">Er du Nordpolens flittigste alv?</span>
             <RegisterButton />
-          </>)
-        }
+          </>
+        )}
       </div>
     </PageContent>
   )

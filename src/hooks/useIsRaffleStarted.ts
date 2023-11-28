@@ -3,7 +3,6 @@ import { getRaffleStart } from "../utils"
 import useCurrentTime from "./useCurrentTime"
 import { getAnchorVar } from "./useStoreAnchorVars"
 
-
 const RAFFLE_START = getRaffleStart()
 
 const useIsRaffleStarted = () => {

@@ -1,16 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es2022"
-    ],
-    "types": [
-      "react",
-      "react-dom",
-      "node"
-    ],
+    "lib": ["dom", "dom.iterable", "es2022"],
+    "types": ["react", "react-dom", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,13 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsx"
   },
-  "include": [
-    "src",
-    "types"
-  ],
-  "exclude": [
-    "**/__*"
-  ]
+  "include": ["src", "types"],
+  "exclude": ["**/__*"]
 }

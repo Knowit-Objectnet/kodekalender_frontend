@@ -3,7 +3,6 @@ import svgr from "@svgr/rollup"
 import { visualizer } from "rollup-plugin-visualizer"
 import react from "@vitejs/plugin-react"
 
-
 export default defineConfig({
   server: {
     port: 3000,
@@ -17,7 +16,7 @@ export default defineConfig({
       svgoConfig: {
         plugins: [
           {
-            name: 'preset-default',
+            name: "preset-default",
             params: {
               overrides: {
                 removeViewBox: false, // https://github.com/svg/svgo/issues/1128
@@ -43,8 +42,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          if (id.includes("framer-motion"))
-            return "framer-motion"
+          if (id.includes("framer-motion")) return "framer-motion"
         }
       }
     }
