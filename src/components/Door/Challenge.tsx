@@ -12,17 +12,23 @@ type ChallengeProps = {
   preamble?: ReactNode
 }
 
-const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamble }) => {
+const Challenge: FC<ChallengeProps> = ({
+  challenge,
+  withoutInput = false,
+  preamble
+}) => {
   if (!challenge) return null
 
   return (
-    <div className="pb-16 pt-28 px-8 md:px-24 mx-4 md:mx-16 bg-purple-800 rounded-md">
+    <div className="mx-4 rounded-md bg-purple-800 px-8 pb-16 pt-28 md:mx-16 md:px-24">
       {preamble}
 
       <div className="relative space-y-8 md:space-y-12 lg:space-y-24">
-        <div className="text-center pb-8 md:pb-12 shadow-[0_24px_4px_-24px_white]">
+        <div className="pb-8 text-center shadow-[0_24px_4px_-24px_white] md:pb-12">
           <Header1>{challenge.title}</Header1>
-          <p className="mt-2"><em>Av {challenge.author}</em></p>
+          <p className="mt-2">
+            <em>Av {challenge.author}</em>
+          </p>
         </div>
 
         <div
@@ -30,9 +36,7 @@ const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamb
           dangerouslySetInnerHTML={{ __html: challenge.content }}
         />
 
-        {!withoutInput && (
-          <Input door={challenge.door} />
-        )}
+        {!withoutInput && <Input door={challenge.door} />}
       </div>
     </div>
   )
