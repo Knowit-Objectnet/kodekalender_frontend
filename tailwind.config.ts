@@ -46,8 +46,8 @@ export default {
     fontSize: {
       // Our own text sizes
       "xs": ["0.75rem", "1rem"], // 12px
-      "sm": ["1rem", "1.5rem"],    // 16px
-      "base": ["1.25rem", "1.75rem"], // 20px
+      "sm": ["0.875rem", "1.35rem"],    // 14px
+      "base": ["1.125rem", "1.575rem"], // 18px
       "lg": ["1.75rem", "2.1875rem"], // 28px
       "xl": ["3.375rem", "1"], // 54px
       "2xl": ["4.375rem", "1"], // 70px
@@ -79,7 +79,7 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            fontSize: '18px',
+            fontSize: '1.125rem',
             '--tw-prose-body': colors.white,
             '--tw-prose-headings': colors.white,
             // '--tw-prose-lead': theme('colors.pink[700]'),
