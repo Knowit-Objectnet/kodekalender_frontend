@@ -11,7 +11,6 @@ import { guardPresent } from "../utils"
 
 import Page from "./Page"
 
-
 const Door: FC = () => {
   const navigate = useNavigate()
 
@@ -24,20 +23,17 @@ const Door: FC = () => {
   const solved = useIsDoorSolved(door)
 
   // Redirect home if no challenge found.
-  if (!isLoading && !challenge)
-    navigate("/")
+  if (!isLoading && !challenge) navigate("/")
 
   useLayoutEffect(() => {
-    if (!door || (!isLoading && !challenge))
-      navigate("/")
+    if (!door || (!isLoading && !challenge)) navigate("/")
   }, [door, isLoading, challenge, navigate])
 
-  if (!door || (!isLoading && !challenge))
-    return null
+  if (!door || (!isLoading && !challenge)) return null
 
   return (
     <Page className="relative">
-      <div className="space-y-door-elements">
+      <div className="mx-4 rounded-md bg-purple-800 px-8 pb-16 pt-28 md:mx-16 md:px-24">
         <Challenge challenge={challenge} />
         {isAuthenticated && solved && <PostsSection door={door} />}
       </div>
