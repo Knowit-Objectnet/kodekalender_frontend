@@ -5,14 +5,12 @@ import Privacy from "./pages/Privacy"
 import Door from "./pages/Door"
 import PageHeader from "./components/PageHeader"
 import Background from "./components/Background"
-import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
 import ServiceMessages from "./pages/ServiceMessages"
 import Page from "./pages/Page"
 import Solutions from "./pages/Solutions"
 import useStoreAnchorVars from "./hooks/useStoreAnchorVars"
-// import useToggleBgAnimationState from "./hooks/useToggleBgAnimationState"
 import useIsRaffleStarted from "./hooks/useIsRaffleStarted"
 import Countdown from "./pages/Countdown"
 import About from "./pages/About"
@@ -95,7 +93,6 @@ const App = () => {
   // useIsRaffleStarted timer triggers.
   const content = useMemo(() => (<>
     <Background />
-    <LeaderBoardAside />
     <MenuAside />
 
     <div
