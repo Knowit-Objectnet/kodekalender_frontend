@@ -1,10 +1,13 @@
 import { FC, ReactElement, ReactNode, useMemo } from "react"
 import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
+import clsx from "clsx"
 
 import { getRandomDisplayName, getObjKey, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
+import { useWhoami } from "../api/users/requests"
 
 import { Header4 } from "./text"
+import Divider from "./Divider"
 
 
 type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]
@@ -16,6 +19,8 @@ type LeaderBoardContentProps = {
 
 const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   const { data: leaderboard } = useLeaderboard()
+
+  const { data: whoami } = useWhoami()
 
   // Calculate overall position for each user, regardless of grouping.
   const leaderboardWithPosition = useMemo(() => {
@@ -50,7 +55,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   return (<>
     {map(leaderboardWithPosition, ([solvedCount, entries]) =>
       <div key={solvedCount}>
-        <Header4 className="sticky top-0 py-2 bg-purple-700 rounded-md -space-y-2 text-center" key={solvedCount} >
+        <Header4 className="sticky top-0 py-2 rounded-md -space-y-2 text-center" key={solvedCount} >
           <div className="text-lg font-semibold tracking-wide">
             {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
           </div>
@@ -58,7 +63,8 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
             {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
           </div>
         </Header4>
-        <div className="pt-4 pb-8 space-y-2 text-center">
+        <Divider bgClasses="bg-purple-500 w-2/3" />
+        <div className="pt-4 pb-8 space-y-2 text-center flex justify-center">
           {map(entries, (user) => {
               let displayName: ReactNode = user.username
               if (!displayName) {
@@ -67,7 +73,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
               }
 
               return (
-                <p key={getObjKey(user)}>
+                <p key={getObjKey(user)} className={clsx(whoami?.username === displayName ? "bg-purple-700 rounded-md w-2/3" : "", "py-4")}>
                   <span className="text-gray tracking-wide">{user.position}.</span>
                   &nbsp;{displayName}
                 </p>
