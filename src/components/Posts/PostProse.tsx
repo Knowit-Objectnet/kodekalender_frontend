@@ -2,7 +2,6 @@ import { FC } from "react"
 
 import { cl } from "../../utils"
 
-
 type PostProseProps = {
   html: string
   className?: string

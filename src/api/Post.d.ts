@@ -1,6 +1,7 @@
 export type BasePost = {
   uuid: string
   content: string // '' if deleted
+  markdown_content: string // '' if deleted
   door: number
   author: {
     uuid: string

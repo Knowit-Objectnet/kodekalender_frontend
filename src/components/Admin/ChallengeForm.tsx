@@ -1,6 +1,6 @@
 import { map, toString } from "lodash-es"
 import { memo, useState, FC } from "react"
-import TextareaAutosize from "react-autosize-textarea/lib"
+import TextareaAutosize from "react-textarea-autosize"
 import { useForm } from "react-hook-form"
 
 import { AdminChallenge, AdminChallengePayload } from "../../api/admin/Challenge"

@@ -28,7 +28,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
           as={FaExclamationTriangle}
           className={cl(
             "h-full w-full cursor-pointer",
-            hasErrors ? "text-red-700/70" : "text-yellow-400/70"
+            hasErrors ? "text-pink-900" : "text-yellow-400"
           )}
         />
 
@@ -36,7 +36,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
           <div
             className={cl(
               "grid place-items-center bg-purple-700 border-2 border-opacity-70 rounded-md shadow-lg",
-              hasErrors ? "border-red-700" : "border-yellow-400"
+              hasErrors ? "border-pink-900" : "border-yellow-400"
             )}
           >
             {map(doorServiceMessages, (serviceMessage, idx) => (

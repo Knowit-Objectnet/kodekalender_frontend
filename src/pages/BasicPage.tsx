@@ -5,9 +5,8 @@ import { Header1, Header2 } from "../components/text"
 
 import Page from "./Page"
 
-
 export type BasicPageProps = {
-  title: string
+  title?: string
   className?: string
   containerClassName?: string
   onSubmit?: (data: any) => void
@@ -47,11 +46,14 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         className
       )}
     >
-      <Header2 as={Header1} className="text-center">
-        {title}
-      </Header2>
-
-      <Divider bgClasses="my-12 bg-purple-500" />
+      {title && (
+        <>
+          <Header2 as={Header1} className="text-center">
+            {title}
+          </Header2>
+          <Divider bgClasses="my-12 bg-purple-500" />
+        </>
+      )}
 
       <ContainerComponent
         className={cl(
