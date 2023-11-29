@@ -54,7 +54,7 @@ const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, sub
         <div className={cl("grid grid-cols-3 gap-8", preview && "hidden")}>
           {newForm && (
             <FormElementCustom label="Luke" className="col-span-3">
-              <select className="block form-select" defaultValue={availableDoors[0]} {...register("door", { required: true })}>
+              <select className="block form-select text-black" defaultValue={availableDoors[0]} {...register("door", { required: true })}>
                 {map(availableDoors, (door) => <option key={door} value={door} label={toString(door)} />)}
               </select>
             </FormElementCustom>
@@ -70,7 +70,7 @@ const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, sub
 
           <FormElementCustom label="Innhold" note="tittel-elementet blir erstattet med tittel fra over" className="col-span-3">
             <TextareaAutosize
-                className="block w-full form-textarea"
+                className="block w-full form-textarea text-black"
                 rows={5}
                 defaultValue={challenge.markdown_content}
                 {...register("markdown_content", { required: true })}
