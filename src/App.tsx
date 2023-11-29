@@ -20,8 +20,6 @@ import PageFooter from "./components/PageFooter"
 import Icon, { IconProps } from "./components/Icons/Icon"
 import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
-import MenuAside from "./components/MenuAside"
-import { DropDownMenu } from "./components/DropDownMenu"
 
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {

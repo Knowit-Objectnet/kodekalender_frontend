@@ -1,15 +1,15 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode } from "react"
+import {
+  ComponentPropsWithRef,
+  ReactNode,
+  forwardRef
+} from "react"
 
 import { cl } from "../utils"
 import { Nullable } from "../../types/utils_types"
 
 import Icon, { IconProps } from "./Icons/Icon"
 
-type HTMLButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
-export type ButtonProps = Omit<HTMLButtonProps, "content"> & {
+export type ButtonProps = Omit<ComponentPropsWithRef<"button">, "content"> & {
   content?: ReactNode
   disabled?: boolean
   sm?: boolean
@@ -18,20 +18,24 @@ export type ButtonProps = Omit<HTMLButtonProps, "content"> & {
   className?: string
 }
 
-const Button: FC<ButtonProps> = ({
-  content,
-  disabled,
-  sm = false,
-  primary = false,
-  icon,
-  children,
-  className,
-  type = "button",
-  ...restProps
-}) => (
-  <button
-    className={cl(
-      `
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      content,
+      disabled,
+      sm = false,
+      primary = false,
+      icon,
+      children,
+      className,
+      type = "button",
+      ...restProps
+    },
+    ref
+  ) => (
+    <button
+      className={cl(
+        `
         bg-purple-700
 
         px-12
@@ -45,8 +49,8 @@ const Button: FC<ButtonProps> = ({
         whitespace-nowrap
         align-middle
       `,
-      !disabled &&
-        `
+        !disabled &&
+          `
         hover:bg-purple-900
         hover:ring
         hover:ring-inset
@@ -59,27 +63,29 @@ const Button: FC<ButtonProps> = ({
         focus:ring-inset
         focus:ring-purple-100
       `,
-      disabled &&
-        `
+        disabled &&
+          `
         text-white/30
       `,
-      sm &&
-        `
+        sm &&
+          `
         sm:text-sm
         px-8
         py-2
         gap-3
       `,
-      { "bg-purple-600": primary },
-      className
-    )}
-    disabled={disabled}
-    type={type}
-    {...restProps}
-  >
-    {icon && <Icon name={icon} sm={sm} className={cl(sm && "w-10 h-10")} />}
-    {content ?? children}
-  </button>
+        { "bg-purple-600": primary },
+        className
+      )}
+      disabled={disabled}
+      type={type}
+      {...restProps}
+      ref={ref}
+    >
+      {icon && <Icon name={icon} sm={sm} className={cl(sm && "w-10 h-10")} />}
+      {content ?? children}
+    </button>
+  )
 )
 
 export default Button
