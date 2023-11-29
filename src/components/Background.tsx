@@ -20,7 +20,7 @@ const BACKGROUND_WRAPPER_CLASSES = `
 const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
   relative
   inline-block
-  overflow-hidden
+  overflow-visible
 
   w-full
   h-full
@@ -77,7 +77,7 @@ const Background: FC = () => {
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
         before:blur-[1px]
         before:w-[300%]
-        before:h-full
+        before:h-[1080px]
         before:bg-[url('/assets/svgo/Snow.svg')]
         before:bg-[length:1920px_1080px]
         before:bg-repeat-x
@@ -91,7 +91,7 @@ const Background: FC = () => {
           ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
           before:blur-[1px]
           before:w-[300%]
-          before:h-full
+          before:h-[1080px]
           before:bg-[url('/assets/svgo/GoldSnow.svg')]
           before:bg-[length:1920px_1080px]
           before:bg-repeat-x
