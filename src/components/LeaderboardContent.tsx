@@ -1,8 +1,14 @@
-import { FC, ReactElement, useMemo } from "react"
-import { flatMap, isEmpty, isNil, map } from "lodash-es"
+import { FC, ReactElement, ReactNode, useMemo } from "react"
+import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
 
+import { getRandomDisplayName, getObjKey, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
 
+import { Header4 } from "./text"
+
+
+type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]
+type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
   CloseButton?: ReactElement
@@ -15,9 +21,20 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   const leaderboardWithPosition = useMemo(() => {
     if (!leaderboard) return []
 
-    return flatMap(leaderboard, (group) =>
-      map(group[1], (val) => [val, group[0]])
-    )
+    return reduce(leaderboard, (list, [solvedCount, usernames]) => {
+      const numPrecedingGroupedUsers = reduce(list, (sum, [_, entries]) => sum + entries.length, 0)
+
+      return [
+        ...list,
+        [
+          solvedCount,
+          map(usernames, (username, i) => ({
+            username,
+            position: numPrecedingGroupedUsers + i + 1
+          }))
+        ] as LeaderboardGroup
+      ]
+    }, [] as LeaderboardWithPosition)
   }, [leaderboard])
 
   if (isNil(leaderboard)) return null
@@ -30,22 +47,36 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
       </div>
     )
 
-  return (
-    <>
-      <div className="full-w space-between grid grid-cols-3 place-items-center gap-x-72 gap-y-10">
-        <h2 className="font-bold">Plass</h2>
-        <h2 className="font-bold">Navn</h2>
-        <h2 className="font-bold">Løste luker</h2>
-        {map(leaderboardWithPosition, (values, index) => (
-          <>
-            <div>{index + 1}</div>
-            <div>{values[0]}</div>
-            <div>{values[1]}</div>
-          </>
-        ))}
+  return (<>
+    {map(leaderboardWithPosition, ([solvedCount, entries]) =>
+      <div key={solvedCount}>
+        <Header4 className="sticky top-0 py-2 bg-purple-700 rounded-md -space-y-2 text-center" key={solvedCount} >
+          <div className="text-lg font-semibold tracking-wide">
+            {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
+          </div>
+          <div className="text-gray/80 text-sm">
+            {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
+          </div>
+        </Header4>
+        <div className="pt-4 pb-8 space-y-2 text-center">
+          {map(entries, (user) => {
+              let displayName: ReactNode = user.username
+              if (!displayName) {
+                const [name, emoji] = getRandomDisplayName()
+                displayName = <span><em>{name}</em>&nbsp;{emoji}</span>
+              }
+
+              return (
+                <p key={getObjKey(user)}>
+                  <span className="text-gray tracking-wide">{user.position}.</span>
+                  &nbsp;{displayName}
+                </p>
+              )
+              })}
+        </div>
       </div>
-    </>
-  )
+    )}
+  </>)
 }
 
 export default LeaderBoardContent
