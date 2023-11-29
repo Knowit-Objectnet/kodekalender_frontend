@@ -120,8 +120,7 @@ const UserForm: FC<UserFormProps> = ({
             data,
             (_value, key) =>
               dirtyFields[key as keyof UpdateUserParameters] === true
-          ),
-      newForm ? { onSuccess: () => navigate("/users/welcome") } : undefined
+          )
     )
   }
 
