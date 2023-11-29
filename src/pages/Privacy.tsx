@@ -78,7 +78,7 @@ const PrivacySection = ({ header, content }: { header: string, content: string }
 )
 
 const Privacy = () => (
-  <BasicPage title="Personverkerklæring">
+  <BasicPage title="Personvernerklæring">
     <Header4 as={Header2} className="text-center"><em>TL;DR</em></Header4>
     <ul className="list-disc mx-8">
       <li>Vi bruker cookies for innlogging.</li>
@@ -89,7 +89,7 @@ const Privacy = () => (
 
     <Divider bgClasses="my-12 bg-purple-500" />
 
-    <Header4>Personverkerklæring for Knowit Kodekalender {getActiveYear()}</Header4>
+    <Header4>Personvernerklæring for Knowit Kodekalender {getActiveYear()}</Header4>
 
     <ol className="list-decimal mx-8 space-y-12">
       {map(SECTIONS, ([header, content], i) => <PrivacySection key={i} header={header} content={squish(content)} />)}
