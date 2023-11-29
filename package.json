@@ -6,12 +6,13 @@
   "scripts": {
     "serve": "vite",
     "preview": "vite preview --open --port 8080",
-    "build": "yarn svgo && vite build",
+    "build": "yarn svgo && yarn svgo_julehus && vite build",
     "lint": "eslint --ext .tsx,.ts,.d.ts,.jsx,.js  .",
     "lint-fix": "eslint --ext .tsx,.ts,.d.ts,.jsx,.js  --fix .",
     "typecheck": "tsc",
     "typecheck-ci": "tsc --noEmit",
-    "svgo": "svgo --config svgo.config.cjs --pretty --indent 0 --recursive --folder assets/svg --output assets/svgo"
+    "svgo": "svgo --config svgo.config.cjs --pretty --indent 0 --recursive --folder assets/svg --exclude Julehus.svg --output assets/svgo",
+    "svgo_julehus": "svgo --config svgo_julehus.config.cjs --pretty --indent 0 --input assets/svg/Julehus.svg --output assets/svgo/Julehus.svg"
   },
   "dependencies": {
     "@fontsource-variable/nunito": "^5.0.16",

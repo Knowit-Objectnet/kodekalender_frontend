@@ -3,11 +3,11 @@
     --door-#{$i}-open-display: none;
     --door-#{$i}-solved-display: none;
 
-    #Open\:\:#{$i} {
+    #Julehus__Open\:\:#{$i} {
       display: var(--door-#{$i}-open-display);
     }
 
-    #Solved\:\:#{$i} {
+    #Julehus__Solved\:\:#{$i} {
       display: var(--door-#{$i}-solved-display);
     }
   }

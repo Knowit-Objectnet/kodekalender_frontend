@@ -2,7 +2,7 @@ import { FC, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { constant, every, forEach, map, range, times, zip } from "lodash-es"
 import { Link } from "react-router-dom"
 
-import { ReactComponent as DoorsDesktopSvg } from "/assets/svg/Julehus.svg"
+import { ReactComponent as DoorsDesktopSvg } from "/assets/svgo/Julehus.svg"
 
 import { cl } from "../../utils"
 import { Maybe } from "../../../types/utils_types"
@@ -80,7 +80,7 @@ const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) =
         return
       }
 
-      const doorsLayerNode = doorsContainerRef.current.querySelector("#Lockedx24")
+      const doorsLayerNode = doorsContainerRef.current.querySelector("#Julehus__Lockedx24")
       if (!doorsLayerNode)
         return
 
@@ -88,7 +88,7 @@ const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) =
         if (!ref.current)
           return
 
-        const targetDoor = doorsLayerNode.querySelector(`#Locked\\:\\:${i + 1}`)
+        const targetDoor = doorsLayerNode.querySelector(`#Julehus__Locked\\:\\:${i + 1}`)
 
         if (!targetDoor)
           return
@@ -124,7 +124,7 @@ const DoorsDesktop: FC<DoorsProps> = ({ className, challenges, solvedStatus }) =
   }, [doorsContainerRef, ...doorElementRefs])
 
   useLayoutEffect(() => {
-    forEach(doorsContainerRef.current?.querySelectorAll("#Locked24 ~ *"), (node) => {
+    forEach(doorsContainerRef.current?.querySelectorAll("#Julehus__Locked24 ~ *"), (node) => {
       node.classList.add("pointer-events-none")
     })
   }, [])
