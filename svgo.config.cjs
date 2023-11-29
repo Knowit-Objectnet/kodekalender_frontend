@@ -11,9 +11,18 @@ module.exports = {
         }
       }
     },
+    {
+      name: 'cleanupListOfValues',
+      params: {
+        overrides: {
+          floatPrecision: 2
+        }
+      }
+    },
     'removeDimensions', // Removes width= and height= in favor of viewbox (scales properly)
     'reusePaths',
     'cleanupIds',
+    'prefixIds',
     'minifyStyles',
     'mergeStyles',
     'mergePaths'

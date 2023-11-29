@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="20.36 20.36 223.92 142.49">
 <defs>
-<linearGradient id="b" x1="372.23" x2="372.23" y1="142.49" y2="162.85" gradientTransform="translate(-332.27 -113.52)" gradientUnits="userSpaceOnUse">
+<linearGradient id="test-doors_svg__b" x1="372.23" x2="372.23" y1="142.49" y2="162.85" gradientTransform="translate(-332.27 -113.52)" gradientUnits="userSpaceOnUse">
 <stop offset="0" style="stop-color:#d0f"/>
 <stop offset="1" style="stop-color:#850099"/>
 </linearGradient>
-<path id="a" d="M20.36 20.36h20.36v20.36H20.36zm40.71 0h20.36v20.36H61.07zm0 40.71h20.36v20.36H61.07zm-40.71 0h20.36v20.36H20.36zm81.42-40.71h20.36v20.36h-20.36zm40.71 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.71 0h20.36v20.36h-20.36zm81.42-40.71h20.36v20.36H183.2zm40.72 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.72 0h20.36v20.36H183.2zM20.36 101.78h20.36v20.36H20.36zm40.71 0h20.36v20.36H61.07zm0 40.71h20.36v20.36H61.07zm-40.71 0h20.36v20.36H20.36zm81.42-40.71h20.36v20.36h-20.36zm40.71 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.71 0h20.36v20.36h-20.36zm81.42-40.71h20.36v20.36H183.2zm40.72 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.72 0h20.36v20.36H183.2z"/>
+<path id="test-doors_svg__a" d="M20.36 20.36h20.36v20.36H20.36zm40.71 0h20.36v20.36H61.07zm0 40.71h20.36v20.36H61.07zm-40.71 0h20.36v20.36H20.36zm81.42-40.71h20.36v20.36h-20.36zm40.71 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.71 0h20.36v20.36h-20.36zm81.42-40.71h20.36v20.36H183.2zm40.72 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.72 0h20.36v20.36H183.2zM20.36 101.78h20.36v20.36H20.36zm40.71 0h20.36v20.36H61.07zm0 40.71h20.36v20.36H61.07zm-40.71 0h20.36v20.36H20.36zm81.42-40.71h20.36v20.36h-20.36zm40.71 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.71 0h20.36v20.36h-20.36zm81.42-40.71h20.36v20.36H183.2zm40.72 0h20.36v20.36h-20.36zm0 40.71h20.36v20.36h-20.36zm-40.72 0h20.36v20.36H183.2z"/>
 </defs>
-<use xlink:href="#a" style="stroke:#000;fill:#b7d6ef"/>
-<use xlink:href="#a" style="stroke:#000;fill:#ff971f"/>
-<use xlink:href="#a" style="stroke:#000;fill:#1fff2a"/>
-<path d="M29.78 28.97h20.36v20.36H29.78z" style="stroke:#000;paint-order:fill;fill-rule:nonzero;fill:url(#b)"/>
+<use xlink:href="#test-doors_svg__a" style="stroke:#000;fill:#b7d6ef"/>
+<use xlink:href="#test-doors_svg__a" style="stroke:#000;fill:#ff971f"/>
+<use xlink:href="#test-doors_svg__a" style="stroke:#000;fill:#1fff2a"/>
+<path d="M29.78 28.97h20.36v20.36H29.78z" style="stroke:#000;paint-order:fill;fill-rule:nonzero;fill:url(#test-doors_svg__b)"/>
 </svg>
