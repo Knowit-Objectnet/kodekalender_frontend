@@ -1,5 +1,5 @@
 import { isNil } from "lodash-es"
-import { FC, useContext, MouseEvent } from "react"
+import { FC, MouseEventHandler, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useSignOut } from "../api/users/requests"
@@ -16,7 +16,7 @@ const SignOutButton: FC<ButtonProps> = ({ onClick, ...buttonProps }) => {
 
   if (!isAuthenticated) return null
 
-  const onClickFunc = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+  const onClickFunc: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (!isNil(onClick)) onClick(e)
     if (window.confirm("Er du sikker på at du vil logge ut?"))
       signOut(null, { onSuccess: () => navigate("/") })
