@@ -14,7 +14,7 @@ const BACKGROUND_WRAPPER_CLASSES = `
   w-screen
   inset-0
   pointer-events-none
-  overflow-hidden
+  overflow-visible
 `
 
 const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
