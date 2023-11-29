@@ -19,6 +19,12 @@ module.exports = {
         }
       }
     },
+    {
+      name: 'removeAttrs',
+      params: {
+        attrs: ["data-.*"]
+      }
+    },
     'removeDimensions', // Removes width= and height= in favor of viewbox (scales properly)
     'reusePaths',
     'cleanupIds',

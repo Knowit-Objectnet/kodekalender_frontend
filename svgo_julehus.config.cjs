@@ -16,13 +16,19 @@ module.exports = {
       name: 'cleanupIds',
       params: {
         preserve: ["Lockedx24", "Openx24", "Solvedx24"],
-        preservePrefixes: ["Locked::", "Open::", "Solved::"]
+        preservePrefixes: ["Locked::", "Open::", "Solved::", "Julehus__"]
       }
     },
     {
       name: 'prefixIds',
       params: {
         prefix: "Julehus"
+      }
+    },
+    {
+      name: 'removeAttrs',
+      params: {
+        attrs: ["data-.*"]
       }
     },
     'removeDimensions',
