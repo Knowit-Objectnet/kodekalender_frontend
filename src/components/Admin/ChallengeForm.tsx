@@ -68,14 +68,16 @@ const ChallengeForm: FC<ChallengeFormProps> = ({ challenge, newForm = false, sub
 
           <AttachmentsInput challenge={challenge} register={register} setValue={setValue} className="col-span-3" />
 
-          <FormElementCustom label="Innhold" note="tittel-elementet blir erstattet med tittel fra over" className="col-span-3">
-            <TextareaAutosize
-                className="block w-full form-textarea text-black"
-                rows={5}
-                defaultValue={challenge.markdown_content}
-                {...register("markdown_content", { required: true })}
-              />
-          </FormElementCustom>
+          <div className="col-span-3">
+            <FormElementCustom label="Innhold" note="tittel-elementet blir erstattet med tittel fra over" className="col-span-3">
+              <TextareaAutosize
+                  className="block w-full form-textarea text-black"
+                  rows={5}
+                  defaultValue={challenge.markdown_content}
+                  {...register("markdown_content", { required: true })}
+                />
+            </FormElementCustom>
+          </div>
         </div>
       </form>
 
