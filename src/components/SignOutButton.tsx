@@ -6,6 +6,7 @@ import { useSignOut } from "../api/users/requests"
 import { AuthContext } from "../AuthContext"
 
 import Button, { ButtonProps } from "./Button"
+import { LinkButton } from "./DropDownMenu"
 
 
 const SignOutButton: FC<ButtonProps> = ({ onClick, ...buttonProps }) => {

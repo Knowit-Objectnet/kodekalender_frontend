@@ -10,6 +10,7 @@ import { AsidesContext } from "../AsidesContext"
 import SignInButton from "./SignInButton"
 import ExternalLink from "./ExternalLink"
 import Button from "./Button"
+import { DropDownMenu } from "./DropDownMenu"
 
 
 const PageHeader = () => {
@@ -34,14 +35,15 @@ const PageHeader = () => {
 
         <div className="place-self-center-end flex flex-row gap-8">
           <SignInButton linkClass="hidden md:block" className="hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75" />
-          <Button
-            icon="menu"
-            content={<span className="hidden lg:inline">Meny</span>}
-            aria-label="Åpne meny"
-            title="Åpne meny"
-            onClick={() => setShowMenu((state) => !state)}
-            className="hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75"
-          />
+          <DropDownMenu />
+          {/*<Button*/}
+          {/*  icon="menu"*/}
+          {/*  content={<span className="hidden lg:inline">Meny</span>}*/}
+          {/*  aria-label="Åpne meny"*/}
+          {/*  title="Åpne meny"*/}
+          {/*  onClick={() => setShowMenu((state) => !state)}*/}
+          {/*  className="hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75"*/}
+          {/*/>*/}
         </div>
       </nav>
     </header>
