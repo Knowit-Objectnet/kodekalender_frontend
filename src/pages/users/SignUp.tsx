@@ -11,7 +11,7 @@ const SignUp: FC = () => {
   const { mutateAsync: signUp, error } = useSignUp()
 
   const submit = (data: SignUpParameters) => {
-    signUp(data, { onSuccess: () => navigate("/") })
+    signUp(data, { onSuccess: () => navigate("/users/welcome") })
   }
 
   return (
