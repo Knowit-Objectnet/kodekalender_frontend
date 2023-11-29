@@ -24,7 +24,7 @@ const SignOutButton: FC<ButtonProps> = ({ onClick, ...buttonProps }) => {
 
   return (
     <Button
-      onClick={(e) => onClickFunc(e)}
+      onClick={onClickFunc}
       icon="sign-out"
       content="Logg ut"
       {...buttonProps}
