@@ -124,7 +124,7 @@ const App = () => {
         <Route path="/users/*" element={<LazyUser />} />
 
         {/* 404? - Route to main view */}
-        <Route element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
       <PageFooter />
