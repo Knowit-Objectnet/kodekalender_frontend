@@ -55,10 +55,12 @@ const Countdown = () => {
       className={`
         grid
         grid-flow-row
+        auto-rows-min
+
+
         gap-24
         max-md:gap-12
 
-        content-center
         justify-items-center
         text-center
 
