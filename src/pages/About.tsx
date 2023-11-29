@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom"
-import { isNil } from "lodash-es"
+import { useContext } from "react"
 
 import Button from "../components/Button"
-import useAuthenticatedWhoami from "../hooks/useAuthenticatedWhoami"
+import { AuthContext } from "../AuthContext"
 
 import BasicPage from "./BasicPage"
 
 
 const About = () => {
-  const whoami = useAuthenticatedWhoami()
+  const { isAuthenticated } = useContext(AuthContext)
   return (
     <BasicPage title="Om kodekalenderen">
       <p>
@@ -32,7 +32,7 @@ const About = () => {
         🎄 <em>Lykke til og god jul!</em> 🎄
       </p>
 
-      {isNil(whoami) && (
+      {!isAuthenticated && (
         <Link className="inline-block place-self-center" to="/users/sign_in">
           <Button icon="edit">Registrer deg</Button>
         </Link>
