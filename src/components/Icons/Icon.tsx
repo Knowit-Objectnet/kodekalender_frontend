@@ -86,7 +86,6 @@ const Icon: FC<IconProps> = ({ sm = false, name, className, ...rest }) => {
           align-middle
 
           child:-left-1
-          child:-top-1
         `,
         sm && "h-[1.35rem] w-[1.35rem] child:left-[.5px] child:top-[.5px]",
         name === "snow" && "max-w-[1.25rem] max-h-[1.25rem]",

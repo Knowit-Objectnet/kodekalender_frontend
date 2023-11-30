@@ -1,12 +1,12 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { SignInParameters, useSignIn } from "../../api/users/requests"
 import FormElement from "../../components/form/FormElement"
-import Button from "../../components/Button"
 import BasicPage from "../BasicPage"
 import SubmitButton from "../../components/SubmitButton"
+import { LinkButton } from "../../components/LinkButton"
 
 
 const SignIn: FC = () => {
@@ -43,20 +43,17 @@ const SignIn: FC = () => {
       </div>
 
       <div className="flex flex-wrap gap-6 md:gap-12 justify-center">
-        <Link to="/users/sign_up">
-          <Button icon="edit" content="Ny bruker?" />
-        </Link>
-        <Link
+        <LinkButton to="/users/sign_up" name="edit" content="Ny bruker?" />
+        <LinkButton
           to="/users/lost_password"
+          name="mail"
+          content="Glemt passord?"
           onClick={(e) => {
+            e.preventDefault()
             const email = getValues("email") || ""
-            const url = new URL(e.currentTarget.href)
-            url.searchParams.set("email", email)
-            e.currentTarget.href = url.toString()
+            navigate(`/users/lost_password?email=${email}`)
           }}
-        >
-          <Button icon="mail" content="Glemt passord?" />
-        </Link>
+          />
       </div>
     </BasicPage>
   )

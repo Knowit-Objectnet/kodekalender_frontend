@@ -1,13 +1,13 @@
 import { FC, Fragment, useEffect } from "react"
 import { map, trimStart } from "lodash-es"
-import { Link, useLocation } from "react-router-dom"
+import {  useLocation } from "react-router-dom"
 
 import { usePosts as useUserPosts } from "../../api/requests"
 import { Header3 } from "../text"
 import Divider from "../Divider"
+import { LinkButton } from "../LinkButton"
 import SubscribeButton from "../SubscribeButton"
 import { useWhoami } from "../../api/users/requests"
-import Button from "../Button"
 
 import { PostForm, Post } from "./PostForm"
 
@@ -68,9 +68,7 @@ const NewCommentSection = ({
     return (
       <div className="flex flex-col gap-8 mt-8">
         <p>Du må oppgi et brukernavn for å kunne delta i kommentarfeltet.</p>
-        <Link className="mx-auto" to="/users/edit">
-          <Button content="Rediger bruker" />
-        </Link>
+        <LinkButton className="mx-auto" content="Rediger bruker" to="/users/edit" />
       </div>
     )
   } else if (!withoutInput) {

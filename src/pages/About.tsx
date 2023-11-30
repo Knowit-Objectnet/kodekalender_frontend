@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom"
 import { useContext } from "react"
 
-import Button from "../components/Button"
 import { AuthContext } from "../AuthContext"
+import { LinkButton } from "../components/LinkButton"
 
 import BasicPage from "./BasicPage"
-
 
 const About = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -33,9 +31,12 @@ const About = () => {
       </p>
 
       {!isAuthenticated && (
-        <Link className="inline-block place-self-center" to="/users/sign_in">
-          <Button icon="edit">Registrer deg</Button>
-        </Link>
+        <LinkButton
+          className="inline-block place-self-center"
+          to="/users/sign_in"
+          name="edit"
+          content="Registrer deg"
+        />
       )}
     </BasicPage>
   )
