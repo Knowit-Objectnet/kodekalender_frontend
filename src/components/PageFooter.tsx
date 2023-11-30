@@ -4,21 +4,36 @@ import ExternalLink from "./ExternalLink"
 import Icon from "./Icons/Icon"
 
 const PageFooter = () => (
-  <footer className="mt-19 mb-10 space-y-6">
-    <div className="flex flex-wrap gap-12 max-sm:gap-x-8 max-sm:gap-y-4 justify-center align-center">
+  // <footer className="mt-19 mb-10 space-y-6">
+  <footer className="h-60 flex flex-col justify-center gap-6">
+    <div
+      className={`
+        flex
+        flex-wrap
+        gap-12
+        max-md: gap-x-8
+        max-md: gap-y-4
+        justify-center
+        align-center
+      `}
+    >
       <Link className="underline" to="/about">
         Om kodekalenderen
       </Link>
-      <Link className="underline" to="/privacy">
-        Personopplysninger
-      </Link>
-      <Link className="underline" to="/contact">
-        Kontakt oss
-      </Link>
-      <Link className="underline" to="/career">
-        Jobb i Knowit
-      </Link>
+
+      <div className="contents max-sm:hidden">
+        <Link className="underline" to="/privacy">
+          Personopplysninger
+        </Link>
+        <Link className="underline" to="/contact">
+          Kontakt oss
+        </Link>
+        <Link className="underline" to="/career">
+          Jobb i Knowit
+        </Link>
+      </div>
     </div>
+
     <div className="flex gap-12 justify-center align-center">
       <ExternalLink
         href="https://github.com/Knowit-Objectnet/"

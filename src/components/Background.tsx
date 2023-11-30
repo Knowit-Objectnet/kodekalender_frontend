@@ -22,7 +22,7 @@ const BACKGROUND_WRAPPER_CLASSES = `
 const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
   relative
   inline-block
-  overflow-visible
+  overflow-hidden
 
   w-full
   h-full

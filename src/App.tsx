@@ -100,12 +100,14 @@ const App = () => {
       className={`
         relative
         w-screen
-        overflow-x-visible
+        max-w-screen
+        overflow-x-clip
         min-h-screen
 
         flex
         flex-col
-        justify-between
+        justify-stretch
+        
         z-[2]
       `}
     >
