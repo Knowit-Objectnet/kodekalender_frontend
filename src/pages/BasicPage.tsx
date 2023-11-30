@@ -2,11 +2,10 @@ import { FCWithChildren } from "../../types/utils_types"
 import { cl } from "../utils"
 import Divider from "../components/Divider"
 import { Header1, Header2 } from "../components/text"
-
-import { ReactComponent as SnowDesktop } from "../../assets/svgo/snowDesktop.svg"
-import { ReactComponent as SnowMobile } from "../../assets/svgo/snowMobile.svg"
+import { ReactComponent as SnowBorder } from "../../assets/svgo/snowDesktop.svg"
 
 import Page from "./Page"
+
 
 export type BasicPageProps = {
   title?: string
@@ -33,11 +32,11 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
       className={cl(
         `
         relative
-        
+
         mx-auto
         max-w-[clamp(0rem,57.5rem,90vw+3rem)]
         rounded-[1.25rem]
-        
+
         bg-purple-800
 
         px-8
@@ -51,9 +50,8 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         className
       )}
     >
-      <SnowDesktop className="visible absolute left-[-2%] right-[-2%] top-[-10px] w-[104%] max-sm:invisible" />
-      <SnowMobile className="invisible absolute left-[-2%] right-[-2%] top-[calc(-30px)] w-[104%] max-sm:visible" />
-      {/* <SnowMobile className="invisible absolute left-[-2%] right-[-2%] top-[-40px] w-[104%] max-sm:visible max-[350px]:top-[-10px] max-[350px]:w-[125%] max-[175px]:top-[-5px] max-[125px]:w-[200%] max-[125px]:w-[300%]" /> */}
+      <SnowBorder className="absolute left-[-2%] w-[104%] top-[clamp(-20px,calc(-0.027*100vw+5.45px),5px)]" />
+
       {title && (
         <>
           <Header2 as={Header1} className="text-center">
