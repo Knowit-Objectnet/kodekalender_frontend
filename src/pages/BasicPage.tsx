@@ -4,6 +4,7 @@ import Divider from "../components/Divider"
 import { Header1, Header2 } from "../components/text"
 
 import { ReactComponent as SnowDesktop } from "../../assets/svgo/snowDesktop.svg"
+import { ReactComponent as SnowMobile } from "../../assets/svgo/snowMobile.svg"
 
 import Page from "./Page"
 
@@ -31,7 +32,6 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
     <Page
       className={cl(
         `
-        bg-center-top
         relative
         
         mx-auto
@@ -51,7 +51,8 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         className
       )}
     >
-      <SnowDesktop className="absolute -left-[2%] -right-[2%] w-[104%] max-sm:-top-[1%] md:-top-[4%]" />
+      <SnowDesktop className="visible absolute -left-[2%] -right-[2%] top-[-10px] w-[104%] max-sm:invisible" />
+      <SnowMobile className="invisible absolute -left-[2%] -right-[2%] top-[-40px]  w-[104%] max-sm:visible" />
       {title && (
         <>
           <Header2 as={Header1} className="text-center">
