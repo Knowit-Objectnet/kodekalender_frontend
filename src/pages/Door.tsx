@@ -9,7 +9,7 @@ import { useChallenge } from "../api/requests"
 import ServiceMessageAlert from "../components/Door/ServiceMessageAlert"
 import { guardPresent } from "../utils"
 
-import Page from "./Page"
+import BasicPage from "./BasicPage"
 
 const Door: FC = () => {
   const navigate = useNavigate()
@@ -32,8 +32,8 @@ const Door: FC = () => {
   if (!door || (!isLoading && !challenge)) return null
 
   return (
-    <Page className="relative">
-      <div className="mx-4 rounded-md bg-purple-800 px-8 pb-16 pt-28 md:mx-16 md:px-24">
+    <BasicPage className="relative">
+      <div className="pb-16 pt-28 flex flex-col gap-30">
         <Challenge challenge={challenge} />
         {isAuthenticated && solved && <PostsSection door={door} />}
       </div>
@@ -41,7 +41,7 @@ const Door: FC = () => {
         door={door}
         className="w-18 h-20 md:w-24 md:h-24 absolute left-24 md:left-40 top-32"
       />
-    </Page>
+    </BasicPage>
   )
 }
 
