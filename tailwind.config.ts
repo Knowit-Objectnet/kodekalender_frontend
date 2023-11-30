@@ -62,6 +62,9 @@ export default {
 
     // Theme extension
     extend: {
+      screens: {
+        "julehus-width": "890px"
+      },
       width: {
         "avatar": "4.5rem"
       },

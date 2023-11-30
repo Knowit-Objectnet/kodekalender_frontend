@@ -1,6 +1,6 @@
-import { constant, forEach, map, range, times, zip } from "lodash-es"
+import { forEach, map, range, times, zip } from "lodash-es"
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useDebouncedCallback } from "use-debounce"
 
 import { ReactComponent as JulehusSvg } from "/assets/svgo/Julehus.svg"
@@ -10,17 +10,13 @@ import PageContent from "../components/PageContent"
 import { Maybe } from "../../types/utils_types"
 import { cl } from "../utils"
 import { getAnchorVar } from "../hooks/useStoreAnchorVars"
-import { Header2, Header3 } from "../components/text"
 
 
 const DOOR_LINK_PADDING = 6
-const EMPTY_STYLES = times(24, constant(undefined))
 
 type DoorStatus = "solved" | "open" | "closed"
 
 const Doors = () => {
-  const navigate = useNavigate()
-
   const { data: challenges } = useChallenges()
   const { data: solvedStatus } = useSolvedStatus()
   const prefetchPosts = usePrefetchPosts()
@@ -68,7 +64,18 @@ const Doors = () => {
   const doorElementRefs = times(24, () => useRef<HTMLAnchorElement>(null))
   const doorElements = useMemo(() => (
     map(zip(doorsState, doorElementStyles, doorElementRefs), ([state, styles, ref], i) => (
-      state === "closed" ? null : <Link key={i} to={`/luke/${i + 1}`} ref={ref} style={styles} className={cl("fixed", getAnchorVar("debug") && "bg-red-700/40 ring-red-700 ring-4 ring-inset")}/>
+      state === "closed"
+        ? null
+        : (
+          <Link
+            key={i}
+            to={`/luke/${i + 1}`}
+            ref={ref}
+            style={styles}
+            className={cl("fixed", getAnchorVar("debug") && "bg-red-700/40 ring-red-700 ring-4 ring-inset")}
+            onMouseOver={() => { prefetchLikes(); prefetchPosts(i + 1) }}
+          />
+        )
     ))
   ), [doorsState, doorElementStyles, doorElementRefs])
 
@@ -124,13 +131,13 @@ const Doors = () => {
     // Call to set positions at least once, but after everything is settled.
     const timeout = setTimeout(debouncedUpdateLinkPositions)
 
-    const ref = doorsContainerRef.current
-    ref?.addEventListener("scroll", debouncedUpdateLinkPositions)
+    const doorsContainerRefCurrent = doorsContainerRef.current
+    doorsContainerRefCurrent?.addEventListener("scroll", debouncedUpdateLinkPositions)
     window.addEventListener("resize", debouncedUpdateLinkPositions)
     window.addEventListener("scroll", debouncedUpdateLinkPositions)
 
     return () => {
-      ref?.removeEventListener("scroll", debouncedUpdateLinkPositions)
+      doorsContainerRefCurrent?.removeEventListener("scroll", debouncedUpdateLinkPositions)
       window.removeEventListener("resize", debouncedUpdateLinkPositions)
       window.removeEventListener("scroll", debouncedUpdateLinkPositions)
       clearTimeout(timeout)
@@ -153,20 +160,17 @@ const Doors = () => {
       <div
         ref={doorsContainerRef}
         className={`
-          xrelative
-          xh-[clamp(42.5rem,calc(80vh-30rem),62rem)]
-          h-[clamp(21.25rem,100vh,100vh-15rem)]
-          xw-full
-          xmin-w-[calc(42.5rem*2*.72)]
-          xmin-[600px]:overflow-x-scroll
-          overflow-x-scroll
+          julehus-width:relative
+          max-julehus-width:overflow-x-scroll
+
+          h-[max(21.25rem,calc(100vh-15rem))]
         `}
       >
         <JulehusSvg
           className={`
-            xabsolute
-            xleft-[50%]
-            xtranslate-x-[-50%]
+            julehus-width:absolute
+            julehus-width:left-[50%]
+            julehus-width:translate-x-[-50%]
 
             h-full
           `}

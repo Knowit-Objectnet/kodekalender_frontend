@@ -28,7 +28,7 @@ export const usePrefetchLikes = () => {
   const queryClient = useQueryClient()
 
   return useCallback(
-    () => isAuthenticated && queryClient.prefetchQuery(["likes"], getLikes),
+    () => isAuthenticated && queryClient.prefetchQuery(["likes"], getLikes, { staleTime: 30_000 }),
     [queryClient, isAuthenticated]
   )
 }
@@ -67,7 +67,7 @@ export const usePrefetchPosts = () => {
   const queryClient = useQueryClient()
 
   return useCallback(
-    (door: number) => isAuthenticated && queryClient.prefetchQuery(["posts", door], () => getPosts(door)),
+    (door: number) => isAuthenticated && queryClient.prefetchQuery(["posts", door], () => getPosts(door), { staleTime: 30_000 }),
     [queryClient, isAuthenticated]
   )
 }
