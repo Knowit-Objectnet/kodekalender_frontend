@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense, useEffect, useMemo, useState } from "react"
+import { lazy, memo, Suspense, useContext, useEffect, useMemo, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 
 import Privacy from "./pages/Privacy"
@@ -20,6 +20,7 @@ import PageFooter from "./components/PageFooter"
 import Icon, { IconProps } from "./components/Icons/Icon"
 import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
+import { OptionsContext } from "./OptionsContext"
 
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
@@ -75,6 +76,7 @@ const LazyUser = () => {
 const App = () => {
   useStoreAnchorVars()
   useWelcomeBackRedirect()
+  const {showSnow} = useContext(OptionsContext)
 
   const raffleStarted = useIsRaffleStarted()
   const raffleRoutes = useMemo(() => (
@@ -107,7 +109,7 @@ const App = () => {
         z-[2]
       `}
     >
-      <ContentBackground />
+      { !showSnow && <ContentBackground /> }
       <PageHeader />
 
       <Routes>
@@ -128,7 +130,7 @@ const App = () => {
 
       <PageFooter />
     </div>
-  </>), [raffleRoutes])
+  </>), [raffleRoutes, showSnow])
 
   return content
 }
