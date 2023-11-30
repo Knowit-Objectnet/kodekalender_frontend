@@ -1,6 +1,6 @@
-import { FC, Fragment } from "react"
-import { map } from "lodash-es"
-import { Link } from "react-router-dom"
+import { FC, Fragment, useEffect } from "react"
+import { map, trimStart } from "lodash-es"
+import { Link, useLocation } from "react-router-dom"
 
 import { usePosts as useUserPosts } from "../../api/requests"
 import { Header3 } from "../text"
@@ -23,6 +23,14 @@ const PostsSection: FC<PostsSectionProps> = ({
   withoutInput = false
 }) => {
   const { data: posts } = usePosts(door)
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (!posts) return
+    document
+      .getElementById(trimStart(hash, "#"))
+      ?.scrollIntoView({ behavior: "smooth", block: "center" })
+  }, [hash, posts])
 
   if (!posts) return null
 
