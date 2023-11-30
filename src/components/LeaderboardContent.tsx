@@ -9,7 +9,7 @@ import { Header4 } from "./text"
 import Divider from "./Divider"
 
 
-type LeaderboardGroup = [number, Array<{ uuid: string, username: string | null, position: number }>]
+type LeaderboardGroup = [number, Array<{ uuid: string, username: string | null, avatar_url: string, position: number }>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
@@ -32,9 +32,10 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
         ...list,
         [
           solvedCount,
-          map(tuples, ([uuid, username], i) => ({
+          map(tuples, ([uuid, username, avatar_url], i) => ({
             uuid,
             username,
+            avatar_url,
             position: numPrecedingGroupedUsers + i + 1
           }))
         ] as LeaderboardGroup
