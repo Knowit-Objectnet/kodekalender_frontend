@@ -105,18 +105,20 @@ const Background: FC = () => {
 
 
     {!raffleStarted && (<>
-      <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
-        <div
-          className={`
-          ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
-          before:blur-[1px]
-          before:w-[300%]
-          before:h-[1080px]
-          before:bg-[url('/assets/svgo/GoldSnow.svg')]
-          before:bg-[length:1920px_1080px]
-          before:bg-repeat-x
-        `} />
-      </div>
+      {!showSnow && (
+        <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
+          <div
+            className={`
+            ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
+            before:blur-[1px]
+            before:w-[300%]
+            before:h-[1080px]
+            before:bg-[url('/assets/svgo/GoldSnow.svg')]
+            before:bg-[length:1920px_1080px]
+            before:bg-repeat-x
+          `} />
+        </div>
+      )}
 
       {/* Tape */}
       <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
