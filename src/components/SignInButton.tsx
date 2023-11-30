@@ -1,29 +1,22 @@
-import { FC } from "react"
-import { Link } from "react-router-dom"
+import { forwardRef } from "react"
+import { LinkProps } from "react-router-dom"
 
 import useAuthenticatedWhoami from "../hooks/useAuthenticatedWhoami"
 
-import Button, { ButtonProps } from "./Button"
+import { LinkButton } from "./LinkButton"
 
-type SignInProps = {
-  linkClass?: string
-}
+const SignInButton = forwardRef<HTMLAnchorElement, Omit<LinkProps, "to">>(
+  (props, ref) => {
+    const whoami = useAuthenticatedWhoami()
 
-const SignInButton: FC<ButtonProps & SignInProps> = ({
-  linkClass,
-  ...rest
-}) => {
-  const whoami = useAuthenticatedWhoami()
+    const [to, icon, content] = whoami
+      ? (["/users/edit", "user", whoami.username ?? "Min bruker"] as const)
+      : (["/users/sign_in", "sign-in", "Logg inn"] as const)
 
-  const [to, icon, content] = whoami
-    ? (["/users/edit", "user", whoami.username ?? "Min bruker"] as const)
-    : (["/users/sign_in", "sign-in", "Logg inn"] as const)
-
-  return (
-    <Link to={to} className={linkClass}>
-      <Button icon={icon} content={content} {...rest} />
-    </Link>
-  )
-}
+    return (
+      <LinkButton {...props} ref={ref} to={to} name={icon} content={content} />
+    )
+  }
+)
 
 export default SignInButton

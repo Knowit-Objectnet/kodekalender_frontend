@@ -85,10 +85,6 @@ const Icon: FC<IconProps> = ({ sm = false, name, className, ...rest }) => {
 
           child:-left-1
           child:-top-1
-
-
-          child:h-full
-          child:w-full
         `,
         sm && "h-[1.35rem] w-[1.35rem] child:left-[.5px] child:top-[.5px]",
         className
