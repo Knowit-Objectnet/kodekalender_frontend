@@ -26,7 +26,6 @@ import avatarFallback from "../../../assets/svgo/slettet.svg"
 import PostPreview from "./PostPreview"
 import LikeButton from "./LikeButton"
 
-
 type PostFormProps = {
   post?: PostType
   door: number
@@ -98,7 +97,9 @@ export const Post = ({ door, post, parent }: PostProps) => {
           <div className="flex justify-between">
             <div className="flex gap-4 items-center">
               {!post.deleted && (
-                <span className="text-md">{post.author.username}</span>
+                <span className="text-md font-bold">
+                  {post.author.username}
+                </span>
               )}
               <span className="text-purple-100 text-sm">
                 {dateFormat(new Date(post.created_at), "long")}

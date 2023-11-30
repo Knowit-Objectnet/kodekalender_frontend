@@ -42,7 +42,7 @@ const LostPassword: FC = () => {
         {...register("email")}
       />
 
-      <SubmitButton content="Send tilbakestillingsinstrukser" className="mx-auto" />
+      <SubmitButton content="Tilbakestill" className="mx-auto" />
     </BasicPage>
   )
 }

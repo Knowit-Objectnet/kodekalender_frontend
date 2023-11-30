@@ -248,7 +248,7 @@ const UserForm: FC<UserFormProps> = ({
           />
           {(avatar || debouncedAvatarUrl || user?.avatar) && (
             <img
-              className="w-avatar"
+              className="w-avatar mt-6"
               src={
                 debouncedAvatarUrl ||
                 (avatar && URL.createObjectURL(avatar)) ||
