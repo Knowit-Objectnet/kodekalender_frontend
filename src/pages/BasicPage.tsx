@@ -3,6 +3,8 @@ import { cl } from "../utils"
 import Divider from "../components/Divider"
 import { Header1, Header2 } from "../components/text"
 
+import { ReactComponent as SnowDesktop } from "../../assets/svgo/snowDesktop.svg"
+
 import Page from "./Page"
 
 export type BasicPageProps = {
@@ -29,23 +31,27 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
     <Page
       className={cl(
         `
-        bg-purple-800
-        rounded-[1.25rem]
-
-        shadow-lg
-        shadow-pure-black/50
-
-        px-8
-        sm:px-24
-        py-27
-
-
+        bg-center-top
+        relative
+        
         mx-auto
         max-w-[clamp(0rem,57.5rem,90vw+3rem)]
+        rounded-[1.25rem]
+        
+        bg-purple-800
+
+        px-8
+        py-27
+        shadow-lg
+
+
+        shadow-pure-black/50
+        sm:px-24
       `,
         className
       )}
     >
+      <SnowDesktop className="absolute -left-[2%] -right-[2%] w-[104%] max-sm:-top-[1%] md:-top-[4%]" />
       {title && (
         <>
           <Header2 as={Header1} className="text-center">
