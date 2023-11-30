@@ -29,7 +29,7 @@ const PageHeader = () => (
       </ExternalLink>
 
       <div className="place-self-center-end flex flex-row gap-8">
-        <SignInButton className="hidden md:block hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75" />
+        <SignInButton className="hidden md:flex hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75" />
         <DropDownMenu />
       </div>
     </nav>

@@ -1,8 +1,6 @@
-import Button from "../components/Button"
-import ExternalLink from "../components/ExternalLink"
+import { LinkButton } from "../components/LinkButton"
 
 import BasicPage from "./BasicPage"
-
 
 const Career = () => (
   <BasicPage title="Jobbe i Knowit?">
@@ -12,19 +10,19 @@ const Career = () => (
     </p>
 
     <div className="flex flex-wrap justify-center gap-8">
-      <ExternalLink
+      <LinkButton
         className="underline"
-        href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
+        to="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
         title="Søk på stilling som Systemutvikler Backend, Mobil og/eller Frontend!"
-      >
-        <Button icon="link">Jobb i Knowit</Button>
-      </ExternalLink>
-
-      <a href="mailto:julenissen@knowit.no">
-        <Button icon="mail">
-          Kontakt alvene
-        </Button>
-      </a>
+        content="Jobb i Knowit"
+        name="link"
+        external
+      />
+      <LinkButton
+        to="mailto:julenissen@knowit.no"
+        content="Kontakt alvene"
+        name="mail"
+      />
     </div>
   </BasicPage>
 )

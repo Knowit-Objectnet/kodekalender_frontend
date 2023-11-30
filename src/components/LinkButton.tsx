@@ -26,6 +26,7 @@ export const LinkButton = forwardRef<
       `
       flex
       flex-row
+      justify-center
       items-center
       gap-3
 
