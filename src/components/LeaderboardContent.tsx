@@ -1,22 +1,20 @@
-import { FC, ReactElement, ReactNode, useMemo } from "react"
+import { FC, ReactElement, useMemo } from "react"
 import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
 
-import { cl, getObjKey, getRandomDisplayName, numberString } from "../utils"
+import { numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
 import { useWhoami } from "../api/users/requests"
 
 import { Header4 } from "./text"
-import Divider from "./Divider"
 
-type LeaderboardGroup = [
-  number,
-  Array<{
-    uuid: string
-    username: string | null
-    avatar_url: string
-    position: number
-  }>
-]
+type LeaderboardUser = {
+  uuid: string
+  username: string | null
+  avatar_url: string
+  position: number
+}
+
+type LeaderboardGroup = [number, Array<LeaderboardUser>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
@@ -97,40 +95,68 @@ const dummydata: LeaderboardWithPosition = [
   [
     4,
     [
-      { uuid: "1", username: "Kry Er fint", avatar_url: "", position: 1 },
-      {
-        uuid: "2",
-        username: "Jeg elsker kjeks",
-        avatar_url: "",
-        position: 2
-      },
-      {
-        uuid: "3",
-        username: "Gaute Grøtta Grav",
-        avatar_url: "",
-        position: 3
-      },
       {
         uuid: "4",
         username: "Jnatten",
-        avatar_url: "https://www.blakors.no/content/uploads/2019/12/FotoLeo-768x1024.jpeg",
-        position: 4
+        avatar_url:
+          "https://www.blakors.no/content/uploads/2019/12/FotoLeo-768x1024.jpeg",
+        position: 1
       }
     ]
   ],
   [
     5,
     [
-      { uuid: "1", username: "Leo Er Tært", avatar_url: "https://www.seminarpartner.no/wp-content/uploads/2018/02/Portrett-B%C3%A5rd.jpg", position: 1 },
+      {
+        uuid: "1",
+        username: "Leo Er Tært",
+        avatar_url:
+          "https://www.seminarpartner.no/wp-content/uploads/2018/02/Portrett-B%C3%A5rd.jpg",
+        position: 1
+      },
       {
         uuid: "2",
         username: "Tyst og Julete",
-        avatar_url: "https://images.squarespace-cdn.com/content/v1/54c7bfd3e4b0c3312da95fb3/1557582957654-D197L8OT0KBWZWQQ5L3T/profilbilde-personal-branding.jpeg?format=2500w",
+        avatar_url:
+          "https://images.squarespace-cdn.com/content/v1/54c7bfd3e4b0c3312da95fb3/1557582957654-D197L8OT0KBWZWQQ5L3T/profilbilde-personal-branding.jpeg?format=2500w",
         position: 2
       }
     ]
   ]
 ]
+
+type LeaderBoardGridProps = {
+  solvedCount: number
+  group: Array<LeaderboardUser>
+}
+const LeaderBoardGrid: FC<LeaderBoardGridProps> = ({ solvedCount, group }) => {
+  return (
+    <div key={solvedCount}>
+      {/* Title */}
+      <Header4 className="text-center">
+        {upperFirst(numberString(solvedCount))} løst
+        {solvedCount > 1 && "e"} luke{solvedCount > 1 && "r"}
+      </Header4>
+
+      {/* Grid */}
+      <div className="grid w-full grid-cols-[1fr_auto_1fr] gap-4">
+        {map(group, ({ uuid, username, avatar_url, position }) => {
+          return (
+            <>
+              <img
+                className="flex items-center justify-center rounded-full w-20 h-20 place-self-start"
+                alt={`${username}-avatar`}
+                src={avatar_url}
+              />
+              <div className="place-self-center">{username}</div>
+              <div className="place-self-end">{position}</div>
+            </>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   const { data: leaderboard } = useLeaderboard()
@@ -181,48 +207,7 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
     <>
       {map(dummydata.reverse(), ([solvedCount, entries]) => (
         <div key={solvedCount}>
-          <Header4
-            className="sticky top-0 -space-y-2 rounded-md py-2 text-center"
-            key={solvedCount}
-          >
-            <div className="text-lg font-semibold tracking-wide">
-              {upperFirst(numberString(solvedCount))} løst
-              {solvedCount > 1 && "e"}
-            </div>
-            <div className="text-sm text-gray/80">
-              {numberString(entries.length, true)} snil
-              {entries.length > 1 ? "le" : "t"} barn
-            </div>
-          </Header4>
-          <Divider bgClasses="bg-purple-500 w-2/3" />
-          <div className="flex flex-col justify-center gap-y-3 text-center">
-            {map(entries, (user) => {
-              let displayName: ReactNode = user.username
-              if (!displayName) {
-                const [name, emoji] = getRandomDisplayName(user.uuid)
-                displayName = (
-                  <span>
-                    <em>{name}</em>&nbsp;{emoji}
-                  </span>
-                )
-              }
-
-              return (
-                <p
-                  key={getObjKey(user)}
-                  className={cl(
-                    whoami?.uuid === user.uuid &&
-                      "w-2/3 rounded-md bg-purple-700"
-                  )}
-                >
-                  <span className="tracking-wide text-gray">
-                    {user.position}.
-                  </span>
-                  &nbsp;{displayName}
-                </p>
-              )
-            })}
-          </div>
+          <LeaderBoardGrid solvedCount={solvedCount} group={entries} />
         </div>
       ))}
     </>
