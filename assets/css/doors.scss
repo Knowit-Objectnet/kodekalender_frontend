@@ -11,6 +11,15 @@
       display: var(--door-#{$i}-solved-display);
     }
   }
+
+  // Window lights for group open when all doors have been solved for that group.
+  @each $i in (7 14 17 23) {
+    --vindu-#{$i}-display: none;
+
+    #Julehus__Vindu\:\:#{$i} {
+      display: var(--vindu-#{$i}-display)
+    }
+  }
 }
 
 #doors-desktop, #doors-mobile { display: none; }

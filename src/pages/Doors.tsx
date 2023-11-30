@@ -1,4 +1,4 @@
-import { forEach, map, range, times, zip } from "lodash-es"
+import { every, forEach, map, range, slice, times, zip } from "lodash-es"
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDebouncedCallback } from "use-debounce"
@@ -52,6 +52,18 @@ const Doors = () => {
         // Challenge available, show door for solved=true/false
         rootStyle.setProperty(`--door-${i+1}-${state === "solved" ? "solved" : "open"}-display`, "initial")
         rootStyle.setProperty(`--door-${i+1}-${state === "solved" ? "open" : "solved"}-display`, "none")
+      }
+    })
+
+    const windowGroups = [[1, 8], [8, 15], [15, 18], [18, 24]]
+    forEach(windowGroups, ([from, to]) => {
+      const subState = slice(doorsState, from - 1, to - 1)
+      if (every(subState, (state) => state === "solved")) {
+        console.log(`Setting vindu ${to - 1} to ON: ${JSON.stringify(subState)}`)
+        rootStyle.setProperty(`--vindu-${to - 1}-display`, "initial")
+      } else {
+        console.log(`Setting vindu ${to - 1} to OFF ${JSON.stringify(subState)}`)
+        rootStyle.setProperty(`--vindu-${to - 1}-display`, "none")
       }
     })
   }, [doorsState])

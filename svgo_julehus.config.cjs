@@ -15,8 +15,8 @@ module.exports = {
     {
       name: 'cleanupIds',
       params: {
-        preserve: ["Lockedx24", "Openx24", "Solvedx24"],
-        preservePrefixes: ["Locked::", "Open::", "Solved::", "Julehus__"]
+        preserve: ["Lockedx24", "Openx24", "Solvedx24", "Vinduer"],
+        preservePrefixes: ["Locked::", "Open::", "Solved::", "Vindu::", "Julehus__"]
       }
     },
     {
