@@ -160,7 +160,7 @@ const UserForm: FC<UserFormProps> = ({
             <span>Jobber du i Knowit?</span>
             <NoteElements
               iconClassName="rotate-180 -left-2 -top-2" // Fake an exclmation-circle :)
-              note="Du vil ikke kunne delta i premietrekningen. Vennligst registrer deg med Knowit-adresse."
+              note="Knowit-ansatte kan dessverre ikke delta i premietrekningen. Vennligst bruk din Knowit-adresse ved registrering. Takk<3"
             />
           </div>
         )}
