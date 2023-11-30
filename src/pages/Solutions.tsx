@@ -6,6 +6,7 @@ import { getRaffleEnd } from "../utils"
 import { Header1 } from "../components/text"
 
 import Page from "./Page"
+import BasicPage from "./BasicPage"
 
 
 const Solutions = () => {
@@ -14,7 +15,11 @@ const Solutions = () => {
 
   if (currentTime < getRaffleEnd()) {
     return (
-      <div>Hva gjør du her?? Gå og løs lukene!</div>
+      <BasicPage title="Løsninger">
+        <p className="mt-8 text-center">
+          Hva gjør du her?? Gå og løs lukene!
+        </p>
+      </BasicPage>
     )
   }
 
