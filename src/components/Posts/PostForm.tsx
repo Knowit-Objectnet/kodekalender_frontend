@@ -13,7 +13,7 @@ import { Dialog } from "@headlessui/react"
 import { useNavigate } from "react-router-dom"
 
 import Button from "../Button"
-import { cl, dateFormat } from "../../utils"
+import { Z_MODAL, cl, dateFormat } from "../../utils"
 import { useCreatePost, useDeletePost, useUpdatePost } from "../../api/requests"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
 import { useWhoami } from "../../api/users/requests"
@@ -25,6 +25,7 @@ import avatarFallback from "../../../assets/svgo/slettet.svg"
 
 import PostPreview from "./PostPreview"
 import LikeButton from "./LikeButton"
+
 
 type PostFormProps = {
   post?: PostType
@@ -129,7 +130,7 @@ export const Post = ({ door, post, parent }: PostProps) => {
                     <Dialog
                       open={dialogOpen}
                       onClose={toggleDialogOpen}
-                      className="relative z-10"
+                      className={`relative ${Z_MODAL}`}
                     >
                       <div className="fixed inset-0 bg-black/50" />
                       <div className="fixed inset-0 overflow-y-auto">

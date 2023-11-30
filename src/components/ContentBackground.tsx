@@ -1,6 +1,6 @@
 import { FC, memo } from "react"
 
-import { cl } from "../utils"
+import { Z_BACKGROUND_4, cl } from "../utils"
 
 
 // Outermost container follows content scroll, has no overflow
@@ -27,7 +27,7 @@ const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
 
 const ContentBackground: FC = () => (<>
   {/* Snow */}
-  <div className={cl(BACKGROUND_WRAPPER_CLASSES, "z-[-4]")}>
+  <div className={cl(BACKGROUND_WRAPPER_CLASSES, Z_BACKGROUND_4)}>
     <div
       className={`
         ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}

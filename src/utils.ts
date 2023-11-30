@@ -189,3 +189,19 @@ export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
 // Replacement for clsx that also lets you overwrite tailwind values. The latest
 // tailwind utility in the resulting classes string will take effect.
 export const cl = (...classes: ClassValue[]) => twMerge(clsx(classes))
+
+
+// Z-indexes
+
+export const Z_BACKGROUND_1 = "z-[-3]"
+export const Z_BACKGROUND_2 = "z-[-4]"
+export const Z_BACKGROUND_3 = "z-[-5]"
+export const Z_BACKGROUND_4 = "z-[-6]"
+export const Z_BACKGROUND_5 = "z-[-7]"
+
+export const Z_JULEHUS = "z-[-2]"
+export const Z_SNOW_ATTR = -1
+export const Z_CONTENT = "z-[2]"
+export const Z_HEADER = "z-[1]"
+export const Z_FOOTER = "z-[1]"
+export const Z_MODAL = "z-[10]"

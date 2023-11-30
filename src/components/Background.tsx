@@ -3,7 +3,7 @@ import Snowfall from "react-snowfall"
 
 import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
 
-import { cl } from "../utils"
+import { Z_BACKGROUND_1, Z_BACKGROUND_2, Z_BACKGROUND_3, Z_BACKGROUND_4, Z_BACKGROUND_5, Z_SNOW_ATTR, cl } from "../utils"
 import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 import { OptionsContext } from "../OptionsContext"
 
@@ -58,7 +58,7 @@ const Background: FC = () => {
   const content = useMemo(() => (<>
     {!raffleStarted && (<>
       {/* Streetlamp */}
-      <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute z-[-5]`}>
+      <div className={`${BACKGROUND_WRAPPER_CLASSES} absolute ${Z_BACKGROUND_5}`}>
         <Streetlamp
           className={`
           blur-[.3px]
@@ -84,11 +84,11 @@ const Background: FC = () => {
           width: "100vw",
           height: "100vh",
           opacity: "0.8",
-          zIndex: "1"
+          zIndex: Z_SNOW_ATTR
         }}
       />
     ) : (
-      <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
+      <div className={cl(BACKGROUND_WRAPPER_CLASSES, `absolute ${Z_BACKGROUND_4}`)}>
         <div
           className={`
           ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
@@ -106,7 +106,7 @@ const Background: FC = () => {
 
     {!raffleStarted && (<>
       {!showSnow && (
-        <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
+        <div className={cl(BACKGROUND_WRAPPER_CLASSES, `absolute ${Z_BACKGROUND_3}`)}>
           <div
             className={`
             ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
@@ -121,11 +121,10 @@ const Background: FC = () => {
       )}
 
       {/* Tape */}
-      <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-2]`}>
+      <div className={`${BACKGROUND_WRAPPER_CLASSES} ${Z_BACKGROUND_2}`}>
         <div
           className={`
           ${TAPE_CONTAINER_CLASSES}
-          z-[-2]
           before:top-4
           before:translate-x-[-33%]
           before:origin-[calc(66%-40rem)_0%]
@@ -133,11 +132,10 @@ const Background: FC = () => {
         `} />
       </div>
 
-      <div className={`${BACKGROUND_WRAPPER_CLASSES} z-[-1]`}>
+      <div className={`${BACKGROUND_WRAPPER_CLASSES} ${Z_BACKGROUND_1}`}>
         <div
           className={`
           ${TAPE_CONTAINER_CLASSES}
-          z-[-1]
           before:bottom-[clamp(0rem,12.5rem,calc(5vw+8.9rem))]
           before:bg-bottom
           before:origin-[calc(63%+30rem)_1000%]

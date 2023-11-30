@@ -8,7 +8,7 @@ import { ReactComponent as JulehusSvg } from "/assets/svgo/Julehus.svg"
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import PageContent from "../components/PageContent"
 import { Maybe } from "../../types/utils_types"
-import { cl } from "../utils"
+import { Z_JULEHUS, cl } from "../utils"
 import { getAnchorVar } from "../hooks/useStoreAnchorVars"
 
 
@@ -173,6 +173,8 @@ const Doors = () => {
             julehus-width:translate-x-[-50%]
 
             h-full
+
+            ${Z_JULEHUS}
           `}
         />
 

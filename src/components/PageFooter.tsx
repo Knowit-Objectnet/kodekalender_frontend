@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom"
 
+import { Z_FOOTER } from "../utils"
+
 import ExternalLink from "./ExternalLink"
 import Icon from "./Icons/Icon"
 
 
 const PageFooter = () => (
-  <footer className="h-60 flex flex-col justify-center gap-6">
+  <footer className={`h-60 flex flex-col justify-center gap-6 ${Z_FOOTER}`}>
     <div
       className={`
         flex

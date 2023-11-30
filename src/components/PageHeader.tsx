@@ -4,13 +4,15 @@ import { ReactComponent as KnowitLogo } from "/assets/svgo/Knowit logo.svg"
 import { ReactComponent as KodekalenderLogoDesktop } from "/assets/svgo/Kodekalender Logo Desktop.svg"
 import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/Kodekalender Logo Mobile.svg"
 
+import { Z_HEADER } from "../utils"
+
 import SignInButton from "./SignInButton"
 import ExternalLink from "./ExternalLink"
 import { DropDownMenu } from "./DropDownMenu"
 
 
 const PageHeader = () => (
-  <header className="h-60 w-full px-12 sm:px-20 z-[100]">
+  <header className={`h-60 w-full px-12 sm:px-20 ${Z_HEADER}`}>
     <nav className="h-full grid grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-4 md:gap-16">
       {/* Go Home */}
       <Link
