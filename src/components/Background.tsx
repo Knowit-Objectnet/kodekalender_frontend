@@ -1,9 +1,11 @@
-import { FC, memo, useMemo } from "react"
+import { FC, memo, useContext, useMemo } from "react"
+import Snowfall from "react-snowfall"
 
 import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
 
 import { cl } from "../utils"
 import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
+import { OptionsContext } from "../OptionsContext"
 
 
 // Outermost container is fixed in screen space, has same size as screen, has no
@@ -51,6 +53,7 @@ const TAPE_CONTAINER_CLASSES = `
 
 const Background: FC = () => {
   const raffleStarted = useIsRaffleStarted()
+  const { showSnow } = useContext(OptionsContext)
 
   const content = useMemo(() => (<>
     {!raffleStarted && (<>
@@ -71,18 +74,35 @@ const Background: FC = () => {
     </>)}
 
     {/* Snow */}
-    <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
-      <div
-        className={`
-        ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
-        before:blur-[1px]
-        before:w-[300%]
-        before:h-[1080px]
-        before:bg-[url('/assets/svgo/Snow.svg')]
-        before:bg-[length:1920px_1080px]
-        before:bg-repeat-x
-      `} />
-    </div>
+    { showSnow ? (
+      <Snowfall
+        speed={[0.2, 1.2]}
+        wind={[-0.5, 1]}
+        color="#f8f9fa"
+        style={{
+          position: "fixed",
+          width: "100vw",
+          height: "100vh",
+          opacity: "0.8",
+          zIndex: "1"
+        }}
+      />
+    ) : (
+      <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-4]")}>
+        <div
+          className={`
+          ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
+          before:blur-[1px]
+          before:w-[300%]
+          before:h-[1080px]
+          before:bg-[url('/assets/svgo/Snow.svg')]
+          before:bg-[length:1920px_1080px]
+          before:bg-repeat-x
+        `} />
+      </div>
+    )
+    }
+
 
     {!raffleStarted && (<>
       <div className={cl(BACKGROUND_WRAPPER_CLASSES, "absolute z-[-3]")}>
@@ -124,7 +144,7 @@ const Background: FC = () => {
         `} />
       </div>
     </>)}
-  </>), [raffleStarted])
+  </>), [raffleStarted, showSnow])
 
   return content
 }

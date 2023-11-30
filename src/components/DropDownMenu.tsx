@@ -1,9 +1,11 @@
-import { Fragment, ReactNode } from "react"
+import { Fragment, ReactNode, useCallback, useContext } from "react"
 import { Menu, Transition } from "@headlessui/react"
 
 import { cl, isPresent } from "../utils"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { useServiceMessages } from "../api/requests"
+
+import { OptionsContext } from "../OptionsContext"
 
 import Icon from "./Icons/Icon"
 import SignInButton from "./SignInButton"
@@ -25,6 +27,11 @@ const MenuGroup = ({ children }: { children: ReactNode }) => (
 export const DropDownMenu = () => {
   const isAdmin = useIsAdmin()
   const { data: serviceMessages } = useServiceMessages()
+  const { showSnow, setShowSnow } = useContext(OptionsContext)
+
+  const toggleSnow = useCallback(() => {
+    setShowSnow((showSnow) => !showSnow)
+  }, [setShowSnow])
 
   return (
     <div
@@ -89,6 +96,13 @@ export const DropDownMenu = () => {
                   <ThemeButton className="w-full" />
                 </Menu.Item>
               )}
+              <Menu.Item>
+                <Button
+                  icon="snow"
+                  content={showSnow ? "Skru av snø" : "Skru på snø"}
+                  onClick={toggleSnow}
+                ></Button>
+              </Menu.Item>
             </MenuGroup>
 
             <MenuGroup>

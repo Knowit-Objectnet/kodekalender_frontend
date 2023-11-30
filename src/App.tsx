@@ -104,6 +104,7 @@ const App = () => {
         flex
         flex-col
         justify-between
+        z-[2]
       `}
     >
       <ContentBackground />

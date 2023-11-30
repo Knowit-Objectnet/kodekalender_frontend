@@ -36,18 +36,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       className={cl(
         `
-        bg-purple-700
+        flex
+        flex-row
+        items-center
+        gap-3
 
-        px-12
-        py-3
-        inline-flex
-        gap-2
-
-        rounded-full
-
-        font-bold
         whitespace-nowrap
-        align-middle
+        rounded-full
+        bg-purple-700
+        px-12
+
+        py-3
       `,
         !disabled &&
           `
