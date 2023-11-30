@@ -42,7 +42,10 @@ export const DropDownMenu = () => {
       `}
     >
       <Menu>
-        <Menu.Button as={Button}>
+        <Menu.Button
+          as={Button}
+          className="hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75"
+        >
           <Icon
             name="menu"
             className="md:mr-3 max-md:child:left-0 max-md:child:top-0"
