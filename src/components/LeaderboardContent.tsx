@@ -9,7 +9,7 @@ import { Header4 } from "./text"
 import Divider from "./Divider"
 
 
-type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]
+type LeaderboardGroup = [number, Array<{ uuid: string, username: string | null, position: number }>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
@@ -25,14 +25,15 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   const leaderboardWithPosition = useMemo(() => {
     if (!leaderboard) return []
 
-    return reduce(leaderboard, (list, [solvedCount, usernames]) => {
+    return reduce(leaderboard, (list, [solvedCount, tuples]) => {
       const numPrecedingGroupedUsers = reduce(list, (sum, [_, entries]) => sum + entries.length, 0)
 
       return [
         ...list,
         [
           solvedCount,
-          map(usernames, (username, i) => ({
+          map(tuples, ([uuid, username], i) => ({
+            uuid,
             username,
             position: numPrecedingGroupedUsers + i + 1
           }))
@@ -63,16 +64,16 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
           </div>
         </Header4>
         <Divider bgClasses="bg-purple-500 w-2/3" />
-        <div className="pt-4 pb-8 text-center flex justify-center gap-y-7">
+        <div className="flex justify-center flex-col gap-y-3 text-center">
           {map(entries, (user) => {
             let displayName: ReactNode = user.username
             if (!displayName) {
-              const [name, emoji] = getRandomDisplayName()
+              const [name, emoji] = getRandomDisplayName(user.uuid)
               displayName = <span><em>{name}</em>&nbsp;{emoji}</span>
             }
 
             return (
-              <p key={getObjKey(user)} className={cl(whoami?.username === displayName && "bg-purple-700 rounded-md w-2/3", "py-4")}>
+              <p key={getObjKey(user)} className={cl(whoami?.uuid === user.uuid && "bg-purple-700 rounded-md w-2/3")}>
                 <span className="text-gray tracking-wide">{user.position}.</span>
                 &nbsp;{displayName}
               </p>

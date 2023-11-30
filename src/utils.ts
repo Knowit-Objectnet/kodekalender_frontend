@@ -1,7 +1,7 @@
 import clsx, { ClassValue } from "clsx"
 import { format } from "date-fns"
 import { nb } from "date-fns/locale"
-import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, replace, toString, trim } from "lodash-es"
+import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, reduce, replace, toString, trim } from "lodash-es"
 import { twMerge } from "tailwind-merge"
 
 import { Maybe, Nullable } from "../types/utils_types"
@@ -123,7 +123,10 @@ const RANDOM_NAMES = [
   ["Ukjent juletre", "🎄"]
 ]
 
-export const getRandomDisplayName = () => RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)]
+
+const simpleHash = (uuid: string): number => reduce(uuid, (sum, char) => sum + char.charCodeAt(0), 0)
+
+export const getRandomDisplayName = (name: string) => RANDOM_NAMES[simpleHash(name) % RANDOM_NAMES.length]
 
 // Weakmap to hold unique references to objects for use with React's required
 // `key` props for mapping in JSX. Weakmap holds WEAK references to its keys,
