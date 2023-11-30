@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 import ExternalLink from "./ExternalLink"
 import Icon from "./Icons/Icon"
 
+
 const PageFooter = () => (
-  // <footer className="mt-19 mb-10 space-y-6">
   <footer className="h-60 flex flex-col justify-center gap-6">
     <div
       className={`
