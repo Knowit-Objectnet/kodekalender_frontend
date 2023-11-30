@@ -1,1 +1,1 @@
-export type Leaderboard = Array<[number, string[]]>
+export type Leaderboard = Array<[number, Array<[string, string, string]>]>

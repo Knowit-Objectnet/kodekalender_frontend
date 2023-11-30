@@ -61,16 +61,18 @@ const PostButton = forwardRef<
 type UserAvatarProps = {
   avatar?: string
   deleted?: boolean
+  className?: string
 }
 
-const UserAvatar = ({ avatar, deleted }: UserAvatarProps) => (
-  <div className="w-24 max-w-24">
-    <img
-      className="flex w-full items-center justify-center rounded-full"
-      src={deleted || !avatar ? avatarFallback : avatar}
-      alt=""
-    />
-  </div>
+export const UserAvatar = ({ avatar, deleted, className }: UserAvatarProps) => (
+  <img
+    className={cl(
+      "w-24 max-w-24 h-24 max-h-24 object-cover flex items-center justify-center rounded-full",
+      className
+    )}
+    src={deleted || !avatar ? avatarFallback : avatar}
+    alt=""
+  />
 )
 
 export const Post = ({ door, post, parent }: PostProps) => {

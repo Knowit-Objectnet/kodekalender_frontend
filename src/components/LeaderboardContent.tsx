@@ -1,17 +1,73 @@
-import { FC, ReactElement, ReactNode, useMemo } from "react"
+import { FC, ReactElement, useMemo } from "react"
 import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
 
-import { getRandomDisplayName, getObjKey, numberString } from "../utils"
+import { cl, getRandomDisplayName, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
+import { useWhoami } from "../api/users/requests"
 
-import { Header3 } from "./text"
+import Divider from "./Divider"
+import { UserAvatar } from "./Posts/PostForm"
 
+type LeaderboardUser = {
+  uuid: string
+  username: string | null
+  avatar_url: string
+  position: number
+}
 
-type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]
+type LeaderboardGroup = [number, Array<LeaderboardUser>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
   CloseButton?: ReactElement
+}
+
+type LeaderBoardGridProps = {
+  solvedCount: number
+  group: Array<LeaderboardUser>
+}
+const LeaderBoardGrid: FC<LeaderBoardGridProps> = ({ solvedCount, group }) => {
+  const { data: whoami } = useWhoami()
+  return (
+    <div key={solvedCount}>
+      <h2 className="text-center font-bold">
+        {upperFirst(numberString(solvedCount))} løst
+        {solvedCount > 1 && "e"} luke{solvedCount > 1 && "r"}
+      </h2>
+      <Divider bgClasses="bg-purple-500 mt-3" />
+
+      {/* Grid */}
+      <div className="px-16 mt-6">
+        {map(group, ({ uuid, username, avatar_url, position }) => {
+          const [name, emoji] = getRandomDisplayName(uuid)
+          const fallback = (
+            <>
+              <span>{name}</span>
+              <span>{emoji}</span>
+            </>
+          )
+          return (
+            <div
+              key={uuid}
+              className={cl(
+                "grid w-full grid-cols-[1fr_auto_1fr] gap-4 px-24 py-5",
+                uuid === whoami?.uuid && "rounded-md bg-purple-700"
+              )}
+            >
+              <UserAvatar
+                avatar={avatar_url}
+                className="w-18 max-w-18 h-18 max-h-18"
+              />
+              <div className="place-self-center text-gray flex items-center gap-4">
+                {username?.length ? username : fallback}
+              </div>
+              <div className="place-self-center-end ">{position}</div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
@@ -21,61 +77,45 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
   const leaderboardWithPosition = useMemo(() => {
     if (!leaderboard) return []
 
-    return reduce(leaderboard, (list, [solvedCount, usernames]) => {
-      const numPrecedingGroupedUsers = reduce(list, (sum, [_, entries]) => sum + entries.length, 0)
+    return reduce(
+      leaderboard,
+      (list, [solvedCount, tuples]) => {
+        const numPrecedingGroupedUsers = reduce(
+          list,
+          (sum, [_, entries]) => sum + entries.length,
+          0
+        )
 
-      return [
-        ...list,
-        [
-          solvedCount,
-          map(usernames, (username, i) => ({
-            username,
-            position: numPrecedingGroupedUsers + i + 1
-          }))
-        ] as LeaderboardGroup
-      ]
-    }, [] as LeaderboardWithPosition)
+        return [
+          ...list,
+          [
+            solvedCount,
+            map(tuples, ([uuid, username, avatar_url], i) => ({
+              uuid,
+              username,
+              avatar_url,
+              position: numPrecedingGroupedUsers + i + 1
+            }))
+          ] as LeaderboardGroup
+        ]
+      },
+      [] as LeaderboardWithPosition
+    )
   }, [leaderboard])
 
   if (isNil(leaderboard)) return null
-  if (isEmpty(leaderboard)) return (
-    <div className="relative h-full">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        Ingen snille barn!
-      </div>
-    </div>
-  )
+  if (isEmpty(leaderboard))
+    return <div className="text-center">Ingen snille barn!</div>
 
-  return (<>
-    {map(leaderboardWithPosition, ([solvedCount, entries]) =>
-      <div key={solvedCount}>
-        <Header3 className="sticky top-0 py-2 bg-purple-700 rounded-md -space-y-2" key={solvedCount} >
-          <div className="text-lg font-semibold tracking-wide">
-            {upperFirst(numberString(solvedCount))} løst{solvedCount > 1 && "e"}
-          </div>
-          <div className="text-gray/80 text-sm">
-            {numberString(entries.length, true)} snil{entries.length > 1 ? "le" : "t"} barn
-          </div>
-        </Header3>
-        <div className="pt-4 pb-8 space-y-2">
-          {map(entries, (user) => {
-            let displayName: ReactNode = user.username
-            if (!displayName) {
-              const [name, emoji] = getRandomDisplayName()
-              displayName = <span><em>{name}</em>&nbsp;{emoji}</span>
-            }
-
-            return (
-              <p key={getObjKey(user)}>
-                <span className="text-gray/40 text-xs tracking-wide">{user.position}.</span>
-                &nbsp;{displayName}
-              </p>
-            )
-            })}
+  return (
+    <>
+      {map(leaderboardWithPosition, ([solvedCount, entries]) => (
+        <div key={solvedCount}>
+          <LeaderBoardGrid solvedCount={solvedCount} group={entries} />
         </div>
-      </div>
-    )}
-  </>)
+      ))}
+    </>
+  )
 }
 
 export default LeaderBoardContent
