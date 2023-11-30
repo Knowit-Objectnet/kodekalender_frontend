@@ -2,8 +2,10 @@ import { FCWithChildren } from "../../types/utils_types"
 import { cl } from "../utils"
 import Divider from "../components/Divider"
 import { Header1, Header2 } from "../components/text"
+import { ReactComponent as SnowBorder } from "../../assets/svgo/snowDesktop.svg"
 
 import Page from "./Page"
+
 
 export type BasicPageProps = {
   title?: string
@@ -29,23 +31,27 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
     <Page
       className={cl(
         `
-        bg-purple-800
-        rounded-[1.25rem]
-
-        shadow-lg
-        shadow-pure-black/50
-
-        px-8
-        sm:px-24
-        py-27
-
+        relative
 
         mx-auto
         max-w-[clamp(0rem,57.5rem,90vw+3rem)]
+        rounded-[1.25rem]
+
+        bg-purple-800
+
+        px-8
+        py-27
+        shadow-lg
+
+
+        shadow-pure-black/50
+        sm:px-24
       `,
         className
       )}
     >
+      <SnowBorder className="absolute left-[-2%] w-[104%] top-[clamp(-20px,calc(-0.027*100vw+5.45px),5px)]" />
+
       {title && (
         <>
           <Header2 as={Header1} className="text-center">
