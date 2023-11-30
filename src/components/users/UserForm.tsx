@@ -193,7 +193,7 @@ const UserForm: FC<UserFormProps> = ({
             label="Brukernavn"
             note={squish(`
               Du kan oppgi brukernavn dersom du vil delta i komentarfeltet og være synlig i ledertavlen.${
-                newForm && "Du kan endre dette senere."
+                newForm ? "Du kan endre dette senere." : ""
               }
             `)}
             type="text"
