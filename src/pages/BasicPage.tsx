@@ -51,8 +51,8 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         className
       )}
     >
-      <SnowDesktop className="visible absolute -left-[2%] -right-[2%] top-[-10px] w-[104%] max-sm:invisible" />
-      <SnowMobile className="invisible absolute -left-[2%] -right-[2%] top-[-40px]  w-[104%] max-sm:visible" />
+      <SnowDesktop className="visible absolute left-[-2%] right-[-2%] top-[-10px] w-[104%] max-sm:invisible" />
+      <SnowMobile className="invisible absolute left-[-2%] right-[-2%] top-[-40px]  w-[104%] max-sm:visible" />
       {title && (
         <>
           <Header2 as={Header1} className="text-center">
