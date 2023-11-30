@@ -10,6 +10,7 @@ import TextareaAutosize from "react-textarea-autosize"
 import { map } from "lodash-es"
 import { Controller, useForm } from "react-hook-form"
 import { Dialog } from "@headlessui/react"
+import { useNavigate } from "react-router-dom"
 
 import Button from "../Button"
 import { cl, dateFormat } from "../../utils"
@@ -183,6 +184,8 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
     mode: "all"
   })
 
+  const navigate = useNavigate()
+
   const [isPreview, previewHtml, previewLoading, togglePreview] =
     usePostPreviewState(inputRef)
 
@@ -215,10 +218,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
               if (parent) {
                 onCancel?.()
               }
-              window.location.href = `#${uuid}`
-              document
-                .getElementById(uuid)
-                ?.scrollIntoView({ behavior: "smooth" })
+              navigate(`#${uuid}`)
             }
           }
         )
@@ -227,6 +227,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
     [
       createPostMutation,
       door,
+      navigate,
       onCancel,
       parent,
       post,
