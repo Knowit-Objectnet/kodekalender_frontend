@@ -1,7 +1,7 @@
 import { FC, ReactElement, useMemo } from "react"
 import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
 
-import { cl, numberString } from "../utils"
+import { cl, getRandomDisplayName, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
 import { useWhoami } from "../api/users/requests"
 
@@ -38,22 +38,33 @@ const LeaderBoardGrid: FC<LeaderBoardGridProps> = ({ solvedCount, group }) => {
 
       {/* Grid */}
       <div className="px-16 mt-6">
-        {map(group, ({ uuid, username, avatar_url, position }) => (
-          <div
-            key={uuid}
-            className={cl(
-              "grid w-full grid-cols-[1fr_auto_1fr] gap-4 px-24 py-5",
-              uuid === whoami?.uuid && "rounded-md bg-purple-700"
-            )}
-          >
-            <UserAvatar
-              avatar={avatar_url}
-              className="w-18 max-w-18 h-18 max-h-18"
-            />
-            <div className="place-self-center text-gray">{username}</div>
-            <div className="place-self-center-end">{position}</div>
-          </div>
-        ))}
+        {map(group, ({ uuid, username, avatar_url, position }) => {
+          const [name, emoji] = getRandomDisplayName(uuid)
+          const fallback = (
+            <>
+              <span>{name}</span>
+              <span>{emoji}</span>
+            </>
+          )
+          return (
+            <div
+              key={uuid}
+              className={cl(
+                "grid w-full grid-cols-[1fr_auto_1fr] gap-4 px-24 py-5",
+                uuid === whoami?.uuid && "rounded-md bg-purple-700"
+              )}
+            >
+              <UserAvatar
+                avatar={avatar_url}
+                className="w-18 max-w-18 h-18 max-h-18"
+              />
+              <div className="place-self-center text-gray flex items-center gap-4">
+                {username?.length ? username : fallback}
+              </div>
+              <div className="place-self-center-end ">{position}</div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
