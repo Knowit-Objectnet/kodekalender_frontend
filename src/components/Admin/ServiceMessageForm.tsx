@@ -56,7 +56,7 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({ serviceMessage, newFo
           )}
 
           <FormElementCustom label="Luke" className="col-span-3" defaultValue={serviceMessage.resolution_content ?? ""}>
-            <select className="block form-select" defaultValue={serviceMessage.door ?? undefined} {...register("door", { setValueAs: (value: string) => isEmpty(value) ? undefined : parseInt(value) })}>
+            <select className="block form-select text-black" defaultValue={serviceMessage.door ?? undefined} {...register("door", { setValueAs: (value: string) => isEmpty(value) ? undefined : parseInt(value) })}>
               <option label="-" value="" />
               {map(doors, (door) => <option key={door} label={toString(door)} value={door} />)}
             </select>
