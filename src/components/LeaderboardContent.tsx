@@ -1,8 +1,7 @@
 import { FC, ReactElement, ReactNode, useMemo } from "react"
 import { isEmpty, isNil, map, reduce, upperFirst } from "lodash-es"
-import clsx from "clsx"
 
-import { getRandomDisplayName, getObjKey, numberString } from "../utils"
+import { getRandomDisplayName, getObjKey, numberString, cl } from "../utils"
 import { useLeaderboard } from "../api/requests"
 import { useWhoami } from "../api/users/requests"
 
@@ -64,21 +63,21 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
           </div>
         </Header4>
         <Divider bgClasses="bg-purple-500 w-2/3" />
-        <div className="pt-4 pb-8 space-y-2 text-center flex justify-center">
+        <div className="pt-4 pb-8 text-center flex justify-center gap-y-7">
           {map(entries, (user) => {
-              let displayName: ReactNode = user.username
-              if (!displayName) {
-                const [name, emoji] = getRandomDisplayName()
-                displayName = <span><em>{name}</em>&nbsp;{emoji}</span>
-              }
+            let displayName: ReactNode = user.username
+            if (!displayName) {
+              const [name, emoji] = getRandomDisplayName()
+              displayName = <span><em>{name}</em>&nbsp;{emoji}</span>
+            }
 
-              return (
-                <p key={getObjKey(user)} className={clsx(whoami?.username === displayName ? "bg-purple-700 rounded-md w-2/3" : "", "py-4")}>
-                  <span className="text-gray tracking-wide">{user.position}.</span>
-                  &nbsp;{displayName}
-                </p>
-              )
-              })}
+            return (
+              <p key={getObjKey(user)} className={cl(whoami?.username === displayName && "bg-purple-700 rounded-md w-2/3", "py-4")}>
+                <span className="text-gray tracking-wide">{user.position}.</span>
+                &nbsp;{displayName}
+              </p>
+            )
+            })}
         </div>
       </div>
     )}
