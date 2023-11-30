@@ -106,7 +106,7 @@ const App = () => {
 
         flex
         flex-col
-        justify-stretch
+        justify-between
       `}
     >
       { !showSnow && <ContentBackground /> }
