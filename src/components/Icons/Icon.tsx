@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
+import { FaSnowflake } from "react-icons/fa"
 
 import { ReactComponent as BellSmIcon } from "/assets/svgo/icons/bell-sm.svg"
 import { ReactComponent as BellIcon } from "/assets/svgo/icons/bell.svg"
@@ -57,7 +58,8 @@ const ICONS = {
   sound: SoundIcon,
   twitter: TwitterIcon,
   send: SendIcon,
-  heart: HeartIcon
+  heart: HeartIcon,
+  snow: FaSnowflake
 }
 
 export type IconProps = DetailedHTMLProps<
@@ -87,6 +89,7 @@ const Icon: FC<IconProps> = ({ sm = false, name, className, ...rest }) => {
           child:-top-1
         `,
         sm && "h-[1.35rem] w-[1.35rem] child:left-[.5px] child:top-[.5px]",
+        name === "snow" && "max-w-[1.25rem] max-h-[1.25rem]",
         className
       )}
       {...rest}
