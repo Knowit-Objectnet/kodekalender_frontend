@@ -5,6 +5,7 @@ import { cl } from "../utils"
 
 import Icon, { IconProps } from "./Icons/Icon"
 
+
 type Props = {
   to: string
   name?: IconProps["name"]
@@ -26,7 +27,6 @@ export const LinkButton = forwardRef<
       `
       flex
       flex-row
-      justify-center
       items-center
       gap-3
 
