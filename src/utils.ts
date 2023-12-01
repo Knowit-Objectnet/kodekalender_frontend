@@ -207,4 +207,5 @@ export const Z_SNOW_ATTR = -1
 export const Z_CONTENT = "z-[2]"
 export const Z_HEADER = "z-[1]"
 export const Z_FOOTER = "z-[1]"
+export const Z_DROPDOWN = "z-[9]"
 export const Z_MODAL = "z-[10]"

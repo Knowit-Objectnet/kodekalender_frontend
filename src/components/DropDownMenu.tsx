@@ -1,10 +1,9 @@
 import { Fragment, ReactNode, useCallback, useContext } from "react"
 import { Menu, Transition } from "@headlessui/react"
 
-import { cl, isPresent } from "../utils"
+import { Z_DROPDOWN, cl, isPresent } from "../utils"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { useServiceMessages } from "../api/requests"
-
 import { OptionsContext } from "../OptionsContext"
 
 import Icon from "./Icons/Icon"
@@ -17,6 +16,7 @@ import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
 
 import Button from "./Button"
 import { LinkButton } from "./LinkButton"
+
 
 const MenuGroup = ({ children }: { children: ReactNode }) => (
   <div className="flex flex-col gap-3" role="none">
@@ -71,18 +71,23 @@ export const DropDownMenu = () => {
         >
           <Menu.Items
             className={`
-            absolute 
-            right-0 
-            mt-2 
-            flex 
-            flex-col 
-            items-center 
-            gap-12 
-            rounded-md 
-            bg-purple-800 
-            px-8 
-            py-12 
-            child:w-full
+              absolute
+              right-0
+              mt-2
+
+              rounded-md
+              px-8
+              py-12
+              bg-purple-800
+
+              flex
+              flex-col
+              items-center
+              gap-12
+
+              child:w-full
+
+              ${Z_DROPDOWN}
            `}
           >
             <MenuGroup>
