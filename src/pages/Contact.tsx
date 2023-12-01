@@ -17,7 +17,7 @@ const Contact = () => (
       <LinkButton
         name="link"
         external
-        content="Knowit GitHub - Kodekalender"
+        content="Knowit GitHub"
         to="https://github.com/Knowit-Objectnet"
       />
     </div>
