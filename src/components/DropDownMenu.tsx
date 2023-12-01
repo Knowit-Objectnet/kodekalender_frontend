@@ -1,5 +1,6 @@
-import { Fragment, ReactNode, useCallback, useContext } from "react"
+import { Fragment, ReactNode, useCallback, useContext, useMemo } from "react"
 import { Menu, Transition } from "@headlessui/react"
+import { some } from "lodash-es"
 
 import { Z_DROPDOWN, cl, isPresent } from "../utils"
 import { useIsAdmin } from "../hooks/useIsAdmin"
@@ -35,6 +36,10 @@ export const DropDownMenu = () => {
     setShowSnow((showSnow) => !showSnow)
   }, [setShowSnow])
 
+  const hasUnresolvedServiceMessages = useMemo(() =>
+    some(serviceMessages, (sm) => !sm.resolved),
+  [serviceMessages])
+
   return (
     <div
       className={`
@@ -55,7 +60,7 @@ export const DropDownMenu = () => {
           <span
             className={cl(
               "hidden md:block",
-              isPresent(serviceMessages) && "text-yellow-500"
+              hasUnresolvedServiceMessages && "text-yellow-500"
             )}
           >
             Meny
@@ -132,7 +137,7 @@ export const DropDownMenu = () => {
                     to="/service_messages"
                     name="bell"
                     content="Driftsmeldinger"
-                    className="text-yellow-500"
+                    className={cl(hasUnresolvedServiceMessages && "text-yellow-500")}
                   />
                 </Menu.Item>
               )}
