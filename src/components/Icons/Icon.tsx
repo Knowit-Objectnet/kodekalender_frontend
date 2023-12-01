@@ -1,5 +1,4 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
-import { FaSnowflake } from "react-icons/fa"
 
 import { ReactComponent as BellSmIcon } from "/assets/svgo/icons/bell-sm.svg"
 import { ReactComponent as BellIcon } from "/assets/svgo/icons/bell.svg"
@@ -28,8 +27,10 @@ import { ReactComponent as SendIcon } from "/assets/svgo/icons/send.svg"
 import { ReactComponent as SoundIcon } from "/assets/svgo/icons/sound.svg"
 import { ReactComponent as TwitterIcon } from "/assets/svgo/icons/twitter.svg"
 import { ReactComponent as HeartIcon } from "/assets/svgo/icons/heart.svg"
+import { ReactComponent as SnowflakeIcon } from "/assets/svgo/icons/snowflake.svg"
 
 import { cl } from "../../utils"
+
 
 const ICONS = {
   bell: BellIcon,
@@ -59,7 +60,7 @@ const ICONS = {
   twitter: TwitterIcon,
   send: SendIcon,
   heart: HeartIcon,
-  snow: FaSnowflake
+  snow: SnowflakeIcon
 }
 
 export type IconProps = DetailedHTMLProps<

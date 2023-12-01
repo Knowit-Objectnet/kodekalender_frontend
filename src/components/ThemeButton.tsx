@@ -1,29 +1,29 @@
-import { FC, useCallback, useState } from "react"
+import { indexOf, upperFirst } from "lodash-es"
+import { forwardRef, useCallback, useContext } from "react"
+
+import { OptionsContext, THEME_I18N, THEME_VALUES, ThemeValues } from "../OptionsContext"
 
 import Button, { ButtonProps } from "./Button"
 
 
-const INITIAL_THEME_IS_LIGHT = localStorage.theme === "light" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
+const getNextTheme = (theme: ThemeValues[number]) => THEME_VALUES[(indexOf(THEME_VALUES, theme) + 1) % THEME_VALUES.length]
 
-const ThemeButton: FC<ButtonProps> = (buttonProps) => {
-  const [themeIsLight, setThemeIsLight] = useState(INITIAL_THEME_IS_LIGHT)
+const ThemeButton = forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, ...buttonProps }, ref) => {
+  const { trueTheme, setTheme } = useContext(OptionsContext)
 
   const switchTheme = useCallback(() => {
-    const newThemeIsLight = !themeIsLight
-
-    setThemeIsLight(newThemeIsLight)
-
-    localStorage.theme = newThemeIsLight ? "light" : "dark"
-
-    document.documentElement.classList.toggle("light", newThemeIsLight)
-    document.documentElement.classList.toggle("dark", !newThemeIsLight)
-  }, [themeIsLight, setThemeIsLight])
+    setTheme(getNextTheme(trueTheme))
+  }, [trueTheme, setTheme])
 
   return (
-    <Button onClick={switchTheme} {...buttonProps}>
-      {themeIsLight ? "Dark mode" : "Light mode"}
+    <Button
+      ref={ref}
+      onClick={(e) => { onClick?.(e); switchTheme() }}
+      {...buttonProps}
+    >
+      {upperFirst(THEME_I18N[getNextTheme(trueTheme)])} tema
     </Button>
   )
-}
+})
 
 export default ThemeButton
