@@ -46,7 +46,7 @@
     }
 
     :not(pre) > & {
-      @apply shadow-md rounded-sm py-1 px-2;
+      @apply bg-purple-500 rounded-sm py-1 px-2;
     }
   }
 

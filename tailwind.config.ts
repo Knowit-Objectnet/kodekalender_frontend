@@ -86,6 +86,8 @@ export default {
             fontSize: '1.125rem',
             '--tw-prose-body': colors.white,
             '--tw-prose-headings': colors.white,
+            '--tw-prose-code': colors.white,
+            '--tw-prose-bold': colors.white,
             // '--tw-prose-lead': theme('colors.pink[700]'),
             '--tw-prose-links': colors.white,
             // '--tw-prose-bold': theme('colors.pink[900]'),
