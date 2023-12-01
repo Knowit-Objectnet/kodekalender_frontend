@@ -8,6 +8,7 @@ import useIsDoorSolved from "../../hooks/useIsDoorSolved"
 import WaitMark from "../checkmarks/WaitMark"
 import { cl } from "../../utils"
 import Icon from "../Icons/Icon"
+import SignInButton from "../SignInButton"
 
 
 type InputProps = {
@@ -49,7 +50,14 @@ const Input: FC<InputProps> = ({ door }) => {
 
   const isWrongAnswer = !isDoorSolved && attemptCount > 0 && !isLoading && !dirty
 
-  if (!isDoorSolved && !isAuthenticated) return <p>Logg inn for å delta!</p>
+  if (!isDoorSolved && !isAuthenticated) {
+    return (
+      <div className="flex flex-col items-center gap-8">
+        <p>Logg inn for å delta!</p>
+        <SignInButton />
+      </div>
+    )
+  }
 
   if (isDoorSolved) {
     return (
