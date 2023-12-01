@@ -5,6 +5,7 @@ import { Z_DROPDOWN, cl, isPresent } from "../utils"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { useServiceMessages } from "../api/requests"
 import { OptionsContext } from "../OptionsContext"
+import { AuthContext } from "../AuthContext"
 
 import Icon from "./Icons/Icon"
 import SignInButton from "./SignInButton"
@@ -26,6 +27,7 @@ const MenuGroup = ({ children }: { children: ReactNode }) => (
 
 export const DropDownMenu = () => {
   const isAdmin = useIsAdmin()
+  const { isAuthenticated } = useContext(AuthContext)
   const { data: serviceMessages } = useServiceMessages()
   const { showSnow, setShowSnow } = useContext(OptionsContext)
 
@@ -95,9 +97,11 @@ export const DropDownMenu = () => {
                 <SignInButton />
               </Menu.Item>
 
-              <Menu.Item>
-                <SignOutButton className="w-full font-normal" />
-              </Menu.Item>
+              {isAuthenticated && (
+                <Menu.Item>
+                  <SignOutButton className="w-full font-normal" />
+                </Menu.Item>
+              )}
 
               {import.meta.env.VITE_ENABLE_LIGHT_MODE === "true" && (
                 <Menu.Item>
