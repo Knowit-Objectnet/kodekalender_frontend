@@ -1,11 +1,10 @@
-import { Fragment, ReactNode, useCallback, useContext, useMemo } from "react"
+import { Fragment, ReactNode, useContext, useMemo } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { some } from "lodash-es"
 
 import { Z_DROPDOWN, cl, isPresent } from "../utils"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { useServiceMessages } from "../api/requests"
-import { OptionsContext } from "../OptionsContext"
 import { AuthContext } from "../AuthContext"
 
 import Icon from "./Icons/Icon"
@@ -18,6 +17,7 @@ import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
 
 import Button from "./Button"
 import { LinkButton } from "./LinkButton"
+import ToggleAnimatedSnowButton from "./ToggleAnimatedSnowButton"
 
 
 const MenuGroup = ({ children }: { children: ReactNode }) => (
@@ -30,11 +30,6 @@ export const DropDownMenu = () => {
   const isAdmin = useIsAdmin()
   const { isAuthenticated } = useContext(AuthContext)
   const { data: serviceMessages } = useServiceMessages()
-  const { showSnow, setShowSnow } = useContext(OptionsContext)
-
-  const toggleSnow = useCallback(() => {
-    setShowSnow((showSnow) => !showSnow)
-  }, [setShowSnow])
 
   const hasUnresolvedServiceMessages = useMemo(() =>
     some(serviceMessages, (sm) => !sm.resolved),
@@ -114,11 +109,7 @@ export const DropDownMenu = () => {
                 </Menu.Item>
               )}
               <Menu.Item>
-                <Button
-                  icon="snow"
-                  content={showSnow ? "Skru av snø" : "Skru på snø"}
-                  onClick={toggleSnow}
-                ></Button>
+                <ToggleAnimatedSnowButton />
               </Menu.Item>
             </MenuGroup>
 

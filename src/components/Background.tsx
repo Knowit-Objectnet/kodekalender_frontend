@@ -6,6 +6,7 @@ import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
 import { Z_BACKGROUND_1, Z_BACKGROUND_2, Z_BACKGROUND_3, Z_BACKGROUND_4, Z_BACKGROUND_5, Z_SNOW_ATTR, cl } from "../utils"
 import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 import { OptionsContext } from "../OptionsContext"
+import usePrefersReducedMotion from "../hooks/mediaQueries/usePrefersReducedMotion"
 
 
 // Outermost container is fixed in screen space, has same size as screen, has no
@@ -34,8 +35,6 @@ const BACKGROUND_ELEMENT_CONTAINER_CLASSES = `
 /*
  * Lots of jank to make the tape extend to infinity and not flail about all over
  * the place when resized.
- *
- * TODO: Revisit for mobile.
  */
 const TAPE_CONTAINER_CLASSES = `
   ${BACKGROUND_ELEMENT_CONTAINER_CLASSES}
@@ -54,6 +53,7 @@ const TAPE_CONTAINER_CLASSES = `
 const Background: FC = () => {
   const raffleStarted = useIsRaffleStarted()
   const { showSnow } = useContext(OptionsContext)
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   const content = useMemo(() => (<>
     {!raffleStarted && (<>
@@ -74,7 +74,7 @@ const Background: FC = () => {
     </>)}
 
     {/* Snow */}
-    { showSnow ? (
+    {(showSnow && !prefersReducedMotion) ? (
       <Snowfall
         speed={[0.2, 1.2]}
         wind={[-0.5, 1]}
@@ -100,8 +100,7 @@ const Background: FC = () => {
           before:bg-repeat-x
         `} />
       </div>
-    )
-    }
+    )}
 
 
     {!raffleStarted && (<>
@@ -144,7 +143,7 @@ const Background: FC = () => {
         `} />
       </div>
     </>)}
-  </>), [raffleStarted, showSnow])
+  </>), [raffleStarted, showSnow, prefersReducedMotion])
 
   return content
 }
