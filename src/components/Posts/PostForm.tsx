@@ -1,11 +1,4 @@
-import {
-  ComponentPropsWithRef,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef
-} from "react"
+import { ComponentPropsWithRef, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import TextareaAutosize from "react-textarea-autosize"
 import { map } from "lodash-es"
 import { Controller, useForm } from "react-hook-form"
@@ -43,19 +36,18 @@ type PostProps = {
   parent?: ParentPost
 }
 
-const PostButton = forwardRef<
-  HTMLButtonElement,
-  ComponentPropsWithRef<"button">
->(({ className, ...props }, ref) => (
-  <button
-    className={cl(
-      "disabled:text-purple-100 text-sm p-4 rounded-full hover:bg-purple-500 focus-within:bg-purple-500",
-      className
-    )}
-    {...props}
-    ref={ref}
-  />
-))
+const PostButton = forwardRef<HTMLButtonElement, ComponentPropsWithRef<"button">>(
+  ({ className, ...props }, ref) => (
+    <button
+      className={cl(
+        "disabled:text-purple-100 text-sm p-4 rounded-full hover:bg-purple-500 focus-within:bg-purple-500",
+        className
+      )}
+      {...props}
+      ref={ref}
+    />
+  )
+)
 
 type UserAvatarProps = {
   avatar?: string
@@ -94,13 +86,11 @@ export const Post = ({ door, post, parent }: PostProps) => {
       <article id={post.uuid} className="flex w-full items-start gap-6">
         <UserAvatar avatar={post.author.avatar ?? ""} deleted={post.deleted} />
         <div className="flex w-full flex-col overflow-hidden">
-          <div className="flex justify-between">
-            <div className="flex gap-4 items-center">
-              {!post.deleted && (
-                <span className="text-md font-bold">
-                  {post.author.username}
-                </span>
-              )}
+          <div className="flex justify-between items-start">
+            <div className="flex flex-wrap gap-x-4 items-baseline">
+              <span className="text-md font-bold">
+                {post.deleted ? "Ukjent bruker" : post.author.username}
+              </span>
               <span className="text-purple-100 text-sm">
                 {dateFormat(new Date(post.created_at), "long")}
               </span>
@@ -119,10 +109,7 @@ export const Post = ({ door, post, parent }: PostProps) => {
             {!isEditing && (
               <div className="flex gap-4">
                 {!parent && (
-                  <PostButton
-                    onClick={toggleIsAddingReply}
-                    disabled={isAddingReply}
-                  >
+                  <PostButton onClick={toggleIsAddingReply} disabled={isAddingReply}>
                     Svar
                   </PostButton>
                 )}
@@ -169,7 +156,7 @@ export const Post = ({ door, post, parent }: PostProps) => {
           </div>
         )}
         {!!("children" in post) && (
-          <div className="mt-12">
+          <div className="mt-12 flex flex-col gap-12">
             {map(post.children, (child) => (
               <Post key={child.uuid} door={door} post={child} parent={post} />
             ))}
@@ -190,8 +177,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
 
   const navigate = useNavigate()
 
-  const [isPreview, previewHtml, previewLoading, togglePreview] =
-    usePostPreviewState(inputRef)
+  const [isPreview, previewHtml, previewLoading, togglePreview] = usePostPreviewState(inputRef)
 
   const createPostMutation = useCreatePost()
   const updatePostMutation = useUpdatePost()
@@ -228,16 +214,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
         )
       }
     },
-    [
-      createPostMutation,
-      door,
-      navigate,
-      onCancel,
-      parent,
-      post,
-      reset,
-      updatePostMutation
-    ]
+    [createPostMutation, door, navigate, onCancel, parent, post, reset, updatePostMutation]
   )
 
   // Trigger validation on load and after successful submit
@@ -306,10 +283,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
               Avbryt
             </PostButton>
           )}
-          <PostButton
-            type="submit"
-            disabled={!formState.isDirty || !formState.isValid}
-          >
+          <PostButton type="submit" disabled={!formState.isDirty || !formState.isValid}>
             Lagre
           </PostButton>
         </div>
