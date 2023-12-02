@@ -10,7 +10,6 @@ import { getAnchorVar } from "./hooks/useStoreAnchorVars"
 
 
 export const NBSP = "\u00a0"
-export const getTimestamp = (dateString: string) => format(new Date(dateString), `dd.MM'${NBSP}kl${NBSP}'HH:mm`)
 export const getTimestampForInputField = (dateString: string) => format(new Date(dateString), "yyyy-MM-dd'T'kk:mm")
 
 export const getActiveYear = () => {
@@ -35,7 +34,7 @@ export const getRaffleEnd = () => new Date(`${getActiveYear()}-12-26T04:00+0100`
 const DATE_FORMATS = {
   standard: "do MMMM p",
   long: "'kl.' p 'den' do MMMM",
-  short: "dd.MM HH:mm"
+  short: `dd.MM${NBSP}HH:mm`
 } as const
 export const dateFormat = (date: Date, fmt: keyof typeof DATE_FORMATS = "standard") => format(date, DATE_FORMATS[fmt], { locale: nb })
 
