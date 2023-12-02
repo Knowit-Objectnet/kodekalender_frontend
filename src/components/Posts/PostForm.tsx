@@ -86,9 +86,11 @@ export const Post = ({ door, post, parent }: PostProps) => {
       <article id={post.uuid} className="flex w-full items-start gap-6">
         <UserAvatar avatar={post.author.avatar ?? ""} deleted={post.deleted} />
         <div className="flex w-full flex-col overflow-hidden">
-          <div className="flex justify-between">
-            <div className="flex gap-4 items-center">
-              {!post.deleted && <span className="text-md font-bold">{post.author.username}</span>}
+          <div className="flex justify-between items-start">
+            <div className="flex flex-wrap gap-x-4 items-baseline">
+              <span className="text-md font-bold">
+                {post.deleted ? "Ukjent bruker" : post.author.username}
+              </span>
               <span className="text-purple-100 text-sm">
                 {dateFormat(new Date(post.created_at), "long")}
               </span>
