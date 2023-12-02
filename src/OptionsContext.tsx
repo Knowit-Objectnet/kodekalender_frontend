@@ -83,7 +83,7 @@ export const OptionsContextProvider: FCWithChildren = ({ children }) => {
 
   const theme = useMemo(() => (
     state.theme === "system"
-      ? (prefersColorSchemeLight ? "light" : "dark")
+      ? (import.meta.env.VITE_ENABLE_LIGHT_MODE === "true" && prefersColorSchemeLight ? "light" : "dark")
       : state.theme
   ), [state.theme, prefersColorSchemeLight])
 
