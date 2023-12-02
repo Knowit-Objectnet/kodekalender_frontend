@@ -52,8 +52,8 @@ export const useChallenge = (door: Maybe<number>) => (
 const getSolvedStatus = (): Promise<SolvedStatus> => axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
 export const useSolvedStatus = (opts?: UseQueryOptions<SolvedStatus, QueryError>) => {
   const { isAuthenticated } = useContext(AuthContext)
-
-  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 600_000, enabled: isAuthenticated, ...opts })
+  const enabled = isAuthenticated && (opts?.enabled !== false)
+  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 600_000, ...opts, enabled })
 }
 
 const getPosts = (door: number) => axios.get(`/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
