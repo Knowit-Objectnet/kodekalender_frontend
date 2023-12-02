@@ -89,7 +89,7 @@ const Doors = () => {
           />
         )
     ))
-  ), [doorsState, doorElementStyles, doorElementRefs])
+  ), [doorsState, doorElementStyles, doorElementRefs, prefetchLikes, prefetchPosts])
 
   const debouncedUpdateLinkPositions = useDebouncedCallback(() => {
     if (!doorsContainerRef.current)
@@ -135,27 +135,33 @@ const Doors = () => {
 
   /*
    * Update the position and dimensions of each link element so that it overlays
-   * its door in the SVG. Must update on scroll or resize, and check positioning
-   * an extra time on first render if all nodes aren't rendered yet.
+   * its door in the SVG. Must update on scroll or resize.
    */
   const doorsContainerRef = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
-    // Call to set positions at least once, but after everything is settled.
-    const timeout = setTimeout(debouncedUpdateLinkPositions)
-
     const doorsContainerRefCurrent = doorsContainerRef.current
     doorsContainerRefCurrent?.addEventListener("scroll", debouncedUpdateLinkPositions)
     window.addEventListener("resize", debouncedUpdateLinkPositions)
     window.addEventListener("scroll", debouncedUpdateLinkPositions)
 
+    // Sometimes the actual DOM nodes in the SVG aren't available when this
+    // effect first runs. Observer for changes to try and catch them being
+    // mounted later.
+    const mutationObserver = new MutationObserver(debouncedUpdateLinkPositions)
+    if (doorsContainerRefCurrent)
+      mutationObserver.observe(doorsContainerRefCurrent, { childList: true, subtree: true })
+
+    // Try to update links on first render
+    debouncedUpdateLinkPositions()
+
     return () => {
       doorsContainerRefCurrent?.removeEventListener("scroll", debouncedUpdateLinkPositions)
       window.removeEventListener("resize", debouncedUpdateLinkPositions)
       window.removeEventListener("scroll", debouncedUpdateLinkPositions)
-      clearTimeout(timeout)
+      mutationObserver.disconnect()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [doorsContainerRef, ...doorElementRefs])
+  }, [doorsContainerRef, ...doorElementRefs, debouncedUpdateLinkPositions, challenges])
 
   useLayoutEffect(() => {
     forEach(doorsContainerRef.current?.querySelectorAll("#Julehus__Locked24 ~ *"), (node) => {
