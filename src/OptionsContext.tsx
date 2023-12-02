@@ -3,9 +3,8 @@ import { Dispatch, SetStateAction, createContext, useLayoutEffect, useMemo, useS
 
 import { FCWithChildren } from "../types/utils_types"
 
-import { guardPresent } from "./utils"
+import { debug, guardPresent } from "./utils"
 import usePrefersColorScheme from "./hooks/mediaQueries/usePrefersColorScheme"
-import { getAnchorVar } from "./hooks/useStoreAnchorVars"
 
 
 const LOCALSTORAGE_KEY = "knowit_kodekalender/options"
@@ -57,8 +56,7 @@ const createScopedPersistedSetter = memoize(<K extends keyof OptionsContextSetta
       const newState = { ...state, [key]: newValue }
       const newStateJSON = JSON.stringify(pickSafeOptionsKeys(newState))
 
-      if (getAnchorVar("debug"))
-        console.log(`Setting OptionsContext localStorage state to ${newStateJSON}`)
+      debug(`Setting OptionsContext localStorage state to ${newStateJSON}`)
       localStorage.setItem(LOCALSTORAGE_KEY, newStateJSON)
 
       return newState

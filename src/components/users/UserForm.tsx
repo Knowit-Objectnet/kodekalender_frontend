@@ -12,7 +12,7 @@ import {
 } from "../../api/users/requests"
 import { QueryError } from "../../axios"
 import BasicPage from "../../pages/BasicPage"
-import { cl, squish } from "../../utils"
+import { cl, debug, squish } from "../../utils"
 import Button from "../Button"
 import CheckMark from "../checkmarks/CheckMark"
 import FormElement from "../form/FormElement"
@@ -21,9 +21,9 @@ import FormError from "../form/FormError"
 import NoteElements from "../form/NoteElements"
 import FormInputElement from "../form/FormInputElement"
 import OptInMarketingCheckboxes from "../form/OptInMarketingCheckboxes"
-import { getAnchorVar } from "../../hooks/useStoreAnchorVars"
 import FormGroup from "../form/FormGroup"
 import SubmitButton from "../SubmitButton"
+
 
 const DELETE_USER_CONFIRM = squish(`
   Er du sikker på at du vil slette brukeren din? Du vil ikke lenger være med i premietrekningen. Dette kan ikke reverseres.
@@ -107,10 +107,8 @@ const UserForm: FC<UserFormProps> = ({
   const [debouncedAvatarUrl] = useDebounce(avatarUrl, 500)
 
   const onSubmit = (data: UpdateUserParameters) => {
-    if (getAnchorVar("debug")) {
-      console.log("UserForm onSubmit")
-      console.log({ data })
-    }
+    debug("UserForm onSubmit")
+    debug({ data })
 
     submit(
       // Submit only dirty data to avoid overwriting with null values
@@ -124,9 +122,7 @@ const UserForm: FC<UserFormProps> = ({
     )
   }
 
-  if (getAnchorVar("debug")) {
-    console.log({ errors })
-  }
+  debug({ errors })
 
   const deleteUser = () => {
     if (window.confirm(DELETE_USER_CONFIRM)) {

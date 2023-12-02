@@ -2,6 +2,8 @@ import { trimStart, split, filter, has, forEach } from "lodash-es"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
+import { debug } from "../utils"
+
 
 export const ANCHOR_VARS = {
   year: (s: string) => parseInt(s),
@@ -35,7 +37,7 @@ const useStoreAnchorVars = () => {
 
     forEach(validPairs, (pair) => {
       const [name, value] = split(pair, "=")
-      console.log(`Setting ${name} to ${value}`)
+      debug(`Setting ${name} to ${value}`)
       window.sessionStorage.setItem(`anchor_vars/${name}`, value)
     })
   }, [location.hash])

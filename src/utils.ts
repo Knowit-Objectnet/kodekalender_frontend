@@ -209,3 +209,6 @@ export const Z_HEADER = "z-[1]"
 export const Z_FOOTER = "z-[1]"
 export const Z_DROPDOWN = "z-[9]"
 export const Z_MODAL = "z-[10]"
+
+
+export const debug = (...args: Parameters<typeof console.log>) => getAnchorVar("debug") && console.log(...args)

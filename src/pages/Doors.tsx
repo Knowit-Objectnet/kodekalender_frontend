@@ -8,7 +8,7 @@ import { ReactComponent as JulehusSvg } from "/assets/svgo/Julehus.svg"
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import PageContent from "../components/PageContent"
 import { Maybe } from "../../types/utils_types"
-import { Z_JULEHUS, cl } from "../utils"
+import { Z_JULEHUS, cl, debug } from "../utils"
 import { getAnchorVar } from "../hooks/useStoreAnchorVars"
 
 
@@ -59,10 +59,10 @@ const Doors = () => {
     forEach(windowGroups, ([from, to]) => {
       const subState = slice(doorsState, from - 1, to - 1)
       if (every(subState, (state) => state === "solved")) {
-        console.log(`Setting vindu ${to - 1} to ON: ${JSON.stringify(subState)}`)
+        debug(`Setting vindu ${to - 1} to ON: ${JSON.stringify(subState)}`)
         rootStyle.setProperty(`--vindu-${to - 1}-display`, "initial")
       } else {
-        console.log(`Setting vindu ${to - 1} to OFF ${JSON.stringify(subState)}`)
+        debug(`Setting vindu ${to - 1} to OFF ${JSON.stringify(subState)}`)
         rootStyle.setProperty(`--vindu-${to - 1}-display`, "none")
       }
     })
