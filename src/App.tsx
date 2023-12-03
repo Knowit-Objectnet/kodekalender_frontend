@@ -21,6 +21,7 @@ import Icon, { IconProps } from "./components/Icons/Icon"
 import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
 import { OptionsContext } from "./OptionsContext"
+import useBackgroundMusic from "./hooks/useBackgroundMusic"
 
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
@@ -76,7 +77,9 @@ const LazyUser = () => {
 const App = () => {
   useStoreAnchorVars()
   useWelcomeBackRedirect()
-  const {showSnow} = useContext(OptionsContext)
+  useBackgroundMusic()
+
+  const { showSnow } = useContext(OptionsContext)
 
   const raffleStarted = useIsRaffleStarted()
   const raffleRoutes = useMemo(() => (

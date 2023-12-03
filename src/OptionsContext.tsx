@@ -16,26 +16,29 @@ export type ThemeValues = typeof THEME_VALUES[number]
 
 type OptionsContextValues = {
   showSnow: boolean
-
+  playSound: boolean
   // You can set the theme to "system", but it will always be "dark" or "light' when read back
   theme: Exclude<ThemeValues, "system">
   trueTheme: ThemeValues
 }
 type OptionsContextSettableValues = {
   showSnow: boolean
+  playSound: boolean
   theme: ThemeValues
 }
 type OptionsContextSetters = {
   setShowSnow: Dispatch<SetStateAction<boolean>>
+  setPlaySound: Dispatch<SetStateAction<boolean>>
   setTheme: Dispatch<SetStateAction<ThemeValues>>
 }
 type OptionsContextType = OptionsContextValues & OptionsContextSetters
 
 const OPTIONS_CONTEXT_DEFAULT_VALUES: OptionsContextSettableValues = {
   showSnow: true,
+  playSound: true,
   theme: "system"
 }
-const pickSafeOptionsKeys = (options: Record<string, any>) => pick(options, keys(OPTIONS_CONTEXT_DEFAULT_VALUES))
+const pickSafeOptionsKeys = (options: Record<string, unknown>) => pick(options, keys(OPTIONS_CONTEXT_DEFAULT_VALUES))
 
 // Danger danger: Cannot use this context outside of a provider
 export const OptionsContext = createContext(undefined as unknown as OptionsContextType)
@@ -97,11 +100,13 @@ export const OptionsContextProvider: FCWithChildren = ({ children }) => {
   const contextValue: OptionsContextType = useMemo(() => ({
     showSnow: state.showSnow,
     setShowSnow: createScopedPersistedSetter(setState, "showSnow"),
+    playSound: state.playSound,
+    setPlaySound: createScopedPersistedSetter(setState, "playSound"),
 
     theme,
     trueTheme: state.theme,
     setTheme: createScopedPersistedSetter(setState, "theme")
-  }), [state.showSnow, state.theme, setState, theme])
+  }), [state.showSnow, state.theme, state.playSound, setState, theme])
 
   return (
     <OptionsContext.Provider value={contextValue}>

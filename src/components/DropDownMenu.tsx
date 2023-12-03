@@ -18,6 +18,7 @@ import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
 import Button from "./Button"
 import { LinkButton } from "./LinkButton"
 import ToggleAnimatedSnowButton from "./ToggleAnimatedSnowButton"
+import ToggleSoundButton from "./ToggleSoundButton"
 
 
 const MenuGroup = ({ children }: { children: ReactNode }) => (
@@ -110,6 +111,9 @@ export const DropDownMenu = () => {
               )}
               <Menu.Item>
                 <ToggleAnimatedSnowButton />
+              </Menu.Item>
+              <Menu.Item>
+                <ToggleSoundButton />
               </Menu.Item>
             </MenuGroup>
 
