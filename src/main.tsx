@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { BrowserRouter } from "react-router-dom"
 import { ReactQueryDevtools } from "react-query/devtools"
+import { LazyMotion, domAnimation } from "framer-motion"
 
 import "@fontsource-variable/nunito"
 import "@fontsource-variable/nunito/wght-italic.css"
@@ -16,7 +17,6 @@ import App from "./App"
 import { AuthContextProvider } from "./AuthContext"
 import { OptionsContextProvider } from "./OptionsContext"
 
-
 const Main = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -27,17 +27,18 @@ const Main = () => {
   })
 
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <OptionsContextProvider>
-          <AuthContextProvider>
-            <ReactQueryDevtools />
-
-            <App />
-          </AuthContextProvider>
-        </OptionsContextProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
+    <LazyMotion features={domAnimation}>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <OptionsContextProvider>
+            <AuthContextProvider>
+              <ReactQueryDevtools />
+              <App />
+            </AuthContextProvider>
+          </OptionsContextProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    </LazyMotion>
   )
 }
 

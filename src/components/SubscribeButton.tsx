@@ -1,4 +1,4 @@
-import { motion, useAnimation } from "framer-motion"
+import { m, useAnimation } from "framer-motion"
 import { find } from "lodash-es"
 import { FC, useMemo, useState } from "react"
 import { FaBellSlash, FaBell } from "react-icons/fa"
@@ -71,7 +71,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
   }
 
   return (
-    <motion.button
+    <m.button
       // TODO: Hover style
       className={cl("", className)}
       title={buttonTitle}
@@ -80,10 +80,10 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
       onMouseEnter={() => animationControl.start({ rotate: -10 })}
       onMouseLeave={() => !animating && animationControl.start({ rotate: 0 })}
     >
-      <motion.div className="origin-top" animate={animationControl}>
+      <m.div className="origin-top" animate={animationControl}>
         {debouncedSubscription ? <FaBellSlash /> : <FaBell />}
-      </motion.div>
-    </motion.button>
+      </m.div>
+    </m.button>
   )
 }
 

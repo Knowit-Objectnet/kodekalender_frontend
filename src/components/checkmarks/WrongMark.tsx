@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 
 import { easeInCubic, easeOutCubic } from "../../utils"
 
@@ -12,7 +12,7 @@ const R = 62.1
 export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
   <Wrapper {...props}>
     <svg className="text-red-700 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-      <motion.path
+      <m.path
         d={`
           M ${OFFSET} ${OFFSET}
           m 0 ${-R}
@@ -27,7 +27,7 @@ export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
         animate={{ pathLength: 1 }}
         transition={{ duration: 0.4, ease: easeOutCubic }}
       />
-      <motion.path
+      <m.path
         d={`
           M ${OFFSET} ${OFFSET}
           m -30.7 -27.2
@@ -41,7 +41,7 @@ export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
         animate={{ pathLength: 1 }}
         transition={{ duration: 0.2, delay: 0.4, ease: easeInCubic }}
       />
-      <motion.path
+      <m.path
         d={`
           M ${OFFSET} ${OFFSET}
           m 30.7 -27.2

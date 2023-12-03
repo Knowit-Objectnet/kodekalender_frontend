@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { motion, useAnimation } from "framer-motion"
+import { m, useAnimation } from "framer-motion"
 
 import { cl, easeInCubic } from "../../utils"
 
@@ -29,7 +29,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
   return (
     <Wrapper {...props}>
       <svg className={cl("text-yellow-400 stroke-current mx-auto", className)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-        <motion.path
+        <m.path
           d={`
             M ${OFFSET} ${OFFSET}
             m 0 ${-R}
@@ -43,7 +43,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
           animate={circleControls}
           initial={{ pathLength: 1 }}
         />
-        <motion.path
+        <m.path
           d={`
             M ${OFFSET} ${OFFSET}
             m -15.7 -27.2
@@ -57,7 +57,7 @@ export const WaitMark: FC<CheckmarkWrapperProps &  { retryAfter: number, classNa
           animate={{ pathLength: 1 }}
           transition={{ duration: 0.2, delay: 0.4, ease: easeInCubic }}
         />
-        <motion.path
+        <m.path
           d={`
             M ${OFFSET} ${OFFSET}
             m 15.7 -27.2
