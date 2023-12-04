@@ -59,7 +59,6 @@ export const OptionsContextProvider: FCWithChildren = ({ children }) => {
   * setter function or a plain value to set. Persists entire state to
   * localStorage on every change.
   */
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const createScopedPersistedSetter = useCallback(<K extends keyof OptionsContextSettableValues>(
     key: K
   ): Dispatch<SetStateAction<OptionsContextSettableValues[K]>> => (
