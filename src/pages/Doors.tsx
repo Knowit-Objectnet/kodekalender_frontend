@@ -8,7 +8,7 @@ import { ReactComponent as JulehusSvg } from "/assets/svgo/Julehus.svg"
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import PageContent from "../components/PageContent"
 import { Maybe } from "../../types/utils_types"
-import { Z_JULEHUS, cl } from "../utils"
+import { Z_JULEHUS, cl, debug } from "../utils"
 import { getAnchorVar } from "../hooks/useStoreAnchorVars"
 
 
@@ -59,10 +59,10 @@ const Doors = () => {
     forEach(windowGroups, ([from, to]) => {
       const subState = slice(doorsState, from - 1, to - 1)
       if (every(subState, (state) => state === "solved")) {
-        console.log(`Setting vindu ${to - 1} to ON: ${JSON.stringify(subState)}`)
+        debug(`Setting vindu ${to - 1} to ON: ${JSON.stringify(subState)}`)
         rootStyle.setProperty(`--vindu-${to - 1}-display`, "initial")
       } else {
-        console.log(`Setting vindu ${to - 1} to OFF ${JSON.stringify(subState)}`)
+        debug(`Setting vindu ${to - 1} to OFF ${JSON.stringify(subState)}`)
         rootStyle.setProperty(`--vindu-${to - 1}-display`, "none")
       }
     })
@@ -89,7 +89,7 @@ const Doors = () => {
           />
         )
     ))
-  ), [doorsState, doorElementStyles, doorElementRefs])
+  ), [doorsState, doorElementStyles, doorElementRefs, prefetchLikes, prefetchPosts])
 
   const debouncedUpdateLinkPositions = useDebouncedCallback(() => {
     if (!doorsContainerRef.current)
@@ -135,27 +135,33 @@ const Doors = () => {
 
   /*
    * Update the position and dimensions of each link element so that it overlays
-   * its door in the SVG. Must update on scroll or resize, and check positioning
-   * an extra time on first render if all nodes aren't rendered yet.
+   * its door in the SVG. Must update on scroll or resize.
    */
   const doorsContainerRef = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
-    // Call to set positions at least once, but after everything is settled.
-    const timeout = setTimeout(debouncedUpdateLinkPositions)
-
     const doorsContainerRefCurrent = doorsContainerRef.current
     doorsContainerRefCurrent?.addEventListener("scroll", debouncedUpdateLinkPositions)
     window.addEventListener("resize", debouncedUpdateLinkPositions)
     window.addEventListener("scroll", debouncedUpdateLinkPositions)
 
+    // Sometimes the actual DOM nodes in the SVG aren't available when this
+    // effect first runs. Observer for changes to try and catch them being
+    // mounted later.
+    const mutationObserver = new MutationObserver(debouncedUpdateLinkPositions)
+    if (doorsContainerRefCurrent)
+      mutationObserver.observe(doorsContainerRefCurrent, { childList: true, subtree: true })
+
+    // Try to update links on first render
+    debouncedUpdateLinkPositions()
+
     return () => {
       doorsContainerRefCurrent?.removeEventListener("scroll", debouncedUpdateLinkPositions)
       window.removeEventListener("resize", debouncedUpdateLinkPositions)
       window.removeEventListener("scroll", debouncedUpdateLinkPositions)
-      clearTimeout(timeout)
+      mutationObserver.disconnect()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [doorsContainerRef, ...doorElementRefs])
+  }, [doorsContainerRef, ...doorElementRefs, debouncedUpdateLinkPositions, challenges])
 
   useLayoutEffect(() => {
     forEach(doorsContainerRef.current?.querySelectorAll("#Julehus__Locked24 ~ *"), (node) => {
