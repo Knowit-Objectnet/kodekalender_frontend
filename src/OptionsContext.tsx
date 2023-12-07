@@ -1,10 +1,11 @@
-import { isFunction, keys, memoize, pick } from "lodash-es"
-import { Dispatch, SetStateAction, createContext, useLayoutEffect, useMemo, useState } from "react"
+import { isFunction, keys, pick } from "lodash-es"
+import { Dispatch, SetStateAction, createContext, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react"
 
 import { FCWithChildren } from "../types/utils_types"
 
 import { debug, guardPresent } from "./utils"
 import usePrefersColorScheme from "./hooks/mediaQueries/usePrefersColorScheme"
+import usePrefersReducedMotion from "./hooks/mediaQueries/usePrefersReducedMotion"
 
 
 const LOCALSTORAGE_KEY = "knowit_kodekalender/options"
@@ -34,35 +35,10 @@ const OPTIONS_CONTEXT_DEFAULT_VALUES: OptionsContextSettableValues = {
   showSnow: true,
   theme: "system"
 }
-const pickSafeOptionsKeys = (options: Record<string, any>) => pick(options, keys(OPTIONS_CONTEXT_DEFAULT_VALUES))
+const pickSafeOptionsKeys = (options: Record<string, unknown>) => pick(options, keys(OPTIONS_CONTEXT_DEFAULT_VALUES))
 
 // Danger danger: Cannot use this context outside of a provider
 export const OptionsContext = createContext(undefined as unknown as OptionsContextType)
-
-/*
- * Creates a SetStationAction that acts on a single scoped value within a larger
- * state object. Behaves like a regular SetStateAction would, allowing for a
- * setter function or a plain value to set. Persists entire state to
- * localStorage on every change.
- */
-const createScopedPersistedSetter = memoize(<K extends keyof OptionsContextSettableValues>(
-  setState: Dispatch<SetStateAction<OptionsContextSettableValues>>,
-  key: K
-): Dispatch<SetStateAction<OptionsContextSettableValues[K]>> => (
-  (value_or_setter) => (
-    setState((state) => {
-      const newValue = isFunction(value_or_setter) ? value_or_setter(state[key]) : value_or_setter
-
-      const newState = { ...state, [key]: newValue }
-      const newStateJSON = JSON.stringify(pickSafeOptionsKeys(newState))
-
-      debug(`Setting OptionsContext localStorage state to ${newStateJSON}`)
-      localStorage.setItem(LOCALSTORAGE_KEY, newStateJSON)
-
-      return newState
-    })
-  )
-), (...args) => args.join("."))
 
 export const OptionsContextProvider: FCWithChildren = ({ children }) => {
   const [state, setState] = useState<OptionsContextSettableValues>(
@@ -76,6 +52,46 @@ export const OptionsContextProvider: FCWithChildren = ({ children }) => {
       OPTIONS_CONTEXT_DEFAULT_VALUES
     )
   )
+
+  /*
+  * Creates a SetStationAction that acts on a single scoped value within a larger
+  * state object. Behaves like a regular SetStateAction would, allowing for a
+  * setter function or a plain value to set. Persists entire state to
+  * localStorage on every change.
+  */
+  const createScopedPersistedSetter = useCallback(<K extends keyof OptionsContextSettableValues>(
+    key: K
+  ): Dispatch<SetStateAction<OptionsContextSettableValues[K]>> => (
+    (value_or_setter) => (
+      setState((state) => {
+        const newValue = isFunction(value_or_setter) ? value_or_setter(state[key]) : value_or_setter
+
+        const newState = { ...state, [key]: newValue }
+        const newStateJSON = JSON.stringify(pickSafeOptionsKeys(newState))
+
+        debug(`Setting OptionsContext localStorage state to ${newStateJSON}`)
+        localStorage.setItem(LOCALSTORAGE_KEY, newStateJSON)
+
+        return newState
+      })
+    )
+  ), [setState])
+
+  const [setShowSnow, setTheme] = useMemo(() => [
+    createScopedPersistedSetter("showSnow"),
+    createScopedPersistedSetter("theme")
+  ], [createScopedPersistedSetter])
+
+
+  const prefersReducedMotion = usePrefersReducedMotion()
+  const [previousPrefersReducedMotion, setPreviousPrefersReducedMotion] = useState(prefersReducedMotion)
+  useEffect(() => {
+    // If the user changes their preference, toggle snow to reflect new preference
+    if (prefersReducedMotion !== previousPrefersReducedMotion)
+      setShowSnow(!prefersReducedMotion)
+
+    setPreviousPrefersReducedMotion(prefersReducedMotion)
+  }, [prefersReducedMotion, previousPrefersReducedMotion, setShowSnow])
 
   const prefersColorSchemeLight = usePrefersColorScheme({ query: "light", layoutEffect: true })
 
@@ -94,12 +110,12 @@ export const OptionsContextProvider: FCWithChildren = ({ children }) => {
 
   const contextValue: OptionsContextType = useMemo(() => ({
     showSnow: state.showSnow,
-    setShowSnow: createScopedPersistedSetter(setState, "showSnow"),
+    setShowSnow,
 
     theme,
     trueTheme: state.theme,
-    setTheme: createScopedPersistedSetter(setState, "theme")
-  }), [state.showSnow, state.theme, setState, theme])
+    setTheme
+  }), [state.showSnow, state.theme, setShowSnow, setTheme, theme])
 
   return (
     <OptionsContext.Provider value={contextValue}>
