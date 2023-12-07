@@ -67,7 +67,7 @@ const Leaderboard = () => {
               >
                 <Avatar avatar={avatar} className="w-18 max-w-18 h-18 max-h-18" />
                 <div className="flex items-center gap-4 text-opacity-80">{username}</div>
-                <div className="place-self-center-end">{rank + 1}</div>
+                <div className="place-self-center-end">{rank}</div>
               </div>
             ))}
           </div>
