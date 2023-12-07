@@ -1,8 +1,8 @@
-import { constant, forEach, join, pickBy, some } from "lodash-es"
-import { FC, memo, useEffect, useId, useRef } from "react"
+import { constant, forEach, join, last, pickBy, some, split } from "lodash-es"
+import { FC, memo, useEffect, useId, useRef, useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { useDebounce } from "use-debounce"
+import { useDebouncedCallback } from "use-debounce"
 
 import { LoggedInWhoami } from "../../api"
 import {
@@ -103,8 +103,27 @@ const UserForm: FC<UserFormProps> = ({
 
   const username = watch("username")
   const avatar = watch("avatar")
-  const avatarUrl = watch("avatar_url")
-  const [debouncedAvatarUrl] = useDebounce(avatarUrl, 500)
+  const [avatarUrlError, setAvatarUrlError] = useState<{ message: string, type: "value" }>()
+
+  const debouncedFetchAndSetAvatarFromUrl = useDebouncedCallback(async (avatarUrl: string) => {
+    try {
+      const response = await fetch(avatarUrl)
+      if (!response.ok) {
+        setAvatarUrlError({ message: "Klarte ikke hente bilde", type: "value" })
+        return
+      }
+
+      const filename = last(split(avatarUrl, "/"))
+      if (!filename) return
+
+      const blob = await response.blob()
+      const file = new File([blob], filename, { type: response.headers.get("Content-Type") || "application/octet-stream" })
+
+      setValue("avatar", file, { shouldDirty: true })
+    } catch (error) {
+      setAvatarUrlError({ message: "Klarte ikke hente bilde", type: "value" })
+    }
+  })
 
   const onSubmit = (data: UpdateUserParameters) => {
     debug("UserForm onSubmit")
@@ -229,24 +248,22 @@ const UserForm: FC<UserFormProps> = ({
               }}
             />
             <Button
-              className="font-normal"
-              content={avatar ? avatar.name : "Velg bilde (maks 2MB)"}
+              className="font-normal max-w-full"
+              content={avatar ? <span className="truncate">{avatar.name}</span> : "Velg bilde (maks 2MB)"}
               onClick={() => fileInputRef.current?.click()}
             />
           </FormElementCustom>
         </FormGroup>
-        <FormGroup error={errors.avatar_url} dirty={dirtyFields.avatar_url}>
+        <FormGroup error={avatarUrlError}>
           <FormInputElement
             type="url"
-            maxLength={256}
             placeholder="... eller oppgi URL"
-            {...register("avatar_url")}
+            onChange={(e) => debouncedFetchAndSetAvatarFromUrl(e.target.value)}
           />
-          {(avatar || debouncedAvatarUrl || user?.avatar) && (
+          {(avatar || user?.avatar) && (
             <img
               className="w-avatar mt-6"
               src={
-                debouncedAvatarUrl ||
                 (avatar && URL.createObjectURL(avatar)) ||
                 user?.avatar ||
                 ""

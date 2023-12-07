@@ -9,7 +9,7 @@ import FormError from "./FormError"
 
 type FormGroupProps = {
   error: Maybe<FieldError>
-  dirty: Maybe<boolean>
+  dirty?: boolean
 }
 
 const FormGroup: FC<PropsWithChildren<FormGroupProps>> = ({ error, dirty, children }) => (

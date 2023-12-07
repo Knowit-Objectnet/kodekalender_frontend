@@ -25,7 +25,6 @@ export type SignUpParameters = {
   email: string
   username: string | undefined
   avatar: File | undefined
-  avatar_url: string | undefined
   password: string
   password_confirmation: string
   opt_in_marketing: boolean
@@ -96,7 +95,6 @@ export type UpdateUserParameters = {
   email?: string
   username?: string | null
   avatar?: File
-  avatar_url?: string
   password?: string
   password_confirmation?: string
   opt_in_marketing?: boolean
