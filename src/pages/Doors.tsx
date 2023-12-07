@@ -133,6 +133,22 @@ const Doors = () => {
     return () => ref?.removeEventListener("scroll", handleDoorsScroll)
   }, [userHasScrolled])
 
+  useEffect(() => {
+    const currentDate = new Date()
+    // If it's past 4am, we're on the next day
+    const linkIndex = currentDate.getHours() >= 4 ? currentDate.getDate() : currentDate.getDate() - 1
+
+    const el = document.getElementById(`Julehus__Locked::${linkIndex}`)
+    if (!el || !doorsContainerRef.current) return
+    const boundingRect = el.getBoundingClientRect()
+    const doorsContainerWidth = doorsContainerRef.current.offsetWidth
+    // If the doors container is wider than the SVG, don't scroll
+    const svgWidth = doorsContainerRef.current.querySelector("svg")?.getBoundingClientRect().width
+    if (!svgWidth || doorsContainerWidth >= svgWidth) return
+    doorsContainerRef.current.scrollTo({ behavior: "instant", left: boundingRect.left - (boundingRect.width / 2) - (doorsContainerWidth / 2) })
+  }, [])
+
+
   /*
    * Update the position and dimensions of each link element so that it overlays
    * its door in the SVG. Must update on scroll or resize.
