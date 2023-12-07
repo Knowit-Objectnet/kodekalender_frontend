@@ -14,10 +14,11 @@ import { ParentPost, Post as PostType } from "../../api"
 import useBooleanToggle from "../../hooks/useBooleanToggle"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
 import SubscribeButton from "../SubscribeButton"
-import avatarFallback from "../../../assets/svgo/slettet.svg"
+import { Avatar } from "../users/Avatar"
 
 import PostPreview from "./PostPreview"
 import LikeButton from "./LikeButton"
+
 
 type PostFormProps = {
   post?: PostType
@@ -49,22 +50,6 @@ const PostButton = forwardRef<HTMLButtonElement, ComponentPropsWithRef<"button">
   )
 )
 
-type UserAvatarProps = {
-  avatar?: string
-  deleted?: boolean
-  className?: string
-}
-
-export const UserAvatar = ({ avatar, deleted, className }: UserAvatarProps) => (
-  <img
-    className={cl(
-      "w-24 max-w-24 h-24 max-h-24 object-cover flex items-center justify-center rounded-full",
-      className
-    )}
-    src={deleted || !avatar ? avatarFallback : avatar}
-    alt=""
-  />
-)
 
 export const Post = ({ door, post, parent }: PostProps) => {
   const [isEditing, toggleIsEditing] = useBooleanToggle(false)
@@ -84,7 +69,7 @@ export const Post = ({ door, post, parent }: PostProps) => {
   return (
     <div className="flex flex-col">
       <article id={post.uuid} className="flex w-full items-start gap-6">
-        <UserAvatar avatar={post.author.avatar ?? ""} deleted={post.deleted} />
+        <Avatar avatar={post.author.avatar ?? ""} deleted={post.deleted} />
         <div className="flex w-full flex-col overflow-hidden">
           <div className="flex justify-between items-start">
             <div className="flex flex-wrap gap-x-4 items-baseline">
@@ -224,7 +209,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
 
   return (
     <div className="flex w-full gap-6">
-      {!post && <UserAvatar avatar={whoami?.avatar ?? ""} />}
+      {!post && <Avatar avatar={whoami?.avatar ?? ""} />}
       <form
         className="w-full flex flex-col gap-4 overflow-hidden"
         onSubmit={handleSubmit(onSubmit)}

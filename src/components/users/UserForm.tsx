@@ -24,6 +24,8 @@ import OptInMarketingCheckboxes from "../form/OptInMarketingCheckboxes"
 import FormGroup from "../form/FormGroup"
 import SubmitButton from "../SubmitButton"
 
+import { Avatar } from "./Avatar"
+
 
 const DELETE_USER_CONFIRM = squish(`
   Er du sikker på at du vil slette brukeren din? Du vil ikke lenger være med i premietrekningen. Dette kan ikke reverseres.
@@ -254,21 +256,14 @@ const UserForm: FC<UserFormProps> = ({
             />
           </FormElementCustom>
         </FormGroup>
-        <FormGroup error={avatarUrlError}>
+        <FormGroup error={avatarUrlError} className="space-y-6">
           <FormInputElement
             type="url"
             placeholder="... eller oppgi URL"
             onChange={(e) => debouncedFetchAndSetAvatarFromUrl(e.target.value)}
           />
           {(avatar || user?.avatar) && (
-            <img
-              className="w-avatar mt-6"
-              src={
-                (avatar && URL.createObjectURL(avatar)) ||
-                user?.avatar ||
-                ""
-              }
-            />
+            <Avatar avatar={(avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} />
           )}
         </FormGroup>
 
