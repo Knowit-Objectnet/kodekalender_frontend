@@ -5,9 +5,14 @@ import { isNil, minBy, values } from "lodash-es"
 import Challenge from "../../components/Door/Challenge"
 import PostsSection from "../../components/Posts/PostsSection"
 import DoorSelect from "../../components/Admin/DoorSelect"
-import { useChallenge, useChallenges, useDeleteChallenge, usePosts as useAdminPosts } from "../../api/admin/requests"
+import {
+  useChallenge,
+  useChallenges,
+  useDeleteChallenge,
+  usePosts as useAdminPosts
+} from "../../api/admin/requests"
 import Button from "../../components/Button"
-
+import { LinkButton } from "../../components/LinkButton"
 
 const Doors: FC = () => {
   const navigate = useNavigate()
@@ -21,7 +26,10 @@ const Doors: FC = () => {
   const { mutate: doDeleteChallenge, isLoading: isDeleting } = useDeleteChallenge()
 
   const deleteChallenge = () => {
-    if (!window.confirm(`Er du sikker på at du vil slette luke ${door} "${adminChallenge?.title}"?`)) return
+    if (
+      !window.confirm(`Er du sikker på at du vil slette luke ${door} "${adminChallenge?.title}"?`)
+    )
+      return
 
     doDeleteChallenge(
       { door },
@@ -46,24 +54,22 @@ const Doors: FC = () => {
   if (isNil(door)) return null
 
   return (
-    <div className="space-y-door-elements">
+    <div className="w-11/12">
       <Challenge
         challenge={adminChallenge}
         withoutInput
-        preamble={(
-          <div className="w-full flex justify-between mb-16">
+        preamble={
+          <div className="w-full flex flex-wrap gap-y-6 justify-between mb-16">
             <DoorSelect door={door} setDoor={setDoor} />
-
-            <div className="space-x-16">
-              <Link to={`/admin/doors/${door}/edit`}>
-                <Button disabled={isDeleting}>Rediger luke</Button>
-              </Link>
-              <Button disabled={isDeleting} onClick={deleteChallenge}>Slett luke</Button>
+            <div className="flex gap-6">
+              <LinkButton to={`/admin/doors/${door}/edit`} content="Rediger luke" />{" "}
+              <Button disabled={isDeleting} onClick={deleteChallenge}>
+                Slett luke
+              </Button>
             </div>
           </div>
-        )}
+        }
       />
-
       <PostsSection door={door} usePosts={useAdminPosts} withoutInput />
     </div>
   )
