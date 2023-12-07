@@ -18,6 +18,7 @@ export const Avatar = ({ avatar, deleted, className, ...rest }: AvatarProps) => 
     )}
     src={(deleted || !avatar) ? avatarFallback : avatar}
     alt=""
+    loading="lazy"
     {...rest}
   />
 )
