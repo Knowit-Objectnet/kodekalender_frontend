@@ -32,7 +32,7 @@ const Challenge: FC<ChallengeProps> = ({
         </div>
 
         <div
-          className="prose !max-w-full"
+          className="prose !max-w-full grid grid-flow-row &_pre:overflow-x-scroll"
           dangerouslySetInnerHTML={{ __html: challenge.content }}
         />
 
