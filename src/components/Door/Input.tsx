@@ -84,10 +84,22 @@ const Input: FC<InputProps> = ({ door }) => {
 
   return (
     <>
-      <div
-        className="relative flex items-center">
+      <div className="relative flex items-center">
         <input
-          className={cl("form-input pr-22 w-full rounded-xl border-purple-500 bg-transparent border-2 placeholder:text-purple-400 placeholder:font-bold font-bold", { "text-red-700": isWrongAnswer })}
+          className={cl(`
+            form-input
+            pr-22
+            w-full
+            rounded-xl
+            border-purple-500
+            bg-transparent
+            border-2
+            placeholder:text-purple-400
+            placeholder:font-bold
+            font-bold
+          `,
+            { "text-red-700": isWrongAnswer }
+          )}
           placeholder="Ditt svar:"
           value={answer}
           maxLength={128}
@@ -95,14 +107,34 @@ const Input: FC<InputProps> = ({ door }) => {
             setAnswer(e.target.value)
             setDirty(true)
           }}
-          onKeyPress={(e) => {
+          onKeyDown={(e) => {
             if (e.key === "Enter") {
               submitAnswer()
             }
           }}
         />
 
-        {answer && <Icon name="send" className="absolute right-6 child:top-0 child:left-0" onClick={() => submitAnswer()} />}
+        <button
+          type="button"
+          disabled={!answer}
+          className={cl(`
+            absolute
+            right-0
+            h-full
+            w-24
+            text-left
+            pl-6
+            rounded-r-xl
+          `,
+            {
+              "hover:cursor-pointer": answer,
+              "pointer-events-none": !answer,
+            }
+          )}
+          onClick={submitAnswer}
+        >
+          <Icon name="send" className={cl({ "text-white/30": !answer })} />
+        </button>
       </div>
 
       <div className="w-full text-center text-sm">Når du har løst oppgaven kan du se kommentarfeltet!</div>
