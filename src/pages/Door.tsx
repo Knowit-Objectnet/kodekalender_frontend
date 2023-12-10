@@ -8,8 +8,10 @@ import useIsDoorSolved from "../hooks/useIsDoorSolved"
 import { useChallenge } from "../api/requests"
 import ServiceMessageAlert from "../components/Door/ServiceMessageAlert"
 import { guardPresent } from "../utils"
+import WednesdayEasterEgg from "../components/WednesdayEasterEgg"
 
 import BasicPage from "./BasicPage"
+
 
 const Door: FC = () => {
   const navigate = useNavigate()
@@ -37,6 +39,20 @@ const Door: FC = () => {
         <Challenge challenge={challenge} />
         {isAuthenticated && solved && <PostsSection door={door} />}
       </div>
+      <WednesdayEasterEgg
+        door={door}
+        className={`
+          absolute
+          w-28
+          h-28
+          p-4
+          rounded-full
+          bottom-12
+          left-16
+          max-sm:bottom-8
+          max-sm:left-8
+        `}
+      />
       <ServiceMessageAlert
         door={door}
         className="w-18 h-20 md:w-24 md:h-24 absolute left-24 md:left-40 top-32"
