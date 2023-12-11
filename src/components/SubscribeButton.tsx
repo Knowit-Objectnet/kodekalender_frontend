@@ -58,7 +58,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) =>
       className={cl(
         "origin-top transition-transform hover:-rotate-12",
         className,
-        animating && "animate-bellClick"
+        animating && "animate-bell-click"
       )}
       title={buttonTitle}
       aria-label={buttonTitle}

@@ -106,7 +106,7 @@ export default {
         }
       },
       keyframes: {
-        bellClick: {
+        'bell-click': {
           "0%": { transform: "rotate(30deg)" },
           "20%": { transform: "rotate(-20deg)" },
           "40%": { transform: "rotate(10deg)" },
@@ -116,7 +116,7 @@ export default {
         }
       },
       animation: {
-        bellClick: "bellClick 0.7s ease-in-out"
+        'bell-click': "bell-click 0.7s ease-in-out"
       }
     }
   },
