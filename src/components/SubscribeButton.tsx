@@ -1,15 +1,10 @@
-import { motion, useAnimation } from "framer-motion"
 import { find } from "lodash-es"
 import { FC, useMemo, useState } from "react"
 import { FaBellSlash, FaBell } from "react-icons/fa"
 import { useDebounce } from "use-debounce"
 
 import { ParentPost } from "../api"
-import {
-  useCreateSubscription,
-  useDeleteSubscription,
-  useSubscriptions
-} from "../api/requests"
+import { useCreateSubscription, useDeleteSubscription, useSubscriptions } from "../api/requests"
 import { cl } from "../utils"
 
 type SubscribeButtonProps = {
@@ -20,22 +15,14 @@ type SubscribeButtonProps = {
 
 const ANIMATION_DURATION = 700
 
-const SubscribeButton: FC<SubscribeButtonProps> = ({
-  door,
-  post,
-  className
-}) => {
+const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) => {
   const { data: subscriptions } = useSubscriptions()
   const { mutate: createSubscription } = useCreateSubscription()
   const { mutate: deleteSubscription } = useDeleteSubscription()
 
-  const animationControl = useAnimation()
   const [animating, setAnimating] = useState(false)
 
-  const subscription = find(
-    subscriptions,
-    door ? { door } : { postUuid: post?.uuid }
-  )
+  const subscription = find(subscriptions, door ? { door } : { postUuid: post?.uuid })
   const [debouncedSubscription] = useDebounce(subscription, ANIMATION_DURATION)
 
   const buttonTitle = useMemo(() => {
@@ -62,28 +49,23 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({
     else subscribe()
 
     setAnimating(true)
-    animationControl.start({
-      rotate: [-30, 20, -10, 7, -3, 0],
-      transition: { ease: "easeIn", duration: ANIMATION_DURATION / 1000 }
-    })
 
     setTimeout(() => setAnimating(false), ANIMATION_DURATION)
   }
 
   return (
-    <motion.button
-      // TODO: Hover style
-      className={cl("", className)}
+    <button
+      className={cl(
+        "origin-top transition-transform hover:-rotate-12",
+        className,
+        animating && "animate-bell-click"
+      )}
       title={buttonTitle}
       aria-label={buttonTitle}
       onClick={onClick}
-      onMouseEnter={() => animationControl.start({ rotate: -10 })}
-      onMouseLeave={() => !animating && animationControl.start({ rotate: 0 })}
     >
-      <motion.div className="origin-top" animate={animationControl}>
-        {debouncedSubscription ? <FaBellSlash /> : <FaBell />}
-      </motion.div>
-    </motion.button>
+      {debouncedSubscription ? <FaBellSlash /> : <FaBell />}
+    </button>
   )
 }
 

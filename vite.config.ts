@@ -40,13 +40,5 @@ export default defineConfig({
   },
   build: {
     chunkSizeWarningLimit: 4096,
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes("framer-motion"))
-            return "framer-motion"
-        }
-      }
-    }
   }
 })

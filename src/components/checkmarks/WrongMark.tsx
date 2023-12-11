@@ -1,5 +1,5 @@
+import { join } from "lodash-es"
 import { FC } from "react"
-import { motion } from "framer-motion"
 
 import { easeInCubic, easeOutCubic } from "../../utils"
 
@@ -12,7 +12,7 @@ const R = 62.1
 export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
   <Wrapper {...props}>
     <svg className="text-red-700 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-      <motion.path
+      <path
         d={`
           M ${OFFSET} ${OFFSET}
           m 0 ${-R}
@@ -23,25 +23,21 @@ export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
         strokeLinecap="round"
         strokeMiterlimit="10"
         strokeWidth="6"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 0.4, ease: easeOutCubic }}
-      />
-      <motion.path
-        d={`
-          M ${OFFSET} ${OFFSET}
-          m -30.7 -27.2
-          l 61.4 54.4
-        `}
-        fill="none"
-        strokeLinecap="round"
-        strokeMiterlimit="10"
-        strokeWidth="6"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 0.2, delay: 0.4, ease: easeInCubic }}
-      />
-      <motion.path
+        strokeDasharray="1"
+        strokeDashoffset="1"
+        pathLength="1"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          dur=".4s"
+          by="1"
+          fill="freeze"
+          calcMode="spline"
+          keyTimes="0;1"
+          keySplines={join(easeOutCubic, " ")}
+        />
+      </path>
+      <path
         d={`
           M ${OFFSET} ${OFFSET}
           m 30.7 -27.2
@@ -51,10 +47,46 @@ export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
         strokeLinecap="round"
         strokeMiterlimit="10"
         strokeWidth="6"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 0.2, delay: 0.2, ease: easeInCubic }}
-      />
+        strokeDasharray="1"
+        strokeDashoffset="1"
+        pathLength="1"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          begin=".2s"
+          dur=".2s"
+          by="-1"
+          fill="freeze"
+          calcMode="spline"
+          keyTimes="0;1"
+          keySplines={join(easeInCubic, " ")}
+        />
+      </path>
+      <path
+        d={`
+          M ${OFFSET} ${OFFSET}
+          m -30.7 -27.2
+          l 61.4 54.4
+        `}
+        fill="none"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth="6"
+        strokeDasharray="1"
+        strokeDashoffset="1"
+        pathLength="1"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          begin=".4s"
+          dur=".2s"
+          by="-1"
+          fill="freeze"
+          calcMode="spline"
+          keyTimes="0;1"
+          keySplines={join(easeInCubic, " ")}
+        />
+      </path>
     </svg>
   </Wrapper>
 )

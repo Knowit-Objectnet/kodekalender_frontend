@@ -21,7 +21,6 @@
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "date-fns": "^2.23.0",
-    "framer-motion": "^10.16.5",
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
