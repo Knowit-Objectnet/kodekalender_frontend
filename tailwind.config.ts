@@ -104,6 +104,19 @@ export default {
             // '--tw-prose-td-borders': theme('colors.pink[200]'),
           }
         }
+      },
+      keyframes: {
+        bellClick: {
+          "0%": { transform: "rotate(30deg)" },
+          "20%": { transform: "rotate(-20deg)" },
+          "40%": { transform: "rotate(10deg)" },
+          "60%": { transform: "rotate(-7deg)" },
+          "80%": { transform: "rotate(3deg)" },
+          "100%": { transform: "rotate(0deg)" }
+        }
+      },
+      animation: {
+        bellClick: "bellClick 0.7s ease-in-out"
       }
     }
   },
