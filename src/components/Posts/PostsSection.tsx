@@ -1,6 +1,6 @@
 import { FC, Fragment, useEffect } from "react"
 import { map, trimStart } from "lodash-es"
-import {  useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 import { usePosts as useUserPosts } from "../../api/requests"
 import { Header3 } from "../text"
@@ -8,8 +8,11 @@ import Divider from "../Divider"
 import { LinkButton } from "../LinkButton"
 import SubscribeButton from "../SubscribeButton"
 import { useWhoami } from "../../api/users/requests"
+import { cl } from "../../utils"
 
 import { PostForm, Post } from "./PostForm"
+
+
 
 type PostsSectionProps = {
   door: number
@@ -50,7 +53,7 @@ const PostsSection: FC<PostsSectionProps> = ({
       <div className="flex flex-col gap-12 w-full overflow-x-hidden">
         {map(posts, (post) => (
           <Fragment key={post.uuid}>
-            <Divider bgClasses="w-full my-18 bg-purple-500" />
+            <Divider bgClasses={cl("w-full my-18 bg-purple-500", withoutInput && "h-0")} />
             <Post door={door} post={post} />
           </Fragment>
         ))}
