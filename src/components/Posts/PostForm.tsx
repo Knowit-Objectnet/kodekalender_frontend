@@ -242,9 +242,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
                   }}
                   className="block w-full rounded-lg border-2 border-purple-500 bg-transparent p-4 outline-none prose prose-sm md:prose break-words resize-none !max-w-full"
                   aria-labelledby={labelledBy}
-                  placeholder={
-                    "Vi støtter markdown! Alle blokk-elementer krever en tom linje over og under."
-                  }
+                  placeholder="Vi støtter markdown! Kodeblokker har syntax highlighting for de fleste språk."
                 />
               )}
             />
