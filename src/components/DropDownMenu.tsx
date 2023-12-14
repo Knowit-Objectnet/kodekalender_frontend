@@ -13,7 +13,7 @@ import SignOutButton from "./SignOutButton"
 import ThemeButton from "./ThemeButton"
 import ExternalLink from "./ExternalLink"
 
-import { ReactComponent as KnowitLogo } from "/assets/svg/Knowit logo.svg"
+import { ReactComponent as KnowitLogo } from "/assets/svgo/misc/Knowit logo.svg"
 
 import Button from "./Button"
 import { LinkButton } from "./LinkButton"
@@ -46,18 +46,13 @@ export const DropDownMenu = () => {
       <Menu>
         <Menu.Button
           as={Button}
-          className="hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75"
+          className={cl("hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75", hasUnresolvedServiceMessages && "text-yellow-500")}
         >
           <Icon
             name="menu"
             className="md:mr-3 max-md:child:left-0 max-md:child:top-0"
           />
-          <span
-            className={cl(
-              "hidden md:block",
-              hasUnresolvedServiceMessages && "text-yellow-500"
-            )}
-          >
+          <span className="hidden md:block">
             Meny
           </span>
         </Menu.Button>
@@ -210,7 +205,7 @@ export const DropDownMenu = () => {
 
             <ExternalLink
               href="https://knowit.no"
-              className="flex justify-center"
+              className="flex justify-center w-1/2"
             >
               <KnowitLogo />
             </ExternalLink>

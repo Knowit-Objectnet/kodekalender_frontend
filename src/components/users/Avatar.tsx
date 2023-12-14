@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, ImgHTMLAttributes } from "react"
 
-import avatarFallback from "/assets/svgo/slettet.svg"
+import avatarFallback from "/assets/svgo/misc/slettet.svg"
 
 import { cl } from "../../utils"
 

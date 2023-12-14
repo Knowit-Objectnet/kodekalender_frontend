@@ -6,13 +6,15 @@
   "scripts": {
     "serve": "vite",
     "preview": "vite preview --open --port 8080",
-    "build": "yarn svgo && yarn svgo_julehus && vite build",
+    "build": "yarn svgo && vite build",
     "lint": "eslint --ext .tsx,.ts,.d.ts,.jsx,.js  .",
     "lint-fix": "eslint --ext .tsx,.ts,.d.ts,.jsx,.js  --fix .",
     "typecheck": "tsc",
     "typecheck-ci": "tsc --noEmit",
-    "svgo": "svgo --config svgo.config.cjs --pretty --indent 0 --recursive --folder assets/svg --exclude Julehus.svg --output assets/svgo",
-    "svgo_julehus": "svgo --config svgo_julehus.config.cjs --pretty --indent 0 --input assets/svg/Julehus.svg --output assets/svgo/Julehus.svg"
+    "svgo": "yarn svgo_icons && yarn svgo_misc && yarn svgo_julehus",
+    "svgo_icons": "svgo --config svgo_icons.config.cjs --pretty --indent 0 --recursive --folder assets/svg/icons --output assets/svgo/icons",
+    "svgo_misc": "svgo --config svgo.config.cjs --pretty --indent 0 --recursive --folder assets/svg/misc --exclude Julehus.svg --output assets/svgo/misc",
+    "svgo_julehus": "svgo --config svgo_julehus.config.cjs --pretty --indent 0 --input assets/svg/misc/Julehus.svg --output assets/svgo/misc/Julehus.svg"
   },
   "dependencies": {
     "@fontsource-variable/nunito": "^5.0.16",

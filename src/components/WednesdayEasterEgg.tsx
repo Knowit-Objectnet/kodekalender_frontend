@@ -1,7 +1,7 @@
 import { getDay } from "date-fns"
 import { memo } from "react"
 
-import { ReactComponent as Wednesday } from "/assets/svgo/wednesday.svg"
+import { ReactComponent as Wednesday } from "/assets/svgo/misc/wednesday.svg"
 
 import { cl, getActiveYear } from "../utils"
 

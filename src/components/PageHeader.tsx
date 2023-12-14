@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
-import { ReactComponent as KnowitLogo } from "/assets/svgo/Knowit logo.svg"
-import { ReactComponent as KodekalenderLogoDesktop } from "/assets/svgo/Kodekalender Logo Desktop.svg"
-import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/Kodekalender Logo Mobile.svg"
+import { ReactComponent as KnowitLogo } from "/assets/svgo/misc/Knowit logo.svg"
+import { ReactComponent as KodekalenderLogoDesktop } from "/assets/svgo/misc/Kodekalender Logo Desktop.svg"
+import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/misc/Kodekalender Logo Mobile.svg"
 
 import { Z_HEADER } from "../utils"
 

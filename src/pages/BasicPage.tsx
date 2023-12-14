@@ -2,7 +2,7 @@ import { FCWithChildren } from "../../types/utils_types"
 import { cl } from "../utils"
 import Divider from "../components/Divider"
 import { Header1, Header2 } from "../components/text"
-import { ReactComponent as SnowBorder } from "../../assets/svgo/snowDesktop.svg"
+import { ReactComponent as SnowBorder } from "../../assets/svgo/misc/snowDesktop.svg"
 
 import Page from "./Page"
 

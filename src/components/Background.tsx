@@ -1,7 +1,7 @@
 import { FC, memo, useContext, useMemo } from "react"
 import Snowfall from "react-snowfall"
 
-import { ReactComponent as Streetlamp } from "/assets/svgo/Streetlamp.svg"
+import { ReactComponent as Streetlamp } from "/assets/svgo/misc/Streetlamp.svg"
 
 import { Z_BACKGROUND_1, Z_BACKGROUND_2, Z_BACKGROUND_3, Z_BACKGROUND_4, Z_BACKGROUND_5, Z_SNOW_ATTR, cl } from "../utils"
 import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
@@ -44,7 +44,7 @@ const TAPE_CONTAINER_CLASSES = `
   before:h-full
   before:translate-x-[-46%]
 
-  before:bg-[url('/assets/svgo/Teip.svg')]
+  before:bg-[url('/assets/svgo/misc/Teip.svg')]
   before:bg-[length:1600px_80px]
   before:bg-repeat-x
 `
@@ -93,7 +93,7 @@ const Background: FC = () => {
           before:blur-[1px]
           before:w-[300%]
           before:h-[1080px]
-          before:bg-[url('/assets/svgo/Snow.svg')]
+          before:bg-[url('/assets/svgo/misc/Snow.svg')]
           before:bg-[length:1920px_1080px]
           before:bg-repeat-x
         `} />
@@ -110,7 +110,7 @@ const Background: FC = () => {
             before:blur-[1px]
             before:w-[300%]
             before:h-[1080px]
-            before:bg-[url('/assets/svgo/GoldSnow.svg')]
+            before:bg-[url('/assets/svgo/misc/GoldSnow.svg')]
             before:bg-[length:1920px_1080px]
             before:bg-repeat-x
           `} />
