@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
-import { ReactComponent as BellSmIcon } from "/assets/svgo/icons/bell-sm.svg"
 import { ReactComponent as BellIcon } from "/assets/svgo/icons/bell.svg"
+import { ReactComponent as BellSlashIcon } from "/assets/svgo/icons/bell-slash.svg"
 import { ReactComponent as BrukerIcon } from "/assets/svgo/icons/bruker.svg"
 import { ReactComponent as ChartIcon } from "/assets/svgo/icons/chart.svg"
 import { ReactComponent as DelIcon } from "/assets/svgo/icons/del.svg"
@@ -34,7 +34,7 @@ import { cl } from "../../utils"
 
 const ICONS = {
   bell: BellIcon,
-  "bell-sm": BellSmIcon,
+  "bell-slash": BellSlashIcon,
   user: BrukerIcon,
   chart: ChartIcon,
   share: DelIcon,

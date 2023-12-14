@@ -1,11 +1,13 @@
 import { find } from "lodash-es"
 import { FC, useMemo, useState } from "react"
-import { FaBellSlash, FaBell } from "react-icons/fa"
 import { useDebounce } from "use-debounce"
 
 import { ParentPost } from "../api"
 import { useCreateSubscription, useDeleteSubscription, useSubscriptions } from "../api/requests"
 import { cl } from "../utils"
+
+import Icon from "./Icons/Icon"
+
 
 type SubscribeButtonProps = {
   door?: number
@@ -64,7 +66,7 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ door, post, className }) =>
       aria-label={buttonTitle}
       onClick={onClick}
     >
-      {debouncedSubscription ? <FaBellSlash /> : <FaBell />}
+      <Icon name={debouncedSubscription ? "bell-slash" : "bell"} />
     </button>
   )
 }
