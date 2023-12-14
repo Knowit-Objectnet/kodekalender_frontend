@@ -28,6 +28,8 @@ import { ReactComponent as SoundIcon } from "/assets/svgo/icons/sound.svg"
 import { ReactComponent as TwitterIcon } from "/assets/svgo/icons/twitter.svg"
 import { ReactComponent as HeartIcon } from "/assets/svgo/icons/heart.svg"
 import { ReactComponent as SnowflakeIcon } from "/assets/svgo/icons/snowflake.svg"
+import { ReactComponent as LikeFullIcon } from "/assets/svgo/icons/like_fylt.svg"
+import { ReactComponent as LikeEmptyIcon } from "/assets/svgo/icons/like_tom.svg"
 
 import { cl } from "../../utils"
 
@@ -60,6 +62,8 @@ const ICONS = {
   twitter: TwitterIcon,
   send: SendIcon,
   heart: HeartIcon,
+  like: LikeFullIcon,
+  "like-empty": LikeEmptyIcon,
   snow: SnowflakeIcon
 }
 

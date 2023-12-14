@@ -7,6 +7,7 @@ import useIsOwnPost from "../../hooks/useIsOwnPost"
 import { cl } from "../../utils"
 import Icon from "../Icons/Icon"
 
+
 type LikeProps = {
   post: Post
 }
@@ -33,14 +34,19 @@ const LikeButton: FC<LikeProps> = ({ post }) => {
   return (
     <button
       className={cl(
-        isOwnPost
-          ? "cursor-default"
-          : "cursor-pointer hover:child:text-red-500 hover:child:scale-[120%]",
+        isOwnPost ? "cursor-default" : "cursor-pointer group/not-own-post",
         "flex gap-2 items-center"
       )}
       onClick={liked ? unlikePost : likePost}
     >
-      <Icon name="heart" sm />
+      <Icon
+        name={liked ? "like" : "like-empty"}
+        sm
+        className={cl(
+          "group-hover/not-own-post:text-red-500 group-hover/not-own-post:scale-[120%]",
+          liked && "text-red-500 group-hover/not-own-post:scale-[80%]"
+        )}
+      />
       <span className="!text-white">{post.likes}</span>
     </button>
   )
