@@ -37,7 +37,7 @@ const ContentBackground: FC = () => (<>
         before:h-full
         before:bg-[url('/assets/svgo/misc/SnowSmall.svg')]
         before:bg-[length:1920px_1080px]
-        before:bg-repeat-y
+        before:bg-repeat
       `} />
   </div>
 </>)
