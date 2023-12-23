@@ -55,7 +55,7 @@ const Doors = () => {
       }
     })
 
-    const windowGroups = [[1, 8], [8, 15], [15, 18], [18, 24]]
+    const windowGroups = [[1, 8], [8, 15], [15, 19], [19, 24]]
     forEach(windowGroups, ([from, to]) => {
       const subState = slice(doorsState, from - 1, to - 1)
       if (every(subState, (state) => state === "solved")) {
