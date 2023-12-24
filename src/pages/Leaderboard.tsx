@@ -11,6 +11,15 @@ import { LeaderboardUser } from "../api"
 import BasicPage from "./BasicPage"
 
 
+const getGroupTitle = (count: number) => {
+  const title = `${upperFirst(numberString(count))} løst${count > 1 ? "e" : ""} luke${count > 1 ? "r" : ""}`
+
+  if (count === 24)
+    return `🧝‍♂️🎅🎄 ${title} 🎄🤶🧝‍♀️`
+  else
+    return title
+}
+
 type MappedLeaderboardUser = LeaderboardUser & {
   username: ReactNode
   rank: number
@@ -50,8 +59,7 @@ const Leaderboard = () => {
       {map(leaderboardGroupedOnSolvedCount, (group) => (
         <div key={group[0].solved_count}>
           <h2 className="text-center font-bold">
-            {upperFirst(numberString(group[0].solved_count))} løst
-            {group[0].solved_count > 1 && "e"} luke{group[0].solved_count > 1 && "r"}
+            {getGroupTitle(group[0].solved_count)}
           </h2>
 
           <Divider bgClasses="bg-purple-500/70 mt-3" />
