@@ -9,11 +9,26 @@ import { Z_HEADER } from "../utils"
 import SignInButton from "./SignInButton"
 import ExternalLink from "./ExternalLink"
 import { DropDownMenu } from "./DropDownMenu"
+import RaffleNotification from "./RaffleNotification"
 
+
+const RAFFLE_BACKGROUND_STYLE = "bg-purple-800/90 rounded-md py-2 px-3"
 
 const PageHeader = () => (
-  <header className={`h-60 w-full px-12 sm:px-20`}>
-    <nav className="h-full grid grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-4 md:gap-16">
+  <header className="w-full min-h-48 py-3 sm:py-6 px-12 sm:px-20">
+    <nav
+      // Different column definitions to have left and right columns maintain
+      // equal width, while the middle column remains centered.
+      className={`
+        h-full
+        grid
+        grid-cols-[4.6rem_1fr_4.6rem]
+        md:grid-cols-[8.125rem_1fr_8.125rem]
+        lg:grid-cols-[18.125rem_1fr_18.125rem]
+        items-center
+        justify-items-center
+        gap-4
+      `}>
       {/* Go Home */}
       <Link
         to="/"
@@ -24,15 +39,17 @@ const PageHeader = () => (
         <KodekalenderLogoMobile className="block md:hidden w-30 -mt-3" />
       </Link>
 
-      <ExternalLink href="https://knowit.no" className={Z_HEADER}>
-        <KnowitLogo className="w-50 sm:w-70" />
-      </ExternalLink>
+      <div className={`flex flex-col gap-4 text-center items-center ${Z_HEADER}`}>
+        <ExternalLink href="https://knowit.no">
+          <KnowitLogo className="w-50 sm:w-70" />
+        </ExternalLink>
+        <RaffleNotification className={`max-w-[clamp(18rem,90%,36rem)] max-sm:hidden ${RAFFLE_BACKGROUND_STYLE}`} />
+      </div>
 
       <div className="place-self-center-end flex flex-row gap-8">
         <SignInButton
           className={`
-            hidden
-            md:flex
+            max-lg:hidden
             hover:bg-transparent
             hover:backdrop-blur-sm
             hover:backdrop-brightness-75
@@ -41,6 +58,7 @@ const PageHeader = () => (
         />
         <DropDownMenu />
       </div>
+      <RaffleNotification className={`sm:hidden col-span-3 text-center ${RAFFLE_BACKGROUND_STYLE} max-w-[max(22rem,90%)]`} />
     </nav>
   </header>
 )

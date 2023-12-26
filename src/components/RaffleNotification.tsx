@@ -1,19 +1,16 @@
-import { FC } from "react"
 import { Link } from "react-router-dom"
 
 import useCurrentTime from "../hooks/useCurrentTime"
 import { getRaffleEnd } from "../utils"
 
 
-const RaffleNotification: FC = () => {
+const RaffleNotification = ({ className }: { className?: string }) => {
   const currentTime = useCurrentTime()
 
   if (currentTime < getRaffleEnd()) return null
 
   return (
-    <div className="mx-auto text-center p-8 w-10/12 max-w-320">
-      NB!
-      <br />
+    <div className={className}>
       Konkurransen er over for denne gang, men du kan fortsette å svare på luker
       og skrive innlegg til vi skrur av tjenesten en gang i løpet av januar.
       <br />
