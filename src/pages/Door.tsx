@@ -51,6 +51,10 @@ const Door: FC = () => {
           left-16
           max-sm:bottom-8
           max-sm:left-8
+
+          opacity-0
+          hover:opacity-100
+          hover:animate-spin
         `}
       />
       <ServiceMessageAlert
