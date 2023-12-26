@@ -75,6 +75,7 @@ const SolutionEntry = memo(({ challenge }: { challenge: Challenge }) => {
           p-4
           sm:p-8
           hover:bg-purple-700
+          rounded-md
         `}
       >
         <h2>Luke {challenge.door}</h2>
