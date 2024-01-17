@@ -7,6 +7,8 @@ import { getRaffleEnd } from "../utils"
 const RaffleNotification = ({ className }: { className?: string }) => {
   const currentTime = useCurrentTime()
 
+  return null
+
   if (currentTime < getRaffleEnd()) return null
 
   return (

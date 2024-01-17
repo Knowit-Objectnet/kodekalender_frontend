@@ -30,35 +30,12 @@ const PageHeader = () => (
         gap-4
       `}>
       {/* Go Home */}
-      <Link
-        to="/"
-        title="Til forsiden"
-        className={`place-self-center-start flex flex-col justify-center child:w-full ${Z_HEADER}`}
-      >
-        <KodekalenderLogoDesktop className="hidden md:block w-60" />
-        <KodekalenderLogoMobile className="block md:hidden w-30 -mt-3" />
-      </Link>
-
-      <div className={`flex flex-col gap-4 text-center items-center ${Z_HEADER}`}>
+      <div className={`flex flex-col gap-4 text-center items-center ${Z_HEADER} col-start-2`}>
         <ExternalLink href="https://knowit.no">
           <KnowitLogo className="w-50 sm:w-70" />
         </ExternalLink>
         <RaffleNotification className={`max-w-[clamp(18rem,90%,36rem)] max-sm:hidden ${RAFFLE_BACKGROUND_STYLE}`} />
       </div>
-
-      <div className="place-self-center-end flex flex-row gap-8">
-        <SignInButton
-          className={`
-            max-lg:hidden
-            hover:bg-transparent
-            hover:backdrop-blur-sm
-            hover:backdrop-brightness-75
-            ${Z_HEADER}
-          `}
-        />
-        <DropDownMenu />
-      </div>
-      <RaffleNotification className={`sm:hidden col-span-3 text-center ${RAFFLE_BACKGROUND_STYLE} max-w-[max(22rem,90%)]`} />
     </nav>
   </header>
 )

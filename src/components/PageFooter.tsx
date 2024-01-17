@@ -19,21 +19,12 @@ const PageFooter = () => (
         align-center
       `}
     >
-      <Link className="underline" to="/about">
-        Om kodekalenderen
+      <Link className="underline" to="/contact">
+        Kontakt oss
       </Link>
-
-      <div className="contents max-sm:hidden">
-        <Link className="underline" to="/privacy">
-          Personopplysninger
-        </Link>
-        <Link className="underline" to="/contact">
-          Kontakt oss
-        </Link>
-        <Link className="underline" to="/career">
-          Jobb i Knowit
-        </Link>
-      </div>
+      <Link className="underline" to="/career">
+        Jobb i Knowit
+      </Link>
     </div>
 
     <div className="flex gap-12 justify-center align-center">
