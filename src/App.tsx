@@ -31,7 +31,7 @@ const WinnerMessage = () => (
   <div className="text-center space-y-12">
     <Header2>Årets vinner</Header2>
 
-     Vinneren av Knowit Kodekalender 2023 med hele 24 løste luker er <span className="font-bold">Øystein Høystad Bruce</span>. Gratulerer så mye!
+     Vinneren av Knowit Kodekalender 2023 med hele 24 løste luker er <span className="font-bold">Øystein Høistad Bruce</span>. Gratulerer så mye!
     <br />
     Vi alvene takker for oss for denne gang og håper vi ser dere igjen neste år!
 
