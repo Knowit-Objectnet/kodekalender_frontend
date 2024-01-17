@@ -17,25 +17,11 @@ import { AuthContextProvider } from "./AuthContext"
 import { OptionsContextProvider } from "./OptionsContext"
 
 const Main = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        notifyOnChangeProps: "tracked"
-      }
-    }
-  })
-
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <OptionsContextProvider>
-          <AuthContextProvider>
-            <ReactQueryDevtools />
-
-            <App />
-          </AuthContextProvider>
-        </OptionsContextProvider>
-      </QueryClientProvider>
+      <OptionsContextProvider>
+        <App />
+      </OptionsContextProvider>
     </BrowserRouter>
   )
 }

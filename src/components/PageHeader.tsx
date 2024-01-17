@@ -29,17 +29,7 @@ const PageHeader = () => (
         lg:grid-cols-[18.125rem_1fr_18.125rem]
       `}
     >
-      {/* Go Home */}
-      <Link
-        to="/"
-        title="Til forsiden"
-        className={`place-self-center-start flex flex-col justify-center child:w-full ${Z_HEADER}`}
-      >
-        <KodekalenderLogoDesktop className="hidden w-60 md:block" />
-        <KodekalenderLogoMobile className="-mt-3 block w-30 md:hidden" />
-      </Link>
-
-      <div className={`flex flex-col items-center gap-4 text-center ${Z_HEADER}`}>
+      <div className={`flex flex-col items-center gap-4 text-center ${Z_HEADER} col-start-2`}>
         <ExternalLink href="https://knowit.no">
           <KnowitLogo className="w-50 sm:w-70" />
         </ExternalLink>
@@ -47,22 +37,6 @@ const PageHeader = () => (
           className={`max-w-[clamp(18rem,90%,36rem)] max-sm:hidden ${RAFFLE_BACKGROUND_STYLE}`}
         />
       </div>
-
-      <div className="place-self-center-end flex flex-row gap-8">
-        <SignInButton
-          className={`
-            hover:bg-transparent
-            hover:backdrop-blur-sm
-            hover:backdrop-brightness-75
-            max-lg:hidden
-            ${Z_HEADER}
-          `}
-        />
-        <DropDownMenu />
-      </div>
-      <RaffleNotification
-        className={`col-span-3 text-center sm:hidden ${RAFFLE_BACKGROUND_STYLE} max-w-[max(22rem,90%)]`}
-      />
     </nav>
   </header>
 )

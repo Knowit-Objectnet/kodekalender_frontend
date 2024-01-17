@@ -22,76 +22,30 @@ import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
 import { OptionsContext } from "./OptionsContext"
 
-const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
-  const [delayed, setDelayed] = useState(true)
+import { ReactComponent as KodekalenderLogoDesktop } from "/assets/svgo/misc/Kodekalender Logo Desktop.svg"
+import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/misc/Kodekalender Logo Mobile.svg"
+import { Header2 } from "./components/text"
 
-  useEffect(() => {
-    const t = setTimeout(() => setDelayed(false), 250)
-    return () => clearTimeout(t)
-  }, [setDelayed])
+const WinnerMessage = () => (
+  <div className="space-y-12 text-center">
+    <Header2>Vinneren er trukket</Header2>
 
-  if (delayed) return null
+    <div className="inline-block max-w-384">
+      Vinneren av Knowit Kodekalender 2024 er trukket! Mens vi venter på svar, takk til alle som har
+      vært med og gratulerer til vinneren!
+      <br />
+      Vi alvene takker for oss for denne gang og håper vi ser dere igjen neste år!
+    </div>
 
-  return (
-    <Page>
-      <Icon
-        name={icon}
-        className={`
-        fixed
-        left-1/2
-        top-1/2
-        h-64
-        w-64
-        translate-x-[-50%]
-        translate-y-[-50%]
-        animate-pulse
-        text-purple-100/70
-      `}
-      />
-    </Page>
-  )
-})
-
-const LazyAdmin = () => {
-  const Component = lazy(() => import("./pages/Admin"))
-
-  return (
-    <Suspense fallback={<Loader icon="edit" />}>
-      <Component />
-    </Suspense>
-  )
-}
-
-const LazyUser = () => {
-  const Component = lazy(() => import("./pages/User"))
-
-  return (
-    <Suspense fallback={<Loader icon="user" />}>
-      <Component />
-    </Suspense>
-  )
-}
+    <div className="grid place-items-center">
+      <KodekalenderLogoDesktop className="hidden w-60 md:block" />
+      <KodekalenderLogoMobile className="-mt-3 block w-30 md:hidden" />
+    </div>
+  </div>
+)
 
 const App = () => {
-  useStoreAnchorVars()
-  useWelcomeBackRedirect()
   const { showSnow } = useContext(OptionsContext)
-
-  const raffleStarted = useIsRaffleStarted()
-  const raffleRoutes = useMemo(
-    () =>
-      raffleStarted ? (
-        <>
-          <Route path="/" element={<Doors />} />
-          <Route path="/luke/:door" element={<Door />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/solutions" element={<Solutions />} />
-        </>
-      ) : (
-        <Route path="/" element={<Countdown />} />
-      ),
-    [raffleStarted]
-  )
 
   // Memoize entire application tree so we don't re-render anything when the
   // useIsRaffleStarted timer triggers.
@@ -118,27 +72,16 @@ const App = () => {
           <PageHeader />
 
           <Routes>
-            {raffleRoutes}
-
-            <Route path="/about" element={<About />} />
-            <Route path="/privacy" element={<Privacy />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/career" element={<Career />} />
-            <Route path="/service_messages" element={<ServiceMessages />} />
-
-            <Route path="/admin/*" element={<LazyAdmin />} />
-            <Route path="/users/*" element={<LazyUser />} />
-
-            {/* 404? - Route to main view */}
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<WinnerMessage />} />
           </Routes>
 
           <PageFooter />
         </div>
       </>
     ),
-    [raffleRoutes, showSnow]
+    [showSnow]
   )
 
   return content
