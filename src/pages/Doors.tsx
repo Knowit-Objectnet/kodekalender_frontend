@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDebouncedCallback } from "use-debounce"
 
-import { ReactComponent as JulehusSvg } from "/assets/svgo/misc/Julehus.svg"
+import { ReactComponent as JulehusSvg } from "/assets/svgo/julehus/Julehus.svg"
 
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import PageContent from "../components/PageContent"
