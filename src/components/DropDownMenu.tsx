@@ -6,6 +6,7 @@ import { Z_DROPDOWN, cl, isPresent } from "../utils"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { useServiceMessages } from "../api/requests"
 import { AuthContext } from "../AuthContext"
+import useIsRaffleStarted from "../hooks/useIsRaffleStarted"
 
 import Icon from "./Icons/Icon"
 import SignInButton from "./SignInButton"
@@ -30,6 +31,7 @@ export const DropDownMenu = () => {
   const isAdmin = useIsAdmin()
   const { isAuthenticated } = useContext(AuthContext)
   const { data: serviceMessages } = useServiceMessages()
+  const raffleStarted = useIsRaffleStarted()
 
   const hasUnresolvedServiceMessages = useMemo(() =>
     some(serviceMessages, (sm) => !sm.resolved),
@@ -83,6 +85,7 @@ export const DropDownMenu = () => {
               gap-12
 
               child:w-full
+              empty:child:hidden
 
               ${Z_DROPDOWN}
            `}
@@ -109,13 +112,15 @@ export const DropDownMenu = () => {
             </MenuGroup>
 
             <MenuGroup>
-              <Menu.Item>
-                <LinkButton
-                  to="/leaderboard"
-                  name="award"
-                  content="Ledertavle"
-                />
-              </Menu.Item>
+              {raffleStarted && (
+                <Menu.Item>
+                  <LinkButton
+                    to="/leaderboard"
+                    name="award"
+                    content="Ledertavle"
+                  />
+                </Menu.Item>
+              )}
 
               {isPresent(serviceMessages) && (
                 <Menu.Item>
