@@ -4,7 +4,7 @@ run-name: "Deploy to production: ${{ github.event.workflow_run.head_commit.messa
 on:
   workflow_run:
     workflows:
-      - typecheck
+      - check
     branches:
       - release
     types:

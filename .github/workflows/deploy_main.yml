@@ -4,7 +4,7 @@ run-name: "Deploy to staging: ${{ github.event.workflow_run.head_commit.message 
 on:
   workflow_run:
     workflows:
-      - typecheck
+      - check
     branches:
       - main
     types:

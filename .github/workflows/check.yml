@@ -1,4 +1,4 @@
-name: Typecheck
+name: Check
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - '*'
 
 jobs:
-  typecheck:
-    name: Typecheck
+  check:
+    name: Check
     runs-on: ubuntu-latest
 
     steps:
@@ -20,11 +20,14 @@ jobs:
       - name: Setup node / cache yarn
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 21
           cache: yarn
 
       - name: Install
         run: yarn install --frozen-lockfile
 
-      - name: Run typecheck
-        run: yarn typecheck-ci
+      - name: Run type-check
+        run: yarn type-check
+
+      - name: Run lint-check
+        run: yarn lint-check
