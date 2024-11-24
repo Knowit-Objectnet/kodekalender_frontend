@@ -229,6 +229,9 @@ const UserForm: FC<UserFormProps> = ({
 
         <FormGroup error={errors.avatar} dirty={dirtyFields.avatar}>
           <FormElementCustom htmlFor={fileUploadId} label="Profilbilde">
+            {(avatar || user?.avatar) && (
+              <Avatar avatar={(avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} className="mb-6"/>
+            )}
             <input
               id={fileUploadId}
               ref={fileInputRef}
@@ -256,15 +259,12 @@ const UserForm: FC<UserFormProps> = ({
             />
           </FormElementCustom>
         </FormGroup>
-        <FormGroup error={avatarUrlError} className="space-y-6">
+        <FormGroup error={avatarUrlError}>
           <FormInputElement
             type="url"
             placeholder="... eller oppgi URL"
             onChange={(e) => debouncedFetchAndSetAvatarFromUrl(e.target.value)}
           />
-          {(avatar || user?.avatar) && (
-            <Avatar avatar={(avatar && URL.createObjectURL(avatar)) || user?.avatar || ""} />
-          )}
         </FormGroup>
 
         <FormGroup
