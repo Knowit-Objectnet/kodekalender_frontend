@@ -22,7 +22,6 @@ import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
 import { OptionsContext } from "./OptionsContext"
 
-
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
   const [delayed, setDelayed] = useState(true)
 
@@ -31,8 +30,7 @@ const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
     return () => clearTimeout(t)
   }, [setDelayed])
 
-  if (delayed)
-    return null
+  if (delayed) return null
 
   return (
     <Page>
@@ -40,15 +38,16 @@ const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
         name={icon}
         className={`
         fixed
-        top-1/2
         left-1/2
-        w-64
+        top-1/2
         h-64
+        w-64
         translate-x-[-50%]
         translate-y-[-50%]
-        text-purple-100/70
         animate-pulse
-      `} />
+        text-purple-100/70
+      `}
+      />
     </Page>
   )
 })
@@ -76,62 +75,71 @@ const LazyUser = () => {
 const App = () => {
   useStoreAnchorVars()
   useWelcomeBackRedirect()
-  const {showSnow} = useContext(OptionsContext)
+  const { showSnow } = useContext(OptionsContext)
 
   const raffleStarted = useIsRaffleStarted()
-  const raffleRoutes = useMemo(() => (
-    raffleStarted
-      ? (<>
-        <Route path="/" element={<Doors />} />
-        <Route path="/luke/:door" element={<Door />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/solutions" element={<Solutions />} />
-      </>)
-      : <Route path="/" element={<Countdown />} />
-  ), [raffleStarted])
+  const raffleRoutes = useMemo(
+    () =>
+      raffleStarted ? (
+        <>
+          <Route path="/" element={<Doors />} />
+          <Route path="/luke/:door" element={<Door />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/solutions" element={<Solutions />} />
+        </>
+      ) : (
+        <Route path="/" element={<Countdown />} />
+      ),
+    [raffleStarted]
+  )
 
   // Memoize entire application tree so we don't re-render anything when the
   // useIsRaffleStarted timer triggers.
-  const content = useMemo(() => (<>
-    <Background />
+  const content = useMemo(
+    () => (
+      <>
+        <Background />
 
-    <div
-      id="content-container"
-      className={`
-        relative
-        w-screen
+        <div
+          id="content-container"
+          className={`
         max-w-screen
-        overflow-x-clip
-        min-h-screen
-
+        relative
         flex
+        min-h-screen
+        w-screen
+
         flex-col
         justify-between
+        overflow-x-clip
       `}
-    >
-      { !showSnow && <ContentBackground /> }
-      <PageHeader />
+        >
+          {!showSnow && <ContentBackground />}
+          <PageHeader />
 
-      <Routes>
-        {raffleRoutes}
+          <Routes>
+            {raffleRoutes}
 
-        <Route path="/about" element={<About />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/career" element={<Career />} />
-        <Route path="/service_messages" element={<ServiceMessages />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/service_messages" element={<ServiceMessages />} />
 
-        <Route path="/admin/*" element={<LazyAdmin />} />
-        <Route path="/users/*" element={<LazyUser />} />
+            <Route path="/admin/*" element={<LazyAdmin />} />
+            <Route path="/users/*" element={<LazyUser />} />
 
-        {/* 404? - Route to main view */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+            {/* 404? - Route to main view */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
 
-      <PageFooter />
-    </div>
-  </>), [raffleRoutes, showSnow])
+          <PageFooter />
+        </div>
+      </>
+    ),
+    [raffleRoutes, showSnow]
+  )
 
   return content
 }

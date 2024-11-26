@@ -20,7 +20,6 @@ import Button from "./Button"
 import { LinkButton } from "./LinkButton"
 import ToggleAnimatedSnowButton from "./ToggleAnimatedSnowButton"
 
-
 const MenuGroup = ({ children }: { children: ReactNode }) => (
   <div className="flex flex-col gap-3" role="none">
     {children}
@@ -33,9 +32,10 @@ export const DropDownMenu = () => {
   const { data: serviceMessages } = useServiceMessages()
   const raffleStarted = useIsRaffleStarted()
 
-  const hasUnresolvedServiceMessages = useMemo(() =>
-    some(serviceMessages, (sm) => !sm.resolved),
-  [serviceMessages])
+  const hasUnresolvedServiceMessages = useMemo(
+    () => some(serviceMessages, (sm) => !sm.resolved),
+    [serviceMessages]
+  )
 
   return (
     <div
@@ -48,15 +48,13 @@ export const DropDownMenu = () => {
       <Menu>
         <Menu.Button
           as={Button}
-          className={cl("hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75", hasUnresolvedServiceMessages && "text-yellow-500")}
+          className={cl(
+            "hover:bg-transparent hover:backdrop-blur-sm hover:backdrop-brightness-75",
+            hasUnresolvedServiceMessages && "text-yellow-500"
+          )}
         >
-          <Icon
-            name="menu"
-            className="md:mr-3 max-md:child:left-0 max-md:child:top-0"
-          />
-          <span className="hidden md:block">
-            Meny
-          </span>
+          <Icon name="menu" className="max-md:child:left-0 max-md:child:top-0 md:mr-3" />
+          <span className="hidden md:block">Meny</span>
         </Menu.Button>
 
         <Transition
@@ -74,15 +72,15 @@ export const DropDownMenu = () => {
               right-0
               mt-2
 
-              rounded-md
-              px-8
-              py-12
-              bg-purple-800
-
               flex
               flex-col
               items-center
               gap-12
+
+              rounded-md
+              bg-purple-800
+              px-8
+              py-12
 
               child:w-full
               empty:child:hidden
@@ -114,11 +112,7 @@ export const DropDownMenu = () => {
             <MenuGroup>
               {raffleStarted && (
                 <Menu.Item>
-                  <LinkButton
-                    to="/leaderboard"
-                    name="award"
-                    content="Ledertavle"
-                  />
+                  <LinkButton to="/leaderboard" name="award" content="Ledertavle" />
                 </Menu.Item>
               )}
 
@@ -142,19 +136,11 @@ export const DropDownMenu = () => {
 
             <MenuGroup>
               <Menu.Item>
-                <LinkButton
-                  to="/about"
-                  name="info"
-                  content="Om kodekalenderen"
-                />
+                <LinkButton to="/about" name="info" content="Om kodekalenderen" />
               </Menu.Item>
 
               <Menu.Item>
-                <LinkButton
-                  to="/privacy"
-                  name="user"
-                  content="Personopplysninger"
-                />
+                <LinkButton to="/privacy" name="user" content="Personopplysninger" />
               </Menu.Item>
 
               <Menu.Item>
@@ -208,10 +194,7 @@ export const DropDownMenu = () => {
               </Menu.Item>
             </MenuGroup>
 
-            <ExternalLink
-              href="https://knowit.no"
-              className="flex justify-center w-1/2"
-            >
+            <ExternalLink href="https://knowit.no" className="flex w-1/2 justify-center">
               <KnowitLogo />
             </ExternalLink>
           </Menu.Items>

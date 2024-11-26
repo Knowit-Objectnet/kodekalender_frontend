@@ -10,18 +10,23 @@ import Button from "../Button"
 import FormElement from "../form/FormElement"
 import FormElementCustom from "../form/FormElementCustom"
 
-
 type ServiceMessageFormProps = {
   serviceMessage: AdminServiceMessagePayload
   newForm?: boolean
   submit: (data: AdminServiceMessagePayload) => void
 }
 
-const ServiceMessageForm: FC<ServiceMessageFormProps> = ({ serviceMessage, newForm = false, submit }) => {
+const ServiceMessageForm: FC<ServiceMessageFormProps> = ({
+  serviceMessage,
+  newForm = false,
+  submit
+}) => {
   const { register, handleSubmit, setValue } = useForm<AdminServiceMessagePayload>({
     defaultValues: {
       ...serviceMessage,
-      ...(!newForm && ({ resolved_at: getTimestampForInputField(serviceMessage.resolved_at ?? formatISO(new Date)) }))
+      ...(!newForm && {
+        resolved_at: getTimestampForInputField(serviceMessage.resolved_at ?? formatISO(new Date()))
+      })
     }
   })
 
@@ -51,23 +56,51 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({ serviceMessage, newFo
               labelClassName="col-span-3"
               className="w-full"
               defaultValue={serviceMessage.resolution_content ?? ""}
-              {...register("resolution_content", { setValueAs: (value: string) => isEmpty(value) ? null : value })}
+              {...register("resolution_content", {
+                setValueAs: (value: string) => (isEmpty(value) ? null : value)
+              })}
             />
           )}
 
-          <FormElementCustom label="Luke" className="col-span-3" defaultValue={serviceMessage.resolution_content ?? ""}>
-            <select className="block form-select text-black" defaultValue={serviceMessage.door ?? undefined} {...register("door", { setValueAs: (value: string) => isEmpty(value) ? undefined : parseInt(value) })}>
+          <FormElementCustom
+            label="Luke"
+            className="col-span-3"
+            defaultValue={serviceMessage.resolution_content ?? ""}
+          >
+            <select
+              className="form-select block text-black"
+              defaultValue={serviceMessage.door ?? undefined}
+              {...register("door", {
+                setValueAs: (value: string) => (isEmpty(value) ? undefined : parseInt(value))
+              })}
+            >
               <option label="-" value="" />
-              {map(doors, (door) => <option key={door} label={toString(door)} value={door} />)}
+              {map(doors, (door) => (
+                <option key={door} label={toString(door)} value={door} />
+              ))}
             </select>
           </FormElementCustom>
 
           {!newForm && (
             <>
-              <FormElement label="Opprettet" type="datetime-local" value={getTimestampForInputField(serviceMessage.created_at ?? "")} disabled />
+              <FormElement
+                label="Opprettet"
+                type="datetime-local"
+                value={getTimestampForInputField(serviceMessage.created_at ?? "")}
+                disabled
+              />
               <div>
-                <FormElement label="Løsningstidspunkt" type="datetime-local" {...register("resolved_at")} />
-                <Button type="button" className="!text-xs" onClick={() => setValue("resolved_at", null)} content="Nullstill" />
+                <FormElement
+                  label="Løsningstidspunkt"
+                  type="datetime-local"
+                  {...register("resolved_at")}
+                />
+                <Button
+                  type="button"
+                  className="!text-xs"
+                  onClick={() => setValue("resolved_at", null)}
+                  content="Nullstill"
+                />
               </div>
             </>
           )}

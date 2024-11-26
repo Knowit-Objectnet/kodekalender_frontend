@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef } from "react"
 
-
 const useIsMounted = () => {
   const isMountedRef = useRef(true)
   const isMounted = useCallback(() => isMountedRef.current, [])

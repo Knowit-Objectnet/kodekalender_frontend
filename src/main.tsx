@@ -16,7 +16,6 @@ import App from "./App"
 import { AuthContextProvider } from "./AuthContext"
 import { OptionsContextProvider } from "./OptionsContext"
 
-
 const Main = () => {
   const queryClient = new QueryClient({
     defaultOptions: {

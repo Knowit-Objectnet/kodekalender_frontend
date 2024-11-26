@@ -5,19 +5,22 @@ import { easeInOutCubic, easeOutCubic } from "../../utils"
 
 import Wrapper, { CheckmarkWrapperProps } from "./CheckmarkWrapper"
 
-
 const OFFSET = 65.1
 const R = 62.1
 
 export const CheckMark: FC<CheckmarkWrapperProps> = (props) => (
   <Wrapper {...props}>
-    <svg className="text-green-600 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+    <svg
+      className="stroke-current text-green-600"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 130.2 130.2"
+    >
       <path
         d={`
           M ${OFFSET} ${OFFSET}
           m 0 ${-R}
-          a ${R}, ${R} 0 1, 1 0 ${2*R}
-          a ${R}, ${R} 0 1, 1 0 ${-2*R}
+          a ${R}, ${R} 0 1, 1 0 ${2 * R}
+          a ${R}, ${R} 0 1, 1 0 ${-2 * R}
         `}
         fill="none"
         strokeLinecap="round"

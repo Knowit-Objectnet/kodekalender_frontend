@@ -10,7 +10,6 @@ import { cl } from "../../utils"
 import Icon from "../Icons/Icon"
 import SignInButton from "../SignInButton"
 
-
 type InputProps = {
   door: number
 }
@@ -86,17 +85,18 @@ const Input: FC<InputProps> = ({ door }) => {
     <>
       <div className="relative flex items-center">
         <input
-          className={cl(`
+          className={cl(
+            `
             form-input
-            pr-22
             w-full
             rounded-xl
+            border-2
             border-purple-500
             bg-transparent
-            border-2
-            placeholder:text-purple-400
-            placeholder:font-bold
+            pr-22
             font-bold
+            placeholder:font-bold
+            placeholder:text-purple-400
           `,
             { "text-red-700": isWrongAnswer }
           )}
@@ -117,18 +117,19 @@ const Input: FC<InputProps> = ({ door }) => {
         <button
           type="button"
           disabled={!answer}
-          className={cl(`
+          className={cl(
+            `
             absolute
             right-0
             h-full
             w-24
-            text-left
-            pl-6
             rounded-r-xl
+            pl-6
+            text-left
           `,
             {
               "hover:cursor-pointer": answer,
-              "pointer-events-none": !answer,
+              "pointer-events-none": !answer
             }
           )}
           onClick={submitAnswer}
@@ -137,7 +138,9 @@ const Input: FC<InputProps> = ({ door }) => {
         </button>
       </div>
 
-      <div className="w-full text-center text-sm">Når du har løst oppgaven kan du se kommentarfeltet!</div>
+      <div className="w-full text-center text-sm">
+        Når du har løst oppgaven kan du se kommentarfeltet!
+      </div>
 
       {(isWrongAnswer || error) && (
         <WrongMark

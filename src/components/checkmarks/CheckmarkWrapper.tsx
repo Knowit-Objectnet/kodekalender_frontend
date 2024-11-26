@@ -25,9 +25,7 @@ const CheckmarkWrapper: FCWithChildren<CheckmarkWrapperProps> = ({
     <div ref={scrollRef} className={cl(wrapperClassName)}>
       {children}
       {message && (
-        <p className="font-bold text-center mt-8 md:mt-16 whitespace-nowrap">
-          {message}
-        </p>
+        <p className="mt-8 whitespace-nowrap text-center font-bold md:mt-16">{message}</p>
       )}
     </div>
   )

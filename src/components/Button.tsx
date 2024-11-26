@@ -1,8 +1,4 @@
-import {
-  ComponentPropsWithRef,
-  ReactNode,
-  forwardRef
-} from "react"
+import { ComponentPropsWithRef, ReactNode, forwardRef } from "react"
 
 import { cl } from "../utils"
 import { Nullable } from "../../types/utils_types"
@@ -55,12 +51,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         hover:ring-inset
         hover:ring-purple-700
 
-        active:bg-purple-500
-
         focus:outline-none
+
         focus:ring
         focus:ring-inset
         focus:ring-purple-100
+        active:bg-purple-500
       `,
         disabled &&
           `
@@ -68,10 +64,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       `,
         sm &&
           `
-        sm:text-sm
+        gap-3
         px-8
         py-2
-        gap-3
+        sm:text-sm
       `,
         { "bg-purple-600": primary },
         className
@@ -81,7 +77,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       {...restProps}
       ref={ref}
     >
-      {icon && <Icon name={icon} sm={sm} className={cl(sm && "w-10 h-10")} />}
+      {icon && <Icon name={icon} sm={sm} className={cl(sm && "h-10 w-10")} />}
       {content ?? children}
     </button>
   )

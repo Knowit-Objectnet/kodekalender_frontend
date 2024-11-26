@@ -33,7 +33,6 @@ import { ReactComponent as LikeEmptyIcon } from "/assets/svgo/icons/like_tom.svg
 
 import { cl } from "../../utils"
 
-
 const ICONS = {
   bell: BellIcon,
   "bell-slash": BellSlashIcon,
@@ -67,10 +66,7 @@ const ICONS = {
   snow: SnowflakeIcon
 }
 
-export type IconProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLElement>,
-  HTMLElement
-> & {
+export type IconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
   sm?: boolean
   name: keyof typeof ICONS
   className?: string
@@ -93,7 +89,7 @@ const Icon: FC<IconProps> = ({ sm = false, name, className, ...rest }) => {
           child:-left-1
         `,
         sm && "h-[1.35rem] w-[1.35rem] child:left-[.5px] child:top-[.5px]",
-        name === "snow" && "max-w-[1.25rem] max-h-[1.25rem]",
+        name === "snow" && "max-h-[1.25rem] max-w-[1.25rem]",
         className
       )}
       {...rest}

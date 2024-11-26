@@ -1,12 +1,14 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 
-
 const getMatches = (query: string) => window.matchMedia(query).matches
 
 export type UseMediaQueryOptions = {
   layoutEffect?: boolean
 }
-export const useMediaQuery = ({ query, layoutEffect = false }: { query: string } & UseMediaQueryOptions) => {
+export const useMediaQuery = ({
+  query,
+  layoutEffect = false
+}: { query: string } & UseMediaQueryOptions) => {
   const [matches, setMatches] = useState(getMatches(query))
   const effectFunc = layoutEffect ? useLayoutEffect : useEffect
 

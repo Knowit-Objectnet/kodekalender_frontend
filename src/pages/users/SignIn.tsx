@@ -8,7 +8,6 @@ import BasicPage from "../BasicPage"
 import SubmitButton from "../../components/SubmitButton"
 import { LinkButton } from "../../components/LinkButton"
 
-
 const SignIn: FC = () => {
   const navigate = useNavigate()
 
@@ -16,15 +15,12 @@ const SignIn: FC = () => {
   const { mutate: signIn, error } = useSignIn()
 
   const onSubmit = (data: SignInParameters) => {
-    signIn(
-      data,
-      { onSuccess: () => navigate("/") }
-    )
+    signIn(data, { onSuccess: () => navigate("/") })
   }
 
   return (
     <BasicPage title="Logg inn" containerClassName="gap-24" onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-full max-w-200 mx-auto flex flex-col items-center gap-6">
+      <div className="mx-auto flex w-full max-w-200 flex-col items-center gap-6">
         <FormElement
           autoFocus
           label="E-post"
@@ -37,12 +33,16 @@ const SignIn: FC = () => {
           {...register("password", { required: true })}
         />
 
-        {error && <div><em className="text-red-700">{error.error}</em></div>}
+        {error && (
+          <div>
+            <em className="text-red-700">{error.error}</em>
+          </div>
+        )}
 
         <SubmitButton icon="sign-in" content="Logg inn" />
       </div>
 
-      <div className="flex flex-wrap gap-6 md:gap-12 justify-center">
+      <div className="flex flex-wrap justify-center gap-6 md:gap-12">
         <LinkButton to="/users/sign_up" name="edit" content="Ny bruker?" />
         <LinkButton
           to="/users/lost_password"
@@ -53,7 +53,7 @@ const SignIn: FC = () => {
             const email = getValues("email") || ""
             navigate(`/users/lost_password?email=${email}`)
           }}
-          />
+        />
       </div>
     </BasicPage>
   )

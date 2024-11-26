@@ -4,7 +4,6 @@ import { FCWithChildren } from "../types/utils_types"
 
 import { useWhoami } from "./api/users/requests"
 
-
 type AuthContextType = {
   isAuthenticated: boolean
 }

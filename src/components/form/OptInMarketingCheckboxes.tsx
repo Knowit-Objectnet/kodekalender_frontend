@@ -4,7 +4,6 @@ import { useController, useFormContext } from "react-hook-form"
 
 import { cl } from "../../utils"
 
-
 const NAME = "opt_in_marketing" as const
 const CHECKBOX_CLASSES = cl(`
   form-checkbox
@@ -33,10 +32,20 @@ type OptInMarketingCheckboxesProps = {
   required?: boolean
 }
 
-const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id, required = false, className }) => {
+const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({
+  id,
+  required = false,
+  className
+}) => {
   const { setValue, control } = useFormContext<{ opt_in_marketing?: boolean }>()
 
-  const { field: { value } } = useController({ control, name: NAME, rules: { validate: (value) => isNil(value) ? "Påkrevd" : true } })
+  const {
+    field: { value }
+  } = useController({
+    control,
+    name: NAME,
+    rules: { validate: (value) => (isNil(value) ? "Påkrevd" : true) }
+  })
 
   return (
     <div
@@ -44,12 +53,12 @@ const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id, requi
         `
           flex
           gap-10
-          group-[.error]:border-red-700
+          group-[.error]:rounded-xl
           group-[.error]:border-2
-          group-[.error]:text-red-700
+          group-[.error]:border-red-700
           group-[.error]:px-6
           group-[.error]:py-1
-          group-[.error]:rounded-xl
+          group-[.error]:text-red-700
         `,
         className
       )}
@@ -63,7 +72,6 @@ const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id, requi
           checked={value === true}
           onChange={() => setValue(NAME, true, SET_VALUE_OPTS)}
         />
-
         Ja
       </label>
 
@@ -76,7 +84,6 @@ const OptInMarketingCheckboxes: FC<OptInMarketingCheckboxesProps> = ({ id, requi
           checked={value === false}
           onChange={() => setValue(NAME, false, SET_VALUE_OPTS)}
         />
-
         Nei
       </label>
 

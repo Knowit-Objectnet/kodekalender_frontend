@@ -8,7 +8,6 @@ import { cl } from "../utils"
 
 import Icon from "./Icons/Icon"
 
-
 type SubscribeButtonProps = {
   door?: number
   post?: ParentPost

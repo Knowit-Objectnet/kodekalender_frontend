@@ -19,7 +19,6 @@ import { Avatar } from "../users/Avatar"
 import PostPreview from "./PostPreview"
 import LikeButton from "./LikeButton"
 
-
 type PostFormProps = {
   post?: PostType
   door: number
@@ -41,7 +40,7 @@ const PostButton = forwardRef<HTMLButtonElement, ComponentPropsWithRef<"button">
   ({ className, ...props }, ref) => (
     <button
       className={cl(
-        "disabled:text-purple-100 text-sm p-4 rounded-full hover:bg-purple-500 focus-within:bg-purple-500",
+        "rounded-full p-4 text-sm focus-within:bg-purple-500 hover:bg-purple-500 disabled:text-purple-100",
         className
       )}
       {...props}
@@ -49,7 +48,6 @@ const PostButton = forwardRef<HTMLButtonElement, ComponentPropsWithRef<"button">
     />
   )
 )
-
 
 export const Post = ({ door, post, parent }: PostProps) => {
   const [isEditing, toggleIsEditing] = useBooleanToggle(false)
@@ -71,16 +69,16 @@ export const Post = ({ door, post, parent }: PostProps) => {
       <article id={post.uuid} className="flex w-full items-start gap-6">
         <Avatar avatar={post.author.avatar ?? ""} deleted={post.deleted} />
         <div className="flex w-full flex-col overflow-hidden">
-          <div className="flex justify-between items-start">
-            <div className="flex flex-wrap gap-x-4 items-baseline">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-wrap items-baseline gap-x-4">
               <span className="text-md font-bold">
                 {post.deleted ? "Ukjent bruker" : post.author.username}
               </span>
-              <span className="text-purple-100 text-sm">
+              <span className="text-sm text-purple-100">
                 {dateFormat(new Date(post.created_at), "long")}
               </span>
             </div>
-            <div className="flex gap-6 items-center">
+            <div className="flex items-center gap-6">
               {"children" in post ? <SubscribeButton post={post} /> : null}
               {!post.deleted && <LikeButton post={post} />}
             </div>
@@ -110,7 +108,7 @@ export const Post = ({ door, post, parent }: PostProps) => {
                       <div className="fixed inset-0 bg-black/50" />
                       <div className="fixed inset-0 overflow-y-auto">
                         <div className="flex min-h-full items-center justify-center p-4 text-center">
-                          <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-purple-500 p-8 text-left align-middle shadow-xl transition-all flex flex-col gap-12">
+                          <Dialog.Panel className="flex w-full max-w-md transform flex-col gap-12 overflow-hidden rounded-2xl bg-purple-500 p-8 text-left align-middle shadow-xl transition-all">
                             <Dialog.Title>Slett kommentar</Dialog.Title>
                             <Dialog.Description>
                               Er du sikker på at du vil slette kommentaren din?
@@ -132,7 +130,7 @@ export const Post = ({ door, post, parent }: PostProps) => {
       </article>
       <div className="w-full pl-32">
         {isAddingReply && (
-          <div className="py-12 mt-12">
+          <div className="mt-12 py-12">
             <PostForm
               door={door}
               parent={"children" in post ? post : undefined}
@@ -211,7 +209,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
     <div className="flex w-full gap-6">
       {!post && <Avatar avatar={whoami?.avatar ?? ""} />}
       <form
-        className="w-full flex flex-col gap-4 overflow-hidden"
+        className="flex w-full flex-col gap-4 overflow-hidden"
         onSubmit={handleSubmit(onSubmit)}
       >
         {isPreview ? (
@@ -240,7 +238,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
                     ref(e)
                     inputRef.current = e
                   }}
-                  className="block w-full rounded-lg border-2 border-purple-500 bg-transparent p-4 outline-none prose prose-sm md:prose break-words resize-none !max-w-full"
+                  className="prose prose-sm block w-full !max-w-full resize-none break-words rounded-lg border-2 border-purple-500 bg-transparent p-4 outline-none md:prose"
                   aria-labelledby={labelledBy}
                   placeholder="Vi støtter markdown! Kodeblokker har syntax highlighting for de fleste språk."
                 />
@@ -253,7 +251,7 @@ export const PostForm = ({ post, door, parent, onCancel }: PostFormProps) => {
             )}
           </div>
         )}
-        <div className="flex gap-4 justify-end">
+        <div className="flex justify-end gap-4">
           <PostButton
             type="button"
             onClick={togglePreview}

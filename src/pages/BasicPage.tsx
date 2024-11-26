@@ -6,7 +6,6 @@ import { ReactComponent as SnowBorder } from "../../assets/svgo/misc/snowDesktop
 
 import Page from "./Page"
 
-
 export type BasicPageProps = {
   title?: string
   className?: string
@@ -50,7 +49,7 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
         className
       )}
     >
-      <SnowBorder className="absolute left-[-2%] w-[104%] top-[clamp(-20px,calc(-0.027*100vw+5.45px),5px)]" />
+      <SnowBorder className="absolute left-[-2%] top-[clamp(-20px,calc(-0.027*100vw+5.45px),5px)] w-[104%]" />
 
       {title && (
         <>
@@ -62,11 +61,7 @@ const BasicPage: FCWithChildren<BasicPageProps> = ({
       )}
 
       <ContainerComponent
-        className={cl(
-          "grid grid-flow-row",
-          containerClasses,
-          containerClassName
-        )}
+        className={cl("grid grid-flow-row", containerClasses, containerClassName)}
         {...containerProps}
       >
         {children}

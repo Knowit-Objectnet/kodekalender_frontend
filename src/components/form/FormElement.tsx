@@ -3,7 +3,6 @@ import { forwardRef, PropsWithChildren, useId } from "react"
 import FormElementCustom from "./FormElementCustom"
 import FormInputElement, { FormInputElementProps } from "./FormInputElement"
 
-
 type FormElementProps = FormInputElementProps & {
   label: string
   note?: string
@@ -24,13 +23,7 @@ const FormElement = forwardRef<HTMLInputElement, PropsWithChildren<FormElementPr
         disabled={disabled}
         className={labelClassName}
       >
-        <FormInputElement
-          id={id}
-          ref={ref}
-          disabled={disabled}
-          required={required}
-          {...inputProps}
-        >
+        <FormInputElement id={id} ref={ref} disabled={disabled} required={required} {...inputProps}>
           {children}
         </FormInputElement>
       </FormElementCustom>

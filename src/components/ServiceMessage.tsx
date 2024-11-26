@@ -16,16 +16,16 @@ const ServiceMessage: FC<ServiceMessageProps> = ({
 }) => (
   <div
     className={cl(
-      "w-full flex flex-col gap-8 border-2 p-8 rounded-md",
+      "flex w-full flex-col gap-8 rounded-md border-2 p-8",
       resolved ? "border-yellow-400" : "border-red-700",
       className
     )}
   >
-    <div className="flex justify-between flex-wrap items-center">
+    <div className="flex flex-wrap items-center justify-between">
       <Header3 as="h2">
         {`Feil${door ? ` på luke ${door}` : ""}${resolved ? " (rettet)" : ""}`}
       </Header3>
-      <span className="text-xs whitespace-nowrap">
+      <span className="whitespace-nowrap text-xs">
         <time>{dateFormat(new Date(created_at), "short")}</time>
         {resolved_at && (
           <>

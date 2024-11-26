@@ -11,7 +11,6 @@ import { Challenge } from "../api"
 
 import BasicPage from "./BasicPage"
 
-
 const SolutionEntry = memo(({ challenge }: { challenge: Challenge }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -22,7 +21,9 @@ const SolutionEntry = memo(({ challenge }: { challenge: Challenge }) => {
     if (!containerElement) return
 
     const mouseEnterHandler = () => {
-      const easterEggElement = containerElement.querySelector("a#solutions-easter-egg") as HTMLAnchorElement | null
+      const easterEggElement = containerElement.querySelector(
+        "a#solutions-easter-egg"
+      ) as HTMLAnchorElement | null
       if (!easterEggElement) return
 
       const containerBounds = containerElement.getBoundingClientRect()
@@ -45,23 +46,23 @@ const SolutionEntry = memo(({ challenge }: { challenge: Challenge }) => {
   })
 
   return (
-    <div ref={containerRef} className="relative group">
+    <div ref={containerRef} className="group relative">
       <WednesdayEasterEgg
         id="solutions-easter-egg"
         door={challenge.door}
         className={`
-          absolute
-          w-28
-          h-28
-          max-sm:w-24
-          max-sm:h-24
-          p-4
-          rounded-full
-
-          opacity-0
-          group-hover:opacity-100
-          group-hover:animate-spin
           pointer-events-none
+          absolute
+          h-28
+          w-28
+          rounded-full
+          p-4
+          opacity-0
+
+          group-hover:animate-spin
+          group-hover:opacity-100
+          max-sm:h-24
+          max-sm:w-24
         `}
       />
       <Link
@@ -70,26 +71,28 @@ const SolutionEntry = memo(({ challenge }: { challenge: Challenge }) => {
           flex
           flex-col
           gap-1
-          sm:gap-2
-          text-center
-          p-4
-          sm:p-8
-          hover:bg-purple-700
           rounded-md
+          p-4
+          text-center
+          hover:bg-purple-700
+          sm:gap-2
+          sm:p-8
         `}
       >
         <h2>Luke {challenge.door}</h2>
-        <Header2 as="span" className="test-base sm:!text-lg font-bold">{challenge.title}</Header2>
+        <Header2 as="span" className="test-base font-bold sm:!text-lg">
+          {challenge.title}
+        </Header2>
         <code
           className={`
-            text-sm
-            sm:text-base
+            mx-auto
+            inline-block
             max-w-full
             overflow-x-auto
-            tracking-wide
+            text-sm
 
-            inline-block
-            mx-auto
+            tracking-wide
+            sm:text-base
           `}
         >
           {challenge.answer}
@@ -106,9 +109,7 @@ const Solutions = () => {
   if (currentTime < getRaffleEnd()) {
     return (
       <BasicPage title="Løsninger">
-        <p className="mt-8 text-center">
-          Hva gjør du her?? Gå og løs lukene!
-        </p>
+        <p className="mt-8 text-center">Hva gjør du her?? Gå og løs lukene!</p>
       </BasicPage>
     )
   }
@@ -116,13 +117,17 @@ const Solutions = () => {
   if (isLoading) return null
 
   return (
-    <BasicPage title="Løsninger" containerClassName="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16">
-      {isEmpty(challenges)
-        ? <div>Ingenting her!</div>
-        : map(compact(values(challenges)), (challenge) => (
-            <SolutionEntry key={challenge.door} challenge={challenge} />
-         ))
-      }
+    <BasicPage
+      title="Løsninger"
+      containerClassName="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16"
+    >
+      {isEmpty(challenges) ? (
+        <div>Ingenting her!</div>
+      ) : (
+        map(compact(values(challenges)), (challenge) => (
+          <SolutionEntry key={challenge.door} challenge={challenge} />
+        ))
+      )}
     </BasicPage>
   )
 }

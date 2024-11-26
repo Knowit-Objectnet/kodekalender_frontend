@@ -2,7 +2,6 @@ import { reject, range, has } from "lodash-es"
 
 import { useChallenges } from "../../api/admin/requests"
 
-
 const useAvailableDoors = () => {
   const { data: challenges } = useChallenges()
 

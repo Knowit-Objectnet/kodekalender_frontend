@@ -59,7 +59,7 @@ const Doors: FC = () => {
         challenge={adminChallenge}
         withoutInput
         preamble={
-          <div className="w-full flex flex-wrap gap-y-6 justify-between mb-16">
+          <div className="mb-16 flex w-full flex-wrap justify-between gap-y-6">
             <DoorSelect door={door} setDoor={setDoor} />
             <div className="flex gap-6">
               <LinkButton to={`/admin/doors/${door}/edit`} content="Rediger luke" />{" "}

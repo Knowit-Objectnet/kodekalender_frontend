@@ -12,7 +12,6 @@ import WednesdayEasterEgg from "../components/WednesdayEasterEgg"
 
 import BasicPage from "./BasicPage"
 
-
 const Door: FC = () => {
   const navigate = useNavigate()
 
@@ -35,7 +34,7 @@ const Door: FC = () => {
 
   return (
     <BasicPage className="relative">
-      <div className="pb-16 pt-28 flex flex-col gap-30">
+      <div className="flex flex-col gap-30 pb-16 pt-28">
         <Challenge challenge={challenge} />
         {isAuthenticated && solved && <PostsSection door={door} />}
       </div>
@@ -43,23 +42,23 @@ const Door: FC = () => {
         door={door}
         className={`
           absolute
-          w-28
-          h-28
-          p-4
-          rounded-full
           bottom-12
           left-16
+          h-28
+          w-28
+          rounded-full
+          p-4
+          opacity-0
+          hover:animate-spin
+
+          hover:opacity-100
           max-sm:bottom-8
           max-sm:left-8
-
-          opacity-0
-          hover:opacity-100
-          hover:animate-spin
         `}
       />
       <ServiceMessageAlert
         door={door}
-        className="w-18 h-20 md:w-24 md:h-24 absolute left-24 md:left-40 top-32"
+        className="absolute left-24 top-32 h-20 w-18 md:left-40 md:h-24 md:w-24"
       />
     </BasicPage>
   )

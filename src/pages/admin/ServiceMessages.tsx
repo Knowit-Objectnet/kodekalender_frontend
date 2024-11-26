@@ -23,14 +23,17 @@ const ServiceMessages = () => {
   return (
     <div>
       <Header2 className="place-self-center">Driftsmeldinger</Header2>
-      <div className="grid grid-cols-1 gap-12 justify-items-center">
+      <div className="grid grid-cols-1 justify-items-center gap-12">
         {isEmpty(serviceMessages) ? (
           <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
         ) : (
           map(serviceMessages, (serviceMessage) => (
-            <div key={serviceMessage.uuid} className="w-full flex flex-col gap-4">
-              <div className="flex gap-8 justify-end">
-                <LinkButton to={`/admin/service_messages/${serviceMessage.uuid}/edit`} content="Rediger" />
+            <div key={serviceMessage.uuid} className="flex w-full flex-col gap-4">
+              <div className="flex justify-end gap-8">
+                <LinkButton
+                  to={`/admin/service_messages/${serviceMessage.uuid}/edit`}
+                  content="Rediger"
+                />
                 <Button content="Slett" onClick={() => deleteServiceMessage(serviceMessage.uuid)} />
               </div>
               <ServiceMessage serviceMessage={serviceMessage} />

@@ -7,16 +7,17 @@ import { cl, getActiveYear } from "../utils"
 
 import ExternalLink from "./ExternalLink"
 
-
-type WednesdayEasterEggProps = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> & {
+type WednesdayEasterEggProps = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+> & {
   door: number
   className?: string
 }
 
 const lastWednesdayDoor = 24 - ((getDay(new Date(getActiveYear(), 11, 24)) + 3) % 7) - 1
 const WednesdayEasterEgg: FC<WednesdayEasterEggProps> = ({ door, className, ...anchorProps }) => {
-  if (door !== lastWednesdayDoor)
-    return null
+  if (door !== lastWednesdayDoor) return null
 
   return (
     <ExternalLink

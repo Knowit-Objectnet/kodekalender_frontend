@@ -7,12 +7,15 @@ import FormElement from "../../components/form/FormElement"
 import BasicPage from "../BasicPage"
 import SubmitButton from "../../components/SubmitButton"
 
-
 const LostPassword: FC = () => {
   const { search } = useLocation()
   const paramMatch = search.match(/email=(?<email>\S+)/)?.groups
 
-  const { register, handleSubmit, formState: { isSubmitSuccessful } } = useForm<InitiateResetPasswordParameters>()
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitSuccessful }
+  } = useForm<InitiateResetPasswordParameters>()
   const { mutate: resetPassword, error, isLoading } = useInitiateResetPassword()
 
   const onSubmit = (data: InitiateResetPasswordParameters) => {
@@ -24,8 +27,8 @@ const LostPassword: FC = () => {
       <BasicPage title="Glemt passord">
         <p className="text-center">Tilbakestillingsinstrukser sendt.</p>
         <p className="text-center">
-          Dersom det finnes en konto med e-postadressen du oppga vil du snarlig
-          få en e-post med instrukser for å tilbakestille ditt passord.
+          Dersom det finnes en konto med e-postadressen du oppga vil du snarlig få en e-post med
+          instrukser for å tilbakestille ditt passord.
         </p>
       </BasicPage>
     )

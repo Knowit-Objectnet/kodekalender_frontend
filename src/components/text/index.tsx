@@ -3,7 +3,6 @@ import { ElementType, HTMLAttributes } from "react"
 import { cl } from "../../utils"
 import { FCWithChildren } from "../../../types/utils_types"
 
-
 const HEADER_CLASSES = [
   "font-['Twinkle_Star'] text-xl sm:text2xl md:text-3xl tracking-[0.03475rem]",
   "font-['Twinkle_Star'] text-lg sm:text-xl md:text-2xl tracking-[0.03375rem]",
@@ -16,7 +15,8 @@ type HeaderComponentProps = HTMLAttributes<HTMLHeadingElement> & {
   className?: string
 }
 
-const createHeader = (n: 1 | 2 | 3 | 4): FCWithChildren<HeaderComponentProps> => (
+const createHeader =
+  (n: 1 | 2 | 3 | 4): FCWithChildren<HeaderComponentProps> =>
   ({ children, as = `h${n}`, className, ...rest }) => {
     const HeaderComponent = as
 
@@ -33,7 +33,6 @@ const createHeader = (n: 1 | 2 | 3 | 4): FCWithChildren<HeaderComponentProps> =>
       </HeaderComponent>
     )
   }
-)
 
 export const Header1 = createHeader(1)
 export const Header2 = createHeader(2)

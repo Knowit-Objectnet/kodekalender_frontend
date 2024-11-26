@@ -22,11 +22,9 @@ const Contact = () => (
       />
     </div>
 
-    <p className="mt-8 -mb-4 text-center">
-      Funnet en feil? Ris eller ros? Send oss en mail!
-    </p>
+    <p className="-mb-4 mt-8 text-center">Funnet en feil? Ris eller ros? Send oss en mail!</p>
     <LinkButton
-      className="justify-self-center inline-flex w-fit"
+      className="inline-flex w-fit justify-self-center"
       name="mail"
       to="mailto:julekalender@knowit.no"
       content="Kontakt oss"

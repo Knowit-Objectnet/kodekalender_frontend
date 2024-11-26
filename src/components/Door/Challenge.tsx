@@ -12,11 +12,7 @@ type ChallengeProps = {
   preamble?: ReactNode
 }
 
-const Challenge: FC<ChallengeProps> = ({
-  challenge,
-  withoutInput = false,
-  preamble
-}) => {
+const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamble }) => {
   if (!challenge) return null
 
   return (
@@ -32,7 +28,7 @@ const Challenge: FC<ChallengeProps> = ({
         </div>
 
         <div
-          className="prose !max-w-full grid grid-flow-row &_pre:overflow-x-scroll"
+          className="&_pre:overflow-x-scroll prose grid !max-w-full grid-flow-row"
           dangerouslySetInnerHTML={{ __html: challenge.content }}
         />
 

@@ -1,32 +1,45 @@
 import clsx, { ClassValue } from "clsx"
 import { format } from "date-fns"
 import { nb } from "date-fns/locale"
-import { find, isArray, isEmpty, isFunction, isNil, isPlainObject, isString, memoize, padStart, reduce, replace, toString, trim } from "lodash-es"
+import {
+  find,
+  isArray,
+  isEmpty,
+  isFunction,
+  isNil,
+  isPlainObject,
+  isString,
+  memoize,
+  padStart,
+  reduce,
+  replace,
+  toString,
+  trim
+} from "lodash-es"
 import { twMerge } from "tailwind-merge"
 
 import { Maybe, Nullable } from "../types/utils_types"
 
 import { getAnchorVar } from "./hooks/useStoreAnchorVars"
 
-
 export const NBSP = "\u00a0"
-export const getTimestampForInputField = (dateString: string) => format(new Date(dateString), "yyyy-MM-dd'T'kk:mm")
+export const getTimestampForInputField = (dateString: string) =>
+  format(new Date(dateString), "yyyy-MM-dd'T'kk:mm")
 
 export const getActiveYear = () => {
   const date = new Date()
   const year = date.getFullYear()
 
   const activeYearOverride = getAnchorVar("year")
-  if (activeYearOverride)
-    return activeYearOverride
+  if (activeYearOverride) return activeYearOverride
 
   // Active year rolls into February
-  if (date.getMonth() < 2)
-    return year - 1
+  if (date.getMonth() < 2) return year - 1
 
   return year
 }
-export const getDefaultActiveFrom = (door: number) => `${getActiveYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
+export const getDefaultActiveFrom = (door: number) =>
+  `${getActiveYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
 export const getDefaultActiveTo = () => `${getActiveYear()}-12-26T04:00+0100`
 export const getRaffleStart = () => new Date(`${getActiveYear()}-12-01T04:00+0100`)
 export const getRaffleEnd = () => new Date(`${getActiveYear()}-12-26T04:00+0100`)
@@ -36,15 +49,15 @@ const DATE_FORMATS = {
   long: "'kl.' p 'den' do MMMM",
   short: `dd.MM${NBSP}HH:mm`
 } as const
-export const dateFormat = (date: Date, fmt: keyof typeof DATE_FORMATS = "standard") => format(date, DATE_FORMATS[fmt], { locale: nb })
+export const dateFormat = (date: Date, fmt: keyof typeof DATE_FORMATS = "standard") =>
+  format(date, DATE_FORMATS[fmt], { locale: nb })
 
 export const squish = (str: string) => replace(trim(str), /\s+/g, " ")
 
 // Easing helpers (https://easings.net)
-export const easeInCubic = [.32, 0, .67, 0]
-export const easeOutCubic = [.33, 1, .68, 1]
-export const easeInOutCubic = [.65, 0, .35, 1]
-
+export const easeInCubic = [0.32, 0, 0.67, 0]
+export const easeOutCubic = [0.33, 1, 0.68, 1]
+export const easeInOutCubic = [0.65, 0, 0.35, 1]
 
 const TENS = [
   [90, "nitti"],
@@ -57,8 +70,26 @@ const TENS = [
   [20, "tjue"]
 ] as const
 const lowNumbers = memoize((neutral: boolean) => [
-  "null", neutral ? "ett" : "en", "to", "tre", "fire", "fem", "seks", "syv", "åtte", "ni",
-  "ti", "elleve", "tolv", "tretten", "fjorten", "femten", "seksten", "sytten", "atten", "nitten"
+  "null",
+  neutral ? "ett" : "en",
+  "to",
+  "tre",
+  "fire",
+  "fem",
+  "seks",
+  "syv",
+  "åtte",
+  "ni",
+  "ti",
+  "elleve",
+  "tolv",
+  "tretten",
+  "fjorten",
+  "femten",
+  "seksten",
+  "sytten",
+  "atten",
+  "nitten"
 ])
 
 // Generates a nice-ish Norwegian number string from given number `n`.
@@ -122,10 +153,11 @@ const RANDOM_NAMES = [
   ["Ukjent juletre", "🎄"]
 ]
 
+const simpleHash = (uuid: string): number =>
+  reduce(uuid, (sum, char) => sum + char.charCodeAt(0), 0)
 
-const simpleHash = (uuid: string): number => reduce(uuid, (sum, char) => sum + char.charCodeAt(0), 0)
-
-export const getRandomDisplayName = (name: string) => RANDOM_NAMES[simpleHash(name) % RANDOM_NAMES.length]
+export const getRandomDisplayName = (name: string) =>
+  RANDOM_NAMES[simpleHash(name) % RANDOM_NAMES.length]
 
 // Weakmap to hold unique references to objects for use with React's required
 // `key` props for mapping in JSX. Weakmap holds WEAK references to its keys,
@@ -146,8 +178,7 @@ export const getObjKey = (obj: object) => {
 }
 
 export const isPresent = <T>(value: T): value is NonNullable<T> => {
-  if (isString(value))
-    return trim(value).length > 0
+  if (isString(value)) return trim(value).length > 0
 
   if (isArray(value)) {
     return !isEmpty(value)
@@ -162,7 +193,7 @@ export const isPresent = <T>(value: T): value is NonNullable<T> => {
 
 export const isBlank = <T>(value: T) => !isPresent(value)
 
-export const presence = <T>(value: T) => isPresent(value) ? value : undefined
+export const presence = <T>(value: T) => (isPresent(value) ? value : undefined)
 
 /**
  * Checks that given value is "present" (see `isPresent`), and conditionally
@@ -170,16 +201,26 @@ export const presence = <T>(value: T) => isPresent(value) ? value : undefined
  * provided, the value of calling that function is returned should the given
  * value not be present.
  */
-export function guardPresent<T, TPresentReturn>(value: Nullable<Maybe<T>>, presentFunc: (value: T) => TPresentReturn): Maybe<TPresentReturn>
-export function guardPresent<T, TPresentReturn, TNotPresentReturn>(value: Nullable<Maybe<T>>, presentFunc: (value: T) => TPresentReturn, notPresentFuncOrValue: (value: Nullable<Maybe<T>>) => TNotPresentReturn): TPresentReturn | TNotPresentReturn
-export function guardPresent<T, TPresentReturn, TNotPresentReturn>(value: Nullable<Maybe<T>>, presentFunc: (value: T) => TPresentReturn, notPresentFuncOrValue: TNotPresentReturn): TPresentReturn | TNotPresentReturn
+export function guardPresent<T, TPresentReturn>(
+  value: Nullable<Maybe<T>>,
+  presentFunc: (value: T) => TPresentReturn
+): Maybe<TPresentReturn>
+export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
+  value: Nullable<Maybe<T>>,
+  presentFunc: (value: T) => TPresentReturn,
+  notPresentFuncOrValue: (value: Nullable<Maybe<T>>) => TNotPresentReturn
+): TPresentReturn | TNotPresentReturn
+export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
+  value: Nullable<Maybe<T>>,
+  presentFunc: (value: T) => TPresentReturn,
+  notPresentFuncOrValue: TNotPresentReturn
+): TPresentReturn | TNotPresentReturn
 export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
   value: Nullable<Maybe<T>>,
   presentFunc: (v: T) => TPresentReturn,
   notPresentFuncOrValue?: ((v: Nullable<Maybe<T>>) => TNotPresentReturn) | TNotPresentReturn
 ): TPresentReturn | TNotPresentReturn | undefined {
-  if (isPresent(value))
-    return presentFunc(value)
+  if (isPresent(value)) return presentFunc(value)
 
   if (!isNil(notPresentFuncOrValue))
     return isFunction(notPresentFuncOrValue) ? notPresentFuncOrValue(value) : notPresentFuncOrValue
@@ -187,11 +228,9 @@ export function guardPresent<T, TPresentReturn, TNotPresentReturn>(
   return undefined
 }
 
-
 // Replacement for clsx that also lets you overwrite tailwind values. The latest
 // tailwind utility in the resulting classes string will take effect.
 export const cl = (...classes: ClassValue[]) => twMerge(clsx(classes))
-
 
 // Z-indexes
 
@@ -209,5 +248,5 @@ export const Z_FOOTER = "z-[1]"
 export const Z_DROPDOWN = "z-[9]"
 export const Z_MODAL = "z-[10]"
 
-
-export const debug = (...args: Parameters<typeof console.log>) => getAnchorVar("debug") && console.log(...args)
+export const debug = (...args: Parameters<typeof console.log>) =>
+  getAnchorVar("debug") && console.log(...args)

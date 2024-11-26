@@ -10,14 +10,11 @@ import { LeaderboardUser } from "../api"
 
 import BasicPage from "./BasicPage"
 
-
 const getGroupTitle = (count: number) => {
   const title = `${upperFirst(numberString(count))} løst${count > 1 ? "e" : ""} luke${count > 1 ? "r" : ""}`
 
-  if (count === 24)
-    return `🧝‍♂️🎅🎄 ${title} 🎄🤶🧝‍♀️`
-  else
-    return title
+  if (count === 24) return `🧝‍♂️🎅🎄 ${title} 🎄🤶🧝‍♀️`
+  else return title
 }
 
 type MappedLeaderboardUser = LeaderboardUser & {
@@ -30,8 +27,7 @@ const Leaderboard = () => {
   const { data: whoami } = useWhoami()
 
   if (isNil(leaderboard)) return null
-  if (isEmpty(leaderboard))
-    return <div className="text-center">Ingen snille barn!</div>
+  if (isEmpty(leaderboard)) return <div className="text-center">Ingen snille barn!</div>
 
   const leaderboardGroupedOnSolvedCount = reduce(
     leaderboard,
@@ -58,22 +54,20 @@ const Leaderboard = () => {
     <BasicPage title="Snille Barn">
       {map(leaderboardGroupedOnSolvedCount, (group) => (
         <div key={group[0].solved_count}>
-          <h2 className="text-center font-bold">
-            {getGroupTitle(group[0].solved_count)}
-          </h2>
+          <h2 className="text-center font-bold">{getGroupTitle(group[0].solved_count)}</h2>
 
           <Divider bgClasses="bg-purple-500/70 mt-3" />
 
-          <div className="px-16 mt-6">
+          <div className="mt-6 px-16">
             {map(group, ({ uuid, username, avatar, solved_at: _solved_at, rank }) => (
               <div
                 key={uuid}
                 className={cl(
-                  "grid grid-cols-[1fr_auto_1fr] w-full px-24 py-5",
+                  "grid w-full grid-cols-[1fr_auto_1fr] px-24 py-5",
                   uuid === whoami?.uuid && "rounded-md bg-purple-700"
                 )}
               >
-                <Avatar avatar={avatar} className="w-18 max-w-18 h-18 max-h-18" />
+                <Avatar avatar={avatar} className="h-18 max-h-18 w-18 max-w-18" />
                 <div className="flex items-center gap-4 text-opacity-80">{username}</div>
                 <div className="place-self-center-end">{rank}</div>
               </div>

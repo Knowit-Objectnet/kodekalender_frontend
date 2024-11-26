@@ -10,21 +10,28 @@ import { challengeIdParam } from "../requests"
 import { AdminChallengeDict, AdminChallengePayload, ChallengePreview } from "./Challenge"
 import { AdminServiceMessagePayload } from "./ServiceMessage"
 
-
-const getChallenges = async () => await axios.get("/admin/challenges").then(({ data }) => keyBy(data, "door"))
-export const useChallenges = <TSelected = AdminChallengeDict>(options?: UseQueryOptions<AdminChallengeDict, QueryError, TSelected>) => (
-  useQuery<AdminChallengeDict, QueryError, TSelected>(["admin", "challenges"], getChallenges, { ...options, staleTime: 600_000 })
-)
-export const useChallenge = (door: number | null | undefined) => (
+const getChallenges = async () =>
+  await axios.get("/admin/challenges").then(({ data }) => keyBy(data, "door"))
+export const useChallenges = <TSelected = AdminChallengeDict>(
+  options?: UseQueryOptions<AdminChallengeDict, QueryError, TSelected>
+) =>
+  useQuery<AdminChallengeDict, QueryError, TSelected>(["admin", "challenges"], getChallenges, {
+    ...options,
+    staleTime: 600_000
+  })
+export const useChallenge = (door: number | null | undefined) =>
   useQuery<AdminChallengeDict, QueryError, AdminChallengeDict[number]>(
     ["admin", "challenges"],
     getChallenges,
     { staleTime: 600_000, select: door ? property(door) : undefined }
   )
-)
 
-const getPosts = (door: number) => axios.get(`/admin/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
-export const usePosts = (door: number) => useQuery<ParentPost[], QueryError>(["admin", "posts", door], () => getPosts(door), { staleTime: 300_000 })
+const getPosts = (door: number) =>
+  axios.get(`/admin/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
+export const usePosts = (door: number) =>
+  useQuery<ParentPost[], QueryError>(["admin", "posts", door], () => getPosts(door), {
+    staleTime: 300_000
+  })
 
 export const getChallengePreview = async (challenge: AdminChallengePayload | undefined) => {
   challenge = pick(challenge, ["markdown_content", "files"])
@@ -32,10 +39,15 @@ export const getChallengePreview = async (challenge: AdminChallengePayload | und
 
   return await axios.post("/admin/challenge_markdown", { challenge }).then(({ data }) => data)
 }
-export const useChallengePreview = (challenge: AdminChallengePayload | undefined, opts?: UseQueryOptions<ChallengePreview, QueryError>) => (
-  useQuery<ChallengePreview, QueryError>(["admin", "challenges", "preview", challenge], () => getChallengePreview(challenge), { staleTime: Infinity, cacheTime: 0, ...opts })
-)
-
+export const useChallengePreview = (
+  challenge: AdminChallengePayload | undefined,
+  opts?: UseQueryOptions<ChallengePreview, QueryError>
+) =>
+  useQuery<ChallengePreview, QueryError>(
+    ["admin", "challenges", "preview", challenge],
+    () => getChallengePreview(challenge),
+    { staleTime: Infinity, cacheTime: 0, ...opts }
+  )
 
 export type CreateChallengeParameters = { challenge: AdminChallengePayload }
 export const useCreateChallenge = () => {
@@ -59,7 +71,8 @@ export const useUpdateChallenge = () => {
 
   return useMutation<never, QueryError, UpdateChallengeParameters>(
     ["admin", "challenges", "update"],
-    ({ challenge }) => axios.patch(`/admin/challenges/${challengeIdParam(challenge.door)}`, { challenge }),
+    ({ challenge }) =>
+      axios.patch(`/admin/challenges/${challengeIdParam(challenge.door)}`, { challenge }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("challenges")
@@ -75,7 +88,8 @@ export const useDeleteChallenge = () => {
 
   return useMutation<unknown, QueryError, DeleteChallengeParameters>(
     ["admin", "challenges", "destroy"],
-    async ({ door }) => isNumber(door) && axios.delete(`/admin/challenges/${challengeIdParam(door)}`),
+    async ({ door }) =>
+      isNumber(door) && axios.delete(`/admin/challenges/${challengeIdParam(door)}`),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("challenges")
@@ -84,7 +98,6 @@ export const useDeleteChallenge = () => {
     }
   )
 }
-
 
 export type CreateServiceMessageParameters = { service_message: AdminServiceMessagePayload }
 export const useCreateServiceMessage = () => {
@@ -101,7 +114,10 @@ export const useCreateServiceMessage = () => {
   )
 }
 
-export type UpdateServiceMessageParameters = { uuid: string, service_message: AdminServiceMessagePayload }
+export type UpdateServiceMessageParameters = {
+  uuid: string
+  service_message: AdminServiceMessagePayload
+}
 export const useUpdateServiceMessage = () => {
   const queryClient = useQueryClient()
 
@@ -131,7 +147,6 @@ export const useDeleteServiceMessage = () => {
   )
 }
 
-
 // File upload procedure copied from https://github.com/rails/rails/issues/32208#issuecomment-383737803
 type CreateBlobPayload = {
   filename: string
@@ -151,22 +166,23 @@ type CreateBlobResponse = {
   }
 }
 
-export const useCreateBlob = () => (
-  useMutation<CreateBlobResponse, unknown, { blob: CreateBlobPayload,  config?: AxiosRequestConfig }>(
-    ["admin", "activeStorage", "createBlob"],
-    ({ blob, config }) =>
-      axios.post("/rails/active_storage/direct_uploads", { blob }, config).then(({ data }) => data)
+export const useCreateBlob = () =>
+  useMutation<
+    CreateBlobResponse,
+    unknown,
+    { blob: CreateBlobPayload; config?: AxiosRequestConfig }
+  >(["admin", "activeStorage", "createBlob"], ({ blob, config }) =>
+    axios.post("/rails/active_storage/direct_uploads", { blob }, config).then(({ data }) => data)
   )
-)
 
 type UploadFilePayload = {
   file: File
   directUpload: CreateBlobResponse["direct_upload"]
 }
 
-export const useUploadFile = () => (
-  useMutation<never, unknown, { upload: UploadFilePayload, config?: AxiosRequestConfig }>(
+export const useUploadFile = () =>
+  useMutation<never, unknown, { upload: UploadFilePayload; config?: AxiosRequestConfig }>(
     ["admin", "activeStorage", "uploadFile"],
-    ({ upload: { file, directUpload }, config }) => axios.put(directUpload.url, file, { ...config, headers: directUpload.headers })
+    ({ upload: { file, directUpload }, config }) =>
+      axios.put(directUpload.url, file, { ...config, headers: directUpload.headers })
   )
-)

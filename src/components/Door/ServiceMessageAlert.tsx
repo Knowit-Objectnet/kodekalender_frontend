@@ -33,7 +33,7 @@ const ServiceMessageAlert: FC<ServiceMessageAlertProps> = ({ door, className }) 
         />
 
         <Popover.Panel className="fixed left-[5%] min-w-[90%] md:absolute md:left-0 md:min-w-min">
-          <div className="bg-purple-700 p-8 rounded-md flex flex-col gap-8 md:w-288">
+          <div className="flex flex-col gap-8 rounded-md bg-purple-700 p-8 md:w-288">
             <p className="text-center font-bold">Driftsmeldinger for denne luken</p>
             {map(doorServiceMessages, (serviceMessage) => (
               <ServiceMessage key={serviceMessage.uuid} serviceMessage={serviceMessage} />

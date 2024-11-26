@@ -10,15 +10,10 @@ type PostPreviewProps = {
   deleted?: boolean
 }
 
-const PostPreview: FC<PostPreviewProps> = ({
-  html,
-  isLoading,
-  className,
-  deleted
-}) => {
+const PostPreview: FC<PostPreviewProps> = ({ html, isLoading, className, deleted }) => {
   if (isNil(html) && isLoading) return null
   if (isNil(html)) return <div>Her ser noe ut til å ha gått galt...</div>
-  if (deleted) return <p className="text-white font-bold">Slettet innlegg</p>
+  if (deleted) return <p className="font-bold text-white">Slettet innlegg</p>
 
   return <PostProse html={html} className={className} />
 }
