@@ -4580,7 +4580,7 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-fast-compare@^3.2.0:
+react-fast-compare@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
@@ -4634,12 +4634,12 @@ react-router@6.19.0:
   dependencies:
     "@remix-run/router" "1.12.0"
 
-react-snowfall@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-1.2.1.tgz#68cab6a1d05aa7c3211bce96a3a97977ca7dc57f"
-  integrity sha512-d2UR3nDq3F0DJGaTfJ0QNbBo76UZHtT9wHFj+ePxAl4FgSxWBhxB/Bjn06f5iDBwhgwiZ7CZmv3lwfNvjo6a+w==
+react-snowfall@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-2.2.0.tgz#0856a72c4d29d27a6a14301c0f5deb51296fb4df"
+  integrity sha512-dRk7vEHq/ZUOG+JHk2k/hH3HmliOWGXr4rKRDeW4mjWuHeI1r5h0Lc1r2jnTtUS1im702d6tCmNGymlNTdhXYg==
   dependencies:
-    react-fast-compare "^3.2.0"
+    react-fast-compare "^3.2.2"
 
 react-textarea-autosize@^8.5.3:
   version "8.5.3"
