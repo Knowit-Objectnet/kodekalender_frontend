@@ -144,11 +144,11 @@ export const DropDownMenu = () => {
               </Menu.Item>
 
               <Menu.Item>
-                <LinkButton to="/contact" icon="knowit" content="Kontakt oss" />
+                <LinkButton to="/contact" icon="mail" content="Kontakt oss" />
               </Menu.Item>
 
               <Menu.Item>
-                <LinkButton to="/career" icon="mail" content="Jobb i Knowit" />
+                <LinkButton to="/career" icon="knowit" content="Jobb i Knowit" />
               </Menu.Item>
             </MenuGroup>
 
