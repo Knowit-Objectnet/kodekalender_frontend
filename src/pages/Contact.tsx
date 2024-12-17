@@ -22,12 +22,12 @@ const Contact = () => (
       />
     </div>
 
-    <p className="-mb-4 mt-8 text-center">Funnet en feil? Ris eller ros? Send oss en mail!</p>
+    <p className="-mb-4 mt-8 text-center">Funnet en feil? Ris eller ros? Send oss en e-post!</p>
     <LinkButton
       className="inline-flex w-fit justify-self-center"
       icon="mail"
       to="mailto:julekalender@knowit.no"
-      content="Kontakt oss"
+      content="julekalender@knowit.no"
     />
   </BasicPage>
 )
