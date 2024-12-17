@@ -7,7 +7,8 @@ const Career = () => (
   <BasicPage title="Jobbe i Knowit?" containerClassName="gap-24">
     <div className="grid gap-12">
       <p>
-        Vi er alltid på jakt etter dyktige alver i våre rekker! Kanskje kan du hjelpe oss med neste års julekalender?
+        Vi er alltid på jakt etter dyktige alver i våre rekker! Kanskje kan du hjelpe oss med neste
+        års julekalender?
       </p>
 
       <div className="flex flex-wrap justify-center gap-8">
