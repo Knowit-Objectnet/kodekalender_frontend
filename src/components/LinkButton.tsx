@@ -7,7 +7,7 @@ import Icon, { IconProps } from "./Icons/Icon"
 
 type Props = {
   to: string
-  name?: IconProps["name"]
+  icon?: IconProps["name"]
   external?: boolean
   content: ReactNode
 }
@@ -15,7 +15,7 @@ type Props = {
 export const LinkButton = forwardRef<
   HTMLAnchorElement,
   Omit<LinkProps, "content" | "omit"> & Props
->(({ to, name, content, className, external = false, ...rest }, ref) => (
+>(({ to, icon, content, className, external = false, ...rest }, ref) => (
   <Link
     to={to}
     rel={external ? "noopener noreferrer" : ""}
@@ -50,7 +50,7 @@ export const LinkButton = forwardRef<
       className
     )}
   >
-    {name && <Icon name={name} className="h-10 w-10" />}
+    {icon && <Icon name={icon} className="h-10 w-10" />}
     {content}
   </Link>
 ))

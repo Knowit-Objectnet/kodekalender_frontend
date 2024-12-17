@@ -26,7 +26,7 @@ const SignOutButton = forwardRef<HTMLAnchorElement, Omit<LinkProps, "to">>(
       <LinkButton
         onClick={onClickFunc}
         to=""
-        name="sign-out"
+        icon="sign-out"
         content="Logg ut"
         {...buttonProps}
         ref={ref}

@@ -12,7 +12,7 @@ const SignInButton = forwardRef<HTMLAnchorElement, Omit<LinkProps, "to">>((props
     ? (["/users/edit", "user", whoami.username ?? "Min bruker"] as const)
     : (["/users/sign_in", "sign-in", "Logg inn"] as const)
 
-  return <LinkButton {...props} ref={ref} to={to} name={icon} content={content} />
+  return <LinkButton {...props} ref={ref} to={to} icon={icon} content={content} />
 })
 
 export default SignInButton

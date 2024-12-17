@@ -31,7 +31,7 @@ const About = () => {
         <LinkButton
           className="inline-block place-self-center"
           to="/users/sign_in"
-          name="edit"
+          icon="edit"
           content="Registrer deg"
         />
       )}

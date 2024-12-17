@@ -112,7 +112,7 @@ export const DropDownMenu = () => {
             <MenuGroup>
               {raffleStarted && (
                 <Menu.Item>
-                  <LinkButton to="/leaderboard" name="award" content="Ledertavle" />
+                  <LinkButton to="/leaderboard" icon="award" content="Ledertavle" />
                 </Menu.Item>
               )}
 
@@ -120,7 +120,7 @@ export const DropDownMenu = () => {
                 <Menu.Item>
                   <LinkButton
                     to="/service_messages"
-                    name="bell"
+                    icon="bell"
                     content="Driftsmeldinger"
                     className={cl(hasUnresolvedServiceMessages && "text-yellow-500")}
                   />
@@ -129,26 +129,26 @@ export const DropDownMenu = () => {
 
               {isAdmin && (
                 <Menu.Item>
-                  <LinkButton to="/admin" name="edit" content="Adminside" />
+                  <LinkButton to="/admin" icon="edit" content="Adminside" />
                 </Menu.Item>
               )}
             </MenuGroup>
 
             <MenuGroup>
               <Menu.Item>
-                <LinkButton to="/about" name="info" content="Om kodekalenderen" />
+                <LinkButton to="/about" icon="info" content="Om kodekalenderen" />
               </Menu.Item>
 
               <Menu.Item>
-                <LinkButton to="/privacy" name="user" content="Personopplysninger" />
+                <LinkButton to="/privacy" icon="user" content="Personopplysninger" />
               </Menu.Item>
 
               <Menu.Item>
-                <LinkButton to="/contact" name="knowit" content="Kontakt oss" />
+                <LinkButton to="/contact" icon="knowit" content="Kontakt oss" />
               </Menu.Item>
 
               <Menu.Item>
-                <LinkButton to="/career" name="mail" content="Jobb i Knowit" />
+                <LinkButton to="/career" icon="mail" content="Jobb i Knowit" />
               </Menu.Item>
             </MenuGroup>
 
@@ -157,7 +157,7 @@ export const DropDownMenu = () => {
                 <LinkButton
                   external
                   to="https://github.com/Knowit-Objectnet/"
-                  name="github"
+                  icon="github"
                   content="GitHub"
                   aria-label="Se hva vi gjør på GitHub"
                 />
@@ -167,7 +167,7 @@ export const DropDownMenu = () => {
                 <LinkButton
                   external
                   to="https://www.facebook.com/weareknowit"
-                  name="facebook"
+                  icon="facebook"
                   content="Facebook"
                   aria-label="Besøk oss på Facebook"
                 />
@@ -177,7 +177,7 @@ export const DropDownMenu = () => {
                 <LinkButton
                   external
                   to="https://instagram.com/weareknowit"
-                  name="instagram"
+                  icon="instagram"
                   content="Instagram"
                   aria-label="Følg oss på Instagram"
                 />
@@ -187,7 +187,7 @@ export const DropDownMenu = () => {
                 <LinkButton
                   external
                   to="https://twitter.com/knowitnorge"
-                  name="twitter"
+                  icon="twitter"
                   content="Twitter"
                   aria-label="Følg oss på Twitter/X"
                 />

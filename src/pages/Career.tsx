@@ -15,10 +15,10 @@ const Career = () => (
         to="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
         title="Søk på stilling som Systemutvikler Backend, Mobil og/eller Frontend!"
         content="Jobb i Knowit"
-        name="link"
+        icon="link"
         external
       />
-      <LinkButton to="mailto:julenissen@knowit.no" content="Kontakt alvene" name="mail" />
+      <LinkButton to="mailto:julenissen@knowit.no" content="Kontakt alvene" icon="mail" />
     </div>
   </BasicPage>
 )

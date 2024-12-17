@@ -9,13 +9,13 @@ const Contact = () => (
     </p>
     <div className="flex flex-wrap justify-center gap-8">
       <LinkButton
-        name="link"
+        icon="link"
         external
         content="Knowit GitHub - Kodekalender"
         to="https://github.com/Knowit-Objectnet/kodekalender_frontend"
       />
       <LinkButton
-        name="link"
+        icon="link"
         external
         content="Knowit GitHub"
         to="https://github.com/Knowit-Objectnet"
@@ -25,7 +25,7 @@ const Contact = () => (
     <p className="-mb-4 mt-8 text-center">Funnet en feil? Ris eller ros? Send oss en mail!</p>
     <LinkButton
       className="inline-flex w-fit justify-self-center"
-      name="mail"
+      icon="mail"
       to="mailto:julekalender@knowit.no"
       content="Kontakt oss"
     />

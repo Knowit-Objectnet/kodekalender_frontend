@@ -43,10 +43,10 @@ const SignIn: FC = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-6 md:gap-12">
-        <LinkButton to="/users/sign_up" name="edit" content="Ny bruker?" />
+        <LinkButton to="/users/sign_up" icon="edit" content="Ny bruker?" />
         <LinkButton
           to="/users/lost_password"
-          name="mail"
+          icon="mail"
           content="Glemt passord?"
           onClick={(e) => {
             e.preventDefault()
