@@ -9,7 +9,7 @@ import "@fontsource/twinkle-star/400.css"
 
 import "../assets/css/base.scss"
 import "../assets/css/doors.scss"
-import "../assets/css/syntax_highlight.scss"
+import "../assets/css/prose.scss"
 
 import "./axios"
 import App from "./App"

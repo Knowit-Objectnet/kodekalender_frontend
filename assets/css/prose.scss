@@ -1,0 +1,36 @@
+@use "syntax_highlight.scss";
+
+.prose {
+  // Preformatted (code)
+  pre {
+    @include syntax_highlight.styles;
+    @apply overflow-x-scroll tracking-tight;
+  }
+
+  // Code, both in code block and inline
+  code {
+    @apply tracking-tight md:tracking-normal;
+
+    // Remove backticks around inline code and whitespace after block code
+    &:before,
+    &:after {
+      content: none !important;
+    }
+  }
+
+  // Background styling just for inline code
+  :not(pre) > code {
+    @apply rounded-sm bg-purple-500 px-2 py-1;
+  }
+
+  // Blockquote
+  blockquote {
+    quotes: none;
+
+    @apply my-10;
+
+    p {
+      @apply my-0;
+    }
+  }
+}
