@@ -33,4 +33,10 @@
       @apply my-0;
     }
   }
+
+  // Strong emphasis
+  strong {
+    // Default is just not thicc enough
+    @apply font-bold;
+  }
 }
