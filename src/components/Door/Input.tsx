@@ -102,7 +102,7 @@ const Input: FC<InputProps> = ({ door }) => {
           )}
           placeholder="Ditt svar:"
           value={answer}
-          maxLength={128}
+          maxLength={255}
           onChange={(e) => {
             setAnswer(e.target.value)
             setDirty(true)
