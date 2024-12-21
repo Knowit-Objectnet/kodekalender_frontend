@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Admin-BUA9QRXv.js","assets/FormElement-BU1ByDpI.js","assets/User-Cao6uuGr.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/Admin-DOYZ0JQ-.js","assets/FormElement-DE-kBaIs.js","assets/User-CsEY3gWh.js"])))=>i.map(i=>d[i]);
 function sp(e,t){for(var r=0;r<t.length;r++){const n=t[r];if(typeof n!="string"&&!Array.isArray(n)){for(const l in n)if(l!=="default"&&!(l in e)){const i=Object.getOwnPropertyDescriptor(n,l);i&&Object.defineProperty(e,l,i.get?i:{enumerable:!0,get:()=>n[l]})}}}return Object.freeze(Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}))}(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const l of document.querySelectorAll('link[rel="modulepreload"]'))n(l);new MutationObserver(l=>{for(const i of l)if(i.type==="childList")for(const s of i.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&n(s)}).observe(document,{childList:!0,subtree:!0});function r(l){const i={};return l.integrity&&(i.integrity=l.integrity),l.referrerPolicy&&(i.referrerPolicy=l.referrerPolicy),l.crossOrigin==="use-credentials"?i.credentials="include":l.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function n(l){if(l.ep)return;l.ep=!0;const i=r(l);fetch(l.href,i)}})();function rs(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var Sc={exports:{}},Al={},Mc={exports:{}},le={};/**
  * @license React
  * react.production.min.js
@@ -216,7 +216,7 @@ Error generating stack: `+i.message+`
             font-bold
             placeholder:font-bold
             placeholder:text-purple-400
-          `,{"text-red-700":E}),placeholder:"Ditt svar:",value:l,maxLength:128,onChange:g=>{i(g.target.value),o(!0)},onKeyDown:g=>{g.key==="Enter"&&_()}}),m.jsx("button",{type:"button",disabled:!l,className:oe(`
+          `,{"text-red-700":E}),placeholder:"Ditt svar:",value:l,maxLength:255,onChange:g=>{i(g.target.value),o(!0)},onKeyDown:g=>{g.key==="Enter"&&_()}}),m.jsx("button",{type:"button",disabled:!l,className:oe(`
             absolute
             right-0
             h-full
@@ -468,7 +468,7 @@ Error generating stack: `+i.message+`
         translate-y-[-50%]
         animate-pulse
         text-purple-100/70
-      `})})}),$$=()=>{const e=a.lazy(()=>$m(()=>import("./Admin-BUA9QRXv.js"),__vite__mapDeps([0,1])));return m.jsx(a.Suspense,{fallback:m.jsx(rp,{icon:"edit"}),children:m.jsx(e,{})})},F$=()=>{const e=a.lazy(()=>$m(()=>import("./User-Cao6uuGr.js"),__vite__mapDeps([2,1])));return m.jsx(a.Suspense,{fallback:m.jsx(rp,{icon:"user"}),children:m.jsx(e,{})})},L$=()=>{Xz(),P$();const{showSnow:e}=a.useContext(Bn),t=e6(),r=a.useMemo(()=>t?m.jsxs(m.Fragment,{children:[m.jsx(s1,{path:"/",element:m.jsx(g$,{})}),m.jsx(s1,{path:"/luke/:door",element:m.jsx(WW,{})}),m.jsx(s1,{path:"/leaderboard",element:m.jsx(kc,{})}),m.jsx(s1,{path:"/solutions",element:m.jsx(k$,{})})]}):m.jsx(s1,{path:"/",element:m.jsx(M$,{})}),[t]);return a.useMemo(()=>m.jsxs(m.Fragment,{children:[m.jsx(p$,{}),m.jsxs("div",{id:"content-container",className:`
+      `})})}),$$=()=>{const e=a.lazy(()=>$m(()=>import("./Admin-DOYZ0JQ-.js"),__vite__mapDeps([0,1])));return m.jsx(a.Suspense,{fallback:m.jsx(rp,{icon:"edit"}),children:m.jsx(e,{})})},F$=()=>{const e=a.lazy(()=>$m(()=>import("./User-CsEY3gWh.js"),__vite__mapDeps([2,1])));return m.jsx(a.Suspense,{fallback:m.jsx(rp,{icon:"user"}),children:m.jsx(e,{})})},L$=()=>{Xz(),P$();const{showSnow:e}=a.useContext(Bn),t=e6(),r=a.useMemo(()=>t?m.jsxs(m.Fragment,{children:[m.jsx(s1,{path:"/",element:m.jsx(g$,{})}),m.jsx(s1,{path:"/luke/:door",element:m.jsx(WW,{})}),m.jsx(s1,{path:"/leaderboard",element:m.jsx(kc,{})}),m.jsx(s1,{path:"/solutions",element:m.jsx(k$,{})})]}):m.jsx(s1,{path:"/",element:m.jsx(M$,{})}),[t]);return a.useMemo(()=>m.jsxs(m.Fragment,{children:[m.jsx(p$,{}),m.jsxs("div",{id:"content-container",className:`
         max-w-screen
         relative
         flex
