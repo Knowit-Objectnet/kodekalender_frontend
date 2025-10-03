@@ -16,13 +16,13 @@ const LostPassword: FC = () => {
     handleSubmit,
     formState: { isSubmitSuccessful }
   } = useForm<InitiateResetPasswordParameters>()
-  const { mutate: resetPassword, error, isLoading } = useInitiateResetPassword()
+  const { mutate: resetPassword, error, isPending } = useInitiateResetPassword()
 
   const onSubmit = (data: InitiateResetPasswordParameters) => {
     resetPassword(data)
   }
 
-  if (isSubmitSuccessful && !isLoading && !error) {
+  if (isSubmitSuccessful && !isPending && !error) {
     return (
       <BasicPage title="Glemt passord">
         <p className="text-center">Tilbakestillingsinstrukser sendt.</p>

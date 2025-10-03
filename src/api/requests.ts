@@ -1,6 +1,12 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
-import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "@tanstack/react-query"
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  UseQueryOptions,
+  UseQueryResult
+} from "@tanstack/react-query"
 import {
   clone,
   findIndex,
@@ -77,18 +83,16 @@ export const useChallenge = (door: Maybe<number>) =>
 
 const getSolvedStatus = (): Promise<SolvedStatus> =>
   axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
-export const useSolvedStatus = (opts?: UseQueryOptions<SolvedStatus, QueryError>) => {
-  const { isAuthenticated } = useContext(AuthContext)
-  const enabled = isAuthenticated && opts?.enabled !== false
 
-  return useQuery<SolvedStatus, QueryError>({
+export const useSolvedStatus = <TSelected = SolvedStatus>(
+  options?: Omit<UseQueryOptions<SolvedStatus, QueryError, TSelected>, "queryKey" | "queryFn">
+): UseQueryResult<TSelected, QueryError> =>
+  useQuery<SolvedStatus, QueryError, TSelected>({
     queryKey: ["users", "solved"],
     queryFn: getSolvedStatus,
-    staleTime: 600_000,
-    ...opts,
-    enabled
+    staleTime: 30_000,
+    ...options
   })
-}
 
 const getPosts = (door: number) =>
   axios.get(`/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
@@ -147,15 +151,16 @@ export const useSubscriptions = () => {
 }
 
 const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)
+
 export const useServiceMessages = <TSelected = ServiceMessage[]>(
-  options?: UseQueryOptions<ServiceMessage[], QueryError, TSelected>
-) =>
+  options?: Omit<UseQueryOptions<ServiceMessage[], QueryError, TSelected>, "queryKey" | "queryFn">
+): UseQueryResult<TSelected, QueryError> =>
   useQuery<ServiceMessage[], QueryError, TSelected>({
     queryKey: ["serviceMessages"],
     queryFn: getServiceMessages,
-    ...options,
     staleTime: 60_000,
-    refetchInterval: 60_000
+    refetchInterval: 60_000,
+    ...options
   })
 
 const getPostMarkdown = (post_uuid: string) =>

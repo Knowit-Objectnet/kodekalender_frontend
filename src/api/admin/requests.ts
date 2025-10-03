@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
+import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "@tanstack/react-query"
 import axios, { AxiosRequestConfig } from "axios"
 import { isEmpty, isNumber, keyBy, pick, property } from "lodash-es"
 
