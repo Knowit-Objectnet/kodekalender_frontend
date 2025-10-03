@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
-import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
+import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "@tanstack/react-query"
 import {
   clone,
   findIndex,
