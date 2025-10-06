@@ -15,21 +15,26 @@ const getChallenges = async () =>
 export const useChallenges = <TSelected = AdminChallengeDict>(
   options?: UseQueryOptions<AdminChallengeDict, QueryError, TSelected>
 ) =>
-  useQuery<AdminChallengeDict, QueryError, TSelected>(["admin", "challenges"], getChallenges, {
+  useQuery<AdminChallengeDict, QueryError, TSelected>({
+    queryKey: ["admin", "challenges"],
+    queryFn: getChallenges,
     ...options,
     staleTime: 600_000
   })
 export const useChallenge = (door: number | null | undefined) =>
-  useQuery<AdminChallengeDict, QueryError, AdminChallengeDict[number]>(
-    ["admin", "challenges"],
-    getChallenges,
-    { staleTime: 600_000, select: door ? property(door) : undefined }
-  )
+  useQuery<AdminChallengeDict, QueryError, AdminChallengeDict[number]>({
+    queryKey: ["admin", "challenges"],
+    queryFn: getChallenges,
+    staleTime: 600_000,
+    select: door ? property(door) : undefined
+  })
 
 const getPosts = (door: number) =>
   axios.get(`/admin/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
 export const usePosts = (door: number) =>
-  useQuery<ParentPost[], QueryError>(["admin", "posts", door], () => getPosts(door), {
+  useQuery<ParentPost[], QueryError>({
+    queryKey: ["admin", "posts", door],
+    queryFn: () => getPosts(door),
     staleTime: 300_000
   })
 
@@ -43,75 +48,72 @@ export const useChallengePreview = (
   challenge: AdminChallengePayload | undefined,
   opts?: UseQueryOptions<ChallengePreview, QueryError>
 ) =>
-  useQuery<ChallengePreview, QueryError>(
-    ["admin", "challenges", "preview", challenge],
-    () => getChallengePreview(challenge),
-    { staleTime: Infinity, cacheTime: 0, ...opts }
-  )
+  useQuery<ChallengePreview, QueryError>({
+    queryKey: ["admin", "challenges", "preview", challenge],
+    queryFn: () => getChallengePreview(challenge),
+    staleTime: Infinity,
+    ...opts
+  })
 
 export type CreateChallengeParameters = { challenge: AdminChallengePayload }
 export const useCreateChallenge = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<never, QueryError, CreateChallengeParameters>(
-    ["admin", "challenges", "create"],
-    ({ challenge }) => axios.post("/admin/challenges", { challenge }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("challenges")
-        queryClient.invalidateQueries(["admin", "challenges"])
-      }
+  return useMutation<never, QueryError, CreateChallengeParameters>({
+    mutationKey: ["admin", "challenges", "create"],
+    mutationFn: ({ challenge }) => axios.post("/admin/challenges", { challenge }),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["challenges"] })
+      queryClient.invalidateQueries({ queryKey: ["admin", "challenges"] })
     }
-  )
+  })
 }
 
 export type UpdateChallengeParameters = { challenge: AdminChallengePayload }
 export const useUpdateChallenge = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<never, QueryError, UpdateChallengeParameters>(
-    ["admin", "challenges", "update"],
-    ({ challenge }) =>
+  return useMutation<never, QueryError, UpdateChallengeParameters>({
+    mutationKey: ["admin", "challenges", "update"],
+    mutationFn: ({ challenge }) =>
       axios.patch(`/admin/challenges/${challengeIdParam(challenge.door)}`, { challenge }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("challenges")
-        queryClient.invalidateQueries(["admin", "challenges"])
-      }
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["challenges"] })
+      queryClient.invalidateQueries({ queryKey: ["admin", "challenges"] })
     }
-  )
+  })
 }
 
 export type DeleteChallengeParameters = { door: number | undefined }
 export const useDeleteChallenge = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<unknown, QueryError, DeleteChallengeParameters>(
-    ["admin", "challenges", "destroy"],
-    async ({ door }) =>
+  return useMutation<unknown, QueryError, DeleteChallengeParameters>({
+    mutationKey: ["admin", "challenges", "destroy"],
+    mutationFn: async ({ door }) =>
       isNumber(door) && axios.delete(`/admin/challenges/${challengeIdParam(door)}`),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("challenges")
-        queryClient.invalidateQueries(["admin", "challenges"])
-      }
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["challenges"] })
+      queryClient.invalidateQueries({ queryKey: ["admin", "challenges"] })
     }
-  )
+  })
 }
 
 export type CreateServiceMessageParameters = { service_message: AdminServiceMessagePayload }
 export const useCreateServiceMessage = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<ServiceMessage, QueryError, CreateServiceMessageParameters>(
-    ["admin", "serviceMessages", "create"],
-    (data) => axios.post("/admin/service_messages", data),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("serviceMessages")
-      }
+  return useMutation<ServiceMessage, QueryError, CreateServiceMessageParameters>({
+    mutationKey: ["admin", "serviceMessages", "create"],
+    mutationFn: (data) => axios.post("/admin/service_messages", data),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["serviceMessages"] })
     }
-  )
+  })
 }
 
 export type UpdateServiceMessageParameters = {
@@ -121,30 +123,27 @@ export type UpdateServiceMessageParameters = {
 export const useUpdateServiceMessage = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<ServiceMessage, QueryError, UpdateServiceMessageParameters>(
-    ["admin", "serviceMessages", "update"],
-    ({ uuid, ...data }) => axios.patch(`/admin/service_messages/${uuid}`, data),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("serviceMessages")
-      }
+  return useMutation<ServiceMessage, QueryError, UpdateServiceMessageParameters>({
+    mutationKey: ["admin", "serviceMessages", "update"],
+    mutationFn: ({ uuid, ...data }) => axios.patch(`/admin/service_messages/${uuid}`, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["serviceMessages"] })
     }
-  )
+  })
 }
 
 export type DeleteServiceMessageParameters = { uuid: string }
 export const useDeleteServiceMessage = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<never, QueryError, DeleteServiceMessageParameters>(
-    ["admin", "serviceMessages", "delete"],
-    ({ uuid }) => axios.delete(`/admin/service_messages/${uuid}`),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("serviceMessages")
-      }
+  return useMutation<never, QueryError, DeleteServiceMessageParameters>({
+    mutationKey: ["admin", "serviceMessages", "delete"],
+    mutationFn: ({ uuid }) => axios.delete(`/admin/service_messages/${uuid}`),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["serviceMessages"] })
     }
-  )
+  })
 }
 
 // File upload procedure copied from https://github.com/rails/rails/issues/32208#issuecomment-383737803
@@ -171,9 +170,11 @@ export const useCreateBlob = () =>
     CreateBlobResponse,
     unknown,
     { blob: CreateBlobPayload; config?: AxiosRequestConfig }
-  >(["admin", "activeStorage", "createBlob"], ({ blob, config }) =>
-    axios.post("/rails/active_storage/direct_uploads", { blob }, config).then(({ data }) => data)
-  )
+  >({
+    mutationKey: ["admin", "activeStorage", "createBlob"],
+    mutationFn: ({ blob, config }) =>
+      axios.post("/rails/active_storage/direct_uploads", { blob }, config).then(({ data }) => data)
+  })
 
 type UploadFilePayload = {
   file: File
@@ -181,8 +182,8 @@ type UploadFilePayload = {
 }
 
 export const useUploadFile = () =>
-  useMutation<never, unknown, { upload: UploadFilePayload; config?: AxiosRequestConfig }>(
-    ["admin", "activeStorage", "uploadFile"],
-    ({ upload: { file, directUpload }, config }) =>
+  useMutation<never, unknown, { upload: UploadFilePayload; config?: AxiosRequestConfig }>({
+    mutationKey: ["admin", "activeStorage", "uploadFile"],
+    mutationFn: ({ upload: { file, directUpload }, config }) =>
       axios.put(directUpload.url, file, { ...config, headers: directUpload.headers })
-  )
+  })

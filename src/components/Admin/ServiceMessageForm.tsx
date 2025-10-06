@@ -75,9 +75,8 @@ const ServiceMessageForm: FC<ServiceMessageFormProps> = ({
               })}
             >
               <option label="-" value="" />
-              {map(doors, (door) => (
-                <option key={door} label={toString(door)} value={door} />
-              ))}
+              {doors &&
+                map(doors, (door) => <option key={door} label={toString(door)} value={door} />)}
             </select>
           </FormElementCustom>
 
