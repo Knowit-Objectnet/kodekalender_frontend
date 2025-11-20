@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "@tanstack/react-query"
+import { QueryObserverOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios, { AxiosRequestConfig } from "axios"
 import { isEmpty, isNumber, keyBy, pick, property } from "lodash-es"
 
@@ -12,14 +12,18 @@ import { AdminServiceMessagePayload } from "./ServiceMessage"
 
 const getChallenges = async () =>
   await axios.get("/admin/challenges").then(({ data }) => keyBy(data, "door"))
+type ChallengesOptions<TSelected> = Omit<
+  QueryObserverOptions<AdminChallengeDict, QueryError, TSelected>,
+  "queryKey" | "queryFn"
+>
 export const useChallenges = <TSelected = AdminChallengeDict>(
-  options?: UseQueryOptions<AdminChallengeDict, QueryError, TSelected>
+  options?: ChallengesOptions<TSelected>
 ) =>
   useQuery<AdminChallengeDict, QueryError, TSelected>({
     queryKey: ["admin", "challenges"],
     queryFn: getChallenges,
-    ...options,
-    staleTime: 600_000
+    staleTime: 600_000,
+    ...options
   })
 export const useChallenge = (door: number | null | undefined) =>
   useQuery<AdminChallengeDict, QueryError, AdminChallengeDict[number]>({
@@ -44,17 +48,22 @@ export const getChallengePreview = async (challenge: AdminChallengePayload | und
 
   return await axios.post("/admin/challenge_markdown", { challenge }).then(({ data }) => data)
 }
+type ChallengePreviewOptions = Omit<
+  QueryObserverOptions<ChallengePreview, QueryError>,
+  "queryKey" | "queryFn"
+>
+
 export const useChallengePreview = (
   challenge: AdminChallengePayload | undefined,
-  opts?: UseQueryOptions<ChallengePreview, QueryError>
-) =>
-  useQuery<ChallengePreview, QueryError>({
+  opts?: ChallengePreviewOptions
+) => {
+  return useQuery<ChallengePreview, QueryError>({
     queryKey: ["admin", "challenges", "preview", challenge],
     queryFn: () => getChallengePreview(challenge),
     staleTime: Infinity,
     ...opts
   })
-
+}
 export type CreateChallengeParameters = { challenge: AdminChallengePayload }
 export const useCreateChallenge = () => {
   const queryClient = useQueryClient()
