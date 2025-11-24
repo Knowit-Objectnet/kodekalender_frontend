@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
 import { ReactComponent as KnowitLogo } from "/assets/svgo/misc/Knowit logo.svg"
-import { ReactComponent as KodekalenderLogoDesktop } from "/assets/svgo/misc/Kodekalender Logo Desktop.svg"
-import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/misc/Kodekalender Logo Mobile.svg"
+import { ReactComponent as KodekalenderLocoDesktop } from "/assets/svgo/misc/Kodekalender Logo Desktop 2025.svg"
+import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/misc/Kodekalender Logo Mobile 2025.svg"
 
 import { Z_HEADER } from "../utils"
 
@@ -35,7 +35,7 @@ const PageHeader = () => (
         title="Til forsiden"
         className={`place-self-center-start flex flex-col justify-center child:w-full ${Z_HEADER}`}
       >
-        <KodekalenderLogoDesktop className="hidden w-60 md:block" />
+        <KodekalenderLocoDesktop className="hidden w-60 md:block" />
         <KodekalenderLogoMobile className="-mt-3 block w-30 md:hidden" />
       </Link>
 
