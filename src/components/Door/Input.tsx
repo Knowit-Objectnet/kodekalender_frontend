@@ -22,7 +22,7 @@ const Input: FC<InputProps> = ({ door }) => {
   const [dirty, setDirty] = useState(false)
   const isDoorSolved = useIsDoorSolved(door)
 
-  const { mutate: createSolution, isLoading, error, reset } = useCreateSolution()
+  const { mutate: createSolution, isPending, error, reset } = useCreateSolution()
   const [rateLimitTimeout, setRateLimitTimeout] = useState(0)
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> | undefined
@@ -47,7 +47,7 @@ const Input: FC<InputProps> = ({ door }) => {
     setAttemptCount((count) => count + 1)
   }
 
-  const isWrongAnswer = !isDoorSolved && attemptCount > 0 && !isLoading && !dirty
+  const isWrongAnswer = !isDoorSolved && attemptCount > 0 && !isPending && !dirty
 
   if (!isDoorSolved && !isAuthenticated) {
     return (

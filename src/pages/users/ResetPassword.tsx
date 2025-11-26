@@ -20,7 +20,7 @@ const ResetPassword: FC = () => {
     setError,
     formState: { errors, dirtyFields, isSubmitSuccessful }
   } = useForm<ResetPasswordParameters>()
-  const { mutate: resetPassword, error, isLoading } = useResetPassword()
+  const { mutate: resetPassword, error, isPending } = useResetPassword()
   useEffect(() => {
     forEach(error?.errors, (messages, key) =>
       setError(key as any, { message: join(messages, ", ") })
@@ -35,7 +35,7 @@ const ResetPassword: FC = () => {
     resetPassword(data)
   }
 
-  if (isSubmitSuccessful && !isLoading && !error) {
+  if (isSubmitSuccessful && !isPending && !error) {
     return (
       <BasicPage title="Passord tilbakestilt">
         <div className="text-center">Du kan nå logge inn med ditt nye passord.</div>

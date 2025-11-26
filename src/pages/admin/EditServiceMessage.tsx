@@ -12,7 +12,7 @@ const EditServiceMessage: FC = () => {
   const { uuid } = useParams<{ uuid: string }>()
   const navigate = useNavigate()
 
-  const { data: serviceMessage, isLoading } = useServiceMessages({
+  const { data: serviceMessage, isPending } = useServiceMessages({
     select: (serviceMessages) => find(serviceMessages, { uuid })
   })
   const { mutate: updateServiceMessage } = useUpdateServiceMessage()
@@ -27,10 +27,10 @@ const EditServiceMessage: FC = () => {
   }
 
   useEffect(() => {
-    if (!isLoading && !serviceMessage) navigate("/admin/service_messages/new")
-  }, [isLoading, serviceMessage, navigate])
+    if (!isPending && !serviceMessage) navigate("/admin/service_messages/new")
+  }, [isPending, serviceMessage, navigate])
 
-  if (isLoading || !serviceMessage) return null
+  if (isPending || !serviceMessage) return null
 
   return <ServiceMessageForm serviceMessage={serviceMessage} submit={submit} />
 }

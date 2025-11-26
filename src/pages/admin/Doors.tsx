@@ -23,7 +23,7 @@ const Doors: FC = () => {
   const { data: challenges } = useChallenges()
   const minChallenge = useMemo(() => minBy(values(challenges), "door"), [challenges])
 
-  const { mutate: doDeleteChallenge, isLoading: isDeleting } = useDeleteChallenge()
+  const { mutate: doDeleteChallenge, isPending: isDeleting } = useDeleteChallenge()
 
   const deleteChallenge = () => {
     if (

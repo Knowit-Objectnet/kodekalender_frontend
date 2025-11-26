@@ -1,8 +1,6 @@
 import { createRoot } from "react-dom/client"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { BrowserRouter } from "react-router-dom"
-import { ReactQueryDevtools } from "react-query/devtools"
-
 import "@fontsource-variable/nunito"
 import "@fontsource-variable/nunito/wght-italic.css"
 import "@fontsource/twinkle-star/400.css"
@@ -12,6 +10,9 @@ import "../assets/css/doors.scss"
 import "../assets/css/prose.scss"
 
 import "./axios"
+
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+
 import App from "./App"
 import { AuthContextProvider } from "./AuthContext"
 import { OptionsContextProvider } from "./OptionsContext"
@@ -20,7 +21,7 @@ const Main = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        notifyOnChangeProps: "tracked"
+        notifyOnChangeProps: ["data", "error", "status"]
       }
     }
   })
