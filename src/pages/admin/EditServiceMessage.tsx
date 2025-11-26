@@ -7,14 +7,13 @@ import { AdminServiceMessagePayload } from "../../api/admin/ServiceMessage"
 import { useServiceMessages } from "../../api/requests"
 import ServiceMessageForm from "../../components/Admin/ServiceMessageForm"
 import { guardPresent } from "../../utils"
-import { ServiceMessage } from "../../api/ServiceMessage"
 
 const EditServiceMessage: FC = () => {
   const { uuid } = useParams<{ uuid: string }>()
   const navigate = useNavigate()
 
-  const { data: serviceMessage, isPending } = useServiceMessages<ServiceMessage | undefined>({
-    select: (serviceMessages: ServiceMessage[]) => find(serviceMessages, { uuid })
+  const { data: serviceMessage, isPending } = useServiceMessages({
+    select: (serviceMessages) => find(serviceMessages, { uuid })
   })
   const { mutate: updateServiceMessage } = useUpdateServiceMessage()
 

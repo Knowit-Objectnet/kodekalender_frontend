@@ -83,7 +83,6 @@ export const useChallenge = (door: Maybe<number>) =>
 
 const getSolvedStatus = (): Promise<SolvedStatus> =>
   axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
-
 export const useSolvedStatus = <TSelected = SolvedStatus>(
   options?: Omit<UseQueryOptions<SolvedStatus, QueryError, TSelected>, "queryKey" | "queryFn">
 ): UseQueryResult<TSelected, QueryError> =>
