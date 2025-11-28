@@ -1,71 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nb">
+  <head>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      // This script checks to see if a redirect is present in the query string,
+      // converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      ;(function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&")
+            })
+            .join("?")
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash)
+        }
+      })(window.location)
+    </script>
 
-<head>
-  <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    // This script checks to see if a redirect is present in the query string,
-    // converts it back into the correct url and adds it to the
-    // browser's history using window.history.replaceState(...),
-    // which won't cause the browser to attempt to load the new url.
-    // When the single page app is loaded further down in this file,
-    // the correct url will be waiting in the browser's history for
-    // the single page app to route accordingly.
-    (function (l) {
-      if (l.search[1] === '/') {
-        var decoded = l.search.slice(1).split('&').map(function (s) {
-          return s.replace(/~and~/g, '&')
-        }).join('?');
-        window.history.replaceState(null, null,
-          l.pathname.slice(0, -1) + decoded + l.hash
-        );
+    <script>
+      // Set theme class as early as possible to avoid FOUC. Default to dark mode,
+      // check for system preference only if enabled at build time.
+      let themeIsLight = false
+      // if (%VITE_LIGHT_MODE_ENABLED% === "true") {
+      if ("false" === "true") {
+        themeIsLight =
+          localStorage.theme === "light" ||
+          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
       }
-    }(window.location))
-  </script>
 
-  <script>
-    // Set theme class as early as possible to avoid FOUC. Default to dark mode,
-    // check for system preference only if enabled at build time.
-    let themeIsLight = false
-    // if (%VITE_LIGHT_MODE_ENABLED% === "true") {
-    if ("false" === "true") {
-      themeIsLight = localStorage.theme === "light" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: light)").matches)
-    }
+      document.documentElement.classList.toggle("light", themeIsLight)
+      document.documentElement.classList.toggle("dark", !themeIsLight)
+    </script>
 
-    document.documentElement.classList.toggle("light", themeIsLight)
-    document.documentElement.classList.toggle("dark", !themeIsLight)
-  </script>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/assets/favicon-CMEM-ijH.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="rgb(17, 18, 48)" />
+    <meta property="og:url" content="https://julekalender.knowit.no" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Knowit Kodekalender 2025" />
+    <meta
+      property="og:description"
+      content="Løs en ny oppgave hver dag frem til jul og vinn valgfri mobil eller nettbrett ❄︎!"
+    />
+    <meta property="og:image" content="https://julekalender.knowit.no/og/kodekalender_2025.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-  <meta charset="utf-8" />
-  <link rel="icon" href="/assets/favicon-CMEM-ijH.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="rgb(17, 18, 48)" />
-  <meta property="og:url" content="https://julekalender.knowit.no">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Knowit Kodekalender 2024">
-  <meta property="og:description" content="Løs en ny oppgave hver dag frem til jul og vinn valgfri mobil eller nettbrett ❄︎!">
-  <meta property="og:image" content="https://julekalender.knowit.no/og/kodekalender_2024.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="julekalender.knowit.no" />
+    <meta property="twitter:url" content="https://julekalender.knowit.no" />
+    <meta name="twitter:title" content="Knowit Kodekalender 2025" />
+    <meta
+      name="twitter:description"
+      content="Løs en ny oppgave hver dag frem til jul og vinn valgfri mobil eller nettbrett ❄︎!"
+    />
+    <meta name="twitter:image" content="https://julekalender.knowit.no/og/kodekalender_2025.jpg" />
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="julekalender.knowit.no">
-  <meta property="twitter:url" content="https://julekalender.knowit.no">
-  <meta name="twitter:title" content="Knowit Kodekalender 2024">
-  <meta name="twitter:description" content="Løs en ny oppgave hver dag frem til jul og vinn valgfri mobil eller nettbrett ❄︎!">
-  <meta name="twitter:image" content="https://julekalender.knowit.no/og/kodekalender_2024.jpg">
+    <meta
+      name="description"
+      content="Løs en ny oppgave hver dag frem til jul og vinn valgfri mobil eller nettbrett ❄︎!"
+    />
+    <title>Knowit Kodekalender 2025</title>
+    <script type="module" crossorigin src="/assets/index-bT8zLw0g.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-YzGSD1bx.css">
+  </head>
 
-  <meta name="description" content="Løs en ny oppgave hver dag frem til jul og vinn valgfri mobil eller nettbrett ❄︎!" />
-  <title>Knowit Kodekalender 2024</title>
-  <script type="module" crossorigin src="/assets/index-bT8zLw0g.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-YzGSD1bx.css">
-</head>
-
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>
