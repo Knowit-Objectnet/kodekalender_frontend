@@ -13,21 +13,21 @@ const Career = () => (
 
       <div className="flex flex-wrap justify-center gap-8">
         <LinkButton
-          to="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend"
+          to="https://www.knowit.no/jobb-hos-oss/ledige-stillinger/?Sted=Oslo"
           title="Søk på stilling i Oslo: Systemutvikler Backend, Mobil og/eller Frontend!"
           content="Jobb i Oslo"
           icon="link"
           external
         />
         <LinkButton
-          to="https://careernorway.knowit.no/jobs/1478548-du-er-utvikleren-som-utvikler-oss"
+          to="https://www.knowit.no/jobb-hos-oss/ledige-stillinger/?Sted=Bergen"
           title="Søk på stilling i Bergen: Du er utvikleren som utvikler oss!"
           content="Jobb i Bergen"
           icon="link"
           external
         />
         <LinkButton
-          to="https://www.knowit.no/jobb-hos-oss/ledige-stillinger/vi-soker-utvikler-i-trondheim/"
+          to="https://www.knowit.no/jobb-hos-oss/ledige-stillinger/?Sted=Trondheim"
           title="Søk på stilling i Trondheim: Bli med på Knowits eventyr i Trondheim!"
           content="Jobb i Trondheim"
           icon="link"
