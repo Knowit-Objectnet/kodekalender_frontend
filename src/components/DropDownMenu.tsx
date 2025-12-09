@@ -176,20 +176,10 @@ export const DropDownMenu = () => {
               <Menu.Item>
                 <LinkButton
                   external
-                  to="https://instagram.com/weareknowit"
+                  to="https://instagram.com/knowitnorge"
                   icon="instagram"
                   content="Instagram"
                   aria-label="Følg oss på Instagram"
-                />
-              </Menu.Item>
-
-              <Menu.Item>
-                <LinkButton
-                  external
-                  to="https://twitter.com/knowitnorge"
-                  icon="twitter"
-                  content="Twitter"
-                  aria-label="Følg oss på Twitter/X"
                 />
               </Menu.Item>
             </MenuGroup>
