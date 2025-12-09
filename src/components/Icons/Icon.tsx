@@ -25,7 +25,6 @@ import { ReactComponent as PremieIcon } from "/assets/svgo/icons/premie.svg"
 import { ReactComponent as RedigerIcon } from "/assets/svgo/icons/rediger.svg"
 import { ReactComponent as SendIcon } from "/assets/svgo/icons/send.svg"
 import { ReactComponent as SoundIcon } from "/assets/svgo/icons/sound.svg"
-import { ReactComponent as TwitterIcon } from "/assets/svgo/icons/twitter.svg"
 import { ReactComponent as HeartIcon } from "/assets/svgo/icons/heart.svg"
 import { ReactComponent as SnowflakeIcon } from "/assets/svgo/icons/snowflake.svg"
 import { ReactComponent as LikeFullIcon } from "/assets/svgo/icons/like_fylt.svg"
@@ -58,7 +57,6 @@ const ICONS = {
   award: PremieIcon,
   edit: RedigerIcon,
   sound: SoundIcon,
-  twitter: TwitterIcon,
   send: SendIcon,
   heart: HeartIcon,
   like: LikeFullIcon,
