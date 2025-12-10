@@ -1,4 +1,4 @@
-import { isNil, isEmpty, join, map, upperFirst, reduce, last } from "lodash-es"
+import { isNil, isEmpty, join, map, orderBy, groupBy, upperFirst, values, sortBy } from "lodash-es"
 import { ReactNode } from "react"
 
 import { useLeaderboard } from "../api/requests"
@@ -11,7 +11,9 @@ import { LeaderboardUser } from "../api"
 import BasicPage from "./BasicPage"
 
 const getGroupTitle = (count: number) => {
-  const title = `${upperFirst(numberString(count))} løst${count > 1 ? "e" : ""} luke${count > 1 ? "r" : ""}`
+  const title = `${upperFirst(numberString(count))} løst${count > 1 ? "e" : ""} luke${
+    count > 1 ? "r" : ""
+  }`
 
   if (count === 24) return `🧝‍♂️🎅🎄 ${title} 🎄🤶🧝‍♀️`
   else return title
@@ -29,52 +31,46 @@ const Leaderboard = () => {
   if (isNil(leaderboard)) return null
   if (isEmpty(leaderboard)) return <div className="text-center">Ingen snille barn!</div>
 
-  const leaderboardGroupedOnSolvedCount = reduce(
-    leaderboard,
-    (acc, leaderboardUser, i) => {
-      const { uuid, username } = leaderboardUser
-      const mappedLeaderboardUser: MappedLeaderboardUser = {
-        ...leaderboardUser,
-        username: username ?? join(getRandomDisplayName(uuid), " "),
-        rank: i + 1
-      }
-
-      if (last(acc)?.[0]?.solved_count === leaderboardUser.solved_count) {
-        last(acc)!.push(mappedLeaderboardUser)
-      } else {
-        acc.push([mappedLeaderboardUser])
-      }
-
-      return acc
-    },
-    [] as Array<[MappedLeaderboardUser, ...MappedLeaderboardUser[]]>
+  const sortedBySolvedCount = orderBy(leaderboard, ["solved_count"], ["desc"])
+  const mapped: MappedLeaderboardUser[] = map(sortedBySolvedCount, (u, i) => ({
+    ...u,
+    rank: i + 1,
+    username: u.username ?? join(getRandomDisplayName(u.uuid), " ")
+  }))
+  const grouped = groupBy(mapped, "solved_count")
+  const leaderboardGroupedOnSolvedCount = map(values(grouped), (group) =>
+    sortBy(group, "solved_at")
   )
 
   return (
     <BasicPage title="Snille Barn">
-      {map(leaderboardGroupedOnSolvedCount, (group) => (
-        <div key={group[0].solved_count}>
-          <h2 className="text-center font-bold">{getGroupTitle(group[0].solved_count)}</h2>
+      {map(leaderboardGroupedOnSolvedCount, (group) => {
+        const solvedCount = group[0].solved_count
 
-          <Divider bgClasses="bg-purple-500/70 mt-3" />
+        return (
+          <div key={solvedCount}>
+            <h2 className="text-center font-bold">{getGroupTitle(solvedCount)}</h2>
 
-          <div className="mt-6 px-16">
-            {map(group, ({ uuid, username, avatar, solved_at: _solved_at, rank }) => (
-              <div
-                key={uuid}
-                className={cl(
-                  "grid w-full grid-cols-[1fr_auto_1fr] px-24 py-5",
-                  uuid === whoami?.uuid && "rounded-md bg-purple-700"
-                )}
-              >
-                <Avatar avatar={avatar} className="h-18 max-h-18 w-18 max-w-18" />
-                <div className="flex items-center gap-4 text-opacity-80">{username}</div>
-                <div className="place-self-center-end">{rank}</div>
-              </div>
-            ))}
+            <Divider bgClasses="bg-purple-500/70 mt-3" />
+
+            <div className="mt-6 px-16">
+              {map(group, ({ uuid, username, avatar, rank }) => (
+                <div
+                  key={uuid}
+                  className={cl(
+                    "grid w-full grid-cols-[1fr_auto_1fr] px-24 py-5",
+                    uuid === whoami?.uuid && "rounded-md bg-purple-700"
+                  )}
+                >
+                  <Avatar avatar={avatar} className="h-18 max-h-18 w-18 max-w-18" />
+                  <div className="flex items-center gap-4 text-opacity-80">{username}</div>
+                  <div className="place-self-center-end">{rank}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </BasicPage>
   )
 }
