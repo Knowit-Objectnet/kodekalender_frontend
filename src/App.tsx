@@ -21,6 +21,25 @@ import Icon, { IconProps } from "./components/Icons/Icon"
 import useWelcomeBackRedirect from "./hooks/useWelcomeBackRedirect"
 import ContentBackground from "./components/ContentBackground"
 import { OptionsContext } from "./OptionsContext"
+import { ReactComponent as KodekalenderLogoDesktop } from "/assets/svgo/misc/Kodekalender Logo Desktop 2025.svg"
+import { ReactComponent as KodekalenderLogoMobile } from "/assets/svgo/misc/Kodekalender Logo Mobile 2025.svg"
+import { Header2 } from "./components/text"
+
+const WinnerMessage = () => (
+  <div className="space-y-12 text-center">
+    <Header2>Vinneren er trukket</Header2>
+    <div className="inline-block max-w-384">
+      Vinneren av Knowit Kodekalender 2025 er trukket! Mens vi venter på svar, takk til alle som har
+      vært med og gratulerer til vinneren!
+      <br />
+      Vi alvene takker for oss for denne gang og håper vi ser dere igjen neste år!
+    </div>
+    <div className="grid place-items-center">
+      <KodekalenderLogoDesktop className="hidden w-60 md:block" />
+      <KodekalenderLogoMobile className="-mt-3 block w-30 md:hidden" />
+    </div>
+  </div>
+)
 
 const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
   const [delayed, setDelayed] = useState(true)
@@ -52,26 +71,6 @@ const Loader = memo(({ icon }: { icon: IconProps["name"] }) => {
   )
 })
 
-const LazyAdmin = () => {
-  const Component = lazy(() => import("./pages/Admin"))
-
-  return (
-    <Suspense fallback={<Loader icon="edit" />}>
-      <Component />
-    </Suspense>
-  )
-}
-
-const LazyUser = () => {
-  const Component = lazy(() => import("./pages/User"))
-
-  return (
-    <Suspense fallback={<Loader icon="user" />}>
-      <Component />
-    </Suspense>
-  )
-}
-
 const App = () => {
   useStoreAnchorVars()
   useWelcomeBackRedirect()
@@ -82,10 +81,7 @@ const App = () => {
     () =>
       raffleStarted ? (
         <>
-          <Route path="/" element={<Doors />} />
-          <Route path="/luke/:door" element={<Door />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/" element={<WinnerMessage />} />
         </>
       ) : (
         <Route path="/" element={<Countdown />} />
@@ -121,14 +117,8 @@ const App = () => {
             {raffleRoutes}
 
             <Route path="/about" element={<About />} />
-            <Route path="/privacy" element={<Privacy />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/career" element={<Career />} />
-            <Route path="/service_messages" element={<ServiceMessages />} />
-
-            <Route path="/admin/*" element={<LazyAdmin />} />
-            <Route path="/users/*" element={<LazyUser />} />
 
             {/* 404? - Route to main view */}
             <Route path="*" element={<Navigate to="/" />} />
